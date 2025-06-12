@@ -1,0 +1,16 @@
+services:
+  api-srv:
+    container_name: streview_api
+    build:
+      context: ./services/api/
+      dockerfile: Dockerfile
+    image: streview/api_dev:latest
+    volumes:
+      - "./services/api/:/app/"
+    environment:
+      TZ: ${TZ}
+    networks:
+      - streview-net
+
+networks:
+    streview-net:
