@@ -17,7 +17,7 @@ Desktop.ini
 *.swp
 *.swo
 .idea/
-#.vscode/
+.vscode/
 
 ## Generic items
 
@@ -47,11 +47,11 @@ memo.md
 ## Project-specific items
 
 # ライブラリなどリポジトリに含める必要のないディレクトリ
-
+.gradle
 # デバッグ時のファイル
 
 # 成果データ
-
+build
 # asset directory
 
 # upload directory
