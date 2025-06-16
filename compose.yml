@@ -1,4 +1,25 @@
 services:
+  rev-pxy-srv:
+    container_name: streview_rev-pxy
+    build:
+      context: ./services/rev-pxy/
+      dockerfile: Dockerfile
+    image: streview/rev-pxy_dev:latest
+    environment:
+      TZ: ${TZ}
+    volumes:
+      - "./services/rev-pxy/nginx.conf:/etc/nginx/nginx.conf" # nginxの全般設定
+      - "./services/rev-pxy/default.conf:/etc/nginx/conf.d/default.conf" # nginxの上書きサーバー設定 # nginx/conf.d/*.confが基本のnginx/nginx.confを上書きする
+      - "./services/rev-pxy/ssl/:/etc/nginx/ssl/:ro" # SSL証明書や鍵をマウント
+      - "./services/rev-pxy/statics/:/etc/nginx/static/statics/" # 静的ファイルをマウントしてWeb鯖として利用
+    ports:
+      - "${REV_PXY_HTTP_HOST_PORT:-80}:80" # httpアクセス用のポート
+      - "${REV_PXY_HTTPS_HOST_PORT:-443}:443" # httpsアクセス用のポート(TLS/SSL)
+    depends_on:
+      - api-srv
+    networks:
+      - streview-net
+
   api-srv:
     container_name: streview_api
     build:
