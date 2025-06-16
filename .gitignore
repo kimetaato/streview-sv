@@ -43,6 +43,7 @@ memo.md
 ## Docker-related items
 
 # volumes
+/services/db/data/
 
 ## Project-specific items
 
@@ -52,6 +53,7 @@ memo.md
 
 # 成果データ
 build
+
 # asset directory
 
 # upload directory

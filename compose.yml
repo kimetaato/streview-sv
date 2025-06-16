@@ -11,6 +11,25 @@ services:
       TZ: ${TZ}
     networks:
       - streview-net
+  
+  db-srv:
+    container_name: streview_db
+    build:
+      context: ./services/db/
+      dockerfile: Dockerfile
+    volumes:
+      - "./services/db/postgresql.conf:/var/lib/postgresql/data/postgresql.conf"
+      - "./services/db/data:${PGDATA}" # dbデータの永続化、サブディレクトリにトランザクションログもある
+    # ports: # apiサーバ以外からアクセスできないように現段階は閉じておく
+    #   - 5432:5432
+    environment:
+      TZ: ${TZ}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+      PGDATA: ${PGDATA:-/var/lib/postgresql/data}
+    networks:
+      - streview-net
 
 networks:
     streview-net:
