@@ -2,6 +2,16 @@
 
 すとれびゅ！のdockerプロジェクト
 
+## 開発環境構築
+
+```bash
+# デバッグ用のオレオレ認証のための鍵作成
+bash ./scripts/key-gen.sh
+
+# コンテナビルド&実行
+bash ./scripts/rebuild.sh
+```
+
 ## デバック
 
 ### Postgresコンテナでの操作
