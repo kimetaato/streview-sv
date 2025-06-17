@@ -1,6 +1,11 @@
 pluginManagement {
-    includeBuild("build-logic")
+    repositories {
+        google()
+        gradlePluginPortal()
+        mavenCentral()
+    }
 }
+
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
@@ -12,8 +17,8 @@ dependencyResolutionManagement {
 
 rootProject.name = "streview"
 
-include(":infrastructure")
-include(":presentation")
-include(":usecase")
-include(":domain")
-include(":common")
+include("app")
+include("modules:usecase")
+include("modules:domain")
+include("modules:presentation")
+include("modules:infrastructure")
