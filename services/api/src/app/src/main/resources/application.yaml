@@ -1,0 +1,14 @@
+ktor:
+  application:
+    modules:
+      - com.streview.ApplicationKt.module
+  deployment:
+    port: 8080
+    watch:
+      - classes
+      - resources
+      - "../modules/domain/build/classes",
+      - "../modules/usecase/build/classes",
+      - "../modules/presentation/build/classes",
+      - "../modules/infrastructure/build/classes"
+  development: true
