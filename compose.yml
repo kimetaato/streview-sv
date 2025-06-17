@@ -16,7 +16,8 @@ services:
       - "${REV_PXY_HTTP_HOST_PORT:-80}:80" # httpアクセス用のポート
       - "${REV_PXY_HTTPS_HOST_PORT:-443}:443" # httpsアクセス用のポート(TLS/SSL)
     depends_on:
-      - api-srv
+      api-srv:
+        condition: service_healthy
     networks:
       - streview-net
 
@@ -30,6 +31,15 @@ services:
       - "./services/api/:/app/"
     environment:
       TZ: ${TZ}
+    depends_on:
+      db-srv:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD-SHELL", "echo true || exit 1"] # TODO: "CMD", "curl", "-f", "http://localhost:8080/check/health" # NONE, CMD, CMD-SHELL # CMDだと変数展開が不可なのでその場合CMD-SHELLかshell形式、environmentセクションで渡す変数(パスワードなど)で展開したいなら二連＄でエスケープ # localhostだと起動時の一時サービス(:socket connection)に接続する可能性があるようで、正式なサーバー(:network interfaceもlistenしている)に接続するために127.0.0.1を使うべきらしい
+      interval: 10s # ヘルスチェックの間隔 default: 30s
+      timeout: 5s # タイムアウトの長さ default: 30s
+      start_period: 5s # 最初のうちどれぐらいの期間失敗を無視するか default: 0s
+      retries: 4 # リトライ回数 default: 3
     networks:
       - streview-net
   
@@ -49,6 +59,12 @@ services:
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
       POSTGRES_DB: ${POSTGRES_DB}
       PGDATA: ${PGDATA:-/var/lib/postgresql/data}
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB} || exit 1"] # NONE, CMD, CMD-SHELL # CMDだと変数展開が不可なのでその場合CMD-SHELLかshell形式、environmentセクションで渡す変数(パスワードなど)で展開したいなら二連＄でエスケープ # localhostだと起動時の一時サービス(:socket connection)に接続する可能性があるようで、正式なサーバー(:network interfaceもlistenしている)に接続するために127.0.0.1を使うべきらしい
+      interval: 10s # ヘルスチェックの間隔 default: 30s
+      timeout: 5s # タイムアウトの長さ default: 30s
+      start_period: 5s # 最初のうちどれぐらいの期間失敗を無視するか default: 0s
+      retries: 4 # リトライ回数 default: 3
     networks:
       - streview-net
 
