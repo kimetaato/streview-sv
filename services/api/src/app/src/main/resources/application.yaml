@@ -7,8 +7,8 @@ ktor:
     watch:
       - classes
       - resources
-      - "../modules/domain/build/classes",
-      - "../modules/usecase/build/classes",
-      - "../modules/presentation/build/classes",
-      - "../modules/infrastructure/build/classes"
+      - modules/domain/build/classes
+      - modules/usecase/build/classes
+      - modules/presentation/build/classes
+      - modules/infrastructure/build/classes
   development: true

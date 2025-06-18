@@ -4,23 +4,21 @@ import com.streview.domain.exceptions.NotFoundException
 import com.streview.domain.users.IUserRepository
 import com.streview.domain.users.User
 import com.streview.usecase.UseCase
-import com.streview.usecase.users.dto.UserRequest
-import com.streview.usecase.users.dto.UserResponse
+import com.streview.usecase.users.dto.GetUserRequest
+import com.streview.usecase.users.dto.GetUserResponse
 
 
-class GetUserUseCase(private val repository: IUserRepository) : UseCase<UserRequest, UserResponse> {
-    override suspend fun execute(input: UserRequest): UserResponse {
+class GetUserUseCase(private val repository: IUserRepository) : UseCase<GetUserRequest, GetUserResponse> {
+    override suspend fun execute(input: GetUserRequest): GetUserResponse {
         println("Usecase GET / called")
         val user: User? = repository.findById(input.id)
 
-        if (user != null) {
-            return UserResponse(
-                name = user.name,
-                id = user.id,
-                email = user.email
+       return user?.let {
+            GetUserResponse(
+                name = user.name.value,
+                id = user.id.value,
+                email = user.email.value,
             )
-        } else {
-            throw NotFoundException("user is not found")
-        }
+        } ?: throw NotFoundException("user is not found")
     }
 }

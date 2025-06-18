@@ -5,7 +5,7 @@ import com.streview.usecase.OutputPort
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class UserRequest(val id: Int) : InputPort
+data class GetUserRequest(val id: Int) : InputPort
 
 @Serializable
-data class UserResponse(val id: Int, val name: String, val email: String) : OutputPort
+data class GetUserResponse(val id: Int, val name: String, val email: String) : OutputPort
