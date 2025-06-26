@@ -1,5 +1,6 @@
 package com.streview.configure
 
+import com.streview.presentation.controller.storeController
 import com.streview.presentation.controller.userController
 import io.ktor.server.application.*
 import io.ktor.server.response.*
@@ -15,6 +16,7 @@ fun Application.configureRouting() {
             }
 
             userController()
+            storeController()
         }
     }
 }

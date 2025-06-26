@@ -15,6 +15,7 @@ dependencies {
 
     // ORM
     implementation(libs.exposed.core)
+    implementation(libs.exposed.kotlin.datetime)
     implementation(libs.exposed.r2dbc)
     implementation(libs.r2dbc.postgresql)
     implementation(libs.r2dbc.pool)

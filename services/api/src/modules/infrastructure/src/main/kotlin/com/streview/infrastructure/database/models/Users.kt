@@ -6,4 +6,6 @@ object UsersTable : Table() {
     val id = integer("id").autoIncrement()
     val name = varchar("name", 255)
     val email = varchar("email", 255)
+
 }
+
