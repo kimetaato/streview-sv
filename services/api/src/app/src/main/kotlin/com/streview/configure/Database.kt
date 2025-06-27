@@ -2,22 +2,17 @@ package com.streview.configure
 
 import com.streview.infrastructure.database.models.StoresTable
 import com.streview.infrastructure.database.models.UsersTable
-import io.ktor.server.application.*
 import io.r2dbc.spi.ConnectionFactories
 import io.r2dbc.spi.ConnectionFactory
 import io.r2dbc.spi.ConnectionFactoryOptions.*
 import kotlinx.coroutines.runBlocking
 import kotlinx.datetime.*
 import org.jetbrains.exposed.v1.core.vendors.PostgreSQLDialect
-import org.jetbrains.exposed.v1.r2dbc.R2dbcDatabase
-import org.jetbrains.exposed.v1.r2dbc.R2dbcDatabaseConfig
-import org.jetbrains.exposed.v1.r2dbc.SchemaUtils
-import org.jetbrains.exposed.v1.r2dbc.insert
-import org.jetbrains.exposed.v1.r2dbc.selectAll
+import org.jetbrains.exposed.v1.r2dbc.*
 import org.jetbrains.exposed.v1.r2dbc.transactions.suspendTransaction
 
 
-fun Application.configureDatabase() {
+fun configureDatabase() {
     val connectionFactory: ConnectionFactory = ConnectionFactories.get(
         builder()
             .option(DRIVER, "pool")
@@ -40,12 +35,7 @@ fun Application.configureDatabase() {
     runBlocking {
         suspendTransaction {
             SchemaUtils.create(UsersTable, StoresTable)
-//            if (UsersTable.selectAll().empty()) {
-//                UsersTable.insert {
-//                    it[name] = "Streview"
-//                    it[email] = "streview@streview.com"
-//                }
-//            }
+
             if (StoresTable.selectAll().empty()) {
                 StoresTable.insert {
                     it[id] = "85e15cf9-3555-45e4-ad77-920432ad937d"

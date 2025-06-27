@@ -27,7 +27,6 @@ class RegisterUserUseCase(val repository: IUserRepository, val service: ImageSto
             repository.findByID(userID)?.let {
                 throw ConflictException("すでに登録されています。")
             }
-
             // 画像のファイルパスを生成
             val fileName = "${Clock.System.now().toEpochMilliseconds()}_${Random.nextInt(1000, 10000)}"
 

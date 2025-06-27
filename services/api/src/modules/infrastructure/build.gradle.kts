@@ -12,6 +12,8 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.10.2")
     implementation(libs.kotlinx.io.core)
     implementation(libs.imgscalr)
+    implementation(libs.webp.imageio)
+
 
     implementation(project(":modules:domain"))
     implementation(project(":modules:application"))
