@@ -25,6 +25,9 @@ Desktop.ini
 *.env*
 !*.env*.template
 
+# credentials
+admin.json
+
 # log
 *.log
 
@@ -60,6 +63,12 @@ build
 # asset directory
 
 # upload directory
+# 画像保存ディレクトリ全体を除外
+Upload/
+Upload/**/*
+
+# ただし .gitkeep ファイルは追跡対象として残す
+!upload/**/.gitkeep
 
 ## Others items
 

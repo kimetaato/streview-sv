@@ -14,7 +14,9 @@ uuid-version = "5.1.0"
 kotlin-result-version = "2.0.1"
 ktor-firebase-version = "1.5.0"
 kotlinx-datetime-version = "0.6.2"
-
+kotlinx-io = "0.7.0"
+kotlinx-serialization-json = "1.8.1"
+imgscalr-version = "4.2"
 [libraries]
 uuid = { module = "com.fasterxml.uuid:java-uuid-generator", version.ref = "uuid-version" }
 kotlin-result = { module = "com.michael-bull.kotlin-result:kotlin-result", version.ref = "kotlin-result-version" }
@@ -23,11 +25,15 @@ koin-logger-slf4j = { module = "io.insert-koin:koin-logger-slf4j", version.ref =
 ktor-status-page = { module = "io.ktor:ktor-server-status-pages", version.ref = "ktor-version" }
 ktor-serialization-kotlinx-json = { module = "io.ktor:ktor-serialization-kotlinx-json", version.ref = "ktor-version" }
 ktor-server-content-negotiation = { module = "io.ktor:ktor-server-content-negotiation", version.ref = "ktor-version" }
-kotlinx-datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.ref = "kotlinx-datetime-version"}
+kotlinx-datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.ref = "kotlinx-datetime-version" }
+kotlinx-io-core = { module = "org.jetbrains.kotlinx:kotlinx-io-core", version.ref = "kotlinx-io" }
+kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinx-serialization-json" }
+imgscalr = { module = "org.imgscalr:imgscalr-lib", version.ref = "imgscalr-version" }
+
 # ORM
 exposed-core = { module = "org.jetbrains.exposed:exposed-core", version.ref = "exposed-version" }
 exposed-r2dbc = { module = "org.jetbrains.exposed:exposed-r2dbc", version.ref = "exposed-version" }
-exposed-kotlin-datetime = {module = "org.jetbrains.exposed:exposed-kotlin-datetime", version.ref = "exposed-version"}
+exposed-kotlin-datetime = { module = "org.jetbrains.exposed:exposed-kotlin-datetime", version.ref = "exposed-version" }
 r2dbc-pool = { module = "io.r2dbc:r2dbc-pool", version.ref = "r2dbc-version" }
 r2dbc-postgresql = { module = "org.postgresql:r2dbc-postgresql", version.ref = "r2dbc-postgresql-version" }
 jdbc-postgresql = { module = "org.postgresql:postgresql", version.ref = "jdbc-postgresql-version" }

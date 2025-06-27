@@ -20,3 +20,6 @@ class InvalidInputException(
     message: String,
     cause: Throwable? = null
 ) : BusinessException(message, cause)
+
+
+

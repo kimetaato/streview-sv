@@ -5,6 +5,10 @@ plugins {
 }
 
 dependencies {
-    implementation(libs.ktor.serialization.kotlinx.json)
+    implementation(libs.kotlinx.datetime)
+    implementation(libs.kotlinx.io.core)
+    implementation(libs.kotlinx.serialization.json)
+    implementation(libs.exposed.r2dbc)
+
     implementation(project(":modules:domain"))
 }

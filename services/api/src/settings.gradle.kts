@@ -18,7 +18,7 @@ dependencyResolutionManagement {
 rootProject.name = "streview"
 
 include("app")
-include("modules:usecase")
+include("modules:application")
 include("modules:domain")
 include("modules:presentation")
 include("modules:infrastructure")

@@ -1,6 +1,16 @@
 plugins {
     `kotlin-dsl`
+    alias(libs.plugins.kotlin.jvm)
+    alias(libs.plugins.kotlin.plugin.serialization)
 }
+
+dependencies {
+    implementation(libs.kotlinx.datetime)
+    implementation(libs.uuid)
+    implementation(libs.kotlin.result)
+    implementation(libs.kotlinx.serialization.json)
+}
+
 
 dependencies {
     implementation(libs.kotlinx.datetime)

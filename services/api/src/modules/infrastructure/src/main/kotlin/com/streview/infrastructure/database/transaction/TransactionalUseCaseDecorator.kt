@@ -1,8 +1,8 @@
 package com.streview.infrastructure.database.transaction
 
-import com.streview.usecase.InputPort
-import com.streview.usecase.OutputPort
-import com.streview.usecase.UseCase
+import com.streview.application.usecases.InputPort
+import com.streview.application.usecases.OutputPort
+import com.streview.application.usecases.UseCase
 import org.jetbrains.exposed.v1.r2dbc.transactions.suspendTransaction
 
 

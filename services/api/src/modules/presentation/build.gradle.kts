@@ -8,8 +8,9 @@ plugins {
 dependencies {
     implementation(libs.ktor.server.core)
     implementation(libs.koin.ktor)
-    implementation(libs.ktor.serialization.kotlinx.json)
+    implementation(libs.ktor.server.auth)
+    implementation(libs.kotlinx.serialization.json)
 
-    implementation(project(":modules:usecase"))
+    implementation(project(":modules:application"))
     implementation(project(":modules:domain"))
 }

@@ -7,13 +7,13 @@ import io.r2dbc.spi.ConnectionFactories
 import io.r2dbc.spi.ConnectionFactory
 import io.r2dbc.spi.ConnectionFactoryOptions.*
 import kotlinx.coroutines.runBlocking
-import kotlinx.datetime.Clock
-import kotlinx.datetime.Instant
-import kotlinx.datetime.LocalDateTime
-import kotlinx.datetime.TimeZone
-import kotlinx.datetime.toLocalDateTime
+import kotlinx.datetime.*
 import org.jetbrains.exposed.v1.core.vendors.PostgreSQLDialect
-import org.jetbrains.exposed.v1.r2dbc.*
+import org.jetbrains.exposed.v1.r2dbc.R2dbcDatabase
+import org.jetbrains.exposed.v1.r2dbc.R2dbcDatabaseConfig
+import org.jetbrains.exposed.v1.r2dbc.SchemaUtils
+import org.jetbrains.exposed.v1.r2dbc.insert
+import org.jetbrains.exposed.v1.r2dbc.selectAll
 import org.jetbrains.exposed.v1.r2dbc.transactions.suspendTransaction
 
 
@@ -22,7 +22,7 @@ fun Application.configureDatabase() {
         builder()
             .option(DRIVER, "pool")
             .option(PROTOCOL, "postgresql")
-            .option(HOST, "db-srv")
+            .option(HOST, "streview_db")
             .option(PORT, 5432)
             .option(USER, "root")
             .option(PASSWORD, "root-pass")
@@ -40,13 +40,13 @@ fun Application.configureDatabase() {
     runBlocking {
         suspendTransaction {
             SchemaUtils.create(UsersTable, StoresTable)
-            if (UsersTable.selectAll().empty()) {
-                UsersTable.insert {
-                    it[name] = "Streview"
-                    it[email] = "streview@streview.com"
-                }
-            }
-            if (StoresTable.selectAll().empty()){
+//            if (UsersTable.selectAll().empty()) {
+//                UsersTable.insert {
+//                    it[name] = "Streview"
+//                    it[email] = "streview@streview.com"
+//                }
+//            }
+            if (StoresTable.selectAll().empty()) {
                 StoresTable.insert {
                     it[id] = "85e15cf9-3555-45e4-ad77-920432ad937d"
                     it[name] = "木製ロケット"

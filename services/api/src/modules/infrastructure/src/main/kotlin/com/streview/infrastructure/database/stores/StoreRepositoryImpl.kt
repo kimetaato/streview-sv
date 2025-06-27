@@ -4,14 +4,13 @@ import com.streview.domain.stores.Store
 import com.streview.domain.stores.StoreRepository
 import com.streview.infrastructure.database.models.StoresTable
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.singleOrNull
-import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.singleOrNull
 import org.jetbrains.exposed.v1.r2dbc.select
 import org.jetbrains.exposed.v1.r2dbc.selectAll
 import org.jetbrains.exposed.v1.r2dbc.transactions.suspendTransaction
 
-class StoreRepositoryImpl: StoreRepository {
+class StoreRepositoryImpl : StoreRepository {
     override suspend fun findById(id: String): Store? {
         val store: Store? = suspendTransaction {
             StoresTable

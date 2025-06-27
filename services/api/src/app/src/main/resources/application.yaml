@@ -12,3 +12,10 @@ ktor:
       - modules/presentation/build/classes
       - modules/infrastructure/build/classes
   development: true
+
+app:
+  storage:
+    images:
+      user_icon: "/app/src/upload/user_icons"
+      review: "/app/src/upload/reviews"
+      store: "/app/src/upload/stores"
