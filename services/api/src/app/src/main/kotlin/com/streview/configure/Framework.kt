@@ -3,8 +3,10 @@ package com.streview.configure
 import com.streview.application.services.ImageStorageConfig
 import com.streview.application.services.ImageStorageService
 import com.streview.application.usecases.users.RegisterUserUseCase
+import com.streview.domain.images.ImageRepository
 import com.streview.domain.stores.StoreRepository
 import com.streview.domain.users.IUserRepository
+import com.streview.infrastructure.database.images.ImageRepositoryImpl
 import com.streview.infrastructure.database.stores.StoreRepositoryImpl
 import com.streview.infrastructure.database.users.UserRepositoryImpl
 import com.streview.infrastructure.storages.images.ImageStorageServiceImpl
@@ -17,7 +19,7 @@ import org.koin.ktor.plugin.Koin
 //  TODO: トランザクションを簡単に貼りたいがさっぱりわからない
 val useCaseModule = module {
     single<RegisterUserUseCase> {
-        RegisterUserUseCase(get(), get())
+        RegisterUserUseCase(get(), get(), get())
     }
 }
 
@@ -33,6 +35,9 @@ val serviceModule = module {
 val repositoryModule = module {
     single<IUserRepository> {
         UserRepositoryImpl()
+    }
+    single<ImageRepository> {
+        ImageRepositoryImpl()
     }
     single<StoreRepository> {
         StoreRepositoryImpl()

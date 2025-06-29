@@ -1,5 +1,6 @@
 package com.streview.configure
 
+import com.streview.infrastructure.database.models.ImagesTable
 import com.streview.infrastructure.database.models.StoresTable
 import com.streview.infrastructure.database.models.UsersTable
 import io.r2dbc.spi.ConnectionFactories
@@ -34,7 +35,11 @@ fun configureDatabase() {
 
     runBlocking {
         suspendTransaction {
-            SchemaUtils.create(UsersTable, StoresTable)
+            SchemaUtils.create(
+                ImagesTable,
+                UsersTable,
+                StoresTable
+            )
 
             if (StoresTable.selectAll().empty()) {
                 StoresTable.insert {
