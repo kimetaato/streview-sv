@@ -1,9 +1,9 @@
 package com.streview.domain.users
 
+import com.streview.domain.commons.UUID
 import com.streview.domain.exceptions.ValidationError
 import com.streview.domain.exceptions.ValidationException
 import com.streview.domain.exceptions.addError
-import com.streview.domain.images.ImageUUID
 import kotlinx.datetime.*
 
 
@@ -11,14 +11,14 @@ data class Profile(
     val name: Name,
     val birthday: Birthday,
     val gender: Gender,
-    val imageUUID: ImageUUID,
+    val imageUUID: UUID,
 ) {
     companion object {
         fun create(
             name: String,
             birthday: LocalDate,
             gender: String,
-            imageUUID: String
+            imageUUID: UUID
         ): Profile {
 
             //エラーを収集するリスト
@@ -48,17 +48,9 @@ data class Profile(
                 null
             }
 
-            // アイコンのパスの設定
-            val imageUUID: ImageUUID? = try {
-                ImageUUID(imageUUID)
-            } catch (e: IllegalArgumentException) {
-                errors.addError("imageUUID", e.message)
-                null
-            }
-
             // エラーの有無によってレスポンスを分岐
             return if (errors.isEmpty()) {
-                Profile(name!!, birthDay!!, gender!!, imageUUID!!)
+                Profile(name!!, birthDay!!, gender!!, imageUUID)
             } else {
                 throw ValidationException("入力内容に不備があります。", errors)
             }

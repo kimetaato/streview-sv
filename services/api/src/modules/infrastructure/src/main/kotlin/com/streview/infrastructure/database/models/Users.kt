@@ -10,4 +10,5 @@ object UsersTable : Table() {
     val gender = varchar("gender", 20)
     val iconUUID = varchar("icon_uuid", 255)
     val catchMode = varchar("catch_mode", 20)
+    override val primaryKey = PrimaryKey(id)
 }
