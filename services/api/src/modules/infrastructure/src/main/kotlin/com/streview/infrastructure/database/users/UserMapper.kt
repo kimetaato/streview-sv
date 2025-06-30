@@ -1,5 +1,6 @@
 package com.streview.infrastructure.database.users
 
+import com.streview.domain.commons.UUID
 import com.streview.domain.exceptions.DataFormatException
 import com.streview.domain.users.Profile
 import com.streview.domain.users.User
@@ -19,7 +20,7 @@ fun UserRepositoryImpl.toDomain(row: ResultRow): User {
             row[UsersTable.name],
             row[UsersTable.birthday],
             row[UsersTable.gender],
-            row[UsersTable.iconUUID]
+            UUID(row[UsersTable.iconUUID])
         )
     } catch (e: Exception) {
         throw DataFormatException("ユーザープロフィールが取得できませんでした。", e)

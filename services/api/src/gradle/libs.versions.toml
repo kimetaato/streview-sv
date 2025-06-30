@@ -17,6 +17,8 @@ kotlinx-datetime-version = "0.6.2"
 kotlinx-io = "0.7.0"
 kotlinx-serialization-json = "1.8.1"
 imgscalr-version = "4.2"
+webp-imageio-version = "0.10.0"
+
 [libraries]
 uuid = { module = "com.fasterxml.uuid:java-uuid-generator", version.ref = "uuid-version" }
 kotlin-result = { module = "com.michael-bull.kotlin-result:kotlin-result", version.ref = "kotlin-result-version" }
@@ -29,6 +31,7 @@ kotlinx-datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.
 kotlinx-io-core = { module = "org.jetbrains.kotlinx:kotlinx-io-core", version.ref = "kotlinx-io" }
 kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinx-serialization-json" }
 imgscalr = { module = "org.imgscalr:imgscalr-lib", version.ref = "imgscalr-version" }
+webp-imageio = { module = "com.github.usefulness:webp-imageio", version.ref = "webp-imageio-version" }
 
 # ORM
 exposed-core = { module = "org.jetbrains.exposed:exposed-core", version.ref = "exposed-version" }
