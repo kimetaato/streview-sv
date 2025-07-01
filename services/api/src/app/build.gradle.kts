@@ -37,6 +37,13 @@ dependencies {
     // application.confをyaml形式記述するため
     implementation(libs.ktor.server.config.yaml)
 
+    // モジュールの関連付け
+    implementation(project(":modules:presentation"))
+    implementation(project(":modules:application"))
+    implementation(project(":modules:domain"))
+    implementation(project(":modules:infrastructure"))
+
+
     // kotest
     testImplementation(libs.kotest.runner.junit5)
     testImplementation(libs.kotest.assertions.core)
