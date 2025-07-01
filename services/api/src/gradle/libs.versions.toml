@@ -18,6 +18,7 @@ kotlinx-io = "0.7.0"
 kotlinx-serialization-json = "1.8.1"
 imgscalr-version = "4.2"
 webp-imageio-version = "0.10.0"
+kotest-version = "5.9.1"
 
 [libraries]
 uuid = { module = "com.fasterxml.uuid:java-uuid-generator", version.ref = "uuid-version" }
@@ -49,8 +50,11 @@ ktor-server-auth = { module = "io.ktor:ktor-server-auth", version.ref = "ktor-ve
 logback-classic = { module = "ch.qos.logback:logback-classic", version.ref = "logback-version" }
 ktor-server-config-yaml = { module = "io.ktor:ktor-server-config-yaml", version.ref = "ktor-version" }
 ktor-server-test-host = { module = "io.ktor:ktor-server-test-host", version.ref = "ktor-version" }
-#kotlin-test-junit = { module = "org.jetbrains.kotlin:kotlin-test-junit", version.ref = "kotlin-version" }
 ktor-firebase = { module = "com.kborowy:firebase-auth-provider", version.ref = "ktor-firebase-version" }
+
+# test
+kotest-runner-junit5 = { module = "io.kotest:kotest-runner-junit5", version.ref = "kotest-version" }
+kotest-assertions-core = { module = "io.kotest:kotest-assertions-core", version.ref = "kotest-version" }
 
 [plugins]
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin-version" }
