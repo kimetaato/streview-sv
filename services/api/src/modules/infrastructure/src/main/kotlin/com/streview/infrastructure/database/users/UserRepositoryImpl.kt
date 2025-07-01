@@ -7,12 +7,11 @@ import com.streview.infrastructure.database.models.UsersTable
 import kotlinx.coroutines.flow.singleOrNull
 import org.jetbrains.exposed.v1.r2dbc.insert
 import org.jetbrains.exposed.v1.r2dbc.select
-import org.jetbrains.exposed.v1.r2dbc.transactions.suspendTransaction
 import org.jetbrains.exposed.v1.r2dbc.update
 
 class UserRepositoryImpl() : IUserRepository {
     override suspend fun findByID(userID: UserID): User? {
-        val user: User? = suspendTransaction {
+        val user: User? =
             UsersTable
                 .select(
                     UsersTable.id, UsersTable.name, UsersTable.birthday, UsersTable.gender, UsersTable.iconUUID,
@@ -22,18 +21,15 @@ class UserRepositoryImpl() : IUserRepository {
                 .singleOrNull()?.let { row ->
                     toDomain(row)
                 }
-        }
         return user
     }
 
     override suspend fun create(user: User): User {
-        suspendTransaction {
             UsersTable.insert { statement -> // `it`を`statement`という分かりやすい名前にしています
                 // toUserTable(user)で関数を取得し、
                 // statement(it)を引数にしてその関数を呼び出す
                 toUserTable(user)(statement)
             }
-        }
         return user
     }
 
