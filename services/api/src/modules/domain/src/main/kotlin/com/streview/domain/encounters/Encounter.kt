@@ -17,17 +17,17 @@ class Encounter private constructor(
 
     companion object {
         fun factory(actorID: UserID, encounterDate: EncounterDate): Encounter {
-           return  Encounter(
-               actorID,
-               encounterDate,
-               emptyList<UserID>().toMutableList(),
-           )
+            return Encounter(
+                actorID,
+                encounterDate,
+                emptyList<UserID>().toMutableList(),
+            )
         }
 
         fun factory(userID: UserID, encounterDate: EncounterDate, encounterIDs: List<UserID>): Encounter {
             return Encounter(
                 userID,
-               encounterDate,
+                encounterDate,
                 encounterIDs.toMutableList(),
             )
         }

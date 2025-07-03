@@ -10,11 +10,11 @@ import org.jetbrains.exposed.v1.core.and
 import org.jetbrains.exposed.v1.r2dbc.batchInsert
 import org.jetbrains.exposed.v1.r2dbc.select
 
-class EncounterRepositoryImpl: EncounterRepository {
+class EncounterRepositoryImpl : EncounterRepository {
     override suspend fun findByID(userID: UserID, encounterDate: EncounterDate): Encounter {
         val list = EncounterTable
             .select(
-                EncounterTable.id,EncounterTable.encounterId, EncounterTable.encounterDate,
+                EncounterTable.id, EncounterTable.encounterId, EncounterTable.encounterDate,
             )
             .where { (EncounterTable.id eq userID.value) and (EncounterTable.encounterDate eq encounterDate.value) }
             .toList()
@@ -22,9 +22,8 @@ class EncounterRepositoryImpl: EncounterRepository {
     }
 
     override suspend fun save(encounter: Encounter): Encounter {
-        // 複数のデータを一度に挿入（または無視）するには batchInsertIgnore を使います
         EncounterTable.batchInsert(encounter.encounterIDs, true) { encounterID ->
-            // このブロックは encounter.encounterIDs の各要素に対して一度ずつ呼ばれます
+            // このブロックは encounter.encounterIDs の各要素に対して一度ずつ呼ばれる
             this[EncounterTable.id] = encounter.actorID.value
             this[EncounterTable.encounterDate] = encounter.encounterDate.value
             this[EncounterTable.encounterId] = encounterID.value
