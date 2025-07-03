@@ -19,6 +19,7 @@ kotlinx-serialization-json = "1.8.1"
 imgscalr-version = "4.2"
 webp-imageio-version = "0.10.0"
 kotest-version = "5.9.1"
+kotest-containers-version = "2.0.2"
 
 [libraries]
 uuid = { module = "com.fasterxml.uuid:java-uuid-generator", version.ref = "uuid-version" }
@@ -55,6 +56,9 @@ ktor-firebase = { module = "com.kborowy:firebase-auth-provider", version.ref = "
 # test
 kotest-runner-junit5 = { module = "io.kotest:kotest-runner-junit5", version.ref = "kotest-version" }
 kotest-assertions-core = { module = "io.kotest:kotest-assertions-core", version.ref = "kotest-version" }
+kotest-containers = { module = "io.kotest.extensions:kotest-extensions-testcontainers", version.ref = "kotest-containers-version" }
+#test-container = {module = "org.testcontainers:junit-jupiter", version.ref = "kotest-container-version"}
+
 
 [plugins]
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin-version" }
