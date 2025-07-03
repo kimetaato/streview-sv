@@ -27,6 +27,7 @@ Desktop.ini
 
 # credentials
 admin.json
+*-*-firebase-adminsdk-*-*.json
 
 # log
 *.log
