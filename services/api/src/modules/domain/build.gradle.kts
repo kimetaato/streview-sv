@@ -9,10 +9,9 @@ dependencies {
     implementation(libs.uuid)
     implementation(libs.kotlin.result)
     implementation(libs.kotlinx.serialization.json)
-}
-
-
-dependencies {
     implementation(libs.kotlinx.datetime)
+
+    implementation(libs.kotest.assertions.core)
+    implementation(libs.kotest.runner.junit5)
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.10.2")
 }
