@@ -1,6 +1,7 @@
 # streview-sv
 
-すとれびゅ！のdockerプロジェクト
+すとれびゅ！のdockerプロジェクト  
+mobile: https://github.com/kimetaato/streview-mobile
 
 ## 開発環境構築
 
