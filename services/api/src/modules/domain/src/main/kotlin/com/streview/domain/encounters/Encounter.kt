@@ -1,6 +1,7 @@
 package com.streview.domain.encounters
 
 import com.streview.domain.commons.UserID
+import com.streview.domain.commons.event.DomainEvent
 import com.streview.domain.exceptions.DuplicateEncounterException
 import kotlinx.datetime.Clock
 import kotlinx.datetime.LocalDate
@@ -14,6 +15,12 @@ class Encounter private constructor(
 ) {
     val encounterIDs: List<UserID>
         get() = _encounterIDs.toList()
+
+    // 集約内で発生したイベントを保持するリスト
+    private val _domainEvents = mutableListOf<DomainEvent>()
+    val domainEvents: List<DomainEvent>
+        get() = _domainEvents.toList()
+
 
     companion object {
         fun factory(actorID: UserID, encounterDate: EncounterDate): Encounter {
@@ -43,7 +50,17 @@ class Encounter private constructor(
             throw DuplicateEncounterException("すでにすれ違っています。:${encounterDate}")
         }
 
+        // すれちがいを追加
         _encounterIDs.add(encounterID)
+
+        // ドメインイベントを追加
+        _domainEvents.add(
+            EncounterAddDomainEvent(
+                actorID = actorID,
+                encounterDate = encounterDate,
+                encounterID = encounterID,
+            )
+        )
         return this
     }
 
