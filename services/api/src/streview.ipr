@@ -1,79 +1,2146 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="CompilerConfiguration">
-    <option name="DEFAULT_COMPILER" value="Javac"/>
     <resourceExtensions>
-      <entry name=".+\.(properties|xml|html|dtd|tld)"/>
-      <entry name=".+\.(gif|png|jpeg|jpg)"/>
+      <entry name=".+\.(properties|xml|html|dtd|tld)" />
+      <entry name=".+\.(gif|png|jpeg|jpg)" />
     </resourceExtensions>
     <wildcardResourcePatterns>
-      <entry name="!?*.class"/>
-      <entry name="!?*.scala"/>
-      <entry name="!?*.groovy"/>
-      <entry name="!?*.java"/>
+      <entry name="!?*.class" />
+      <entry name="!?*.scala" />
+      <entry name="!?*.groovy" />
+      <entry name="!?*.java" />
     </wildcardResourcePatterns>
-    <annotationProcessing enabled="false" useClasspath="true"/>
-    <bytecodeTargetLevel target="1.6"/>
+    <bytecodeTargetLevel target="24" />
   </component>
-  <component name="CopyrightManager" default="">
-    <module2copyright/>
-  </component>
+  <component name="CopyrightManager" default="" />
   <component name="DependencyValidationManager">
-    <option name="SKIP_IMPORT_STATEMENTS" value="false"/>
+    <option name="SKIP_IMPORT_STATEMENTS" value="false" />
   </component>
-  <component name="Encoding" useUTFGuessing="true" native2AsciiForPropertiesFiles="false"/>
+  <component name="ExternalStorageConfigurationManager" enabled="true" />
+  <component name="GradleMigrationSettings" migrationVersion="1" />
+  <component name="GradleSettings">
+    <option name="linkedExternalProjectsSettings">
+      <GradleProjectSettings>
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/modules" />
+            <option value="$PROJECT_DIR$/modules/application" />
+            <option value="$PROJECT_DIR$/modules/domain" />
+            <option value="$PROJECT_DIR$/modules/infrastructure" />
+            <option value="$PROJECT_DIR$/modules/presentation" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+    </option>
+  </component>
   <component name="GradleUISettings">
-    <setting name="root"/>
+    <setting name="root" />
   </component>
   <component name="GradleUISettings2">
-    <setting name="root"/>
+    <setting name="root" />
   </component>
-  <component name="IdProvider" IDEtalkID="11DA1DB66DD62DDA1ED602B7079FE97C"/>
+  <component name="IdProvider" IDEtalkID="11DA1DB66DD62DDA1ED602B7079FE97C" />
+  <component name="InspectionProjectProfileManager">
+    <profile version="1.0">
+      <option name="myName" value="Project Default" />
+    </profile>
+    <version value="1.0" />
+  </component>
   <component name="JavadocGenerationManager">
-    <option name="OUTPUT_DIRECTORY"/>
-    <option name="OPTION_SCOPE" value="protected"/>
-    <option name="OPTION_HIERARCHY" value="true"/>
-    <option name="OPTION_NAVIGATOR" value="true"/>
-    <option name="OPTION_INDEX" value="true"/>
-    <option name="OPTION_SEPARATE_INDEX" value="true"/>
-    <option name="OPTION_DOCUMENT_TAG_USE" value="false"/>
-    <option name="OPTION_DOCUMENT_TAG_AUTHOR" value="false"/>
-    <option name="OPTION_DOCUMENT_TAG_VERSION" value="false"/>
-    <option name="OPTION_DOCUMENT_TAG_DEPRECATED" value="true"/>
-    <option name="OPTION_DEPRECATED_LIST" value="true"/>
-    <option name="OTHER_OPTIONS" value=""/>
-    <option name="HEAP_SIZE"/>
-    <option name="LOCALE"/>
-    <option name="OPEN_IN_BROWSER" value="true"/>
+    <option name="OUTPUT_DIRECTORY" />
+    <option name="OPTION_SCOPE" value="protected" />
+    <option name="OPTION_HIERARCHY" value="true" />
+    <option name="OPTION_NAVIGATOR" value="true" />
+    <option name="OPTION_INDEX" value="true" />
+    <option name="OPTION_SEPARATE_INDEX" value="true" />
+    <option name="OPTION_DOCUMENT_TAG_USE" value="false" />
+    <option name="OPTION_DOCUMENT_TAG_AUTHOR" value="false" />
+    <option name="OPTION_DOCUMENT_TAG_VERSION" value="false" />
+    <option name="OPTION_DOCUMENT_TAG_DEPRECATED" value="true" />
+    <option name="OPTION_DEPRECATED_LIST" value="true" />
+    <option name="OTHER_OPTIONS" value="" />
+    <option name="HEAP_SIZE" />
+    <option name="LOCALE" />
+    <option name="OPEN_IN_BROWSER" value="true" />
+  </component>
+  <component name="KotlinJpsPluginSettings">
+    <option name="version" value="2.0.21" />
   </component>
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/streview.iml" filepath="$PROJECT_DIR$/streview.iml"/>
+      <module fileurl="file://$PROJECT_DIR$/streview.iml" filepath="$PROJECT_DIR$/streview.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/streview.app.iml" filepath="$PROJECT_DIR$/app/streview.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/streview.app.main.iml" filepath="$PROJECT_DIR$/app/streview.app.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/streview.app.test.iml" filepath="$PROJECT_DIR$/app/streview.app.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/modules/streview.modules.iml" filepath="$PROJECT_DIR$/modules/streview.modules.iml" />
+      <module fileurl="file://$PROJECT_DIR$/modules/application/streview.modules.application.iml" filepath="$PROJECT_DIR$/modules/application/streview.modules.application.iml" />
+      <module fileurl="file://$PROJECT_DIR$/modules/application/streview.modules.application.main.iml" filepath="$PROJECT_DIR$/modules/application/streview.modules.application.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/modules/application/streview.modules.application.test.iml" filepath="$PROJECT_DIR$/modules/application/streview.modules.application.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/modules/domain/streview.modules.domain.iml" filepath="$PROJECT_DIR$/modules/domain/streview.modules.domain.iml" />
+      <module fileurl="file://$PROJECT_DIR$/modules/domain/streview.modules.domain.main.iml" filepath="$PROJECT_DIR$/modules/domain/streview.modules.domain.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/modules/domain/streview.modules.domain.test.iml" filepath="$PROJECT_DIR$/modules/domain/streview.modules.domain.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/modules/infrastructure/streview.modules.infrastructure.iml" filepath="$PROJECT_DIR$/modules/infrastructure/streview.modules.infrastructure.iml" />
+      <module fileurl="file://$PROJECT_DIR$/modules/infrastructure/streview.modules.infrastructure.main.iml" filepath="$PROJECT_DIR$/modules/infrastructure/streview.modules.infrastructure.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/modules/infrastructure/streview.modules.infrastructure.test.iml" filepath="$PROJECT_DIR$/modules/infrastructure/streview.modules.infrastructure.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/modules/presentation/streview.modules.presentation.iml" filepath="$PROJECT_DIR$/modules/presentation/streview.modules.presentation.iml" />
+      <module fileurl="file://$PROJECT_DIR$/modules/presentation/streview.modules.presentation.main.iml" filepath="$PROJECT_DIR$/modules/presentation/streview.modules.presentation.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/modules/presentation/streview.modules.presentation.test.iml" filepath="$PROJECT_DIR$/modules/presentation/streview.modules.presentation.test.iml" />
     </modules>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_6" assert-keyword="true" jdk-15="true" project-jdk-type="JavaSDK" assert-jdk-15="true" project-jdk-name="21">
-    <output url="file://$PROJECT_DIR$/out"/>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_24" default="true" project-jdk-name="openjdk-24" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/out" />
   </component>
   <component name="SvnBranchConfigurationManager">
-    <option name="mySupportsUserInfoFilter" value="true"/>
+    <option name="mySupportsUserInfoFilter" value="true" />
   </component>
   <component name="VcsDirectoryMappings">
-    <mapping directory="" vcs=""/>
+    <mapping directory="$PROJECT_DIR$/../../.." vcs="Git" />
+  </component>
+  <component name="libraryTable">
+    <library name="Gradle: co.touchlab:stately-concurrency-jvm:2.1.0" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="co.touchlab" artifactId="stately-concurrency-jvm" version="2.1.0" baseVersion="2.1.0" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/co.touchlab/stately-concurrency-jvm/2.1.0/6285428408c4d7e4a6d9a09511de877103effd81/stately-concurrency-jvm-2.1.0.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="Gradle: co.touchlab:stately-concurrent-collections-jvm:2.1.0" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="co.touchlab" artifactId="stately-concurrent-collections-jvm" version="2.1.0" baseVersion="2.1.0" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/co.touchlab/stately-concurrent-collections-jvm/2.1.0/5c03b644537d7926a8f77e5735a8bebb55dafdcd/stately-concurrent-collections-jvm-2.1.0.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="Gradle: co.touchlab:stately-strict-jvm:2.1.0" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="co.touchlab" artifactId="stately-strict-jvm" version="2.1.0" baseVersion="2.1.0" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/co.touchlab/stately-strict-jvm/2.1.0/3ae8369209065455f4630793bf6aca0fb88c8b6b/stately-strict-jvm-2.1.0.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="Gradle: com.fasterxml.jackson.core:jackson-core:2.14.2" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="com.fasterxml.jackson.core" artifactId="jackson-core" version="2.14.2" baseVersion="2.14.2" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-core/2.14.2/f804090e6399ce0cf78242db086017512dd71fcc/jackson-core-2.14.2.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="Gradle: com.fasterxml.uuid:java-uuid-generator:5.1.0" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="com.fasterxml.uuid" artifactId="java-uuid-generator" version="5.1.0" baseVersion="5.1.0" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.fasterxml.uuid/java-uuid-generator/5.1.0/c854cf1358e611d4a566170e4fa0d99606c28ec8/java-uuid-generator-5.1.0.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="Gradle: com.github.ajalt:colormath:1.2.0" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="com.github.ajalt" artifactId="colormath" version="1.2.0" baseVersion="1.2.0" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.ajalt/colormath/1.2.0/c62f49b31f34588dbbfb477c08fd56bc3026d202/colormath-1.2.0.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="Gradle: com.github.ajalt:mordant:1.2.1" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="com.github.ajalt" artifactId="mordant" version="1.2.1" baseVersion="1.2.1" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.ajalt/mordant/1.2.1/6cbab1a74ab6dafbf81b7706733d4c2fbaff2e0b/mordant-1.2.1.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="Gradle: com.github.usefulness:webp-imageio:0.10.0" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="com.github.usefulness" artifactId="webp-imageio" version="0.10.0" baseVersion="0.10.0" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.usefulness/webp-imageio/0.10.0/460e24068fcafad0d5b2859e73f2b8a60cb2fda6/webp-imageio-0.10.0.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="Gradle: com.google.android:annotations:4.1.1.4" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="com.google.android" artifactId="annotations" version="4.1.1.4" baseVersion="4.1.1.4" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.android/annotations/4.1.1.4/a1678ba907bf92691d879fef34e1a187038f9259/annotations-4.1.1.4.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="Gradle: com.google.api-client:google-api-client-gson:2.2.0" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="com.google.api-client" artifactId="google-api-client-gson" version="2.2.0" baseVersion="2.2.0" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.api-client/google-api-client-gson/2.2.0/319d792c7df5164ba33f5741b642071915d8c046/google-api-client-gson-2.2.0.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="Gradle: com.google.api-client:google-api-client:2.2.0" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="com.google.api-client" artifactId="google-api-client" version="2.2.0" baseVersion="2.2.0" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.api-client/google-api-client/2.2.0/10e53fd4d987e37190432e896bdaa62e8ea2c628/google-api-client-2.2.0.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="Gradle: com.google.api.grpc:gapic-google-cloud-storage-v2:2.22.4-alpha" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="com.google.api.grpc" artifactId="gapic-google-cloud-storage-v2" version="2.22.4-alpha" baseVersion="2.22.4-alpha" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.api.grpc/gapic-google-cloud-storage-v2/2.22.4-alpha/53b159304866b223ee30731bb6dfdfd5aeb436f0/gapic-google-cloud-storage-v2-2.22.4-alpha.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="Gradle: com.google.api.grpc:grpc-google-cloud-storage-v2:2.22.4-alpha" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="com.google.api.grpc" artifactId="grpc-google-cloud-storage-v2" version="2.22.4-alpha" baseVersion="2.22.4-alpha" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.api.grpc/grpc-google-cloud-storage-v2/2.22.4-alpha/6d86724d66d14bad9d3e73c44fee60e9cc0721de/grpc-google-cloud-storage-v2-2.22.4-alpha.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="Gradle: com.google.api.grpc:proto-google-cloud-firestore-v1:3.13.0" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="com.google.api.grpc" artifactId="proto-google-cloud-firestore-v1" version="3.13.0" baseVersion="3.13.0" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.api.grpc/proto-google-cloud-firestore-v1/3.13.0/f83a75f59626de2efdf8101a44bbd6f00fff3f62/proto-google-cloud-firestore-v1-3.13.0.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="Gradle: com.google.api.grpc:proto-google-cloud-storage-v2:2.22.4-alpha" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="com.google.api.grpc" artifactId="proto-google-cloud-storage-v2" version="2.22.4-alpha" baseVersion="2.22.4-alpha" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.api.grpc/proto-google-cloud-storage-v2/2.22.4-alpha/363e82e6ca6e480ec4e21c56758fa63c5747ef47/proto-google-cloud-storage-v2-2.22.4-alpha.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="Gradle: com.google.api.grpc:proto-google-common-protos:2.20.0" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="com.google.api.grpc" artifactId="proto-google-common-protos" version="2.20.0" baseVersion="2.20.0" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.api.grpc/proto-google-common-protos/2.20.0/30b43864217dba8c288d6d682352104f50e74c80/proto-google-common-protos-2.20.0.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="Gradle: com.google.api.grpc:proto-google-iam-v1:1.15.0" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="com.google.api.grpc" artifactId="proto-google-iam-v1" version="1.15.0" baseVersion="1.15.0" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.api.grpc/proto-google-iam-v1/1.15.0/62a997565bfe0cc61de5417f551c759960e96bbc/proto-google-iam-v1-1.15.0.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="Gradle: com.google.api:api-common:2.12.0" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="com.google.api" artifactId="api-common" version="2.12.0" baseVersion="2.12.0" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.api/api-common/2.12.0/6022f93e9ab205e5804b8e1f6208cf7cce140a87/api-common-2.12.0.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="Gradle: com.google.api:gax-grpc:2.29.0" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="com.google.api" artifactId="gax-grpc" version="2.29.0" baseVersion="2.29.0" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.api/gax-grpc/2.29.0/12b1972deeda8a4565fcde39fad46edea9004478/gax-grpc-2.29.0.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="Gradle: com.google.api:gax-httpjson:0.114.0" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="com.google.api" artifactId="gax-httpjson" version="0.114.0" baseVersion="0.114.0" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.api/gax-httpjson/0.114.0/e36b3a16155c34d9aca61951b9fb4187d0e8b4f3/gax-httpjson-0.114.0.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="Gradle: com.google.api:gax:2.29.0" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="com.google.api" artifactId="gax" version="2.29.0" baseVersion="2.29.0" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.api/gax/2.29.0/90ac2feab769fe45cebf78170ebfcc95edf61e3d/gax-2.29.0.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="Gradle: com.google.apis:google-api-services-storage:v1-rev20230301-2.0.0" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="com.google.apis" artifactId="google-api-services-storage" version="v1-rev20230301-2.0.0" baseVersion="v1-rev20230301-2.0.0" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.apis/google-api-services-storage/v1-rev20230301-2.0.0/c9960d48021675f902c2a281af0aa1f1f247d4fd/google-api-services-storage-v1-rev20230301-2.0.0.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="Gradle: com.google.auth:google-auth-library-credentials:1.17.0" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="com.google.auth" artifactId="google-auth-library-credentials" version="1.17.0" baseVersion="1.17.0" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.auth/google-auth-library-credentials/1.17.0/d16020e45fc97741407a4dccf76a9d3f62b72964/google-auth-library-credentials-1.17.0.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="Gradle: com.google.auth:google-auth-library-oauth2-http:1.17.0" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="com.google.auth" artifactId="google-auth-library-oauth2-http" version="1.17.0" baseVersion="1.17.0" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.auth/google-auth-library-oauth2-http/1.17.0/e35ec917193f59d33c51c87c96b04b55cbd87fb7/google-auth-library-oauth2-http-1.17.0.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="Gradle: com.google.auto.value:auto-value-annotations:1.10.1" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="com.google.auto.value" artifactId="auto-value-annotations" version="1.10.1" baseVersion="1.10.1" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.auto.value/auto-value-annotations/1.10.1/9e5162c15f6033c524134cba05a5e93dc1d37c4b/auto-value-annotations-1.10.1.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="Gradle: com.google.cloud:google-cloud-core-grpc:2.19.0" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="com.google.cloud" artifactId="google-cloud-core-grpc" version="2.19.0" baseVersion="2.19.0" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.cloud/google-cloud-core-grpc/2.19.0/3b1f6f7edf66ae3eae2a37aace4af47c55107364/google-cloud-core-grpc-2.19.0.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="Gradle: com.google.cloud:google-cloud-core-http:2.19.0" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="com.google.cloud" artifactId="google-cloud-core-http" version="2.19.0" baseVersion="2.19.0" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.cloud/google-cloud-core-http/2.19.0/1fb3af1a56a219a5c5e11abfbcc088f757109670/google-cloud-core-http-2.19.0.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="Gradle: com.google.cloud:google-cloud-core:2.19.0" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="com.google.cloud" artifactId="google-cloud-core" version="2.19.0" baseVersion="2.19.0" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.cloud/google-cloud-core/2.19.0/38bb9bb69f3cb2b32df008840b1d3a2ad2a72594/google-cloud-core-2.19.0.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="Gradle: com.google.cloud:google-cloud-firestore:3.13.0" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="com.google.cloud" artifactId="google-cloud-firestore" version="3.13.0" baseVersion="3.13.0" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.cloud/google-cloud-firestore/3.13.0/c013a2093a5d3289046a1bb1bf6a998aa99520c1/google-cloud-firestore-3.13.0.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="Gradle: com.google.cloud:google-cloud-storage:2.22.4" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="com.google.cloud" artifactId="google-cloud-storage" version="2.22.4" baseVersion="2.22.4" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.cloud/google-cloud-storage/2.22.4/16f67e591ead00bdc67638899ffec91b12eb08e5/google-cloud-storage-2.22.4.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="Gradle: com.google.cloud:proto-google-cloud-firestore-bundle-v1:3.13.0" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="com.google.cloud" artifactId="proto-google-cloud-firestore-bundle-v1" version="3.13.0" baseVersion="3.13.0" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.cloud/proto-google-cloud-firestore-bundle-v1/3.13.0/f0373e042c43ba0e23200b651d86b51c2674c9b3/proto-google-cloud-firestore-bundle-v1-3.13.0.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="Gradle: com.google.code.findbugs:jsr305:3.0.2" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="com.google.code.findbugs" artifactId="jsr305" version="3.0.2" baseVersion="3.0.2" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.code.findbugs/jsr305/3.0.2/25ea2e8b0c338a877313bd4672d3fe056ea78f0d/jsr305-3.0.2.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="Gradle: com.google.code.gson:gson:2.10.1" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="com.google.code.gson" artifactId="gson" version="2.10.1" baseVersion="2.10.1" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.10.1/b3add478d4382b78ea20b1671390a858002feb6c/gson-2.10.1.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="Gradle: com.google.errorprone:error_prone_annotations:2.26.1" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="com.google.errorprone" artifactId="error_prone_annotations" version="2.26.1" baseVersion="2.26.1" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.errorprone/error_prone_annotations/2.26.1/c1fde57694bdc14e8618899aaa6e857d9465d7de/error_prone_annotations-2.26.1.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="Gradle: com.google.firebase:firebase-admin:9.2.0" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="com.google.firebase" artifactId="firebase-admin" version="9.2.0" baseVersion="9.2.0" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.firebase/firebase-admin/9.2.0/92f5b2f4da778efcd82c9421a0eccae70b11030c/firebase-admin-9.2.0.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="Gradle: com.google.guava:failureaccess:1.0.2" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="com.google.guava" artifactId="failureaccess" version="1.0.2" baseVersion="1.0.2" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.guava/failureaccess/1.0.2/c4a06a64e650562f30b7bf9aaec1bfed43aca12b/failureaccess-1.0.2.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="Gradle: com.google.guava:guava:33.2.0-jre" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="com.google.guava" artifactId="guava" version="33.2.0-jre" baseVersion="33.2.0-jre" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.guava/guava/33.2.0-jre/e264781dadc4967e5292f3c4d05f1d153631f7b4/guava-33.2.0-jre.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="Gradle: com.google.guava:listenablefuture:9999.0-empty-to-avoid-conflict-with-guava" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="com.google.guava" artifactId="listenablefuture" version="9999.0-empty-to-avoid-conflict-with-guava" baseVersion="9999.0-empty-to-avoid-conflict-with-guava" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.guava/listenablefuture/9999.0-empty-to-avoid-conflict-with-guava/b421526c5f297295adef1c886e5246c39d4ac629/listenablefuture-9999.0-empty-to-avoid-conflict-with-guava.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="Gradle: com.google.http-client:google-http-client-apache-v2:1.43.1" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="com.google.http-client" artifactId="google-http-client-apache-v2" version="1.43.1" baseVersion="1.43.1" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.http-client/google-http-client-apache-v2/1.43.1/de73ac2958a45ca67651ce30f47eefa1f7497a6d/google-http-client-apache-v2-1.43.1.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="Gradle: com.google.http-client:google-http-client-appengine:1.43.1" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="com.google.http-client" artifactId="google-http-client-appengine" version="1.43.1" baseVersion="1.43.1" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.http-client/google-http-client-appengine/1.43.1/c408b784269b46028c133768a439c266f8cbf553/google-http-client-appengine-1.43.1.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="Gradle: com.google.http-client:google-http-client-gson:1.43.1" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="com.google.http-client" artifactId="google-http-client-gson" version="1.43.1" baseVersion="1.43.1" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.http-client/google-http-client-gson/1.43.1/6f000784f9813ee33f976e42822d98ffacf3dbd/google-http-client-gson-1.43.1.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="Gradle: com.google.http-client:google-http-client-jackson2:1.43.1" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="com.google.http-client" artifactId="google-http-client-jackson2" version="1.43.1" baseVersion="1.43.1" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.http-client/google-http-client-jackson2/1.43.1/995fbf865361d905218e486eb19313d4408ccfd9/google-http-client-jackson2-1.43.1.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="Gradle: com.google.http-client:google-http-client:1.43.1" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="com.google.http-client" artifactId="google-http-client" version="1.43.1" baseVersion="1.43.1" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.http-client/google-http-client/1.43.1/2ef9413e65319ac448534b424522a2c48087d884/google-http-client-1.43.1.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="Gradle: com.google.j2objc:j2objc-annotations:1.3" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="com.google.j2objc" artifactId="j2objc-annotations" version="1.3" baseVersion="1.3" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.j2objc/j2objc-annotations/1.3/ba035118bc8bac37d7eff77700720999acd9986d/j2objc-annotations-1.3.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="Gradle: com.google.oauth-client:google-oauth-client:1.34.1" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="com.google.oauth-client" artifactId="google-oauth-client" version="1.34.1" baseVersion="1.34.1" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.oauth-client/google-oauth-client/1.34.1/4a4f88c5e13143f882268c98239fb85c3b2c6cb2/google-oauth-client-1.34.1.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="Gradle: com.google.protobuf:protobuf-java-util:3.23.2" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="com.google.protobuf" artifactId="protobuf-java-util" version="3.23.2" baseVersion="3.23.2" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.protobuf/protobuf-java-util/3.23.2/645a4c458c87399503a7a8e3d1dfbe043c94ea4d/protobuf-java-util-3.23.2.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="Gradle: com.google.protobuf:protobuf-java:3.23.2" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="com.google.protobuf" artifactId="protobuf-java" version="3.23.2" baseVersion="3.23.2" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.protobuf/protobuf-java/3.23.2/f658ef60596ce70251ff9bc118436d5dadc3bd2a/protobuf-java-3.23.2.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="Gradle: com.google.re2j:re2j:1.6" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="com.google.re2j" artifactId="re2j" version="1.6" baseVersion="1.6" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.re2j/re2j/1.6/a13e879fd7971738d06020fefeb108cc14e14169/re2j-1.6.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="Gradle: com.kborowy:firebase-auth-provider:1.5.0" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="com.kborowy" artifactId="firebase-auth-provider" version="1.5.0" baseVersion="1.5.0" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.kborowy/firebase-auth-provider/1.5.0/8db0101a4273b71e4b13ccb4ed345f4a155fa13b/firebase-auth-provider-1.5.0.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="Gradle: com.michael-bull.kotlin-result:kotlin-result-jvm:2.0.1" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="com.michael-bull.kotlin-result" artifactId="kotlin-result-jvm" version="2.0.1" baseVersion="2.0.1" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.michael-bull.kotlin-result/kotlin-result-jvm/2.0.1/4605121bfb4737664426d01fbc712a217c8f69d1/kotlin-result-jvm-2.0.1.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="Gradle: com.ongres.scram:client:2.1" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="com.ongres.scram" artifactId="client" version="2.1" baseVersion="2.1" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.ongres.scram/client/2.1/4ab4f013dce4ce2bdf315e3cfef529bdc2b6a5d1/client-2.1.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="Gradle: com.ongres.scram:common:2.1" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="com.ongres.scram" artifactId="common" version="2.1" baseVersion="2.1" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.ongres.scram/common/2.1/43dfdba15afc165a2a5da75f3ef1a2f5f7300f61/common-2.1.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="Gradle: com.ongres.stringprep:saslprep:1.1" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="com.ongres.stringprep" artifactId="saslprep" version="1.1" baseVersion="1.1" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.ongres.stringprep/saslprep/1.1/eaf05b6446126f95de2f183b91751a854c2fc0bc/saslprep-1.1.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="Gradle: com.ongres.stringprep:stringprep:1.1" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="com.ongres.stringprep" artifactId="stringprep" version="1.1" baseVersion="1.1" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.ongres.stringprep/stringprep/1.1/9149e6d6f97be4c2b641c89ea569cb4fde872972/stringprep-1.1.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="Gradle: com.typesafe:config:1.4.3" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="com.typesafe" artifactId="config" version="1.4.3" baseVersion="1.4.3" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.typesafe/config/1.4.3/b57e0fbdc7270d8ea59c1ba367457a5cc7ba0e98/config-1.4.3.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="Gradle: commons-codec:commons-codec:1.15" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="commons-codec" artifactId="commons-codec" version="1.15" baseVersion="1.15" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/commons-codec/commons-codec/1.15/49d94806b6e3dc933dacbd8acb0fdbab8ebd1e5d/commons-codec-1.15.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="Gradle: commons-logging:commons-logging:1.2" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="commons-logging" artifactId="commons-logging" version="1.2" baseVersion="1.2" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/commons-logging/commons-logging/1.2/4bfc12adfe4842bf07b657f0369c4cb522955686/commons-logging-1.2.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="Gradle: io.github.classgraph:classgraph:4.8.172" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="io.github.classgraph" artifactId="classgraph" version="4.8.172" baseVersion="4.8.172" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.github.classgraph/classgraph/4.8.172/22b1275cab4b9cc93e26290ce1887f1ab07600b3/classgraph-4.8.172.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="Gradle: io.github.java-diff-utils:java-diff-utils:4.12" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="io.github.java-diff-utils" artifactId="java-diff-utils" version="4.12" baseVersion="4.12" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.github.java-diff-utils/java-diff-utils/4.12/1a712a91324d566eef39817fc5c9980eb10c21db/java-diff-utils-4.12.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="Gradle: io.grpc:grpc-alts:1.55.1" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="io.grpc" artifactId="grpc-alts" version="1.55.1" baseVersion="1.55.1" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.grpc/grpc-alts/1.55.1/c7aa82578978402698b884dabfeb6f7922891603/grpc-alts-1.55.1.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="Gradle: io.grpc:grpc-api:1.55.1" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="io.grpc" artifactId="grpc-api" version="1.55.1" baseVersion="1.55.1" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.grpc/grpc-api/1.55.1/1461a75a1550a0d7a2919c33f8638259ef3b255c/grpc-api-1.55.1.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="Gradle: io.grpc:grpc-auth:1.55.1" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="io.grpc" artifactId="grpc-auth" version="1.55.1" baseVersion="1.55.1" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.grpc/grpc-auth/1.55.1/c420d4e6aaa5fb29cc317c839d776c38aa5d1268/grpc-auth-1.55.1.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="Gradle: io.grpc:grpc-context:1.55.1" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="io.grpc" artifactId="grpc-context" version="1.55.1" baseVersion="1.55.1" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.grpc/grpc-context/1.55.1/12fcb72c22ec83adfc959e74564cf2e4a8d3e8a3/grpc-context-1.55.1.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="Gradle: io.grpc:grpc-core:1.55.1" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="io.grpc" artifactId="grpc-core" version="1.55.1" baseVersion="1.55.1" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.grpc/grpc-core/1.55.1/22f7c8a91d325072a2bd4921fbe37145e785c231/grpc-core-1.55.1.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="Gradle: io.grpc:grpc-googleapis:1.55.1" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="io.grpc" artifactId="grpc-googleapis" version="1.55.1" baseVersion="1.55.1" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.grpc/grpc-googleapis/1.55.1/99f15db2412900a28397ba223074639f6d21c7e8/grpc-googleapis-1.55.1.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="Gradle: io.grpc:grpc-grpclb:1.55.1" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="io.grpc" artifactId="grpc-grpclb" version="1.55.1" baseVersion="1.55.1" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.grpc/grpc-grpclb/1.55.1/a2b178dedbeb275d8ad3b2b7053aca9ecd97dcc2/grpc-grpclb-1.55.1.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="Gradle: io.grpc:grpc-netty-shaded:1.55.1" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="io.grpc" artifactId="grpc-netty-shaded" version="1.55.1" baseVersion="1.55.1" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.grpc/grpc-netty-shaded/1.55.1/6c7eba2b4ac84024d080e9d410a810548efff419/grpc-netty-shaded-1.55.1.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="Gradle: io.grpc:grpc-protobuf-lite:1.55.1" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="io.grpc" artifactId="grpc-protobuf-lite" version="1.55.1" baseVersion="1.55.1" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.grpc/grpc-protobuf-lite/1.55.1/1b3ff97f1b049153a7b4b15c9664a3c0f2d0aef1/grpc-protobuf-lite-1.55.1.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="Gradle: io.grpc:grpc-protobuf:1.55.1" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="io.grpc" artifactId="grpc-protobuf" version="1.55.1" baseVersion="1.55.1" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.grpc/grpc-protobuf/1.55.1/c05c351e1b8ece707119a6ffacc6644e15cc4dfa/grpc-protobuf-1.55.1.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="Gradle: io.grpc:grpc-rls:1.55.1" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="io.grpc" artifactId="grpc-rls" version="1.55.1" baseVersion="1.55.1" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.grpc/grpc-rls/1.55.1/450e56087cc69eec057d5a056fea5923d14b4e11/grpc-rls-1.55.1.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="Gradle: io.grpc:grpc-services:1.55.1" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="io.grpc" artifactId="grpc-services" version="1.55.1" baseVersion="1.55.1" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.grpc/grpc-services/1.55.1/979879a4c11160b20ec2f04b739ecb0048b1bc00/grpc-services-1.55.1.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="Gradle: io.grpc:grpc-stub:1.55.1" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="io.grpc" artifactId="grpc-stub" version="1.55.1" baseVersion="1.55.1" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.grpc/grpc-stub/1.55.1/2cc81e34b8e1bc4f680a095433a67bb9edc9921/grpc-stub-1.55.1.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="Gradle: io.grpc:grpc-xds:1.55.1" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="io.grpc" artifactId="grpc-xds" version="1.55.1" baseVersion="1.55.1" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.grpc/grpc-xds/1.55.1/38229a134dbf67a40aaaa963afd2522ca03230bd/grpc-xds-1.55.1.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="Gradle: io.insert-koin:koin-core-jvm:4.1.0" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="io.insert-koin" artifactId="koin-core-jvm" version="4.1.0" baseVersion="4.1.0" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.insert-koin/koin-core-jvm/4.1.0/fa2551d34ac9aa9e698490c0fa73585afdf75353/koin-core-jvm-4.1.0.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.insert-koin/koin-core-jvm/4.1.0/6e2fee46ea801f10cd3977309268c44b41631c27/koin-core-jvm-4.1.0-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Gradle: io.insert-koin:koin-ktor-jvm:4.1.0" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="io.insert-koin" artifactId="koin-ktor-jvm" version="4.1.0" baseVersion="4.1.0" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.insert-koin/koin-ktor-jvm/4.1.0/2614a333800229a0b8871125145958d03efdb3c3/koin-ktor-jvm-4.1.0.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="Gradle: io.kotest:kotest-assertions-api-jvm:5.9.1" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="io.kotest" artifactId="kotest-assertions-api-jvm" version="5.9.1" baseVersion="5.9.1" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.kotest/kotest-assertions-api-jvm/5.9.1/79acfe59cf527b1299f634bfe9e904dde7fd16ec/kotest-assertions-api-jvm-5.9.1.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="Gradle: io.kotest:kotest-assertions-core-jvm:5.9.1" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="io.kotest" artifactId="kotest-assertions-core-jvm" version="5.9.1" baseVersion="5.9.1" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.kotest/kotest-assertions-core-jvm/5.9.1/d6f96b394f62aca42516da97f7d1c63927d8331e/kotest-assertions-core-jvm-5.9.1.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="Gradle: io.kotest:kotest-assertions-shared-jvm:5.9.1" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="io.kotest" artifactId="kotest-assertions-shared-jvm" version="5.9.1" baseVersion="5.9.1" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.kotest/kotest-assertions-shared-jvm/5.9.1/58621dfd37d40668def8919b603528d54c1b1bd7/kotest-assertions-shared-jvm-5.9.1.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="Gradle: io.kotest:kotest-common-jvm:5.9.1" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="io.kotest" artifactId="kotest-common-jvm" version="5.9.1" baseVersion="5.9.1" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.kotest/kotest-common-jvm/5.9.1/ffbb01dc3d12a1f9037c5ee692310dcb64ba2405/kotest-common-jvm-5.9.1.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="Gradle: io.kotest:kotest-extensions-jvm:5.9.1" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="io.kotest" artifactId="kotest-extensions-jvm" version="5.9.1" baseVersion="5.9.1" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.kotest/kotest-extensions-jvm/5.9.1/d445f143e2ef2626f339dc8dd82617bdbd8e528e/kotest-extensions-jvm-5.9.1.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="Gradle: io.kotest:kotest-framework-api-jvm:5.9.1" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="io.kotest" artifactId="kotest-framework-api-jvm" version="5.9.1" baseVersion="5.9.1" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.kotest/kotest-framework-api-jvm/5.9.1/bfeb77c154a6938201e6d1490586484e405b4819/kotest-framework-api-jvm-5.9.1.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="Gradle: io.kotest:kotest-framework-concurrency-jvm:5.9.1" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="io.kotest" artifactId="kotest-framework-concurrency-jvm" version="5.9.1" baseVersion="5.9.1" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.kotest/kotest-framework-concurrency-jvm/5.9.1/1894037af8f2588154dd7d0ad96cdac85aced37b/kotest-framework-concurrency-jvm-5.9.1.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="Gradle: io.kotest:kotest-framework-discovery-jvm:5.9.1" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="io.kotest" artifactId="kotest-framework-discovery-jvm" version="5.9.1" baseVersion="5.9.1" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.kotest/kotest-framework-discovery-jvm/5.9.1/fc078e0e728072a1342e5da4a7910feaf86dc7fd/kotest-framework-discovery-jvm-5.9.1.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="Gradle: io.kotest:kotest-framework-engine-jvm:5.9.1" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="io.kotest" artifactId="kotest-framework-engine-jvm" version="5.9.1" baseVersion="5.9.1" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.kotest/kotest-framework-engine-jvm/5.9.1/e269e651f8dd98c28b308c8121a315800f6e5b9e/kotest-framework-engine-jvm-5.9.1.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="Gradle: io.kotest:kotest-runner-junit5-jvm:5.9.1" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="io.kotest" artifactId="kotest-runner-junit5-jvm" version="5.9.1" baseVersion="5.9.1" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.kotest/kotest-runner-junit5-jvm/5.9.1/5f15e9222d18b848de3bd259f8a2527d8be7e20b/kotest-runner-junit5-jvm-5.9.1.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="Gradle: io.ktor:ktor-client-core-jvm:3.1.3" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="io.ktor" artifactId="ktor-client-core-jvm" version="3.1.3" baseVersion="3.1.3" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.ktor/ktor-client-core-jvm/3.1.3/6691d28df87f6a195d6d4f48088b74cb4445d1f4/ktor-client-core-jvm-3.1.3.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="Gradle: io.ktor:ktor-events-jvm:3.1.3" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="io.ktor" artifactId="ktor-events-jvm" version="3.1.3" baseVersion="3.1.3" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.ktor/ktor-events-jvm/3.1.3/ebce4d94edc41cd8ca119da9152af8aa63f706c7/ktor-events-jvm-3.1.3.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="Gradle: io.ktor:ktor-http-cio-jvm:3.1.3" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="io.ktor" artifactId="ktor-http-cio-jvm" version="3.1.3" baseVersion="3.1.3" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.ktor/ktor-http-cio-jvm/3.1.3/a38e4f73b7ca3fb65acd040d95b0d3dd935505fc/ktor-http-cio-jvm-3.1.3.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="Gradle: io.ktor:ktor-http-jvm:3.1.3" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="io.ktor" artifactId="ktor-http-jvm" version="3.1.3" baseVersion="3.1.3" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.ktor/ktor-http-jvm/3.1.3/881944d6731e34f5a90e9d9ac3e942f45d41761c/ktor-http-jvm-3.1.3.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="Gradle: io.ktor:ktor-io-jvm:3.1.3" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="io.ktor" artifactId="ktor-io-jvm" version="3.1.3" baseVersion="3.1.3" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.ktor/ktor-io-jvm/3.1.3/24be84462406569be2359e5a013a4fa8770a1c0c/ktor-io-jvm-3.1.3.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="Gradle: io.ktor:ktor-network-jvm:3.1.3" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="io.ktor" artifactId="ktor-network-jvm" version="3.1.3" baseVersion="3.1.3" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.ktor/ktor-network-jvm/3.1.3/6c3bc178f66874bf4883dd1ac7e8a92871b02a4f/ktor-network-jvm-3.1.3.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="Gradle: io.ktor:ktor-serialization-jvm:3.1.3" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="io.ktor" artifactId="ktor-serialization-jvm" version="3.1.3" baseVersion="3.1.3" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.ktor/ktor-serialization-jvm/3.1.3/ecdbdd352b01b9bf7ff37d2b41d3c32ee470b58d/ktor-serialization-jvm-3.1.3.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="Gradle: io.ktor:ktor-serialization-kotlinx-json-jvm:3.1.3" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="io.ktor" artifactId="ktor-serialization-kotlinx-json-jvm" version="3.1.3" baseVersion="3.1.3" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.ktor/ktor-serialization-kotlinx-json-jvm/3.1.3/e110d4b68d6af58bd976b69e603dfde31b453d99/ktor-serialization-kotlinx-json-jvm-3.1.3.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="Gradle: io.ktor:ktor-serialization-kotlinx-jvm:3.1.3" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="io.ktor" artifactId="ktor-serialization-kotlinx-jvm" version="3.1.3" baseVersion="3.1.3" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.ktor/ktor-serialization-kotlinx-jvm/3.1.3/bcea8c228ac519643a977226402addf53fca15d8/ktor-serialization-kotlinx-jvm-3.1.3.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="Gradle: io.ktor:ktor-server-auth-jvm:3.1.3" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="io.ktor" artifactId="ktor-server-auth-jvm" version="3.1.3" baseVersion="3.1.3" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.ktor/ktor-server-auth-jvm/3.1.3/eed3c20e5e513eef81da345d60f2654cb20852c9/ktor-server-auth-jvm-3.1.3.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="Gradle: io.ktor:ktor-server-config-yaml-jvm:3.1.3" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="io.ktor" artifactId="ktor-server-config-yaml-jvm" version="3.1.3" baseVersion="3.1.3" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.ktor/ktor-server-config-yaml-jvm/3.1.3/82ebbb50a3870c2eb363dfeff63596552c7e5549/ktor-server-config-yaml-jvm-3.1.3.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="Gradle: io.ktor:ktor-server-content-negotiation-jvm:3.1.3" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="io.ktor" artifactId="ktor-server-content-negotiation-jvm" version="3.1.3" baseVersion="3.1.3" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.ktor/ktor-server-content-negotiation-jvm/3.1.3/91de9dd42c194b6fccc4e8b09593ff5ce36e33c7/ktor-server-content-negotiation-jvm-3.1.3.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="Gradle: io.ktor:ktor-server-core-jvm:3.1.3" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="io.ktor" artifactId="ktor-server-core-jvm" version="3.1.3" baseVersion="3.1.3" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.ktor/ktor-server-core-jvm/3.1.3/fe59c0964bf32bba16611a3d7f4842677b64c24f/ktor-server-core-jvm-3.1.3.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="Gradle: io.ktor:ktor-server-cors-jvm:3.1.3" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="io.ktor" artifactId="ktor-server-cors-jvm" version="3.1.3" baseVersion="3.1.3" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.ktor/ktor-server-cors-jvm/3.1.3/bd23c7275a7a721f2455946d5ed4d903a289fbf3/ktor-server-cors-jvm-3.1.3.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="Gradle: io.ktor:ktor-server-netty-jvm:3.1.3" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="io.ktor" artifactId="ktor-server-netty-jvm" version="3.1.3" baseVersion="3.1.3" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.ktor/ktor-server-netty-jvm/3.1.3/a572549ef2e34eab7a034e02683c73d3b49dd19/ktor-server-netty-jvm-3.1.3.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="Gradle: io.ktor:ktor-server-sessions-jvm:3.1.3" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="io.ktor" artifactId="ktor-server-sessions-jvm" version="3.1.3" baseVersion="3.1.3" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.ktor/ktor-server-sessions-jvm/3.1.3/7f037962df5a6d7ed90ea0a11b2d410b330e852e/ktor-server-sessions-jvm-3.1.3.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="Gradle: io.ktor:ktor-server-status-pages-jvm:3.1.3" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="io.ktor" artifactId="ktor-server-status-pages-jvm" version="3.1.3" baseVersion="3.1.3" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.ktor/ktor-server-status-pages-jvm/3.1.3/95efcc8ce449e691729f67514e31d99f48261b51/ktor-server-status-pages-jvm-3.1.3.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="Gradle: io.ktor:ktor-sse-jvm:3.1.3" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="io.ktor" artifactId="ktor-sse-jvm" version="3.1.3" baseVersion="3.1.3" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.ktor/ktor-sse-jvm/3.1.3/923aed31a9c222641d0dcb1c793d3c8d03f976a3/ktor-sse-jvm-3.1.3.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="Gradle: io.ktor:ktor-utils-jvm:3.1.3" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="io.ktor" artifactId="ktor-utils-jvm" version="3.1.3" baseVersion="3.1.3" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.ktor/ktor-utils-jvm/3.1.3/d2e56dca809c965fa498df86a570fc9ed5b9551f/ktor-utils-jvm-3.1.3.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="Gradle: io.ktor:ktor-websocket-serialization-jvm:3.1.3" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="io.ktor" artifactId="ktor-websocket-serialization-jvm" version="3.1.3" baseVersion="3.1.3" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.ktor/ktor-websocket-serialization-jvm/3.1.3/e89460b5597c8cbe0fc22766c6cf6fd25af5326b/ktor-websocket-serialization-jvm-3.1.3.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="Gradle: io.ktor:ktor-websockets-jvm:3.1.3" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="io.ktor" artifactId="ktor-websockets-jvm" version="3.1.3" baseVersion="3.1.3" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.ktor/ktor-websockets-jvm/3.1.3/ba5d56f7ecfd3347b351dcc3bfd519233aaa22b/ktor-websockets-jvm-3.1.3.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="Gradle: io.netty:netty-buffer:4.1.112.Final" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="io.netty" artifactId="netty-buffer" version="4.1.112.Final" baseVersion="4.1.112.Final" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.netty/netty-buffer/4.1.112.Final/bdc12df04bb6858890b8aa108060b5b365a26102/netty-buffer-4.1.112.Final.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="Gradle: io.netty:netty-buffer:4.1.119.Final" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="io.netty" artifactId="netty-buffer" version="4.1.119.Final" baseVersion="4.1.119.Final" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.netty/netty-buffer/4.1.119.Final/5864149b2e5a2af7b05fe9e9dc3e4b70d3060a7c/netty-buffer-4.1.119.Final.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="Gradle: io.netty:netty-codec-dns:4.1.112.Final" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="io.netty" artifactId="netty-codec-dns" version="4.1.112.Final" baseVersion="4.1.112.Final" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.netty/netty-codec-dns/4.1.112.Final/6724b184ee870ecc4d8fc36931beeb3c387b0ee/netty-codec-dns-4.1.112.Final.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="Gradle: io.netty:netty-codec-http2:4.1.119.Final" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="io.netty" artifactId="netty-codec-http2" version="4.1.119.Final" baseVersion="4.1.119.Final" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.netty/netty-codec-http2/4.1.119.Final/648b066861723b60635bef2047229ed73d0cbd04/netty-codec-http2-4.1.119.Final.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="Gradle: io.netty:netty-codec-http:4.1.112.Final" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="io.netty" artifactId="netty-codec-http" version="4.1.112.Final" baseVersion="4.1.112.Final" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.netty/netty-codec-http/4.1.112.Final/81af1040bfa977f98dd0e1bd9639513ea862ca04/netty-codec-http-4.1.112.Final.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="Gradle: io.netty:netty-codec-http:4.1.119.Final" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="io.netty" artifactId="netty-codec-http" version="4.1.119.Final" baseVersion="4.1.119.Final" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.netty/netty-codec-http/4.1.119.Final/23196984df6083cc39bef22a54c6cf5b157f3824/netty-codec-http-4.1.119.Final.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="Gradle: io.netty:netty-codec-socks:4.1.112.Final" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="io.netty" artifactId="netty-codec-socks" version="4.1.112.Final" baseVersion="4.1.112.Final" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.netty/netty-codec-socks/4.1.112.Final/9aed7e78c467d06a47a45b5b27466380a6427e2f/netty-codec-socks-4.1.112.Final.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="Gradle: io.netty:netty-codec:4.1.112.Final" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="io.netty" artifactId="netty-codec" version="4.1.112.Final" baseVersion="4.1.112.Final" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.netty/netty-codec/4.1.112.Final/c87f2ec3d9a97bd2b793d16817abb2bab93a7fc3/netty-codec-4.1.112.Final.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="Gradle: io.netty:netty-codec:4.1.119.Final" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="io.netty" artifactId="netty-codec" version="4.1.119.Final" baseVersion="4.1.119.Final" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.netty/netty-codec/4.1.119.Final/337ca8e8c3ef23925e02d56347b414d7616d1d02/netty-codec-4.1.119.Final.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="Gradle: io.netty:netty-common:4.1.112.Final" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="io.netty" artifactId="netty-common" version="4.1.112.Final" baseVersion="4.1.112.Final" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.netty/netty-common/4.1.112.Final/b2798069092a981a832b7510d0462ee9efb7a80e/netty-common-4.1.112.Final.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="Gradle: io.netty:netty-common:4.1.119.Final" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="io.netty" artifactId="netty-common" version="4.1.119.Final" baseVersion="4.1.119.Final" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.netty/netty-common/4.1.119.Final/2f7c360b03c0aceab7efc1f7c2b75274f0f35909/netty-common-4.1.119.Final.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="Gradle: io.netty:netty-handler-proxy:4.1.112.Final" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="io.netty" artifactId="netty-handler-proxy" version="4.1.112.Final" baseVersion="4.1.112.Final" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.netty/netty-handler-proxy/4.1.112.Final/b23c87a85451b3b0e7c3e8e89698cea6831a8418/netty-handler-proxy-4.1.112.Final.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="Gradle: io.netty:netty-handler:4.1.112.Final" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="io.netty" artifactId="netty-handler" version="4.1.112.Final" baseVersion="4.1.112.Final" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.netty/netty-handler/4.1.112.Final/3d5e2d5bcc6baeeb8c13a230980c6132a778e036/netty-handler-4.1.112.Final.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="Gradle: io.netty:netty-handler:4.1.119.Final" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="io.netty" artifactId="netty-handler" version="4.1.119.Final" baseVersion="4.1.119.Final" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.netty/netty-handler/4.1.119.Final/a0059b8d779ce566b524efd6d73ba4fcff3cd5d9/netty-handler-4.1.119.Final.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="Gradle: io.netty:netty-resolver-dns-classes-macos:4.1.112.Final" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="io.netty" artifactId="netty-resolver-dns-classes-macos" version="4.1.112.Final" baseVersion="4.1.112.Final" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.netty/netty-resolver-dns-classes-macos/4.1.112.Final/6dc3e7a029636ef56175c407c453d20b64e15fb6/netty-resolver-dns-classes-macos-4.1.112.Final.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="Gradle: io.netty:netty-resolver-dns-native-macos:osx-x86_64:4.1.112.Final" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="io.netty" artifactId="netty-resolver-dns-native-macos" version="4.1.112.Final" baseVersion="4.1.112.Final" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.netty/netty-resolver-dns-native-macos/4.1.112.Final/5abc86fd98561f7bda897efa29bd96483f86f560/netty-resolver-dns-native-macos-4.1.112.Final-osx-x86_64.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="Gradle: io.netty:netty-resolver-dns:4.1.112.Final" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="io.netty" artifactId="netty-resolver-dns" version="4.1.112.Final" baseVersion="4.1.112.Final" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.netty/netty-resolver-dns/4.1.112.Final/375872f1c16bb51aac016ff6ee4f5d28b1288d4d/netty-resolver-dns-4.1.112.Final.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="Gradle: io.netty:netty-resolver:4.1.112.Final" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="io.netty" artifactId="netty-resolver" version="4.1.112.Final" baseVersion="4.1.112.Final" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.netty/netty-resolver/4.1.112.Final/58a631d9d44c4ed7cc0dcc9cffa6641da9374d72/netty-resolver-4.1.112.Final.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="Gradle: io.netty:netty-resolver:4.1.119.Final" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="io.netty" artifactId="netty-resolver" version="4.1.119.Final" baseVersion="4.1.119.Final" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.netty/netty-resolver/4.1.119.Final/e1f7c90aff71bdf0e2294a200b5f89244f88dcf7/netty-resolver-4.1.119.Final.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="Gradle: io.netty:netty-transport-classes-epoll:4.1.112.Final" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="io.netty" artifactId="netty-transport-classes-epoll" version="4.1.112.Final" baseVersion="4.1.112.Final" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.netty/netty-transport-classes-epoll/4.1.112.Final/67e590356eb53c20aaabd67f61ae66f628e62e3d/netty-transport-classes-epoll-4.1.112.Final.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="Gradle: io.netty:netty-transport-classes-epoll:4.1.119.Final" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="io.netty" artifactId="netty-transport-classes-epoll" version="4.1.119.Final" baseVersion="4.1.119.Final" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.netty/netty-transport-classes-epoll/4.1.119.Final/1d2d986ae0615d50f5cee338f0e9e73f46e8158/netty-transport-classes-epoll-4.1.119.Final.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="Gradle: io.netty:netty-transport-classes-kqueue:4.1.119.Final" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="io.netty" artifactId="netty-transport-classes-kqueue" version="4.1.119.Final" baseVersion="4.1.119.Final" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.netty/netty-transport-classes-kqueue/4.1.119.Final/e3e70378ab16b97af83b79dc67227299ae20c90/netty-transport-classes-kqueue-4.1.119.Final.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="Gradle: io.netty:netty-transport-native-epoll:4.1.119.Final" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="io.netty" artifactId="netty-transport-native-epoll" version="4.1.119.Final" baseVersion="4.1.119.Final" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.netty/netty-transport-native-epoll/4.1.119.Final/c4b9339262b59f4808674d3b4ba4d5c4846921df/netty-transport-native-epoll-4.1.119.Final.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="Gradle: io.netty:netty-transport-native-epoll:linux-x86_64:4.1.112.Final" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="io.netty" artifactId="netty-transport-native-epoll" version="4.1.112.Final" baseVersion="4.1.112.Final" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.netty/netty-transport-native-epoll/4.1.112.Final/caed6f2ae7aebcef50098a64f55918cb8550d2d0/netty-transport-native-epoll-4.1.112.Final-linux-x86_64.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="Gradle: io.netty:netty-transport-native-epoll:linux-x86_64:4.1.119.Final" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="io.netty" artifactId="netty-transport-native-epoll" version="4.1.119.Final" baseVersion="4.1.119.Final" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.netty/netty-transport-native-epoll/4.1.119.Final/500fdc2000a47c07ad6c0ea230127f5ac3c9ad5c/netty-transport-native-epoll-4.1.119.Final-linux-x86_64.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="Gradle: io.netty:netty-transport-native-kqueue:4.1.119.Final" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="io.netty" artifactId="netty-transport-native-kqueue" version="4.1.119.Final" baseVersion="4.1.119.Final" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.netty/netty-transport-native-kqueue/4.1.119.Final/a421ce234f856ff9b84bfd350138523e9ffd70bd/netty-transport-native-kqueue-4.1.119.Final.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="Gradle: io.netty:netty-transport-native-unix-common:4.1.112.Final" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="io.netty" artifactId="netty-transport-native-unix-common" version="4.1.112.Final" baseVersion="4.1.112.Final" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.netty/netty-transport-native-unix-common/4.1.112.Final/b50ff619cdcdc48e748cba3405c9988529f28f60/netty-transport-native-unix-common-4.1.112.Final.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="Gradle: io.netty:netty-transport-native-unix-common:4.1.119.Final" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="io.netty" artifactId="netty-transport-native-unix-common" version="4.1.119.Final" baseVersion="4.1.119.Final" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.netty/netty-transport-native-unix-common/4.1.119.Final/55afdeb456bccf8eecb06431f3c1537269afe9af/netty-transport-native-unix-common-4.1.119.Final.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="Gradle: io.netty:netty-transport:4.1.112.Final" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="io.netty" artifactId="netty-transport" version="4.1.112.Final" baseVersion="4.1.112.Final" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.netty/netty-transport/4.1.112.Final/77cd136dd3843f5e7cbcf68c824975d745c49ddb/netty-transport-4.1.112.Final.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="Gradle: io.netty:netty-transport:4.1.119.Final" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="io.netty" artifactId="netty-transport" version="4.1.119.Final" baseVersion="4.1.119.Final" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.netty/netty-transport/4.1.119.Final/d05df879054297962d056b77460fc4ff20e30073/netty-transport-4.1.119.Final.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="Gradle: io.opencensus:opencensus-api:0.31.1" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="io.opencensus" artifactId="opencensus-api" version="0.31.1" baseVersion="0.31.1" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.opencensus/opencensus-api/0.31.1/66a60c7201c2b8b20ce495f0295b32bb0ccbbc57/opencensus-api-0.31.1.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="Gradle: io.opencensus:opencensus-contrib-grpc-util:0.31.1" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="io.opencensus" artifactId="opencensus-contrib-grpc-util" version="0.31.1" baseVersion="0.31.1" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.opencensus/opencensus-contrib-grpc-util/0.31.1/89b1d2f8f64749256983446cbdfae25da5450de7/opencensus-contrib-grpc-util-0.31.1.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="Gradle: io.opencensus:opencensus-contrib-http-util:0.31.1" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="io.opencensus" artifactId="opencensus-contrib-http-util" version="0.31.1" baseVersion="0.31.1" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.opencensus/opencensus-contrib-http-util/0.31.1/3c13fc5715231fadb16a9b74a44d9d59c460cfa8/opencensus-contrib-http-util-0.31.1.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="Gradle: io.opencensus:opencensus-proto:0.2.0" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="io.opencensus" artifactId="opencensus-proto" version="0.2.0" baseVersion="0.2.0" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.opencensus/opencensus-proto/0.2.0/c05b6b32b69d5d9144087ea0ebc6fab183fb9151/opencensus-proto-0.2.0.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="Gradle: io.perfmark:perfmark-api:0.26.0" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="io.perfmark" artifactId="perfmark-api" version="0.26.0" baseVersion="0.26.0" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.perfmark/perfmark-api/0.26.0/ef65452adaf20bf7d12ef55913aba24037b82738/perfmark-api-0.26.0.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="Gradle: io.projectreactor.addons:reactor-pool:1.0.8" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="io.projectreactor.addons" artifactId="reactor-pool" version="1.0.8" baseVersion="1.0.8" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.projectreactor.addons/reactor-pool/1.0.8/96648560a264afca6e33128404e99cb12d06cd76/reactor-pool-1.0.8.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="Gradle: io.projectreactor.netty:reactor-netty-core:1.1.22" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="io.projectreactor.netty" artifactId="reactor-netty-core" version="1.1.22" baseVersion="1.1.22" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.projectreactor.netty/reactor-netty-core/1.1.22/8356b59b29f86e7142c9daca0434653a64ae64b/reactor-netty-core-1.1.22.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="Gradle: io.projectreactor:reactor-core:3.5.20" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="io.projectreactor" artifactId="reactor-core" version="3.5.20" baseVersion="3.5.20" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.projectreactor/reactor-core/3.5.20/1fc0f91e2b93778a974339d2c24363d7f34f90b4/reactor-core-3.5.20.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="Gradle: io.r2dbc:r2dbc-pool:1.0.2.RELEASE" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="io.r2dbc" artifactId="r2dbc-pool" version="1.0.2.RELEASE" baseVersion="1.0.2.RELEASE" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.r2dbc/r2dbc-pool/1.0.2.RELEASE/c6a07e2e312e9bc8a897759a1004023187451c4f/r2dbc-pool-1.0.2.RELEASE.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="Gradle: io.r2dbc:r2dbc-spi:1.0.0.RELEASE" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="io.r2dbc" artifactId="r2dbc-spi" version="1.0.0.RELEASE" baseVersion="1.0.0.RELEASE" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.r2dbc/r2dbc-spi/1.0.0.RELEASE/e3d15b2d27fdb8fdb76a181b21d5c752adf1d165/r2dbc-spi-1.0.0.RELEASE.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="Gradle: javax.annotation:javax.annotation-api:1.3.2" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="javax.annotation" artifactId="javax.annotation-api" version="1.3.2" baseVersion="1.3.2" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/javax.annotation/javax.annotation-api/1.3.2/934c04d3cfef185a8008e7bf34331b79730a9d43/javax.annotation-api-1.3.2.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="Gradle: net.bytebuddy:byte-buddy-agent:1.10.9" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="net.bytebuddy" artifactId="byte-buddy-agent" version="1.10.9" baseVersion="1.10.9" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.bytebuddy/byte-buddy-agent/1.10.9/cbbeffa557e6b1b4cbb181b0782436921c523699/byte-buddy-agent-1.10.9.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="Gradle: net.bytebuddy:byte-buddy:1.10.9" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="net.bytebuddy" artifactId="byte-buddy" version="1.10.9" baseVersion="1.10.9" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.bytebuddy/byte-buddy/1.10.9/2c03f15cd1131692feca93f190ed81412a3de961/byte-buddy-1.10.9.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="Gradle: net.java.dev.jna:jna-platform:5.9.0" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="net.java.dev.jna" artifactId="jna-platform" version="5.9.0" baseVersion="5.9.0" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.java.dev.jna/jna-platform/5.9.0/c535a5bda553d7d7690356c825010da74b2671b5/jna-platform-5.9.0.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="Gradle: net.java.dev.jna:jna:5.9.0" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="net.java.dev.jna" artifactId="jna" version="5.9.0" baseVersion="5.9.0" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.java.dev.jna/jna/5.9.0/8f503e6d9b500ceff299052d6be75b38c7257758/jna-5.9.0.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="Gradle: net.mamoe.yamlkt:yamlkt-jvm:0.13.0" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="net.mamoe.yamlkt" artifactId="yamlkt-jvm" version="0.13.0" baseVersion="0.13.0" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.mamoe.yamlkt/yamlkt-jvm/0.13.0/9c93e3ef80314d6486f6f9be95db8df6bc728d67/yamlkt-jvm-0.13.0.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="Gradle: org.apache.httpcomponents:httpclient:4.5.14" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="org.apache.httpcomponents" artifactId="httpclient" version="4.5.14" baseVersion="4.5.14" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.httpcomponents/httpclient/4.5.14/1194890e6f56ec29177673f2f12d0b8e627dec98/httpclient-4.5.14.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="Gradle: org.apache.httpcomponents:httpcore:4.4.16" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="org.apache.httpcomponents" artifactId="httpcore" version="4.4.16" baseVersion="4.4.16" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.httpcomponents/httpcore/4.4.16/51cf043c87253c9f58b539c9f7e44c8894223850/httpcore-4.4.16.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="Gradle: org.apiguardian:apiguardian-api:1.1.2" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="org.apiguardian" artifactId="apiguardian-api" version="1.1.2" baseVersion="1.1.2" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apiguardian/apiguardian-api/1.1.2/a231e0d844d2721b0fa1b238006d15c6ded6842a/apiguardian-api-1.1.2.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="Gradle: org.checkerframework:checker-qual:3.49.3" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="org.checkerframework" artifactId="checker-qual" version="3.49.3" baseVersion="3.49.3" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.checkerframework/checker-qual/3.49.3/119a4df4ba2e6a432b23989a785f81be38a56849/checker-qual-3.49.3.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="Gradle: org.codehaus.mojo:animal-sniffer-annotations:1.23" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="org.codehaus.mojo" artifactId="animal-sniffer-annotations" version="1.23" baseVersion="1.23" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.codehaus.mojo/animal-sniffer-annotations/1.23/3c0daebd5f0e1ce72cc50c818321ac957aeb5d70/animal-sniffer-annotations-1.23.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="Gradle: org.conscrypt:conscrypt-openjdk-uber:2.5.2" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="org.conscrypt" artifactId="conscrypt-openjdk-uber" version="2.5.2" baseVersion="2.5.2" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.conscrypt/conscrypt-openjdk-uber/2.5.2/d858f142ea189c62771c505a6548d8606ac098fe/conscrypt-openjdk-uber-2.5.2.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="Gradle: org.eclipse.jetty.alpn:alpn-api:1.1.3.v20160715" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="org.eclipse.jetty.alpn" artifactId="alpn-api" version="1.1.3.v20160715" baseVersion="1.1.3.v20160715" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.eclipse.jetty.alpn/alpn-api/1.1.3.v20160715/a1bf3a937f91b4c953acd13e8c9552347adc2198/alpn-api-1.1.3.v20160715.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="Gradle: org.fusesource.jansi:jansi:2.4.1" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="org.fusesource.jansi" artifactId="jansi" version="2.4.1" baseVersion="2.4.1" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.fusesource.jansi/jansi/2.4.1/d5774f204d990c9f5da2809b88f928515577beb4/jansi-2.4.1.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="Gradle: org.imgscalr:imgscalr-lib:4.2" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="org.imgscalr" artifactId="imgscalr-lib" version="4.2" baseVersion="4.2" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.imgscalr/imgscalr-lib/4.2/e2838f7119361511ef7d54fe0d502bf07f3325eb/imgscalr-lib-4.2.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="Gradle: org.jetbrains.exposed:exposed-core:1.0.0-beta-2" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="org.jetbrains.exposed" artifactId="exposed-core" version="1.0.0-beta-2" baseVersion="1.0.0-beta-2" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.exposed/exposed-core/1.0.0-beta-2/94ad708a09dfa8aaded5d106dca42d98f2615945/exposed-core-1.0.0-beta-2.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="Gradle: org.jetbrains.exposed:exposed-kotlin-datetime:1.0.0-beta-2" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="org.jetbrains.exposed" artifactId="exposed-kotlin-datetime" version="1.0.0-beta-2" baseVersion="1.0.0-beta-2" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.exposed/exposed-kotlin-datetime/1.0.0-beta-2/ecb0e8393e5849dc725f8c154c3f7810da1f5836/exposed-kotlin-datetime-1.0.0-beta-2.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="Gradle: org.jetbrains.exposed:exposed-r2dbc:1.0.0-beta-2" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="org.jetbrains.exposed" artifactId="exposed-r2dbc" version="1.0.0-beta-2" baseVersion="1.0.0-beta-2" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.exposed/exposed-r2dbc/1.0.0-beta-2/e8a226994acd8b5717d759d9c8ad841c1c47ed25/exposed-r2dbc-1.0.0-beta-2.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="Gradle: org.jetbrains.kotlin:kotlin-reflect:2.0.0" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="org.jetbrains.kotlin" artifactId="kotlin-reflect" version="2.0.0" baseVersion="2.0.0" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-reflect/2.0.0/9c3d75110945233bf77d2e1a90604b100884db94/kotlin-reflect-2.0.0.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="Gradle: org.jetbrains.kotlin:kotlin-reflect:2.0.21" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="org.jetbrains.kotlin" artifactId="kotlin-reflect" version="2.0.21" baseVersion="2.0.21" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-reflect/2.0.21/669e1d35e4ca1797f9ddb2830dd6c36c0ca531e4/kotlin-reflect-2.0.21.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-reflect/2.0.21/e3027f36ef9cc946503d124786457605064599af/kotlin-reflect-2.0.21-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Gradle: org.jetbrains.kotlin:kotlin-reflect:2.1.20" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="org.jetbrains.kotlin" artifactId="kotlin-reflect" version="2.1.20" baseVersion="2.1.20" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-reflect/2.1.20/3c1003045c4f2a72f987a147abac8e7058be1183/kotlin-reflect-2.1.20.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-reflect/2.1.20/651b631799b380ba2e2d7ef66f36b3d06e54cb27/kotlin-reflect-2.1.20-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Gradle: org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.8.0" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="org.jetbrains.kotlin" artifactId="kotlin-stdlib-jdk7" version="1.8.0" baseVersion="1.8.0" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib-jdk7/1.8.0/3c91271347f678c239607abb676d4032a7898427/kotlin-stdlib-jdk7-1.8.0.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib-jdk7/1.8.0/3641d7cb7650db9fe93a5361b1b88cbcefdb01e0/kotlin-stdlib-jdk7-1.8.0-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Gradle: org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.8.0" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="org.jetbrains.kotlin" artifactId="kotlin-stdlib-jdk8" version="1.8.0" baseVersion="1.8.0" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib-jdk8/1.8.0/ed04f49e186a116753ad70d34f0ac2925d1d8020/kotlin-stdlib-jdk8-1.8.0.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib-jdk8/1.8.0/20739e7aae2a2bfb66c4081b233ffea7b947cf77/kotlin-stdlib-jdk8-1.8.0-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Gradle: org.jetbrains.kotlin:kotlin-stdlib:2.1.20" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="org.jetbrains.kotlin" artifactId="kotlin-stdlib" version="2.1.20" baseVersion="2.1.20" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib/2.1.20/aa8ca79cd50578314f6d1180c47cbe14c0fee567/kotlin-stdlib-2.1.20.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib/2.1.20/a17d644acea6159970c25bbf99ff204b03c1c0b6/kotlin-stdlib-2.1.20-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Gradle: org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm:1.10.2" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="org.jetbrains.kotlinx" artifactId="kotlinx-coroutines-core-jvm" version="1.10.2" baseVersion="1.10.2" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlinx/kotlinx-coroutines-core-jvm/1.10.2/4a9f78ef49483748e2c129f3d124b8fa249dafbf/kotlinx-coroutines-core-jvm-1.10.2.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlinx/kotlinx-coroutines-core-jvm/1.10.2/dd509cf554e712ac6b4c8c0b773be93d0142ec71/kotlinx-coroutines-core-jvm-1.10.2-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Gradle: org.jetbrains.kotlinx:kotlinx-coroutines-debug:1.10.2" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="org.jetbrains.kotlinx" artifactId="kotlinx-coroutines-debug" version="1.10.2" baseVersion="1.10.2" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlinx/kotlinx-coroutines-debug/1.10.2/62025908213f62c525b1194c57a05793384a2c78/kotlinx-coroutines-debug-1.10.2.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="Gradle: org.jetbrains.kotlinx:kotlinx-coroutines-jdk8:1.10.2" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="org.jetbrains.kotlinx" artifactId="kotlinx-coroutines-jdk8" version="1.10.2" baseVersion="1.10.2" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlinx/kotlinx-coroutines-jdk8/1.10.2/809f71bf722bad7e78ebe8ec710c0327c23b7a31/kotlinx-coroutines-jdk8-1.10.2.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="Gradle: org.jetbrains.kotlinx:kotlinx-coroutines-reactive:1.10.2" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="org.jetbrains.kotlinx" artifactId="kotlinx-coroutines-reactive" version="1.10.2" baseVersion="1.10.2" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlinx/kotlinx-coroutines-reactive/1.10.2/c6c237106b2877792433204732b7e89adb26c5d0/kotlinx-coroutines-reactive-1.10.2.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlinx/kotlinx-coroutines-reactive/1.10.2/4ff3ccb7d42a0c0bcaad6ea05a1be2343212c769/kotlinx-coroutines-reactive-1.10.2-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Gradle: org.jetbrains.kotlinx:kotlinx-coroutines-slf4j:1.10.2" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="org.jetbrains.kotlinx" artifactId="kotlinx-coroutines-slf4j" version="1.10.2" baseVersion="1.10.2" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlinx/kotlinx-coroutines-slf4j/1.10.2/1271f9d4a929150bb87ab8d1dc1e86d4bcf039f3/kotlinx-coroutines-slf4j-1.10.2.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="Gradle: org.jetbrains.kotlinx:kotlinx-coroutines-test-jvm:1.10.2" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="org.jetbrains.kotlinx" artifactId="kotlinx-coroutines-test-jvm" version="1.10.2" baseVersion="1.10.2" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlinx/kotlinx-coroutines-test-jvm/1.10.2/deb87732ba15dc455f08af4b120fca0d96d6cb5f/kotlinx-coroutines-test-jvm-1.10.2.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="Gradle: org.jetbrains.kotlinx:kotlinx-datetime-jvm:0.6.2" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="org.jetbrains.kotlinx" artifactId="kotlinx-datetime-jvm" version="0.6.2" baseVersion="0.6.2" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlinx/kotlinx-datetime-jvm/0.6.2/f177b43ce53f69151797206ce762b36199692474/kotlinx-datetime-jvm-0.6.2.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlinx/kotlinx-datetime-jvm/0.6.2/1d1592a42d0f6d340495dd8f40c5b8811be02c9c/kotlinx-datetime-jvm-0.6.2-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Gradle: org.jetbrains.kotlinx:kotlinx-io-bytestring-jvm:0.7.0" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="org.jetbrains.kotlinx" artifactId="kotlinx-io-bytestring-jvm" version="0.7.0" baseVersion="0.7.0" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlinx/kotlinx-io-bytestring-jvm/0.7.0/ffe5bd231da40d21870250703326113277dbf9c3/kotlinx-io-bytestring-jvm-0.7.0.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlinx/kotlinx-io-bytestring-jvm/0.7.0/fa5686c74b26c4f1f288000a39f9218322f3ca2a/kotlinx-io-bytestring-jvm-0.7.0-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Gradle: org.jetbrains.kotlinx:kotlinx-io-core-jvm:0.7.0" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="org.jetbrains.kotlinx" artifactId="kotlinx-io-core-jvm" version="0.7.0" baseVersion="0.7.0" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlinx/kotlinx-io-core-jvm/0.7.0/1d9595ed390f6304ce90a049e6b2f1fab3b408c4/kotlinx-io-core-jvm-0.7.0.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlinx/kotlinx-io-core-jvm/0.7.0/f19ae5c8d4fb0ef5b5da8f116e7edeb3d4bbfd5a/kotlinx-io-core-jvm-0.7.0-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Gradle: org.jetbrains.kotlinx:kotlinx-serialization-core-jvm:1.8.1" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="org.jetbrains.kotlinx" artifactId="kotlinx-serialization-core-jvm" version="1.8.1" baseVersion="1.8.1" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlinx/kotlinx-serialization-core-jvm/1.8.1/510cb839cce9a3e708052d480a6fbf4a7274dfcd/kotlinx-serialization-core-jvm-1.8.1.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlinx/kotlinx-serialization-core-jvm/1.8.1/f670fb853394b32c279637aa1a20ed43202d80a5/kotlinx-serialization-core-jvm-1.8.1-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Gradle: org.jetbrains.kotlinx:kotlinx-serialization-json-io-jvm:1.8.1" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="org.jetbrains.kotlinx" artifactId="kotlinx-serialization-json-io-jvm" version="1.8.1" baseVersion="1.8.1" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlinx/kotlinx-serialization-json-io-jvm/1.8.1/de4e31bfc7ddf8585418f8d4fca649feca574cdf/kotlinx-serialization-json-io-jvm-1.8.1.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlinx/kotlinx-serialization-json-io-jvm/1.8.1/15dc7aaaa59213108b182ed6aaa3bd7c589867e3/kotlinx-serialization-json-io-jvm-1.8.1-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Gradle: org.jetbrains.kotlinx:kotlinx-serialization-json-jvm:1.8.1" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="org.jetbrains.kotlinx" artifactId="kotlinx-serialization-json-jvm" version="1.8.1" baseVersion="1.8.1" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlinx/kotlinx-serialization-json-jvm/1.8.1/4de3bace4b175753df5484d2acd74c14bfeb5be9/kotlinx-serialization-json-jvm-1.8.1.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlinx/kotlinx-serialization-json-jvm/1.8.1/78e5c1bf5539e0b2582fcf5174a42bb77c79105f/kotlinx-serialization-json-jvm-1.8.1-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Gradle: org.jetbrains:annotations:23.0.0" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="org.jetbrains" artifactId="annotations" version="23.0.0" baseVersion="23.0.0" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains/annotations/23.0.0/8cc20c07506ec18e0834947b84a864bfc094484e/annotations-23.0.0.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="Gradle: org.junit.jupiter:junit-jupiter-api:5.8.2" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="org.junit.jupiter" artifactId="junit-jupiter-api" version="5.8.2" baseVersion="5.8.2" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.junit.jupiter/junit-jupiter-api/5.8.2/4c21029217adf07e4c0d0c5e192b6bf610c94bdc/junit-jupiter-api-5.8.2.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="Gradle: org.junit.platform:junit-platform-commons:1.8.2" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="org.junit.platform" artifactId="junit-platform-commons" version="1.8.2" baseVersion="1.8.2" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.junit.platform/junit-platform-commons/1.8.2/32c8b8617c1342376fd5af2053da6410d8866861/junit-platform-commons-1.8.2.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="Gradle: org.junit.platform:junit-platform-engine:1.8.2" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="org.junit.platform" artifactId="junit-platform-engine" version="1.8.2" baseVersion="1.8.2" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.junit.platform/junit-platform-engine/1.8.2/b737de09f19864bd136805c84df7999a142fec29/junit-platform-engine-1.8.2.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="Gradle: org.junit.platform:junit-platform-launcher:1.8.2" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="org.junit.platform" artifactId="junit-platform-launcher" version="1.8.2" baseVersion="1.8.2" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.junit.platform/junit-platform-launcher/1.8.2/c334fcee82b81311ab5c426ec2d52d467c8d0b28/junit-platform-launcher-1.8.2.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="Gradle: org.junit.platform:junit-platform-suite-api:1.8.2" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="org.junit.platform" artifactId="junit-platform-suite-api" version="1.8.2" baseVersion="1.8.2" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.junit.platform/junit-platform-suite-api/1.8.2/a148ffd359cac121fcba000ad7f5a75b5e2ac2b4/junit-platform-suite-api-1.8.2.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="Gradle: org.opentest4j:opentest4j:1.2.0" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="org.opentest4j" artifactId="opentest4j" version="1.2.0" baseVersion="1.2.0" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.opentest4j/opentest4j/1.2.0/28c11eb91f9b6d8e200631d46e20a7f407f2a046/opentest4j-1.2.0.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="Gradle: org.opentest4j:opentest4j:1.3.0" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="org.opentest4j" artifactId="opentest4j" version="1.3.0" baseVersion="1.3.0" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.opentest4j/opentest4j/1.3.0/152ea56b3a72f655d4fd677fc0ef2596c3dd5e6e/opentest4j-1.3.0.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="Gradle: org.postgresql:postgresql:42.7.7" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="org.postgresql" artifactId="postgresql" version="42.7.7" baseVersion="42.7.7" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.postgresql/postgresql/42.7.7/67f8093e8d8104c74bbf588392ac3229803f5d17/postgresql-42.7.7.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="Gradle: org.postgresql:r2dbc-postgresql:1.0.7.RELEASE" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="org.postgresql" artifactId="r2dbc-postgresql" version="1.0.7.RELEASE" baseVersion="1.0.7.RELEASE" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.postgresql/r2dbc-postgresql/1.0.7.RELEASE/d6283b1fda43ef0078c7a3cd5db0fed5b0b5ac8c/r2dbc-postgresql-1.0.7.RELEASE.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="Gradle: org.reactivestreams:reactive-streams:1.0.3" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="org.reactivestreams" artifactId="reactive-streams" version="1.0.3" baseVersion="1.0.3" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.reactivestreams/reactive-streams/1.0.3/d9fb7a7926ffa635b3dcaa5049fb2bfa25b3e7d0/reactive-streams-1.0.3.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="Gradle: org.reactivestreams:reactive-streams:1.0.4" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="org.reactivestreams" artifactId="reactive-streams" version="1.0.4" baseVersion="1.0.4" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.reactivestreams/reactive-streams/1.0.4/3864a1320d97d7b045f729a326e1e077661f31b7/reactive-streams-1.0.4.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="Gradle: org.slf4j:slf4j-api:1.7.36" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="org.slf4j" artifactId="slf4j-api" version="1.7.36" baseVersion="1.7.36" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.slf4j/slf4j-api/1.7.36/6c62681a2f655b49963a5983b8b0950a6120ae14/slf4j-api-1.7.36.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="Gradle: org.slf4j:slf4j-api:2.0.16" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="org.slf4j" artifactId="slf4j-api" version="2.0.16" baseVersion="2.0.16" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.slf4j/slf4j-api/2.0.16/172931663a09a1fa515567af5fbef00897d3c04/slf4j-api-2.0.16.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="Gradle: org.slf4j:slf4j-api:2.0.9" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="org.slf4j" artifactId="slf4j-api" version="2.0.9" baseVersion="2.0.9" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.slf4j/slf4j-api/2.0.9/7cf2726fdcfbc8610f9a71fb3ed639871f315340/slf4j-api-2.0.9.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="Gradle: org.threeten:threetenbp:1.6.8" type="java-imported" external-system-id="GRADLE">
+      <properties groupId="org.threeten" artifactId="threetenbp" version="1.6.8" baseVersion="1.6.8" />
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.threeten/threetenbp/1.6.8/4c65b7b43f3fe31350f74cb7d0b2461e111e8dd0/threetenbp-1.6.8.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="annotations-13.0.jar">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains/annotations/13.0/919f0dfe192fb4e063e7dacadee7f8bb9a2672a9/annotations-13.0.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="classes">
+      <CLASSES>
+        <root url="file://$USER_HOME$/.gradle/caches/8.14.2/kotlin-dsl/accessors/1782d55b1f540f262eb3dc684f0f0054/classes" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="classes.2">
+      <CLASSES>
+        <root url="file://$USER_HOME$/.gradle/caches/8.14.2/dependencies-accessors/d68067334a03e21be40def357e85aa01e6eaafa9/classes" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="classes.3">
+      <CLASSES>
+        <root url="file://$USER_HOME$/.gradle/caches/8.14.2/kotlin-dsl/accessors/1225dfa62911a177dfdd127bd086b9ed/classes" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="classes.4">
+      <CLASSES>
+        <root url="file://$USER_HOME$/.gradle/caches/8.14.2/kotlin-dsl/accessors/80fff27b27748eb9792f70a50165cc41-VC/classes" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="classes.5">
+      <CLASSES>
+        <root url="file://$USER_HOME$/.gradle/caches/8.14.2/kotlin-dsl/accessors/80fff27b27748eb9792f70a50165cc41-PS/classes" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="classes.6">
+      <CLASSES>
+        <root url="file://$USER_HOME$/.gradle/caches/8.14.2/kotlin-dsl/accessors/8f64441c788aacc66359d237c020ee79/classes" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="classes.7">
+      <CLASSES>
+        <root url="file://$USER_HOME$/.gradle/caches/8.14.2/kotlin-dsl/accessors/c95c59da1a9f8ca12e9fe49ab11bcde6/classes" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="gradle-api-8.14.2.jar">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/8.14.2/generated-gradle-jars/gradle-api-8.14.2.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="gradle-core-8.14.2.jar">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-8.14.2-bin/2pb3mgt1p815evrl3weanttgr/gradle-8.14.2/lib/gradle-core-8.14.2.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="gradle-core-api-8.14.2.jar">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-8.14.2-bin/2pb3mgt1p815evrl3weanttgr/gradle-8.14.2/lib/gradle-core-api-8.14.2.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="gradle-core-kotlin-extensions-8.14.2.jar">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-8.14.2-bin/2pb3mgt1p815evrl3weanttgr/gradle-8.14.2/lib/gradle-core-kotlin-extensions-8.14.2.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="gradle-installation-beacon-8.14.2.jar">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-8.14.2-bin/2pb3mgt1p815evrl3weanttgr/gradle-8.14.2/lib/gradle-installation-beacon-8.14.2.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="gradle-kotlin-dsl-8.14.2.jar">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-8.14.2-bin/2pb3mgt1p815evrl3weanttgr/gradle-8.14.2/lib/gradle-kotlin-dsl-8.14.2.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="gradle-kotlin-dsl-extensions-8.14.2.jar">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-8.14.2-bin/2pb3mgt1p815evrl3weanttgr/gradle-8.14.2/lib/gradle-kotlin-dsl-extensions-8.14.2.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="gradle-kotlin-dsl-plugins-5.2.0.jar">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.gradle.kotlin/gradle-kotlin-dsl-plugins/5.2.0/da7124e4e4515b9bc5dcde1583774c3cc85b18db/gradle-kotlin-dsl-plugins-5.2.0.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="gradle-kotlin-dsl-shared-runtime-8.14.2.jar">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-8.14.2-bin/2pb3mgt1p815evrl3weanttgr/gradle-8.14.2/lib/gradle-kotlin-dsl-shared-runtime-8.14.2.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="gradle-kotlin-dsl-tooling-models-8.14.2.jar">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-8.14.2-bin/2pb3mgt1p815evrl3weanttgr/gradle-8.14.2/lib/gradle-kotlin-dsl-tooling-models-8.14.2.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="groovy-3.0.24.jar">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-8.14.2-bin/2pb3mgt1p815evrl3weanttgr/gradle-8.14.2/lib/groovy-3.0.24.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="groovy-ant-3.0.24.jar">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-8.14.2-bin/2pb3mgt1p815evrl3weanttgr/gradle-8.14.2/lib/groovy-ant-3.0.24.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="groovy-astbuilder-3.0.24.jar">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-8.14.2-bin/2pb3mgt1p815evrl3weanttgr/gradle-8.14.2/lib/groovy-astbuilder-3.0.24.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="groovy-console-3.0.24.jar">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-8.14.2-bin/2pb3mgt1p815evrl3weanttgr/gradle-8.14.2/lib/groovy-console-3.0.24.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="groovy-datetime-3.0.24.jar">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-8.14.2-bin/2pb3mgt1p815evrl3weanttgr/gradle-8.14.2/lib/groovy-datetime-3.0.24.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="groovy-dateutil-3.0.24.jar">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-8.14.2-bin/2pb3mgt1p815evrl3weanttgr/gradle-8.14.2/lib/groovy-dateutil-3.0.24.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="groovy-groovydoc-3.0.24.jar">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-8.14.2-bin/2pb3mgt1p815evrl3weanttgr/gradle-8.14.2/lib/groovy-groovydoc-3.0.24.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="groovy-json-3.0.24.jar">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-8.14.2-bin/2pb3mgt1p815evrl3weanttgr/gradle-8.14.2/lib/groovy-json-3.0.24.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="groovy-nio-3.0.24.jar">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-8.14.2-bin/2pb3mgt1p815evrl3weanttgr/gradle-8.14.2/lib/groovy-nio-3.0.24.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="groovy-sql-3.0.24.jar">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-8.14.2-bin/2pb3mgt1p815evrl3weanttgr/gradle-8.14.2/lib/groovy-sql-3.0.24.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="groovy-templates-3.0.24.jar">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-8.14.2-bin/2pb3mgt1p815evrl3weanttgr/gradle-8.14.2/lib/groovy-templates-3.0.24.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="groovy-test-3.0.24.jar">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-8.14.2-bin/2pb3mgt1p815evrl3weanttgr/gradle-8.14.2/lib/groovy-test-3.0.24.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="groovy-xml-3.0.24.jar">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-8.14.2-bin/2pb3mgt1p815evrl3weanttgr/gradle-8.14.2/lib/groovy-xml-3.0.24.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="gson-2.8.9.jar">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.8.9/8a432c1d6825781e21a02db2e2c33c5fde2833b9/gson-2.8.9.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="javaparser-core-3.17.0.jar">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-8.14.2-bin/2pb3mgt1p815evrl3weanttgr/gradle-8.14.2/lib/javaparser-core-3.17.0.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="kotlin-assignment-2.0.21-gradle85.jar">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-assignment/2.0.21/e83b3c7bb4214c7bd0c3ebc3610e8bc94a291120/kotlin-assignment-2.0.21-gradle85.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="kotlin-build-statistics-2.0.21.jar">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-build-statistics/2.0.21/b5d6b9bf90684ba3aa5fdd524761bfa51c9cddc8/kotlin-build-statistics-2.0.21.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="kotlin-build-tools-api-2.0.21.jar">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-build-tools-api/2.0.21/612804301136399c0cc5c93f2366ef33fd0afdc3/kotlin-build-tools-api-2.0.21.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="kotlin-compiler-embeddable-2.0.21.jar">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-compiler-embeddable/2.0.21/79346ed53db48b18312a472602eb5c057070c54d/kotlin-compiler-embeddable-2.0.21.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="kotlin-compiler-runner-2.0.21.jar">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-compiler-runner/2.0.21/ea7301e9ee0a6cf310b67619709d578dd57896dc/kotlin-compiler-runner-2.0.21.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="kotlin-daemon-client-2.0.21.jar">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-daemon-client/2.0.21/10cbd364d0703452050d9c4925fd24a6fec7e8d9/kotlin-daemon-client-2.0.21.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="kotlin-daemon-embeddable-2.0.21.jar">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-daemon-embeddable/2.0.21/c9e933b23287de9b5a17e2116b4657bb91aea72c/kotlin-daemon-embeddable-2.0.21.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="kotlin-gradle-plugin-2.0.21-gradle85.jar">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-gradle-plugin/2.0.21/ea69d8de091115a98ce7f3901994b2fb3432480b/kotlin-gradle-plugin-2.0.21-gradle85.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="kotlin-gradle-plugin-annotations-2.0.21.jar">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-gradle-plugin-annotations/2.0.21/585ea547101485df5165acbffc51b760b0bf2728/kotlin-gradle-plugin-annotations-2.0.21.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="kotlin-gradle-plugin-api-2.0.21-gradle85.jar">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-gradle-plugin-api/2.0.21/2fe6828d39788b439f1a44576c4fd2d98862e77b/kotlin-gradle-plugin-api-2.0.21-gradle85.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="kotlin-gradle-plugin-api-2.0.21.jar">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-gradle-plugin-api/2.0.21/2fe6828d39788b439f1a44576c4fd2d98862e77b/kotlin-gradle-plugin-api-2.0.21.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="kotlin-gradle-plugin-idea-2.0.21.jar">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-gradle-plugin-idea/2.0.21/dc54973fe68b0bb9b816bd04ef39648ca29526a6/kotlin-gradle-plugin-idea-2.0.21.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="kotlin-gradle-plugin-idea-proto-2.0.21.jar">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-gradle-plugin-idea-proto/2.0.21/7ee6324747edb846bb869955000c513797eaf6d7/kotlin-gradle-plugin-idea-proto-2.0.21.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="kotlin-gradle-plugin-model-2.0.21.jar">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-gradle-plugin-model/2.0.21/3672a6bafb29cdb53c10ca1e13f6c8c75af0f8eb/kotlin-gradle-plugin-model-2.0.21.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="kotlin-klib-commonizer-api-2.0.21.jar">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-klib-commonizer-api/2.0.21/499b6b114eda7ed8002ce438458f5baf273c5fa/kotlin-klib-commonizer-api-2.0.21.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="kotlin-native-utils-2.0.21.jar">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-native-utils/2.0.21/ccdbc49a5d23f7ab782fbdff20c9426cf074f2d7/kotlin-native-utils-2.0.21.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="kotlin-reflect-2.0.21.jar">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-8.14.2-bin/2pb3mgt1p815evrl3weanttgr/gradle-8.14.2/lib/kotlin-reflect-2.0.21.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="kotlin-sam-with-receiver-2.0.21-gradle85.jar">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-sam-with-receiver/2.0.21/9a5580a59ebfacd6e355accb87a63e05c45516f/kotlin-sam-with-receiver-2.0.21-gradle85.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="kotlin-serialization-2.0.21-gradle85.jar">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-serialization/2.0.21/5a356cfc9d2b31c7885913fdbf842b8fa01f004c/kotlin-serialization-2.0.21-gradle85.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="kotlin-stdlib-2.0.21.jar">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-8.14.2-bin/2pb3mgt1p815evrl3weanttgr/gradle-8.14.2/lib/kotlin-stdlib-2.0.21.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="kotlin-stdlib-2.0.21.jar.2">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib/2.0.21/618b539767b4899b4660a83006e052b63f1db551/kotlin-stdlib-2.0.21.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="kotlin-tooling-core-2.0.21.jar">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-tooling-core/2.0.21/952179e9b7f114e78274ca73cea6df8fce3c8b3b/kotlin-tooling-core-2.0.21.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="kotlin-util-io-2.0.21.jar">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-util-io/2.0.21/4467ad395771e3d12ca864fd9949e1404920f558/kotlin-util-io-2.0.21.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="kotlin-util-klib-2.0.21.jar">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-util-klib/2.0.21/cc042c4a50a1ee46695a8f2f928c196223bdd7dc/kotlin-util-klib-2.0.21.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="kotlinx-coroutines-core-jvm-1.6.4.jar">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlinx/kotlinx-coroutines-core-jvm/1.6.4/2c997cd1c0ef33f3e751d3831929aeff1390cb30/kotlinx-coroutines-core-jvm-1.6.4.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="trove4j-1.0.20200330.jar">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.intellij.deps/trove4j/1.0.20200330/3afb14d5f9ceb459d724e907a21145e8ff394f02/trove4j-1.0.20200330.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
   </component>
   <component name="masterDetails">
     <states>
       <state key="ArtifactsStructureConfigurable.UI">
         <UIState>
           <splitter-proportions>
-            <SplitterProportionsDataImpl/>
+            <SplitterProportionsDataImpl />
           </splitter-proportions>
-          <settings/>
+          <settings />
         </UIState>
       </state>
       <state key="Copyright.UI">
         <UIState>
           <splitter-proportions>
-            <SplitterProportionsDataImpl/>
+            <SplitterProportionsDataImpl />
           </splitter-proportions>
         </UIState>
       </state>
@@ -83,7 +2150,7 @@
             <SplitterProportionsDataImpl>
               <option name="proportions">
                 <list>
-                  <option value="0.2"/>
+                  <option value="0.2" />
                 </list>
               </option>
             </SplitterProportionsDataImpl>
@@ -94,9 +2161,9 @@
       <state key="ScopeChooserConfigurable.UI">
         <UIState>
           <splitter-proportions>
-            <SplitterProportionsDataImpl/>
+            <SplitterProportionsDataImpl />
           </splitter-proportions>
-          <settings/>
+          <settings />
         </UIState>
       </state>
     </states>
