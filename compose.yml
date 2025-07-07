@@ -69,5 +69,16 @@ services:
     networks:
       - streview-net
 
+  mock-srv:
+    container_name: streview_mock
+    image: stoplight/prism:4
+    command: 'mock -h 0.0.0.0 /tmp/api.oas3.yml'
+    volumes:
+      - "./openapi/openapi.yaml:/tmp/api.oas3.yml:ro" # - ./api.oas3.yml:/tmp/api.oas3.yml:ro
+    ports:
+      - '4010:4010' # Serve the mocked API locally as available on port 8080
+    networks:
+      - streview-net
+
 networks:
     streview-net:
