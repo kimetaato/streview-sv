@@ -19,6 +19,7 @@ kotlinx-serialization-json = "1.8.1"
 imgscalr-version = "4.2"
 webp-imageio-version = "0.10.0"
 kotest-version = "5.9.1"
+ktor-server-swagger-version = "3.2.1"
 
 [libraries]
 uuid = { module = "com.fasterxml.uuid:java-uuid-generator", version.ref = "uuid-version" }
@@ -51,6 +52,7 @@ logback-classic = { module = "ch.qos.logback:logback-classic", version.ref = "lo
 ktor-server-config-yaml = { module = "io.ktor:ktor-server-config-yaml", version.ref = "ktor-version" }
 ktor-server-test-host = { module = "io.ktor:ktor-server-test-host", version.ref = "ktor-version" }
 ktor-firebase = { module = "com.kborowy:firebase-auth-provider", version.ref = "ktor-firebase-version" }
+ktor-server-swagger = { module = "io.ktor:ktor-server-swagger", version.ref = "ktor-server-swagger-version" }
 
 # test
 kotest-runner-junit5 = { module = "io.kotest:kotest-runner-junit5", version.ref = "kotest-version" }

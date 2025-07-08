@@ -43,6 +43,9 @@ dependencies {
     implementation(project(":modules:domain"))
     implementation(project(":modules:infrastructure"))
 
+    // swagger
+    implementation(libs.ktor.server.swagger)
+
     // kotest
     testImplementation(libs.kotest.runner.junit5)
     testImplementation(libs.kotest.assertions.core)
