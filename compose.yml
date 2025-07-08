@@ -77,7 +77,7 @@ services:
     volumes:
       - "./openapi/openapi.yaml:/tmp/api.oas3.yml:ro" # - ./api.oas3.yml:/tmp/api.oas3.yml:ro
     ports:
-      - '4010:4010' # Serve the mocked API locally as available on port 8080
+      - "${API_MOCK_HTTP_HOST_PORT:-4010}:4010" # Serve the mocked API locally as available on port 8080
     networks:
       - streview-net
 
