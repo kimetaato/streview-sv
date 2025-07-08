@@ -2,6 +2,29 @@ openapi: 3.1.0
 info:
   title: すとれびゅ！
   version: 1.0.0
+
+servers:
+  - url: http://localhost:{api_http_host_port}
+    description: ローカルな開発用APIコンテナ
+    variables:
+      api_http_host_port:
+        default: "8080"
+        description: ローカルAPIコンテナのポート
+
+  - url: http://localhost:{api_mock_http_host_port}
+    description: ローカルなAPIモックコンテナ
+    variables:
+      api_mock_http_host_port:
+        default: "4010"
+        description: ローカルなAPIモックコンテナのポート
+      
+  - url: https://localhost:{rev_pxy_https_host_port}
+    description: ローカルな開発用リバプロコンテナ
+    variables: 
+      rev_pxy_https_host_port:
+        default: "443"
+        description: ローカルリバプロコンテナのポート
+
 paths:
   /reviews:
     post:
