@@ -10,45 +10,30 @@ application {
 }
 
 dependencies {
+    // Ktor
+    implementation(libs.bundles.ktor.core)
+    implementation(libs.bundles.ktor.utils)
+    implementation(libs.bundles.ktor.auth)
+
+    // swagger
+    implementation(libs.ktor.server.swagger)
+
+    // ORM
+    implementation(libs.bundles.exposed.core)
+    implementation(libs.bundles.exposed.r2dbc)
+    implementation(libs.jdbc.postgresql) // 初期化時に内部で参照されるため
+
     // DIモジュール
     implementation(libs.koin.ktor)
 
-    // ORM
-    implementation(libs.exposed.core)
-    implementation(libs.exposed.kotlin.datetime)
-    implementation(libs.exposed.r2dbc)
-    implementation(libs.r2dbc.postgresql)
-    implementation(libs.r2dbc.pool)
-    implementation(libs.jdbc.postgresql)
-
-    // Ktor
-    implementation(libs.ktor.server.core)
-    implementation(libs.ktor.status.page)
-    implementation(libs.ktor.server.auth)
-    implementation(libs.ktor.firebase)
-    implementation(libs.ktor.server.cors)
-    implementation(libs.ktor.server.netty)
-
-    // jsonシリアライズ
-    implementation(libs.ktor.serialization.kotlinx.json)
-    implementation(libs.ktor.server.content.negotiation)
-    implementation(libs.kotlinx.serialization.json)
-
-    // application.confをyaml形式記述するため
-    implementation(libs.ktor.server.config.yaml)
+    // kotest
+    testImplementation(libs.bundles.kotest.core)
 
     // モジュールの関連付け
     implementation(project(":modules:presentation"))
     implementation(project(":modules:application"))
     implementation(project(":modules:domain"))
     implementation(project(":modules:infrastructure"))
-
-    // swagger
-    implementation(libs.ktor.server.swagger)
-
-    // kotest
-    testImplementation(libs.kotest.runner.junit5)
-    testImplementation(libs.kotest.assertions.core)
 }
 
 // テスト実行時にJUnit 5を使用する

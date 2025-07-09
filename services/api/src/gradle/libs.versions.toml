@@ -24,12 +24,12 @@ kotlinx-coroutines-version = "1.10.2"
 
 
 [libraries]
-# 基本的な機能拡張
-uuid = { module = "com.fasterxml.uuid:java-uuid-generator", version.ref = "uuid-version" }  # UUID生成
+# 基本的な機能拡張 基本的に単独で利用される想定　アルファベット順で並べたら管理しやすいか・・・？
+kotlinx-cotoutines = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlinx-coroutines-version" } # コルーチン
 kotlinx-datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.ref = "kotlinx-datetime-version" } # 日付型
 kotlinx-io-core = { module = "org.jetbrains.kotlinx:kotlinx-io-core", version.ref = "kotlinx-io-version" } # ノンブロッキングIO
 kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinx-serialization-json-version" } #JSONアノテーション
-kotlinx-cotoutines = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlinx-coroutines-version" } # コルーチン
+uuid = { module = "com.fasterxml.uuid:java-uuid-generator", version.ref = "uuid-version" }  # UUID生成
 # 将来的な機能拡張のため
 kotlin-result = { module = "com.michael-bull.kotlin-result:kotlin-result", version.ref = "kotlin-result-version" }
 
@@ -48,8 +48,8 @@ jdbc-postgresql = { module = "org.postgresql:postgresql", version.ref = "jdbc-po
 # Web　Framework
 # コア機能
 ktor-server-core = { module = "io.ktor:ktor-server-core", version.ref = "ktor-version" }
+ktor-server-config-yaml = { module = "io.ktor:ktor-server-config-yaml", version.ref = "ktor-version" }  # application.confをyaml形式で記述可能にする
 ktor-server-netty = { module = "io.ktor:ktor-server-netty", version.ref = "ktor-version" }
-ktor-server-config-yaml = { module = "io.ktor:ktor-server-config-yaml", version.ref = "ktor-version" }
 # リクエスト/レスポンス制御
 ktor-server-cors = { module = "io.ktor:ktor-server-cors", version.ref = "ktor-version" }
 ktor-status-page = { module = "io.ktor:ktor-server-status-pages", version.ref = "ktor-version" }
@@ -81,7 +81,7 @@ kotlin-plugin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization"
 
 [bundles]
 # テスト用共通インポート
-kotest = ["kotest-runner-junit5", "kotest-assertions-core"]
+kotest-core = ["kotest-runner-junit5", "kotest-assertions-core"]
 
 # Ktor　コア機能
 ktor-core = ["ktor-server-core", "ktor-server-config-yaml", "ktor-server-netty"]
@@ -89,8 +89,6 @@ ktor-core = ["ktor-server-core", "ktor-server-config-yaml", "ktor-server-netty"]
 ktor-utils = ["ktor-server-cors", "ktor-status-page", "ktor-server-content-negotiation", "ktor-serialization-kotlinx-json"]
 # Ktor 認証
 ktor-auth = ["ktor-server-auth", "ktor-firebase"]
-# Ktor　ドキュメント用
-ktor-swagger = ["ktor-server-test-host", "ktor-server-swagger"]
 
 # Exposed コア機能
 exposed-core = ["exposed-core", "exposed-kotlin-datetime"]

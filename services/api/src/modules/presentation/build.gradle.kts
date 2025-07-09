@@ -6,11 +6,23 @@ plugins {
 }
 
 dependencies {
+    // utils
+    implementation(libs.kotlinx.serialization.json)
+
+    // Ktor
     implementation(libs.ktor.server.core)
     implementation(libs.koin.ktor)
     implementation(libs.ktor.server.auth)
-    implementation(libs.kotlinx.serialization.json)
 
+    // test
+    testImplementation(libs.bundles.kotest.core)
+
+    // モジュールの関連付け
     implementation(project(":modules:application"))
     implementation(project(":modules:domain"))
+}
+
+// テスト実行時にJUnit 5を使用する
+tasks.withType<Test> {
+    useJUnitPlatform()
 }
