@@ -9,7 +9,11 @@ import kotlinx.serialization.Serializable
  * @param encounters すれ違ったユーザーのリスト　日付: その日にすれ違ったユーザーから取得した文字列
  */
 @Serializable
-data class EncounterRequest(val userID:String, val encounters: Map<String, List<String>>): InputPort
+data class EncounterRequest(val userID: String, val encounters: List<DailyEncounter>) : InputPort
+
+@Serializable
+data class DailyEncounter(val date: String, val encounter: List<String>)
+
 
 @Serializable
 data class EncounterResponse(val result: Boolean): OutputPort
