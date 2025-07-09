@@ -5,15 +5,16 @@ import com.streview.application.usecases.OutputPort
 import kotlinx.serialization.Serializable
 
 /**
- * @param userID リクエストを送信したユーザー
- * @param encounters すれ違ったユーザーのリスト　日付: その日にすれ違ったユーザーから取得した文字列
+ * @property userID リクエストを送信したユーザー
+ * @property encounters すれ違ったユーザーのクラス
  */
 @Serializable
 data class EncounterRequest(val userID: String, val encounters: List<DailyEncounter>) : InputPort
-
 @Serializable
 data class DailyEncounter(val date: String, val encounter: List<String>)
 
-
+/**
+ * @property result 処理が成功したらtrue
+ */
 @Serializable
 data class EncounterResponse(val result: Boolean): OutputPort
