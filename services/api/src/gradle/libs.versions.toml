@@ -14,8 +14,8 @@ uuid-version = "5.1.0"
 kotlin-result-version = "2.0.1"
 ktor-firebase-version = "1.5.0"
 kotlinx-datetime-version = "0.6.2"
-kotlinx-io = "0.7.0"
-kotlinx-serialization-json = "1.8.1"
+kotlinx-io-version = "0.7.0"
+kotlinx-serialization-json-version = "1.8.1"
 imgscalr-version = "4.2"
 webp-imageio-version = "0.10.0"
 kotest-version = "5.9.1"
@@ -30,8 +30,8 @@ ktor-status-page = { module = "io.ktor:ktor-server-status-pages", version.ref = 
 ktor-serialization-kotlinx-json = { module = "io.ktor:ktor-serialization-kotlinx-json", version.ref = "ktor-version" }
 ktor-server-content-negotiation = { module = "io.ktor:ktor-server-content-negotiation", version.ref = "ktor-version" }
 kotlinx-datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.ref = "kotlinx-datetime-version" }
-kotlinx-io-core = { module = "org.jetbrains.kotlinx:kotlinx-io-core", version.ref = "kotlinx-io" }
-kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinx-serialization-json" }
+kotlinx-io-core = { module = "org.jetbrains.kotlinx:kotlinx-io-core", version.ref = "kotlinx-io-version" }
+kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinx-serialization-json-version" }
 imgscalr = { module = "org.imgscalr:imgscalr-lib", version.ref = "imgscalr-version" }
 webp-imageio = { module = "com.github.usefulness:webp-imageio", version.ref = "webp-imageio-version" }
 
