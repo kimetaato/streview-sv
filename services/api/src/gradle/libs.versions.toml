@@ -20,6 +20,7 @@ imgscalr-version = "4.2"
 webp-imageio-version = "0.10.0"
 kotest-version = "5.9.1"
 ktor-server-swagger-version = "3.2.1"
+kotlinx-coroutines-version = "1.10.2"
 
 
 [libraries]
@@ -28,6 +29,7 @@ uuid = { module = "com.fasterxml.uuid:java-uuid-generator", version.ref = "uuid-
 kotlinx-datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.ref = "kotlinx-datetime-version" } # 日付型
 kotlinx-io-core = { module = "org.jetbrains.kotlinx:kotlinx-io-core", version.ref = "kotlinx-io-version" } # ノンブロッキングIO
 kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinx-serialization-json-version" } #JSONアノテーション
+kotlinx-cotoutines = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlinx-coroutines-version" } # コルーチン
 # 将来的な機能拡張のため
 kotlin-result = { module = "com.michael-bull.kotlin-result:kotlin-result", version.ref = "kotlin-result-version" }
 
