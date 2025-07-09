@@ -6,7 +6,6 @@ package com.streview.domain.commons.event
  */
 object EventBus {
     private val handlers = mutableMapOf<String, MutableList<EventHandler<DomainEvent>>>()
-
     /**
      * 指定されたイベントタイプに対するハンドラーを登録する
      * @param eventType イベントの型
