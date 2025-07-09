@@ -10,5 +10,8 @@ dependencies {
     implementation(libs.kotlinx.serialization.json)
     implementation(libs.exposed.r2dbc)
 
+    implementation(libs.kotest.assertions.core)
+    implementation(libs.kotest.runner.junit5)
+
     implementation(project(":modules:domain"))
 }

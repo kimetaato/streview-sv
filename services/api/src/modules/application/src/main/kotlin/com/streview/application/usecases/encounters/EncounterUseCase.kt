@@ -20,12 +20,12 @@ class EncounterUseCase(
         // ユーザーIDを生成する
         val userID = UserID(input.userID)
 
-        input.encounters.map { item ->
-            val encounterDate = EncounterDate(LocalDate.parse(item.key))
-            val encounter = eR.findByID(userID,encounterDate)
+        input.encounters.forEach { dailyEncounter ->
+            val encounterDate = EncounterDate(LocalDate.parse(dailyEncounter.date))
+            val encounter = eR.findByID(userID, encounterDate)
 
             // すれ違いを追加
-            item.value.forEach { encryptedEncounterID ->
+            dailyEncounter.encounter.forEach { encryptedEncounterID ->
                 // 暗号化されたencounterIDから実際のUserIDを抽出
                 val actualUserID = dS.extractUserID(encryptedEncounterID)
                 encounter.add(actualUserID)
@@ -35,8 +35,8 @@ class EncounterUseCase(
             eR.save(encounter)
 
             // イベント発行
-            encounter.domainEvents.map {
-                EventBus.publish(it)
+            encounter.domainEvents.forEach { event ->
+                EventBus.publish(event)
             }
         }
 

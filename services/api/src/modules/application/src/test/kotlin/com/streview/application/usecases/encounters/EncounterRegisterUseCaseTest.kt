@@ -1,6 +1,7 @@
 package com.streview.application.usecases.encounters
 
 import com.streview.application.services.EncounterDecryptionService
+import com.streview.application.usecases.encounters.dto.DailyEncounter
 import com.streview.application.usecases.encounters.dto.EncounterRequest
 import com.streview.domain.commons.UserID
 import com.streview.domain.commons.event.EventBus
@@ -20,7 +21,11 @@ class EncounterRegisterUseCaseTest: FreeSpec({
     // テスト用のモックDecryptionService
     class MockEncounterDecryptionService : EncounterDecryptionService("test-key-32-characters-long-12") {
         override fun extractUserID(encryptedEncounterID: String): UserID {
-            // テスト用の簡単な実装: 直接UserIDとして返す
+            // テスト用の実装: 暗号化されたIDから実際のUserIDを抽出
+            // 実際の実装では暗号化解除を行うが、テストでは文字列の長さをチェック
+            if (encryptedEncounterID.length != 28) {
+                throw IllegalArgumentException("Invalid encrypted encounter ID length: ${encryptedEncounterID.length}")
+            }
             return UserID(encryptedEncounterID)
         }
     }
@@ -47,8 +52,19 @@ class EncounterRegisterUseCaseTest: FreeSpec({
         val receivedEvents = mutableListOf<EncounterAddDomainEvent>()
         
         override suspend fun handle(event: EncounterAddDomainEvent) {
+            println("Received event: $event")
             receivedEvents.add(event)
         }
+
+        fun clear() {
+            receivedEvents.clear()
+        }
+    }
+
+    // テストごとにEventBusをクリーンアップするためのヘルパー
+    fun cleanupEventBus() {
+        // EventBusの登録を解除（実際の実装に応じて調整が必要）
+        // EventBus.unsubscribeAll() // 仮想的なメソッド
     }
     
     "正常系" - {
@@ -58,10 +74,8 @@ class EncounterRegisterUseCaseTest: FreeSpec({
             val useCase = EncounterUseCase(mockRepository, MockEncounterDecryptionService())
             
             val request = EncounterRequest(
-                userID = "testUserID123456789000000001",
-                encounters = mapOf(
-                    "2023-01-01" to listOf("testUserID123456789000000002")
-                )
+                userID = "testUserID123456789000000001", // 28文字
+                encounters = listOf(DailyEncounter("2023-01-01", listOf("testUserID123456789000000002")))
             )
             
             // Act
@@ -77,9 +91,12 @@ class EncounterRegisterUseCaseTest: FreeSpec({
             val useCase = EncounterUseCase(mockRepository, MockEncounterDecryptionService())
             
             val request = EncounterRequest(
-                userID = "testUserID123456789000000001",
-                encounters = mapOf(
-                    "2023-01-01" to listOf("testUserID123456789000000002", "testUserID123456789000000003")
+                userID = "testUserID123456789000000001", // 28文字
+                encounters = listOf(
+                    DailyEncounter(
+                        "2023-01-01",
+                        listOf("testUserID123456789000000002", "testUserID123456789000000003")
+                    )
                 )
             )
             
@@ -96,10 +113,10 @@ class EncounterRegisterUseCaseTest: FreeSpec({
             val useCase = EncounterUseCase(mockRepository, MockEncounterDecryptionService())
             
             val request = EncounterRequest(
-                userID = "testUserID123456789000000001",
-                encounters = mapOf(
-                    "2023-01-01" to listOf("testUserID123456789000000002"),
-                    "2023-01-02" to listOf("testUserID123456789000000003")
+                userID = "testUserID123456789000000001", // 28文字
+                encounters = listOf(
+                    DailyEncounter("2023-01-01", listOf("testUserID123456789000000002")),
+                    DailyEncounter("2023-01-02", listOf("testUserID123456789000000003"))
                 )
             )
             
@@ -116,8 +133,8 @@ class EncounterRegisterUseCaseTest: FreeSpec({
             val useCase = EncounterUseCase(mockRepository, MockEncounterDecryptionService())
             
             val request = EncounterRequest(
-                userID = "testUserID123456789000000001",
-                encounters = emptyMap()
+                userID = "testUserID123456789000000001", // 28文字
+                encounters = emptyList()
             )
             
             // Act
@@ -142,14 +159,52 @@ class EncounterRegisterUseCaseTest: FreeSpec({
             mockRepository.save(existingEncounter)
             
             val request = EncounterRequest(
-                userID = "testUserID123456789000000001",
-                encounters = mapOf(
-                    "2023-01-01" to listOf("testUserID123456789000000002") // 既に登録済み
+                userID = "testUserID123456789000000001", // 28文字
+                encounters = listOf(
+                    DailyEncounter("2023-01-01", listOf("testUserID123456789000000002")) // 既に登録済み
                 )
             )
             
             // Act & Assert
             shouldThrow<DuplicateEncounterException> {
+                useCase.execute(request)
+            }
+        }
+
+        "無効なUserID長さの場合例外が発生する" {
+            // Arrange
+            val mockRepository = MockEncounterRepository()
+            val mockDecryptionService = MockEncounterDecryptionService()
+            val useCase = EncounterUseCase(mockRepository, mockDecryptionService)
+
+            val request = EncounterRequest(
+                userID = "testUserID123456789000000001", // 28文字
+                encounters = listOf(
+                    DailyEncounter("2023-01-01", listOf("shortID")) // 28文字未満
+                )
+            )
+
+            // Act & Assert
+            shouldThrow<IllegalArgumentException> {
+                useCase.execute(request)
+            }
+        }
+
+        "無効な日付フォーマットの場合例外が発生する" {
+            // Arrange
+            val mockRepository = MockEncounterRepository()
+            val mockDecryptionService = MockEncounterDecryptionService()
+            val useCase = EncounterUseCase(mockRepository, mockDecryptionService)
+
+            val request = EncounterRequest(
+                userID = "testUserID123456789000000001", // 28文字
+                encounters = listOf(
+                    DailyEncounter("invalid-date", listOf("testUserID123456789000000002"))
+                )
+            )
+
+            // Act & Assert
+            shouldThrow<Exception> {
                 useCase.execute(request)
             }
         }
@@ -172,8 +227,8 @@ class EncounterRegisterUseCaseTest: FreeSpec({
             
             val request = EncounterRequest(
                 userID = actorUserID,
-                encounters = mapOf(
-                    encounterDateStr to listOf(encounterUserID)
+                encounters = listOf(
+                    DailyEncounter(encounterDateStr, listOf(encounterUserID))
                 )
             )
             
@@ -218,8 +273,8 @@ class EncounterRegisterUseCaseTest: FreeSpec({
             
             val request = EncounterRequest(
                 userID = actorUserID,
-                encounters = mapOf(
-                    encounterDateStr to listOf(actorUserID) // 自分自身とのすれ違い
+                encounters = listOf(
+                    DailyEncounter(encounterDateStr, listOf(actorUserID)) // 自分自身とのすれ違い
                 )
             )
             
@@ -249,8 +304,8 @@ class EncounterRegisterUseCaseTest: FreeSpec({
             
             val request = EncounterRequest(
                 userID = actorUserID,
-                encounters = mapOf(
-                    encounterDateStr to listOf(encounterUserID1, encounterUserID2)
+                encounters = listOf(
+                    DailyEncounter(encounterDateStr, listOf(encounterUserID1, encounterUserID2))
                 )
             )
             
@@ -293,9 +348,9 @@ class EncounterRegisterUseCaseTest: FreeSpec({
             
             val request = EncounterRequest(
                 userID = actorUserID,
-                encounters = mapOf(
-                    encounterDate1 to listOf(encounterUserID1),
-                    encounterDate2 to listOf(encounterUserID2)
+                encounters = listOf(
+                    DailyEncounter(encounterDate1, listOf(encounterUserID1)),
+                    DailyEncounter(encounterDate2, listOf(encounterUserID2))
                 )
             )
             
