@@ -1,39 +1,39 @@
-package com.streview.usecase.relays.dto
+package com.streview.application.usecases.relays.dto
 
 import com.streview.application.usecases.InputPort
 import com.streview.application.usecases.OutputPort
 import kotlinx.serialization.Serializable
 
+///**
+// * 公開レビューを取得するリクエスト
+// */
+//@Serializable
+//data class GetPublicReviewsRequest(
+//    val userId: String
+//) : InputPort
+//
+///**
+// * 公開レビューを取得するレスポンス
+// */
+//@Serializable
+//data class GetPublicReviewsResponse(
+//    val reviewIds: List<String>
+//) : OutputPort
+
 /**
- * 公開レビューを取得するリクエスト
+ * 特定レビューを再共有状態(ReReview)に設定するリクエスト
  */
 @Serializable
-data class GetPublicReviewsRequest(
-    val userId: String
+data class RelayStatusToggleRequest(
+    val userID: String,
+    val reviewUUID: String,
+    val toggleStatus: Boolean
 ) : InputPort
 
 /**
- * 公開レビューを取得するレスポンス
+ * 特定レビューを再共有状態(ReReview)に設定するリクエストのレスポンス
  */
 @Serializable
-data class GetPublicReviewsResponse(
-    val reviewIds: List<String>
-) : OutputPort
-
-/**
- * 特定レビューを「公開状態」に更新するリクエスト
- */
-@Serializable
-data class MarkReviewAsRereviewedRequest(
-    val userId: String,
-    val reviewId: String
-) : InputPort
-
-/**
- * 公開状態更新のレスポンス
- */
-@Serializable
-data class MarkReviewAsRereviewedResponse(
-    val success: Boolean,
-    val message: String
+data class RelayStatusToggleResponse(
+    val reviewUUID: String
 ) : OutputPort
