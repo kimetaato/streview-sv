@@ -1,6 +1,5 @@
 package com.streview.domain.relays
 
-import com.streview.domain.commons.UserID
 
 interface RelaysRepository {
 
@@ -9,11 +8,11 @@ interface RelaysRepository {
      * @param userID 対象ユーザーのID
      * @return 該当する Relays（存在しない場合は null）
      */
-    suspend fun findByUserId(userID: UserID): Relays?
+    suspend fun findByUserIdAndReviewUUID(userID: String, reviewUUID: String): Relay?
 
     /**
      * Relays を保存または更新する
-     * @param relays 保存対象の Relays モデル
+     * @param relay 保存対象の Relays モデル
      */
-    suspend fun save(relays: Relays)
+    suspend fun save(relay: Relay)
 }
