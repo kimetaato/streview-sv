@@ -2,7 +2,7 @@ package com.streview.service.relays
 
 import com.streview.domain.relays.Relay
 
-class RelaysDomainService(
+class RelayDomainService(
     // レビューのリポジトリ
     // ストアとユーザーの関係リポジトリ
 ) {
