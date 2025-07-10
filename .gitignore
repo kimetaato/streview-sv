@@ -18,6 +18,7 @@ Desktop.ini
 *.swo
 .idea/
 .vscode/
+*.iml
 
 ## Generic items
 
