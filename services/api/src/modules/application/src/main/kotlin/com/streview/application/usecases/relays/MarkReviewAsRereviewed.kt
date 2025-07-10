@@ -1,45 +1,40 @@
-package com.streview.usecase.relays
+package com.streview.application.usecases.relays
 
 import com.streview.application.usecases.UseCase
-import com.streview.domain.commons.UserID
-import com.streview.domain.exceptions.InvalidInputException
-import com.streview.domain.exceptions.NotFoundException
-import com.streview.domain.reviews.ReviewID
+import com.streview.application.usecases.relays.dto.RelayStatusToggleRequest
+import com.streview.application.usecases.relays.dto.RelayStatusToggleResponse
+import com.streview.domain.exceptions.BadRequestException
 import com.streview.domain.relays.RelaysRepository
-import com.streview.usecase.relays.dto.MarkReviewAsRereviewedRequest
-import com.streview.usecase.relays.dto.MarkReviewAsRereviewedResponse
+import com.streview.service.relays.RelaysDomainService
 
 /**
- * レビューの公開状態（isRereview）を true に変更するユースケース。
- * ドメイン層の Relays モデルを通じて処理を行う。
+ * 受け取ったレビューに対して、再共有状態(ReReview)に設定するユースケース
  */
 class MarkReviewAsRereviewedUseCase(
-    private val repository: RelaysRepository
-) : UseCase<MarkReviewAsRereviewedRequest, MarkReviewAsRereviewedResponse> {
-
-    override suspend fun execute(input: MarkReviewAsRereviewedRequest): MarkReviewAsRereviewedResponse {
-        val userID = UserID(input.userId)
-        val reviewID = ReviewID(input.reviewId)
-
-        // ユーザーの Relays を取得。存在しなければ例外を投げる。
-        val relays = repository.findByUserId(userID)
-            ?: throw NotFoundException("ユーザーに対応するレビューが存在しません: ${input.userId}")
-
-        // 指定されたレビューIDが存在しなければエラー
-        if (!relays.containsReview(reviewID)) {
-            throw InvalidInputException("指定されたレビューIDは存在しません: ${input.reviewId}")
+    private val repository: RelaysRepository,
+    private val domainService: RelaysDomainService,
+) : UseCase<RelayStatusToggleRequest, RelayStatusToggleResponse> {
+    override suspend fun execute(input: RelayStatusToggleRequest): RelayStatusToggleResponse {
+        // Relayを取得
+        val relay = repository.findByUserIdAndReviewUUID(input.userID, input.reviewUUID)
+        if (relay == null) {
+            throw BadRequestException(message = "対象のレビューが存在しません。")
         }
 
-        // ドメインモデル上でレビューの再公開処理を実行
-        val updatedRelays = relays.markRereviewed(reviewID)
+        // ステータスの更新を行う
+        val toggledRelay = if (input.toggleStatus) {
+            domainService.reReview(relay)
+        } else {
+            relay.unsetReReview()
+            relay
+        }
 
         // 更新された Relays を保存
-        repository.save(updatedRelays)
+        repository.save(toggledRelay)
 
         // 正常終了
-        return MarkReviewAsRereviewedResponse(
-            success = true,
-            message = "レビューを公開状態に変更しました。"
+        return RelayStatusToggleResponse(
+            toggledRelay.reviewUUID.value,
         )
     }
 }
