@@ -5,6 +5,8 @@ import kotlinx.serialization.Serializable
 
 /**
  * バリデーションエラーの詳細を収集する例外クラス
+ *
+ * 400返したいんじゃない？
  * @param message エラーメッセージ
  * @param validationErrors 項目ごとのバリデーションエラーの詳細
  * @param cause 元となったエラー

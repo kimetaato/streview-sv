@@ -3,6 +3,8 @@ package com.streview.domain.exceptions
 
 /**
  * 生成しようとするリソースがすでに存在していたことを示す例外クラス
+ *
+ * 多分409返すよね〜
  * @param message エラーメッセージ
  * @param cause 元となったエラー
  */
