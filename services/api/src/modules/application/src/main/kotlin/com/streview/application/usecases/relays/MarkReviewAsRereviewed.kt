@@ -5,14 +5,14 @@ import com.streview.application.usecases.relays.dto.RelayStatusToggleRequest
 import com.streview.application.usecases.relays.dto.RelayStatusToggleResponse
 import com.streview.domain.exceptions.BadRequestException
 import com.streview.domain.relays.RelaysRepository
-import com.streview.service.relays.RelaysDomainService
+import com.streview.service.relays.RelayDomainService
 
 /**
  * 受け取ったレビューに対して、再共有状態(ReReview)に設定するユースケース
  */
 class MarkReviewAsRereviewedUseCase(
     private val repository: RelaysRepository,
-    private val domainService: RelaysDomainService,
+    private val domainService: RelayDomainService,
 ) : UseCase<RelayStatusToggleRequest, RelayStatusToggleResponse> {
     override suspend fun execute(input: RelayStatusToggleRequest): RelayStatusToggleResponse {
         // Relayを取得
