@@ -11,6 +11,7 @@ dependencies {
     // ORM
     implementation(libs.bundles.exposed.core)
     implementation(libs.bundles.exposed.r2dbc)
+    implementation(libs.jdbc.postgresql)
 
     // 画像
     implementation(libs.bundles.image.converter)
