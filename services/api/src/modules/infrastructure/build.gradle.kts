@@ -4,18 +4,27 @@ plugins {
 }
 
 dependencies {
-    implementation(libs.exposed.core)
-    implementation(libs.exposed.kotlin.datetime)
-    implementation(libs.exposed.r2dbc)
-    implementation(libs.r2dbc.postgresql)
-    implementation(libs.r2dbc.pool)
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.10.2")
+    // utils
+    implementation(libs.kotlinx.cotoutines)
     implementation(libs.kotlinx.io.core)
-    implementation(libs.imgscalr)
-    implementation(libs.webp.imageio)
 
+    // ORM
+    implementation(libs.bundles.exposed.core)
+    implementation(libs.bundles.exposed.r2dbc)
 
+    // 画像
+    implementation(libs.bundles.image.converter)
+
+    // test
+    testImplementation(libs.bundles.kotest.core)
+
+    // モジュールの関連付け
     implementation(project(":modules:domain"))
     implementation(project(":modules:application"))
     implementation(project(":modules:presentation"))
+}
+
+// テスト実行時にJUnit 5を使用する
+tasks.withType<Test> {
+    useJUnitPlatform()
 }

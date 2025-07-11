@@ -20,18 +20,20 @@ imgscalr-version = "4.2"
 webp-imageio-version = "0.10.0"
 kotest-version = "5.9.1"
 ktor-server-swagger-version = "3.2.1"
+kotlinx-coroutines-version = "1.10.2"
+
 
 [libraries]
-uuid = { module = "com.fasterxml.uuid:java-uuid-generator", version.ref = "uuid-version" }
+# 基本的な機能拡張 基本的に単独で利用される想定　アルファベット順で並べたら管理しやすいか・・・？
+kotlinx-cotoutines = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlinx-coroutines-version" } # コルーチン
+kotlinx-datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.ref = "kotlinx-datetime-version" } # 日付型
+kotlinx-io-core = { module = "org.jetbrains.kotlinx:kotlinx-io-core", version.ref = "kotlinx-io-version" } # ノンブロッキングIO
+kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinx-serialization-json-version" } #JSONアノテーション
+uuid = { module = "com.fasterxml.uuid:java-uuid-generator", version.ref = "uuid-version" }  # UUID生成
+# 将来的な機能拡張のため
 kotlin-result = { module = "com.michael-bull.kotlin-result:kotlin-result", version.ref = "kotlin-result-version" }
-koin-ktor = { module = "io.insert-koin:koin-ktor", version.ref = "koin-version" }
-koin-logger-slf4j = { module = "io.insert-koin:koin-logger-slf4j", version.ref = "koin-version" }
-ktor-status-page = { module = "io.ktor:ktor-server-status-pages", version.ref = "ktor-version" }
-ktor-serialization-kotlinx-json = { module = "io.ktor:ktor-serialization-kotlinx-json", version.ref = "ktor-version" }
-ktor-server-content-negotiation = { module = "io.ktor:ktor-server-content-negotiation", version.ref = "ktor-version" }
-kotlinx-datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.ref = "kotlinx-datetime-version" }
-kotlinx-io-core = { module = "org.jetbrains.kotlinx:kotlinx-io-core", version.ref = "kotlinx-io-version" }
-kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinx-serialization-json-version" }
+
+# 画像変換ライブラリ
 imgscalr = { module = "org.imgscalr:imgscalr-lib", version.ref = "imgscalr-version" }
 webp-imageio = { module = "com.github.usefulness:webp-imageio", version.ref = "webp-imageio-version" }
 
@@ -41,18 +43,32 @@ exposed-r2dbc = { module = "org.jetbrains.exposed:exposed-r2dbc", version.ref = 
 exposed-kotlin-datetime = { module = "org.jetbrains.exposed:exposed-kotlin-datetime", version.ref = "exposed-version" }
 r2dbc-pool = { module = "io.r2dbc:r2dbc-pool", version.ref = "r2dbc-version" }
 r2dbc-postgresql = { module = "org.postgresql:r2dbc-postgresql", version.ref = "r2dbc-postgresql-version" }
-jdbc-postgresql = { module = "org.postgresql:postgresql", version.ref = "jdbc-postgresql-version" }
+jdbc-postgresql = { module = "org.postgresql:postgresql", version.ref = "jdbc-postgresql-version" } # DB初期化の際に必要
 
 # Web　Framework
+# コア機能
 ktor-server-core = { module = "io.ktor:ktor-server-core", version.ref = "ktor-version" }
-ktor-server-cors = { module = "io.ktor:ktor-server-cors", version.ref = "ktor-version" }
+ktor-server-config-yaml = { module = "io.ktor:ktor-server-config-yaml", version.ref = "ktor-version" }  # application.confをyaml形式で記述可能にする
 ktor-server-netty = { module = "io.ktor:ktor-server-netty", version.ref = "ktor-version" }
+# リクエスト/レスポンス制御
+ktor-server-cors = { module = "io.ktor:ktor-server-cors", version.ref = "ktor-version" }
+ktor-status-page = { module = "io.ktor:ktor-server-status-pages", version.ref = "ktor-version" }
+# 認証
 ktor-server-auth = { module = "io.ktor:ktor-server-auth", version.ref = "ktor-version" }
-logback-classic = { module = "ch.qos.logback:logback-classic", version.ref = "logback-version" }
-ktor-server-config-yaml = { module = "io.ktor:ktor-server-config-yaml", version.ref = "ktor-version" }
-ktor-server-test-host = { module = "io.ktor:ktor-server-test-host", version.ref = "ktor-version" }
 ktor-firebase = { module = "com.kborowy:firebase-auth-provider", version.ref = "ktor-firebase-version" }
+# JSONシリアライズ
+ktor-server-content-negotiation = { module = "io.ktor:ktor-server-content-negotiation", version.ref = "ktor-version" }
+ktor-serialization-kotlinx-json = { module = "io.ktor:ktor-serialization-kotlinx-json", version.ref = "ktor-version" }
+# API Doc
 ktor-server-swagger = { module = "io.ktor:ktor-server-swagger", version.ref = "ktor-server-swagger-version" }
+# 将来的な機能拡張のため
+ktor-server-test-host = { module = "io.ktor:ktor-server-test-host", version.ref = "ktor-version" }
+logback-classic = { module = "ch.qos.logback:logback-classic", version.ref = "logback-version" }
+
+# DI
+koin-ktor = { module = "io.insert-koin:koin-ktor", version.ref = "koin-version" }
+# 将来的な機能拡張のため
+koin-logger-slf4j = { module = "io.insert-koin:koin-logger-slf4j", version.ref = "koin-version" }
 
 # test
 kotest-runner-junit5 = { module = "io.kotest:kotest-runner-junit5", version.ref = "kotest-version" }
@@ -62,3 +78,22 @@ kotest-assertions-core = { module = "io.kotest:kotest-assertions-core", version.
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin-version" }
 ktor = { id = "io.ktor.plugin", version.ref = "ktor-version" }
 kotlin-plugin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin-version" }
+
+[bundles]
+# テスト用共通インポート
+kotest-core = ["kotest-runner-junit5", "kotest-assertions-core"]
+
+# Ktor　コア機能
+ktor-core = ["ktor-server-core", "ktor-server-config-yaml", "ktor-server-netty"]
+# Ktor 拡張機能
+ktor-utils = ["ktor-server-cors", "ktor-status-page", "ktor-server-content-negotiation", "ktor-serialization-kotlinx-json"]
+# Ktor 認証
+ktor-auth = ["ktor-server-auth", "ktor-firebase"]
+
+# Exposed コア機能
+exposed-core = ["exposed-core", "exposed-kotlin-datetime"]
+# Exposed R2DBC接続
+exposed-r2dbc = ["exposed-r2dbc", "r2dbc-postgresql", "r2dbc-pool"]
+
+# 画像変換ライブラリ
+image-converter = ["imgscalr", "webp-imageio"]
