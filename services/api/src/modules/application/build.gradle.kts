@@ -5,13 +5,25 @@ plugins {
 }
 
 dependencies {
+    // utils
     implementation(libs.kotlinx.datetime)
     implementation(libs.kotlinx.io.core)
     implementation(libs.kotlinx.serialization.json)
+
+    // トランザクション TODO: 依存関係から取り除く
     implementation(libs.exposed.r2dbc)
 
+    // test
+    testImplementation(libs.bundles.kotest.core)
+
+    // モジュールの関連付け
     implementation(libs.kotest.assertions.core)
     implementation(libs.kotest.runner.junit5)
 
     implementation(project(":modules:domain"))
+}
+
+// テスト実行時にJUnit 5を使用する
+tasks.withType<Test> {
+    useJUnitPlatform()
 }

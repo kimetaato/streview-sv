@@ -1,0 +1,505 @@
+openapi: 3.1.0
+info:
+  title: すとれびゅ！
+  version: 1.0.0
+
+servers:
+  - url: http://localhost:{api_http_host_port}
+    description: ローカルな開発用APIコンテナ
+    variables:
+      api_http_host_port:
+        default: "8080"
+        description: ローカルAPIコンテナのポート
+
+  - url: http://localhost:{api_mock_http_host_port}
+    description: ローカルなAPIモックコンテナ
+    variables:
+      api_mock_http_host_port:
+        default: "4010"
+        description: ローカルなAPIモックコンテナのポート
+      
+  - url: https://localhost:{rev_pxy_https_host_port}
+    description: ローカルな開発用リバプロコンテナ
+    variables: 
+      rev_pxy_https_host_port:
+        default: "443"
+        description: ローカルリバプロコンテナのポート
+
+paths:
+  /reviews:
+    post:
+      summary: 新規レビュー投稿
+      description: 画像を含めてレビューを登録（multipart/form-data）
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/ReviewPostRequest'
+      responses:
+        '201': { description: 登録成功 }
+        '400': { description: 不正なリクエスト }
+        '401': { description: 認証が必要 }
+        '500': { description: サーバー内部エラー }
+
+  /reviews/{r_id}:
+    get:
+      summary: レビュー詳細取得
+      parameters:
+        - name: r_id
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        '200':
+          description: 詳細情報
+          content:
+            multipart/form-data:
+              schema:
+                $ref: '#/components/schemas/ReviewDetail'
+        '404': { description: 見つからない }
+        '500': { description: サーバー内部エラー }
+
+    put:
+      summary: レビュー更新
+      parameters:
+        - name: r_id
+          in: path
+          required: true
+          schema: { type: string }
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/ReviewPostRequest'
+      responses:
+        '200': { description: 更新成功 }
+
+    delete:
+      summary: レビュー削除
+      parameters:
+        - name: r_id
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        '204': { description: 削除成功 }
+
+  /reviews/shared:
+    get:
+      tags: [reviews]
+      summary: 共有されたレビューを取得
+      description: 他ユーザーから共有されたレビューを multipart/form-data 形式で取得します。
+      responses:
+        '200':
+          description: 取得成功
+          content:
+            multipart/form-data:
+              schema:
+                $ref: '#/components/schemas/GroupedReviewResponse'
+        '500': { description: サーバー内部エラー }
+
+  /reviews/gone:
+    get:
+      tags: [reviews]
+      summary: 訪れた店舗のレビューを取得
+      description: 実際に訪問した店舗のレビューを multipart/form-data 形式で取得します。
+      responses:
+        '200':
+          description: 取得成功
+          content:
+            multipart/form-data:
+              schema:
+                $ref: '#/components/schemas/GroupedReviewResponse'
+        '500': { description: サーバー内部エラー }
+
+  /reviews/want:
+    get:
+      tags: [reviews]
+      summary: 行きたい店舗のレビューを取得
+      description: 行きたい店舗に対するレビューを multipart/form-data 形式で取得します。
+      responses:
+        '200':
+          description: 取得成功
+          content:
+            multipart/form-data:
+              schema:
+                $ref: '#/components/schemas/GroupedReviewResponse'
+        '500': { description: サーバー内部エラー }
+
+  /reviews/mine:
+    get:
+      tags: [reviews]
+      summary: 自分のレビューを取得
+      description: 自身が投稿したレビューを multipart/form-data 形式で取得します。
+      responses:
+        '200':
+          description: 取得成功
+          content:
+            multipart/form-data:
+              schema:
+                $ref: '#/components/schemas/GroupedReviewResponse'
+        '401': { description: 認証が必要です }
+        '500': { description: サーバー内部エラー }
+
+  /stores:
+    post:
+      summary: 店舗を登録する
+      description: 新しい店舗情報を登録します。画像を含む場合は multipart/form-data を使用
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/StorePostRequest'
+      responses:
+        '201': { description: 店舗登録成功 }
+        '400': { description: 不正なリクエスト（必須項目不足など） }
+        '401': { description: 認証が必要です }
+        '500': { description: サーバー内部エラー }
+
+  /stores/{s_id}:
+    get:
+      summary: 店舗詳細取得（レビュー付き）
+      description: 指定された店舗IDの情報と、その店舗に対するレビュー情報の取得。
+      parameters:
+        - name: s_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 店舗とレビュー情報の取得成功
+          content:
+            multipart/form-data:
+              schema:
+                $ref: '#/components/schemas/StoreWithReviews'
+        '404': { description: 店舗が見つかりません }
+        '500': { description: サーバー内部エラー }
+
+  /stores/locations:
+    get:
+      summary: 周辺店舗の位置情報取得
+      description: 現在地や指定されたフィルタ条件に基づいて、周辺の店舗情報を取得します。
+      parameters:
+        - name: filter
+          in: query
+          required: false
+          schema:
+            type: string
+            example: "cafe"
+          description: 検索条件（ジャンル名やキーワードなど）
+      responses:
+        '200':
+          description: 取得成功
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StoreLocationResponse'
+        '400':
+          description: 無効なリクエスト
+        '500':
+          description: サーバー内部エラー
+
+  /users/profile/{u_id}:
+    get:
+      summary: ユーザープロフィール取得
+      description: 指定されたユーザーIDのプロフィール情報を取得します。
+      parameters:
+        - name: u_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: プロフィール取得成功
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserProfile'
+        '404': { description: ユーザーが見つかりません }
+        '500': { description: サーバー内部エラー }
+
+    put:
+      summary: ユーザープロフィール更新
+      description: 指定されたユーザーIDのプロフィールを更新します。
+      parameters:
+        - name: u_id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserProfile'
+      responses:
+        '200': { description: プロフィール更新成功 }
+        '400': { description: 不正なリクエスト }
+        '404': { description: ユーザーが見つかりません }
+        '500': { description: サーバー内部エラー }
+
+  /users/settings/share_mode:
+    get:
+      summary: 共有設定情報の取得
+      description: ユーザーの共有情報設定を取得します。
+      responses:
+        '200':
+          description: 共有設定情報取得成功
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ShareMode'
+        '404': { description: ユーザーが見つかりません }
+        '500': { description: サーバー内部エラー }
+
+    put:
+      summary: 共有設定更新
+      description: ユーザーの共有設定を更新します。
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ShareMode'
+      responses:
+        '200': { description: 共有設定更新成功 }
+        '400': { description: 不正なリクエスト }
+        '404': { description: ユーザーが見つかりません }
+        '500': { description: サーバー内部エラー }
+
+components:
+  schemas:
+    ReviewPostRequest:
+      type: object
+      properties:
+        title: { type: string }
+        comment: { type: string }
+        star:
+          type: number
+          minimum: 0
+          maximum: 5
+        photo:
+          type: string
+          format: binary
+        info:
+          type: object
+          required: [ s_id ]
+          properties:
+            s_id:
+              type: string
+      required: [ title, comment, star, info ]
+
+    ReviewDetail:
+      type: object
+      properties:
+        title: { type: string }
+        comment: { type: string }
+        star:
+          type: number
+          minimum: 0
+          maximum: 5
+        photo:
+          type: string
+          format: binary
+        info:
+          type: object
+          properties:
+            s_id:
+              type: string
+
+    GroupedReviewResponse:
+      type: object
+      properties:
+        s_group:
+          type: array
+          items:
+            $ref: '#/components/schemas/StoreReviewGroup'
+
+    StoreReviewGroup:
+      type: object
+      properties:
+        s_id:
+          type: string
+        store:
+          $ref: '#/components/schemas/Store'
+        reviews:
+          type: array
+          items:
+            $ref: '#/components/schemas/Review'
+
+    Review:
+      type: object
+      properties:
+        r_id:
+          type: string
+        title:
+          type: string
+        comment:
+          type: string
+        star:
+          type: number
+          minimum: 0
+          maximum: 5
+        created_at:
+          type: string
+          format: date-time
+        user:
+          type: object
+          properties:
+            icon_id:
+              type: string
+            gender:
+              type: string
+        photo:
+          type: string
+          format: binary
+      required:
+        - r_id
+        - title
+        - comment
+        - star
+        - created_at
+        - user
+
+    Store:
+      type: object
+      properties:
+        s_id:
+          type: string
+        s_name:
+          type: string
+        genre:
+          type: string
+        address:
+          type: string
+        geo_location:
+          type: string
+        description:
+          type: string
+        opening_time:
+          type: string
+        star:
+          type: number
+        images:
+          type: array
+          items:
+            type: string
+            format: binary
+
+    StorePostRequest:
+      type: object
+      required:
+        - s_name
+        - geo_location
+        - genre
+      properties:
+        s_name:
+          type: string
+        genre_id:
+          type: string
+        geo_location:
+          type: string
+        address:
+          type: string
+        phone_number:
+          type: string
+          nullable: true
+        opening_time:
+          type: string
+          nullable: true
+        photo:
+          type: string
+          format: binary
+
+    StoreWithReviews:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            s_name:
+              type: string
+            images:
+              type: array
+              items:
+                type: string
+                format: binary
+            description:
+              type: string
+            reviews:
+              type: array
+              items:
+                $ref: '#/components/schemas/ReviewBrief'
+
+    ReviewBrief:
+      type: object
+      properties:
+        icon_id:
+          type: string
+        star:
+          type: number
+          minimum: 0
+          maximum: 5
+        genre:
+          type: string
+        gender:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+        comment:
+          type: string
+
+    StoreLocationResponse:
+      type: object
+      properties:
+        stores:
+          type: array
+          items:
+            type: object
+            properties:
+              s_id:
+                type: string
+              s_name:
+                type: string
+              geo_location:
+                type: object
+                properties:
+                  lat:
+                    type: number
+                    format: double
+                  lng:
+                    type: number
+                    format: double
+                required:
+                  - lat
+                  - lng
+              address:
+                type: string
+
+    UserProfile:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            name:
+              type: string
+            icon_id:
+              type: string
+            genre:
+              type: string
+            gender:
+              type: string
+
+    ShareMode:
+      type: object
+      properties:
+        share_mode:
+          type: boolean

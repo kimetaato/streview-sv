@@ -5,17 +5,18 @@ plugins {
 }
 
 dependencies {
+    // utils
+    implementation(libs.kotlinx.cotoutines)
     implementation(libs.kotlinx.datetime)
-    implementation(libs.uuid)
-    implementation(libs.kotlin.result)
     implementation(libs.kotlinx.serialization.json)
-    implementation(libs.kotlinx.datetime)
+    implementation(libs.uuid)
 
-    implementation(libs.kotest.assertions.core)
-    implementation(libs.kotest.runner.junit5)
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.10.2")
+    // test
+    testImplementation(libs.bundles.kotest.core)
 }
 
+// テスト実行時にJUnit 5を使用する
 tasks.withType<Test> {
     useJUnitPlatform()
 }
+
