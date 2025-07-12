@@ -30,10 +30,14 @@ services:
     volumes:
       - "./services/api/:/app/"
       - "./openapi/:/openapi/"
+      - "/var/run/docker.sock:/var/run/docker.sock" #dockerのソケットを公開
     ports:
       - "${API_HTTP_HOST_PORT:-8080}:8080"
     environment:
       TZ: ${TZ}
+      TESTCONTAINERS_HOST_OVERRIDE: "host.docker.internal" # testcontainersが利用するhost
+    extra_hosts:
+      - "host.docker.internal:host-gateway" # Docker for Mac/Windowsの場合ホスト名の解決に必要
     depends_on:
       db-srv:
         condition: service_healthy
