@@ -17,6 +17,8 @@ dependencies {
 
     // test
     testImplementation(libs.bundles.kotest.core)
+    testImplementation(libs.kotest.containers)
+    testImplementation(libs.jdbc.postgresql)    // テストコンテナをマイグレーションするときに必要
 
     // モジュールの関連付け
     implementation(project(":modules:domain"))
