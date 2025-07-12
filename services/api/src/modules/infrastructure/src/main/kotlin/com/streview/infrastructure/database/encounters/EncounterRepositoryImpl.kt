@@ -1,22 +1,21 @@
 package com.streview.infrastructure.database.encounters
 
-import com.streview.domain.commons.UserID
 import com.streview.domain.encounters.Encounter
-import com.streview.domain.encounters.EncounterDate
 import com.streview.domain.encounters.EncounterRepository
 import com.streview.infrastructure.database.models.EncounterTable
 import kotlinx.coroutines.flow.toList
+import kotlinx.datetime.LocalDate
 import org.jetbrains.exposed.v1.core.and
 import org.jetbrains.exposed.v1.r2dbc.batchInsert
 import org.jetbrains.exposed.v1.r2dbc.select
 
 class EncounterRepositoryImpl : EncounterRepository {
-    override suspend fun findByID(userID: UserID, encounterDate: EncounterDate): Encounter {
+    override suspend fun findByID(userID: String, encounterDate: LocalDate): Encounter {
         val list = EncounterTable
             .select(
                 EncounterTable.id, EncounterTable.encounterId, EncounterTable.encounterDate,
             )
-            .where { (EncounterTable.id eq userID.value) and (EncounterTable.encounterDate eq encounterDate.value) }
+            .where { (EncounterTable.id eq userID) and (EncounterTable.encounterDate eq encounterDate) }
             .toList()
         return toDomain(list)
     }

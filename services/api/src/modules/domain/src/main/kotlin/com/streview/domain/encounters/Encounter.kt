@@ -16,19 +16,19 @@ class Encounter private constructor(
         get() = _encounterIDs.toList()
 
     companion object {
-        fun factory(actorID: UserID, encounterDate: EncounterDate): Encounter {
+        fun factory(actorID: String, encounterDate: LocalDate): Encounter {
             return Encounter(
-                actorID,
-                encounterDate,
+                UserID(actorID),
+                EncounterDate(encounterDate),
                 emptyList<UserID>().toMutableList(),
             )
         }
 
-        fun factory(userID: UserID, encounterDate: EncounterDate, encounterIDs: List<UserID>): Encounter {
+        fun factory(userID: String, encounterDate: LocalDate, encounterIDs: List<String>): Encounter {
             return Encounter(
-                userID,
-                encounterDate,
-                encounterIDs.toMutableList(),
+                UserID(userID),
+                EncounterDate(encounterDate),
+                encounterIDs.map { UserID(it) }.toMutableList(),
             )
         }
     }
