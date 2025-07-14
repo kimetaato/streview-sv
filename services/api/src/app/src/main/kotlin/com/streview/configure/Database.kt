@@ -1,5 +1,6 @@
 package com.streview.configure
 
+import com.streview.infrastructure.database.models.EncounterTable
 import com.streview.infrastructure.database.models.ImagesTable
 import com.streview.infrastructure.database.models.StoresTable
 import com.streview.infrastructure.database.models.UsersTable
@@ -38,7 +39,8 @@ fun configureDatabase() {
             SchemaUtils.create(
                 ImagesTable,
                 UsersTable,
-                StoresTable
+                StoresTable,
+                EncounterTable
             )
 
             if (StoresTable.selectAll().empty()) {
