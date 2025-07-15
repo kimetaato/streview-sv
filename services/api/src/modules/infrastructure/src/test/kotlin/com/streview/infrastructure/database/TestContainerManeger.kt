@@ -1,5 +1,6 @@
 package com.streview.infrastructure.database
 
+import com.streview.infrastructure.database.models.EncounterTable
 import io.kotest.core.annotation.AutoScan
 import io.kotest.core.listeners.AfterProjectListener
 import io.kotest.core.listeners.BeforeProjectListener
@@ -61,10 +62,9 @@ object DatabaseSetupListener : BeforeProjectListener, AfterProjectListener {
                 explicitDialect = PostgreSQLDialect()
             }
         )
-        // TODO:テーブル追加するよ
-//        suspendTransaction {
-//
-//        }
+        suspendTransaction {
+            SchemaUtils.create(EncounterTable)
+        }
     }
 
     override suspend fun afterProject() {
