@@ -1,5 +1,7 @@
 package com.streview.configure
 
+import com.streview.application.services.EncounterDecryptionConfig
+import com.streview.application.services.EncounterDecryptionService
 import com.streview.application.services.ImageStorageConfig
 import com.streview.application.services.ImageStorageService
 import com.streview.application.usecases.users.RegisterUserUseCase
@@ -12,6 +14,10 @@ import com.streview.infrastructure.database.users.UserRepositoryImpl
 import com.streview.infrastructure.storages.images.ImageStorageServiceImpl
 import com.streview.usecase.stores.TryStoreUseCase
 import io.ktor.server.application.*
+import kotlinx.io.buffered
+import kotlinx.io.files.Path
+import kotlinx.io.files.SystemFileSystem
+import kotlinx.io.readString
 import org.koin.dsl.module
 import org.koin.ktor.plugin.Koin
 
@@ -26,6 +32,9 @@ val useCaseModule = module {
 val serviceModule = module {
     single<ImageStorageService> {
         ImageStorageServiceImpl(get())
+    }
+    single<EncounterDecryptionService> {
+        EncounterDecryptionService(get())
     }
     single<TryStoreUseCase> {
         TryStoreUseCase(get())
@@ -51,6 +60,13 @@ val configureModule = module {
             imageConfigSection.keys().associateWith { key ->
                 imageConfigSection.property(key).getString()
             }
+        )
+    }
+    single<EncounterDecryptionConfig> {
+        // 環境変数から秘密鍵ファイルのパスを取得し、読み込んだ内容をconfigに渡す
+        val path = get<Application>().environment.config.config("app.security.secret").toString()
+        EncounterDecryptionConfig(
+            SystemFileSystem.source(Path(path)).buffered().readString()
         )
     }
 }

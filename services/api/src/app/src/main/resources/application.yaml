@@ -19,3 +19,5 @@ app:
       user_icon: "/app/src/upload/user_icons"
       review: "/app/src/upload/reviews"
       store: "/app/src/upload/stores"
+  security:
+    secret: "/ssl/server.key"
