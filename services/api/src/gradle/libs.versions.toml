@@ -22,6 +22,7 @@ kotest-version = "5.9.1"
 ktor-server-swagger-version = "3.2.1"
 kotlinx-coroutines-version = "1.10.2"
 kotest-containers-version = "2.0.2"
+mockk-version = "1.14.4"
 
 [libraries]
 # 基本的な機能拡張 基本的に単独で利用される想定　アルファベット順で並べたら管理しやすいか・・・？
@@ -75,7 +76,7 @@ kotest-runner-junit5 = { module = "io.kotest:kotest-runner-junit5", version.ref 
 kotest-assertions-core = { module = "io.kotest:kotest-assertions-core", version.ref = "kotest-version" }
 kotest-properties = { module = "io.kotest:kotest-property", version.ref = "kotest-version" }
 kotest-containers = { module = "io.kotest.extensions:kotest-extensions-testcontainers", version.ref = "kotest-containers-version" }
-
+mockk = { module = "io.mockk:mockk", version.ref = "mockk-version" }
 
 [plugins]
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin-version" }
