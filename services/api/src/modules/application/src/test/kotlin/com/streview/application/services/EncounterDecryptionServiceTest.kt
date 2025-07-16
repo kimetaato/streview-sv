@@ -124,11 +124,10 @@ class EncounterDecryptionServiceTest : FreeSpec({
         "不正な秘密鍵フォーマットで初期化エラー" {
             // 準備: 不正な秘密鍵フォーマットの設定を作成
             val invalidPrivateKey = "invalid-private-key"
-            val invalidConfig = EncounterDecryptionConfig(invalidPrivateKey)
 
             // 検証: 不正な秘密鍵で初期化時に例外が発生することを確認
-            shouldThrow<Exception> {
-                EncounterDecryptionService(invalidConfig)
+            shouldThrow<IllegalArgumentException> {
+                EncounterDecryptionConfig(invalidPrivateKey)
             }
         }
     }
