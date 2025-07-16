@@ -28,6 +28,8 @@ dependencies {
 
     // kotest
     testImplementation(libs.bundles.kotest.core)
+    testImplementation(libs.bundles.test.ktor)
+    testImplementation(libs.bundles.test.koin)
 
     // モジュールの関連付け
     implementation(project(":modules:presentation"))
