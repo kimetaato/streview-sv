@@ -15,6 +15,7 @@ dependencies {
 
     // test
     testImplementation(libs.bundles.kotest.core)
+    testImplementation(libs.mockk)
 
     // モジュールの関連付け
     implementation(project(":modules:domain"))
