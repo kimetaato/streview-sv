@@ -13,7 +13,9 @@ class EncounterRepositoryImpl : EncounterRepository {
     override suspend fun findByID(userID: String, encounterDate: LocalDate): Encounter {
         val list = EncounterTable
             .select(
-                EncounterTable.id, EncounterTable.encounterId, EncounterTable.encounterDate,
+                EncounterTable.id,
+                EncounterTable.encounterId,
+                EncounterTable.encounterDate,
             )
             .where { (EncounterTable.id eq userID) and (EncounterTable.encounterDate eq encounterDate) }
             .toList()

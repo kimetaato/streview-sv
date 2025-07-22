@@ -1,9 +1,8 @@
 package com.streview.presentation.controller
 
-
 import com.streview.application.usecases.users.RegisterUserUseCase
+import com.streview.application.usecases.users.dto.RegisterUserRequest
 import com.streview.domain.exceptions.InvalidInputException
-import com.streview.usecase.users.dto.RegisterUserRequest
 import io.ktor.http.*
 import io.ktor.http.content.*
 import io.ktor.server.auth.*
@@ -59,13 +58,10 @@ fun Route.userController() {
         route("/profiles") {
             // ユーザーのプロフィールを取得する
             get {
-
             }
             // ユーザーのプロフィールを変更する
             put {
-
             }
         }
-
     }
 }

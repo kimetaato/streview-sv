@@ -1,6 +1,5 @@
 package com.streview.domain.exceptions
 
-
 /**
  * 生成しようとするリソースがすでに存在していたことを示す例外クラス
  * @param message エラーメッセージ

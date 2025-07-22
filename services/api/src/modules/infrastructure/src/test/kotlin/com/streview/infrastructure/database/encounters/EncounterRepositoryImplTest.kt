@@ -31,11 +31,11 @@ class EncounterRepositoryImplTest : FreeSpec({
     fun combinedArb(encounterIDsCount: IntRange = 1..1) = Arb.set(
         Arb.stringPattern("[a-zA-Z0-9]{28}"),
         range = (encounterIDsCount.first + 1..encounterIDsCount.last + 1)
-    )  // 最低2個生成
+    ) // 最低2個生成
         .map { userIDs ->
             val userIDList = userIDs.toList()
-            val actorID = userIDList.first()         // 1番目を取得
-            val encounterIDs = userIDList.drop(1)    // 残りを配列に
+            val actorID = userIDList.first() // 1番目を取得
+            val encounterIDs = userIDList.drop(1) // 残りを配列に
             Pair(actorID, encounterIDs)
         }
 

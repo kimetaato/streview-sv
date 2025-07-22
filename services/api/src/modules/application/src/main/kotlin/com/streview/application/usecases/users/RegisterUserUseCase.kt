@@ -3,21 +3,21 @@ package com.streview.application.usecases.users
 import com.streview.application.services.ImageStorageService
 import com.streview.application.services.ImageType
 import com.streview.application.usecases.UseCase
+import com.streview.application.usecases.users.dto.RegisterUserRequest
+import com.streview.application.usecases.users.dto.RegisterUserResponse
 import com.streview.domain.commons.UserID
 import com.streview.domain.exceptions.ConflictException
 import com.streview.domain.images.Image
 import com.streview.domain.images.ImageRepository
-import com.streview.domain.users.IUserRepository
 import com.streview.domain.users.Profile
 import com.streview.domain.users.User
-import com.streview.usecase.users.dto.RegisterUserRequest
-import com.streview.usecase.users.dto.RegisterUserResponse
+import com.streview.domain.users.UserRepository
 import kotlinx.datetime.Clock
 import kotlinx.datetime.LocalDate
 import org.jetbrains.exposed.v1.r2dbc.transactions.suspendTransaction
 import kotlin.random.Random
 
-class RegisterUserUseCase(val uR: IUserRepository, val iR: ImageRepository, val iS: ImageStorageService) :
+class RegisterUserUseCase(val uR: UserRepository, val iR: ImageRepository, val iS: ImageStorageService) :
     UseCase<RegisterUserRequest, RegisterUserResponse> {
     override suspend fun execute(input: RegisterUserRequest): RegisterUserResponse {
         val user = suspendTransaction {
@@ -53,9 +53,8 @@ class RegisterUserUseCase(val uR: IUserRepository, val iR: ImageRepository, val 
 
             // ユーザーを登録する
             uR.create(newUser)
-
         }
-        //　登録したユーザーのIDを返す
+        // 　登録したユーザーのIDを返す
         return RegisterUserResponse(user.userID.value)
     }
 }

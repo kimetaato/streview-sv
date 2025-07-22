@@ -1,0 +1,63 @@
+# Detekt 設定ファイル
+# config/detekt/detekt.yml に配置
+
+# buildUponDefaultConfig が true なので、Detekt のデフォルト設定をベース
+# allRules が false なので、明示的に有効にするルールセットのみが適用
+
+# ----------------------------------------------------------------------------------------------------------------------
+# ルールセット設定
+# ----------------------------------------------------------------------------------------------------------------------
+
+# コードの複雑さに関連する問題
+complexity:
+  active: true
+  ComplexCondition: # 複雑すぎる条件式を検出
+    active: true
+    threshold: 5 # 閾値を4から5に緩和 (デフォルトは4)
+
+# 空のコードブロックに関する問題
+empty-blocks:
+  active: true
+  EmptyInitBlock: # 空のinitブロックの警告を無効化
+    active: false
+  EmptyDefaultConstructor: # 空のデフォルトコンストラクタの警告を無効化
+    active: false
+
+# 例外処理に関する問題
+exceptions:
+  active: true
+  TooGenericExceptionCaught: # 汎用的な例外捕捉の警告を無効化
+    active: false
+
+# コードのフォーマットに関する問題（detekt-formatting プラグインが必要）
+formatting:
+  active: true
+  NoWildcardImports: # ワイルドカードインポートを許可
+    active: false
+
+# 命名規則に関する問題 ← 【追加】コマンドラインで検出されるエラーに対応
+naming:
+  active: true
+  InvalidPackageDeclaration: # パッケージ宣言の問題
+    active: true
+  ConstructorParameterNaming: # コンストラクタパラメータ命名規則
+    active: true
+    parameterPattern: '[a-z][A-Za-z0-9]*'
+    privateParameterPattern: '(_)?[A-Za-z][_A-Za-z0-9]*'
+
+# コードの一般的なスタイルと慣習に関する問題
+style:
+  active: true
+  WildcardImport:
+    active: false
+  MagicNumber: # マジックナンバーの警告を無効化
+    active: false
+  UnusedPrivateProperty: # 未使用のプライベートプロパティの警告を無効化
+    active: false
+  MayBeConst: # const valに関する警告を無効化
+    active: false
+  ForbiddenComment: # TODOコメントチェック
+    active: false
+    comments: [ 'TODO:', 'FIXME:', 'STOPSHIP:' ]
+  UseCheckOrError: # スローの仕方決めちゃうよ
+    active: true

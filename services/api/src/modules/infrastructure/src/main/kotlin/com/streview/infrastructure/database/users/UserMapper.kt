@@ -8,12 +8,11 @@ import com.streview.infrastructure.database.models.UsersTable
 import org.jetbrains.exposed.v1.core.ResultRow
 import org.jetbrains.exposed.v1.core.statements.UpdateBuilder
 
-
 /**
  * DBレコードからユーザードメインに変換する
  * @param row DBレコード
  */
-fun UserRepositoryImpl.toDomain(row: ResultRow): User {
+fun toDomain(row: ResultRow): User {
     // プロフィールを作成
     val profile: Profile = try {
         Profile.create(
@@ -34,12 +33,11 @@ fun UserRepositoryImpl.toDomain(row: ResultRow): User {
     )
 }
 
-
 /**
  * ユーザードメインをテーブルに変換する
  * @param user ドメイン
  */
-fun UserRepositoryImpl.toUserTable(user: User): (UpdateBuilder<*>) -> Unit {
+fun toUserTable(user: User): (UpdateBuilder<*>) -> Unit {
     return {
         with(UsersTable) {
             it[id] = user.userID.value

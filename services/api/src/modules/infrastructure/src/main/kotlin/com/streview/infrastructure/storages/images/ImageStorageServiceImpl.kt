@@ -50,7 +50,9 @@ class ImageStorageServiceImpl(private val config: ImageStorageConfig) : ImageSto
      */
     private fun prepareOutputPath(fileName: String, imageType: ImageType): Path {
         val baseDir = config.directories[imageType.value]
-            ?: throw IllegalStateException("Directory for type '${imageType.value}' is not configured.")
+        check(!baseDir.isNullOrBlank()) {
+            "Output directory not configured for image type: ${imageType.value}"
+        }
 
         val outputDir = Path(baseDir)
         val outputPath = Path(outputDir, "$fileName$WEBP_EXTENSION")
@@ -64,12 +66,12 @@ class ImageStorageServiceImpl(private val config: ImageStorageConfig) : ImageSto
      */
     private fun createWebPWriter(): ImageWriter {
         val writers = ImageIO.getImageWritersByFormatName(WEBP_FORMAT)
-        when {
-            !writers.hasNext() -> {
-                throw IllegalStateException("WebP ImageWriter not found. Please ensure the WebP Image I/O plugin is on the classpath.")
-            }
-            else -> return writers.next()
+
+        check(writers.hasNext()) {
+            "WebP ImageWriter not found. Please ensure the WebP Image I/O plugin is on the classpath."
         }
+
+        return writers.next()
     }
 
     /**

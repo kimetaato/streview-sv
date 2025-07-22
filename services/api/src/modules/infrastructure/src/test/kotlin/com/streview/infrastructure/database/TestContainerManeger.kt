@@ -54,7 +54,6 @@ object DatabaseSetupListener : BeforeProjectListener, AfterProjectListener {
                 .build()
         )
 
-
         // コネクションプールの作成
         R2dbcDatabase.connect(
             connectionFactory,

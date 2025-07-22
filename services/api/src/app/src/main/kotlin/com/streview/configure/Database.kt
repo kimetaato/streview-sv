@@ -13,7 +13,6 @@ import org.jetbrains.exposed.v1.core.vendors.PostgreSQLDialect
 import org.jetbrains.exposed.v1.r2dbc.*
 import org.jetbrains.exposed.v1.r2dbc.transactions.suspendTransaction
 
-
 fun configureDatabase() {
     val connectionFactory: ConnectionFactory = ConnectionFactories.get(
         builder()
@@ -51,12 +50,12 @@ fun configureDatabase() {
                     it[denwaBango] = "0774-26-8440"
                     it[description] = "うまいオムライス屋さん"
                     it[openingTime] = "日曜 11:00~18:00" +
-                            "月曜 11:00~16:00" +
-                            "火曜 定休日" +
-                            "水曜 11:00~21:00" +
-                            "木曜 11:00~21:00" +
-                            "金曜 11:00~22:00" +
-                            "土曜 11:00~17:00"
+                        "月曜 11:00~16:00" +
+                        "火曜 定休日" +
+                        "水曜 11:00~21:00" +
+                        "木曜 11:00~21:00" +
+                        "金曜 11:00~22:00" +
+                        "土曜 11:00~17:00"
                     val currentMoment: Instant = Clock.System.now()
                     val datetimeInUtc: LocalDateTime = currentMoment.toLocalDateTime(TimeZone.UTC)
                     it[createdAt] = datetimeInUtc

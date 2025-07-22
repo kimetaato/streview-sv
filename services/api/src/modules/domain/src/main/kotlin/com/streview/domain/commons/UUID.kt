@@ -2,7 +2,6 @@ package com.streview.domain.commons
 
 import java.util.UUID as StreviewUuid
 
-
 @JvmInline
 value class UUID(val value: String) {
     init {
@@ -21,5 +20,3 @@ value class UUID(val value: String) {
         }
     }
 }
-
-
