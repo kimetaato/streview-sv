@@ -1,5 +1,4 @@
 plugins {
-    `kotlin-dsl`
     alias(libs.plugins.kotlin.jvm)
     alias(libs.plugins.kotlin.plugin.serialization)
     id("application")
@@ -38,7 +37,3 @@ dependencies {
     implementation(project(":modules:infrastructure"))
 }
 
-// テスト実行時にJUnit 5を使用する
-tasks.withType<Test> {
-    useJUnitPlatform()
-}

@@ -1,5 +1,4 @@
 plugins {
-    `kotlin-dsl`
     alias(libs.plugins.kotlin.jvm)
 }
 
@@ -24,9 +23,4 @@ dependencies {
     implementation(project(":modules:domain"))
     implementation(project(":modules:application"))
     implementation(project(":modules:presentation"))
-}
-
-// テスト実行時にJUnit 5を使用する
-tasks.withType<Test> {
-    useJUnitPlatform()
 }
