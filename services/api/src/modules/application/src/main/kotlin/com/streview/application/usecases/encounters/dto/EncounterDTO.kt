@@ -6,7 +6,7 @@ import kotlinx.datetime.LocalDate
 import kotlinx.serialization.Serializable
 
 /**
- * @param   encounterDate すれ違った日にち
+ * @param encounterDate すれ違った日にち
  * @param encryptedEncounterIDs その日にすれ違ったユーザーの暗号化文字列
  */
 @Serializable
