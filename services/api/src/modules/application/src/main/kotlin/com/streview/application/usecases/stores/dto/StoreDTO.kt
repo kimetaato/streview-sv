@@ -1,10 +1,8 @@
-package com.streview.usecase.stores.dto
-
+package com.streview.application.usecases.stores.dto
 
 import com.streview.application.usecases.InputPort
 import com.streview.application.usecases.OutputPort
 import kotlinx.serialization.Serializable
-
 
 @Serializable
 data class TryStoreRequest(val id: String) : InputPort

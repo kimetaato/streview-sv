@@ -44,6 +44,5 @@ value class Id(val value: String) { // TODO: UUIDを生成すべき
 @JvmInline
 value class Name(val value: String) {
     init {
-
     }
 }

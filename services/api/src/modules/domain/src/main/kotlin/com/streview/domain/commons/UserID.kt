@@ -1,6 +1,5 @@
 package com.streview.domain.commons
 
-
 /**
  * firebase authentication により発行されるユーザー識別の28桁の文字列
  */

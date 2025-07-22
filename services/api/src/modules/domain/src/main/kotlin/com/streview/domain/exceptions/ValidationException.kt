@@ -2,7 +2,6 @@ package com.streview.domain.exceptions
 
 import kotlinx.serialization.Serializable
 
-
 /**
  * バリデーションエラーの詳細を収集する例外クラス
  * @param message エラーメッセージ
@@ -14,7 +13,6 @@ class ValidationException(
     val validationErrors: List<ValidationError>,
     cause: Throwable? = null
 ) : BusinessException(message, cause)
-
 
 /**
  * 値オブジェクトの生成エラーの詳細
@@ -35,4 +33,3 @@ class ValidationError(
 fun MutableList<ValidationError>.addError(fieldName: String, message: String?) {
     add(ValidationError(fieldName, message ?: "不正な入力値です"))
 }
-

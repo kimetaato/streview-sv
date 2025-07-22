@@ -13,7 +13,6 @@ import org.jetbrains.exposed.v1.core.vendors.PostgreSQLDialect
 import org.jetbrains.exposed.v1.r2dbc.*
 import org.jetbrains.exposed.v1.r2dbc.transactions.suspendTransaction
 
-
 fun configureDatabase() {
     val connectionFactory: ConnectionFactory = ConnectionFactories.get(
         builder()

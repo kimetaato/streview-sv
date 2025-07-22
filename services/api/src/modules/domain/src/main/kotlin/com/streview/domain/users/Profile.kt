@@ -6,7 +6,6 @@ import com.streview.domain.exceptions.ValidationException
 import com.streview.domain.exceptions.addError
 import kotlinx.datetime.*
 
-
 data class Profile(
     val name: Name,
     val birthday: Birthday,
@@ -20,8 +19,7 @@ data class Profile(
             gender: String,
             imageUUID: UUID
         ): Profile {
-
-            //エラーを収集するリスト
+            // エラーを収集するリスト
             val errors: MutableList<ValidationError> = mutableListOf()
 
             // 名前オブジェクトの生成
@@ -92,15 +90,10 @@ enum class Gender(val value: String) {
     Male("male"), Female("female"), Unknown("unknown");
 
     companion object {
-        private val map = Gender.values().associateBy(Gender::value)
+        private val map = Gender.entries.associateBy(Gender::value)
         fun fromCode(value: String): Gender {
             return map[value.lowercase()]
                 ?: throw IllegalArgumentException("不正な形式です。")
         }
     }
 }
-
-
-
-
-

@@ -10,7 +10,6 @@ import io.ktor.server.response.*
 
 fun Application.configureStatusPage() {
     install(StatusPages) {
-
         // 例外に対するレスポンスを定義する
         exception<NotFoundException> { call, _ ->
             return@exception call.respond(HttpStatusCode.NotFound)

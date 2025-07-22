@@ -4,15 +4,15 @@ import com.streview.application.services.EncounterDecryptionConfig
 import com.streview.application.services.EncounterDecryptionService
 import com.streview.application.services.ImageStorageConfig
 import com.streview.application.services.ImageStorageService
+import com.streview.application.usecases.stores.TryStoreUseCase
 import com.streview.application.usecases.users.RegisterUserUseCase
 import com.streview.domain.images.ImageRepository
 import com.streview.domain.stores.StoreRepository
-import com.streview.domain.users.IUserRepository
+import com.streview.domain.users.UserRepository
 import com.streview.infrastructure.database.images.ImageRepositoryImpl
 import com.streview.infrastructure.database.stores.StoreRepositoryImpl
 import com.streview.infrastructure.database.users.UserRepositoryImpl
 import com.streview.infrastructure.storages.images.ImageStorageServiceImpl
-import com.streview.usecase.stores.TryStoreUseCase
 import io.ktor.server.application.*
 import kotlinx.io.buffered
 import kotlinx.io.files.Path
@@ -21,8 +21,7 @@ import kotlinx.io.readString
 import org.koin.dsl.module
 import org.koin.ktor.plugin.Koin
 
-
-//  TODO: トランザクションを簡単に貼りたいがさっぱりわからない
+// トランザクションを簡単に貼りたいがさっぱりわからない
 val useCaseModule = module {
     single<RegisterUserUseCase> {
         RegisterUserUseCase(get(), get(), get())
@@ -42,7 +41,7 @@ val serviceModule = module {
 }
 
 val repositoryModule = module {
-    single<IUserRepository> {
+    single<UserRepository> {
         UserRepositoryImpl()
     }
     single<ImageRepository> {
@@ -70,7 +69,6 @@ val configureModule = module {
         )
     }
 }
-
 
 fun Application.configureFramework() {
     install(Koin) {

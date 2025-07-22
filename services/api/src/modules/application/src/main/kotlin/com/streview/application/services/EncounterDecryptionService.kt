@@ -8,7 +8,6 @@ import java.security.spec.PKCS8EncodedKeySpec
 import java.util.*
 import javax.crypto.Cipher
 
-
 /**
  * 初期化処理に必要なパラメータを取得。トリムし、base64のデコードをして、秘密鍵として処理をする
  * @param pemKey pem形式の秘密鍵
@@ -24,10 +23,10 @@ class EncounterDecryptionConfig(pemKey: String) {
         .replace("-----BEGIN RSA PRIVATE KEY-----", "")
         .replace("-----END RSA PRIVATE KEY-----", "")
         .replace("\\r\\n".toRegex(), "") // Windows改行
-        .replace("\\n".toRegex(), "")     // Unix改行
-        .replace("\\r".toRegex(), "")     // Mac改行
-        .replace(" ", "")                 // スペース
-        .replace("\\t".toRegex(), "")     // タブ
+        .replace("\\n".toRegex(), "") // Unix改行
+        .replace("\\r".toRegex(), "") // Mac改行
+        .replace(" ", "") // スペース
+        .replace("\\t".toRegex(), "") // タブ
         .trim()
 
     // Base64エンコードされた秘密鍵をデコード

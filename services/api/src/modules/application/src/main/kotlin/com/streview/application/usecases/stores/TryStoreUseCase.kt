@@ -1,10 +1,10 @@
-package com.streview.usecase.stores
+package com.streview.application.usecases.stores
 
 import com.streview.application.usecases.UseCase
+import com.streview.application.usecases.stores.dto.TryStoreRequest
+import com.streview.application.usecases.stores.dto.TryStoreResponse
 import com.streview.domain.stores.Store
 import com.streview.domain.stores.StoreRepository
-import com.streview.usecase.stores.dto.TryStoreRequest
-import com.streview.usecase.stores.dto.TryStoreResponse
 
 class TryStoreUseCase(private val repository: StoreRepository) : UseCase<TryStoreRequest, TryStoreResponse> {
     override suspend fun execute(input: TryStoreRequest): TryStoreResponse {

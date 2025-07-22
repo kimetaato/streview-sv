@@ -8,14 +8,15 @@ import kotlinx.coroutines.flow.singleOrNull
 import org.jetbrains.exposed.v1.r2dbc.insert
 import org.jetbrains.exposed.v1.r2dbc.select
 
-class ImageRepositoryImpl: ImageRepository {
+class ImageRepositoryImpl : ImageRepository {
     override suspend fun findByID(imageId: UUID): Image? {
         return ImagesTable
             .select(
-                ImagesTable.id, ImagesTable.fileName
+                ImagesTable.id,
+                ImagesTable.fileName
             )
-            .where{ ImagesTable.id eq imageId.value }
-            .singleOrNull()?.let {row ->
+            .where { ImagesTable.id eq imageId.value }
+            .singleOrNull()?.let { row ->
                 toDomain(row)
             }
     }

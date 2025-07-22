@@ -2,7 +2,6 @@ package com.streview.domain.users
 
 import com.streview.domain.commons.UserID
 
-
 data class User(
     val userID: UserID,
     val profile: Profile,
@@ -37,7 +36,7 @@ enum class CatchMode(val value: String) {
     Area("area"), Recommend("recommend"), NearBy("nearby");
 
     companion object {
-        private val map = CatchMode.values().associateBy(CatchMode::value)
+        private val map = CatchMode.entries.associateBy(CatchMode::value)
 
         fun fromCode(value: String): CatchMode {
             return map[value.lowercase()]
@@ -45,4 +44,3 @@ enum class CatchMode(val value: String) {
         }
     }
 }
-

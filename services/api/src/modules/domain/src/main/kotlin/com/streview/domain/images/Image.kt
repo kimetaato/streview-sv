@@ -7,7 +7,7 @@ class Image private constructor(
     val fileName: FileName,
 ) {
     companion object {
-        fun create(fileName: String):Image {
+        fun create(fileName: String): Image {
             return Image(
                 imageUUID = UUID.generate(),
                 fileName = FileName(fileName),

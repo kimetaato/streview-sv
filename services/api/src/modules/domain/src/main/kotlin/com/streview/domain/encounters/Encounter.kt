@@ -21,7 +21,6 @@ class Encounter private constructor(
     val domainEvents: List<DomainEvent>
         get() = _domainEvents.toList()
 
-
     companion object {
         fun factory(actorID: String, encounterDate: LocalDate): Encounter {
             return Encounter(
@@ -47,7 +46,7 @@ class Encounter private constructor(
         }
 
         if (_encounterIDs.contains(encounterID)) {
-            throw DuplicateEncounterException("すでにすれ違っています。:${encounterDate}")
+            throw DuplicateEncounterException("すでにすれ違っています。:$encounterDate")
         }
 
         // すれちがいを追加
@@ -63,7 +62,6 @@ class Encounter private constructor(
         )
         return this
     }
-
 }
 
 @JvmInline

@@ -60,19 +60,22 @@ class ConfigurationIntegrationTest : FreeSpec(), KoinTest {
                     // 準備: 設定値を直接注入するKoinモジュールを開始
                     testApplication {
                         startKoin {
-                            modules(module {
-                                single<EncounterDecryptionConfig> {
-                                    val item =
-                                        SystemFileSystem.source(Path(tempKeyFile.toString())).buffered().readString()
+                            modules(
+                                module {
+                                    single<EncounterDecryptionConfig> {
+                                        val item =
+                                            SystemFileSystem.source(Path(tempKeyFile.toString())).buffered()
+                                                .readString()
 
-                                    EncounterDecryptionConfig(
-                                        item
-                                    )
+                                        EncounterDecryptionConfig(
+                                            item
+                                        )
+                                    }
+                                    single<EncounterDecryptionService> {
+                                        EncounterDecryptionService(get())
+                                    }
                                 }
-                                single<EncounterDecryptionService> {
-                                    EncounterDecryptionService(get())
-                                }
-                            })
+                            )
                         }
                     }
 
@@ -97,15 +100,17 @@ class ConfigurationIntegrationTest : FreeSpec(), KoinTest {
 
                 // 準備: 存在しないファイルパスを使用するKoinモジュールを開始
                 startKoin {
-                    modules(module {
-                        single<EncounterDecryptionConfig> {
-                            val item = SystemFileSystem.source(Path(nonExistentPath)).buffered().readString()
+                    modules(
+                        module {
+                            single<EncounterDecryptionConfig> {
+                                val item = SystemFileSystem.source(Path(nonExistentPath)).buffered().readString()
 
-                            EncounterDecryptionConfig(
-                                item
-                            )
+                                EncounterDecryptionConfig(
+                                    item
+                                )
+                            }
                         }
-                    })
+                    )
                 }
                 // 検証: 存在しないファイルパスでDI取得時に例外が発生することを確認
                 shouldThrow<Exception> {
@@ -122,18 +127,21 @@ class ConfigurationIntegrationTest : FreeSpec(), KoinTest {
 
                 try {
                     startKoin {
-                        modules(module {
-                            single<EncounterDecryptionConfig> {
-                                val item = SystemFileSystem.source(Path(tempKeyFile.toString())).buffered().readString()
+                        modules(
+                            module {
+                                single<EncounterDecryptionConfig> {
+                                    val item =
+                                        SystemFileSystem.source(Path(tempKeyFile.toString())).buffered().readString()
 
-                                EncounterDecryptionConfig(
-                                    item
-                                )
+                                    EncounterDecryptionConfig(
+                                        item
+                                    )
+                                }
+                                single<EncounterDecryptionService> {
+                                    EncounterDecryptionService(get())
+                                }
                             }
-                            single<EncounterDecryptionService> {
-                                EncounterDecryptionService(get())
-                            }
-                        })
+                        )
                     }
 
                     // 検証: 不正な秘密鍵でサービス初期化時に例外が発生することを確認
@@ -147,7 +155,6 @@ class ConfigurationIntegrationTest : FreeSpec(), KoinTest {
                 }
             }
         }
-
 
         "空ファイルの場合の例外処理確認" {
             // 準備: 空のテスト用ファイルを作成

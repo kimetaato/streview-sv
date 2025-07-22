@@ -1,5 +1,4 @@
-package com.streview.usecase.users.dto
-
+package com.streview.application.usecases.users.dto
 
 import com.streview.application.usecases.InputPort
 import com.streview.application.usecases.OutputPort
@@ -35,10 +34,8 @@ data class RegisterUserRequest(
 @Serializable
 data class RegisterUserResponse(val userID: String) : OutputPort
 
-
 data class UpdateProfileRequest(val name: String?, val image: InputStream) : InputPort
 
 @Serializable
 data class UpdateProfileResponse(val name: String, val birtDay: String, val gender: Int, val iconUrl: String) :
     OutputPort
-
