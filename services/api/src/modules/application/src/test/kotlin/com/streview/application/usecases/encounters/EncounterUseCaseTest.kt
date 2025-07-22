@@ -16,10 +16,17 @@ import io.kotest.property.arbitrary.map
 import io.kotest.property.arbitrary.set
 import io.kotest.property.arbitrary.stringPattern
 import io.kotest.property.checkAll
-import io.mockk.*
+import io.mockk.Runs
+import io.mockk.clearAllMocks
+import io.mockk.coEvery
+import io.mockk.coVerify
+import io.mockk.every
+import io.mockk.just
+import io.mockk.mockk
+import io.mockk.mockkObject
+import io.mockk.verify
 import kotlinx.coroutines.runBlocking
 import kotlinx.datetime.LocalDate
-
 
 class EncounterUseCaseTest : FreeSpec({
 
@@ -68,7 +75,7 @@ class EncounterUseCaseTest : FreeSpec({
                  * 引数で指定される日付に応じて返すMockを変更する
                  */
                 coEvery { mockRepository.findByID(actorID, any()) } answers {
-                    val date = secondArg<LocalDate>()   //
+                    val date = secondArg<LocalDate>() //
                     mockEncounterMap[date]!!
                 }
 
@@ -87,7 +94,6 @@ class EncounterUseCaseTest : FreeSpec({
                  */
                 coEvery { EventBus.publish(any<DomainEvent>()) } just Runs
 
-
                 // テスト実行
                 val useCase = EncounterUseCase(mockRepository, mockDecryptionService)
                 val encounters = encounterDates.map { date ->
@@ -100,16 +106,17 @@ class EncounterUseCaseTest : FreeSpec({
 
                 val response = runBlocking { useCase.execute(request) }
 
-
                 // 検証
-                response.result shouldBe true   // レスポンス成功してる？
+                response.result shouldBe true // レスポンス成功してる？
                 coVerify(exactly = encounterDates.size) { mockRepository.findByID(actorID, any()) } // 日付の数だけ
-                coVerify(exactly = encounterDates.size) { mockRepository.save(any()) }  // 日付の数だけ
+                coVerify(exactly = encounterDates.size) { mockRepository.save(any()) } // 日付の数だけ
                 mockEncounterMap.values.forEach { mockEncounter ->
                     coVerify(exactly = encounterIDs.size) { mockEncounter.add(any()) }
                     mockEncounter.domainEvents.size shouldBe encounterIDs.size
                 }
-                verify(exactly = encounterDates.size * encounterIDs.size) { mockDecryptionService.extractUserID(any()) }   // IDの数だけ呼び出される
+                verify(exactly = encounterDates.size * encounterIDs.size) {
+                    mockDecryptionService.extractUserID(any())
+                } // IDの数だけ呼び出される
                 coVerify(exactly = encounterDates.size * encounterIDs.size) { EventBus.publish(any<DomainEvent>()) }
             }
         }
