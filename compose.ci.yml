@@ -6,3 +6,4 @@ services:
     environment:
       TZ: Asia/Tokyo
       NODE_ENV: test
+    depends_on: []
