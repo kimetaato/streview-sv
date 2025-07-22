@@ -1,0 +1,8 @@
+services:
+  api-srv:
+    volumes:
+      - "./services/api/:/app/"
+      - "./openapi/:/openapi/"
+    environment:
+      TZ: Asia/Tokyo
+      NODE_ENV: test

@@ -1,0 +1,28 @@
+name: CI
+on:
+  pull_request:
+    branches:
+      - develop
+
+jobs:
+  build-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Start containers
+        run: |
+          docker compose -f compose.yml -f compose.ci.yml up -d api-srv
+
+      - name: Run linter
+        run: |
+          docker compose exec -T api-srv bash -c "cd src && ./gradlew detektAll --no-configuration-cache"
+
+      - name: Run tests
+        run: |
+          docker compose exec -T api-srv bash -c "cd src && ./gradlew test"
+
+      - name: Build project
+        run: |
+          docker compose exec -T api-srv bash -c "cd src && ./gradlew build"
