@@ -15,7 +15,9 @@ allprojects {
     }
 
     tasks.withType<Detekt>().configureEach {
-        enabled = false
+        if (name != "detektAll") {
+            enabled = false
+        }
     }
 
     tasks.withType<Test> {
