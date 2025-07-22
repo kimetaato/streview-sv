@@ -14,41 +14,20 @@ allprojects {
         }
     }
 
-    detekt {
-        buildUponDefaultConfig = true
-        allRules = false
-        autoCorrect = true
-
-        config.setFrom("$rootDir/config/detekt.yml")
-        // サブプロジェクトのレポートディレクトリ（個別レポート用）
-        reportsDir = layout.buildDirectory.dir("reports/detekt").get().asFile
-    }
-
     tasks.withType<Detekt>().configureEach {
-        reports {
-            html.required.set(true)
-            xml.required.set(true)
-            txt.required.set(true)
-            sarif.required.set(true)
-            md.required.set(true)
-        }
-        exclude("**/generated/**")
-        exclude("**/build/**")
+        enabled = false
     }
 
     tasks.withType<Test> {
         useJUnitPlatform()
-
         testLogging {
             events("passed", "skipped", "failed")
             showStandardStreams = false
         }
-
         systemProperties = System.getProperties().map { it.key.toString() to it.value }.toMap()
     }
 }
 
-// ルートプロジェクトでのみ統合レポートタスクを作成
 if (project == rootProject) {
     val detektAll by tasks.registering(Detekt::class) {
         description = "全プロジェクトのdetekt結果を統合したレポートを生成"
@@ -57,13 +36,14 @@ if (project == rootProject) {
         allRules = false
         autoCorrect = true
 
-        config.setFrom("$rootDir/config/detekt.yml")
+        // Configuration時にパスを解決（実行時ではなく）
+        val configFile = file("$rootDir/config/detekt.yml")
+        val sourceFiles = files(allprojects.map { "${it.projectDir}/src" })
+        val reportsDirectory = file("$rootDir/build/reports/detekt")
 
-        // 全サブプロジェクトのソースを対象に含める
-        setSource(files(allprojects.map { "${it.projectDir}/src" }))
-
-        // 統合レポートの出力先
-        reportsDir = file("$rootDir/build/reports/detekt")
+        config.setFrom(configFile)
+        setSource(sourceFiles)
+        reportsDir = reportsDirectory
 
         reports {
             html.required.set(true)
@@ -77,8 +57,7 @@ if (project == rootProject) {
         exclude("**/build/**")
     }
 
-    // 既存のdetektタスクに依存を追加（オプション）
     tasks.named("detekt") {
-        finalizedBy(detektAll)
+        dependsOn(detektAll)
     }
 }

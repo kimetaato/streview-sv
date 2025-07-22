@@ -32,8 +32,8 @@ class ConfigurationIntegrationTest : FreeSpec(), KoinTest {
     private fun generatePemFormattedPrivateKey(keyBytes: ByteArray): String {
         val base64Key = Base64.getEncoder().encodeToString(keyBytes)
         return "-----BEGIN PRIVATE KEY-----\n" +
-                base64Key.chunked(64).joinToString("\n") + "\n" +
-                "-----END PRIVATE KEY-----"
+            base64Key.chunked(64).joinToString("\n") + "\n" +
+            "-----END PRIVATE KEY-----"
     }
 
     init {
