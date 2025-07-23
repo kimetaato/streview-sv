@@ -1,6 +1,7 @@
 package com.streview.configure
 
 import com.streview.domain.exceptions.ConflictException
+import com.streview.domain.exceptions.InvalidInputException
 import com.streview.domain.exceptions.NotFoundException
 import com.streview.domain.exceptions.ValidationException
 import io.ktor.http.*
@@ -13,6 +14,9 @@ fun Application.configureStatusPage() {
         // 例外に対するレスポンスを定義する
         exception<NotFoundException> { call, _ ->
             return@exception call.respond(HttpStatusCode.NotFound)
+        }
+        exception<InvalidInputException> { call, cause ->
+            return@exception call.respond(HttpStatusCode.BadRequest, cause.message ?: "")
         }
         // バリデーションに問題問題があった場合のエラーレスポンス
         exception<ValidationException> { call, cause ->
