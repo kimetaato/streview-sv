@@ -1,7 +1,6 @@
 plugins {
     alias(libs.plugins.kotlin.jvm)
     alias(libs.plugins.kotlin.plugin.serialization)
-
 }
 
 dependencies {
@@ -15,9 +14,13 @@ dependencies {
 
     // test
     testImplementation(libs.bundles.kotest.core)
+    testImplementation(libs.ktor.server.content.negotiation)
+    testImplementation(libs.ktor.serialization.kotlinx.json)
+    testImplementation(libs.bundles.test.ktor)
+    testImplementation(libs.bundles.test.koin)
+    testImplementation(libs.mockk)
 
     // モジュールの関連付け
     implementation(project(":modules:application"))
     implementation(project(":modules:domain"))
 }
-
