@@ -162,7 +162,12 @@ class RelayRepositoryImplTest : FreeSpec({
             }
 
             "プロパティテスト: 複数のrelayを保存しても正しく区別して取得できること" {
-                checkAll(validUserIDArb, validUserIDArb, reviewUUIDArb, reviewUUIDArb) { userID1, userID2, reviewUUID1, reviewUUID2 ->
+                checkAll(
+                    validUserIDArb,
+                    validUserIDArb,
+                    reviewUUIDArb,
+                    reviewUUIDArb
+                ) { userID1, userID2, reviewUUID1, reviewUUID2 ->
                     if (userID1 != userID2 || reviewUUID1 != reviewUUID2) {
                         suspendTransaction {
                             val relay1 = Relay.reconstruct(userID1, reviewUUID1, false)
