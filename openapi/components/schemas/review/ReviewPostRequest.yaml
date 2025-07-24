@@ -1,0 +1,27 @@
+# POST/PUT用のレビュー投稿リクエスト
+
+type: object
+properties:
+  title:
+    type: string
+  comment:
+    type: string
+  star:
+    type: number
+    format: float
+    minimum: 0.5
+    maximum: 5.0
+  photo:
+    type: string
+    format: binary
+  info:
+    type: object
+    required: [ s_id ]
+    properties:
+      s_id:
+        type: string
+required:
+  - title
+  - comment
+  - star
+  - info
