@@ -28,9 +28,6 @@ jobs:
 
       - name: Setup Gradle
         uses: ./.github/actions/setup
-        with:
-          java-version: '21'
-          working-directory: './services/api/src'
 
       - name: Download dependencies
         working-directory: ./services/api/src/
@@ -79,9 +76,6 @@ jobs:
 
       - name: Setup Gradle
         uses: ./.github/actions/setup
-        with:
-          java-version: '21'
-          working-directory: './services/api/src'
 
       - name: test app module
         working-directory: ./services/api/src/
@@ -98,9 +92,6 @@ jobs:
 
       - name: Setup Gradle
         uses: ./.github/actions/setup
-        with:
-          java-version: '21'
-          working-directory: './services/api/src'
 
       - name: test presentation module
         working-directory: ./services/api/src/
@@ -117,9 +108,6 @@ jobs:
 
       - name: Setup Gradle
         uses: ./.github/actions/setup
-        with:
-          java-version: '21'
-          working-directory: './services/api/src'
 
       - name: test infrastructure module
         working-directory: ./services/api/src/
@@ -136,9 +124,6 @@ jobs:
 
       - name: Setup Gradle
         uses: ./.github/actions/setup
-        with:
-          java-version: '21'
-          working-directory: './services/api/src'
 
       - name: test application module
         working-directory: ./services/api/src/
@@ -155,9 +140,6 @@ jobs:
 
       - name: Setup Gradle
         uses: ./.github/actions/setup
-        with:
-          java-version: '21'
-          working-directory: './services/api/src'
 
       - name: test domain module
         working-directory: ./services/api/src/
@@ -172,9 +154,6 @@ jobs:
 
       - name: Setup Gradle
         uses: ./.github/actions/setup
-        with:
-          java-version: '21'
-          working-directory: './services/api/src'
 
       - name: run lint
         working-directory: ./services/api/src/

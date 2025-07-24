@@ -1,24 +1,13 @@
 name: 'Setup Gradle Environment'
 description: 'Setup JDK and Gradle with caching for faster builds'
 
-# 入力パラメータ（オプション）
-inputs:
-  java-version:
-    description: 'Java version to setup'
-    required: false
-    default: '21'
-  working-directory:
-    description: 'Working directory for Gradle'
-    required: false
-    default: './services/api/src'
-
 runs:
   using: "composite"
   steps:
     - name: Setup JDK
       uses: actions/setup-java@v4
       with:
-        java-version: ${{ inputs.java-version }}
+        java-version: '21'
         distribution: 'temurin'
 
     - name: Cache Gradle
@@ -27,7 +16,7 @@ runs:
         path: |
           ~/.gradle/caches
           ~/.gradle/wrapper
-          ${{ inputs.working-directory }}/.gradle/
+          ./services/api/src/.gradle/
         key: gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
         restore-keys: |
           gradle-${{ hashFiles('**/*.gradle*') }}
@@ -36,4 +25,4 @@ runs:
     # シェルコマンドも実行可能
     - name: Make gradlew executable
       shell: bash
-      run: chmod +x ${{ inputs.working-directory }}/gradlew
+      run: chmod +x ./services/api/src/gradlew
