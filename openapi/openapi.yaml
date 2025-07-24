@@ -26,6 +26,38 @@ servers:
         description: ローカルリバプロコンテナのポート
 
 paths:
+  /encounters:
+    post:
+      summary: すれ違いデータの投稿
+      tags:
+        - encounters
+      description: すれ違ったときに受け取った文字列からユーザーを特定し、レビューを受け取る
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                encounters:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      date:
+                        type: string
+                      encounter:
+                        type: array
+                        items:
+                          type: string
+      responses:
+        '204':
+          description: すれ違いの処理がきちんと行えました。
+        '404':
+          description: すれ違いを要求されたけど、特にすれ違える人いなかったです。リスト長が0のリクエストなどがあったばあい
+
+
+
   /reviews:
     post:
       summary: 新規レビュー投稿
@@ -409,10 +441,8 @@ components:
           type: string
         phone_number:
           type: string
-          nullable: true
         opening_time:
           type: string
-          nullable: true
         photo:
           type: string
           format: binary
