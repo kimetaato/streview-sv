@@ -1,0 +1,22 @@
+# GET /reviews/{r_id} の詳細表示に使うレスポンス
+# 単一レビューの詳細情報
+
+type: object
+properties:
+  title:
+    type: string
+  comment:
+    type: string
+  star:
+    type: number
+    format: float
+    minimum: 0.5
+    maximum: 5.0
+  photo:
+    type: string
+    format: binary
+  info:
+    type: object
+    properties:
+      s_id:
+        type: string
