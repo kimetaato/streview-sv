@@ -1,7 +1,0 @@
-# ユーザーの共有設定（プロフィール公開ON/OFF）のスキーマ
-# GET /users/settings/share_mode や PUT で使用
-
-type: object
-properties:
-  share_mode:
-    type: boolean  # true: 公開, false: 非公開
