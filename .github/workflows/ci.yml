@@ -85,7 +85,7 @@ jobs:
 
       - name: test app module
         working-directory: ./services/api/src/
-        run: ./gradlew app:test
+        run: ./gradlew app:test --no-daemon
 
   test-presentation:
     needs:
@@ -104,7 +104,7 @@ jobs:
 
       - name: test presentation module
         working-directory: ./services/api/src/
-        run: ./gradlew modules:presentation:test
+        run: ./gradlew modules:presentation:test --no-daemon
 
   test-infrastructure:
     needs:
@@ -123,7 +123,7 @@ jobs:
 
       - name: test infrastructure module
         working-directory: ./services/api/src/
-        run: ./gradlew modules:infrastructure:test
+        run: ./gradlew modules:infrastructure:test --no-daemon
 
   test-application:
     needs:
@@ -142,7 +142,7 @@ jobs:
 
       - name: test application module
         working-directory: ./services/api/src/
-        run: ./gradlew modules:application:test
+        run: ./gradlew modules:application:test --no-daemon
 
   test-domain:
     needs:
@@ -161,7 +161,7 @@ jobs:
 
       - name: test domain module
         working-directory: ./services/api/src/
-        run: ./gradlew modules:domain:test
+        run: ./gradlew modules:domain:test --no-daemon
 
   linter:
     needs:
@@ -178,4 +178,4 @@ jobs:
 
       - name: run lint
         working-directory: ./services/api/src/
-        run: ./gradlew detekt
+        run: ./gradlew detekt --no-daemon
