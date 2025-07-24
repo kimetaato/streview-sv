@@ -1,0 +1,95 @@
+openapi: 3.1.0
+info:
+  title: すとれびゅ！
+  version: 1.0.0
+  description: |
+    すれ違いレビューアプリ「すとれびゅ！」のAPI仕様書。
+    レビュー投稿・取得、店舗管理、ユーザー情報管理、すれ違い登録などの機能を提供します。
+
+servers:
+  - url: http://localhost:{api_http_host_port}
+    description: ローカルな開発用APIコンテナ
+    variables:
+      api_http_host_port:
+        default: "8080"
+        description: ローカルAPIコンテナのポート
+
+  - url: http://localhost:{api_mock_http_host_port}
+    description: ローカルなAPIモックコンテナ
+    variables:
+      api_mock_http_host_port:
+        default: "4010"
+        description: ローカルなAPIモックコンテナのポート
+      
+  - url: https://localhost:{rev_pxy_https_host_port}
+    description: ローカルな開発用リバプロコンテナ
+    variables: 
+      rev_pxy_https_host_port:
+        default: "443"
+        description: ローカルリバプロコンテナのポート
+
+paths:
+  /reviews:
+    $ref: './paths/reviews.yaml'
+  /stores:
+    $ref: './paths/stores.yaml'
+  /users:
+    $ref: './paths/users.yaml'
+  /encounters:
+    $ref: './paths/encounters.yaml'
+
+components:
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: |
+        APIキーをヘッダーに設定して認証します。
+  schemas:
+    Review: 
+      $ref: './components/schemas/review/Review.yaml'
+
+    ReviewPostRequest:
+      $ref: './components/schemas/review/ReviewPostRequest.yaml'
+
+    ReviewDetail:
+      $ref: './components/schemas/review/ReviewDetail.yaml'
+
+    ReviewUpdateRequest:
+      $ref: './components/schemas/review/ReviewUpdateRequest.yaml'
+
+    ReviewBrief:
+      $ref: './components/schemas/review/ReviewBrief.yaml'
+
+    GroupedReviewResponse:
+      $ref: './components/schemas/review/GroupedReviewResponse.yaml'
+
+    StoreReviewGroup:
+      $ref: './components/schemas/review/StoreReviewGroup.yaml'
+
+    Store:
+      $ref: './components/schemas/store/Store.yaml'
+
+    StorePostRequest:
+      $ref: './components/schemas/store/StorePostRequest.yaml'
+
+    StoreWithReviews:
+      $ref: './components/schemas/store/StoreWithReviews.yaml'
+
+    StoreLocationResponse:
+      $ref: './components/schemas/store/StoresLocationResponse.yaml'
+
+
+    UserProfile:
+      $ref: './components/schemas/user/UserProfile.yaml'
+
+    ShareMode:
+      $ref: './components/schemas/user/ShareMode.yaml'
+
+
+    EncounterRequest:
+      $ref: './components/schemas/encounter/EncounterRequest.yaml'
+
+    EncounterRecord:
+      $ref: './components/schemas/encounter/EncounterRecord.yaml'
