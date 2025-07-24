@@ -1,0 +1,14 @@
+# GroupedReviewResponse 内の 1 店舗分のレビューグループ
+
+type: object
+properties:
+  s_id:
+    type: string
+    description: 店舗ID
+  store:
+    $ref: '../store/Store.yaml'
+  reviews:
+    type: array
+    description: 店舗に紐づくレビュー一覧
+    items:
+      $ref: './Review.yaml'
