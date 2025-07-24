@@ -19,15 +19,15 @@ properties:
   address:
     type: string
     description: 住所
-phone_number:
-  type: [string, "null"]
-  description: 電話番号
+  phone_number:
+    type: [string, "null"]
+    description: 電話番号
 
-opening_time:
-  type: [string, "null"]
-  description: 営業時間
+  opening_time:
+    type: [string, "null"]
+    description: 営業時間
 
-photo:
-  type: [string, "null"]
-  format: binary
-  description: 店舗の画像
+  photo:
+    type: [string, "null"]
+    format: binary
+    description: 店舗の画像
