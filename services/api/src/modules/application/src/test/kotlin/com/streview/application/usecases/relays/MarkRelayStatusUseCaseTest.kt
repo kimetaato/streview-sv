@@ -20,7 +20,6 @@ import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.every
 import io.mockk.mockk
-import kotlinx.coroutines.runBlocking
 
 class MarkRelayStatusUseCaseTest : FreeSpec({
 
@@ -48,7 +47,7 @@ class MarkRelayStatusUseCaseTest : FreeSpec({
                 val useCase = MarkRelayStatusUseCase(mockRepository, mockDomainService)
                 val request = RelayStatusToggleRequest(userID, reviewUUID, true)
 
-                val response = runBlocking { useCase.execute(request) }
+                val response = useCase.execute(request)
 
                 // 検証
                 response.reviewUUID shouldBe reviewUUID
@@ -77,7 +76,7 @@ class MarkRelayStatusUseCaseTest : FreeSpec({
                 val useCase = MarkRelayStatusUseCase(mockRepository, mockDomainService)
                 val request = RelayStatusToggleRequest(userID, reviewUUID, false)
 
-                val response = runBlocking { useCase.execute(request) }
+                val response = useCase.execute(request)
 
                 // 検証
                 response.reviewUUID shouldBe reviewUUID
@@ -85,45 +84,6 @@ class MarkRelayStatusUseCaseTest : FreeSpec({
                 coVerify(exactly = 0) { mockDomainService.reReview(any()) } // falseの場合は呼ばれない
                 coVerify(exactly = 1) { mockRepository.save(mockRelay) }
                 coVerify(exactly = 1) { mockRelay.unsetReReview() }
-            }
-        }
-
-        "プロパティテスト: 両方のtoggleStatusパターンでレスポンスが正しく返される" {
-            checkAll(validUserIDArb, reviewUUIDArb, Arb.boolean()) { userID, reviewUUID, toggleStatus ->
-                // 各テスト実行前にモックをクリア
-                clearAllMocks()
-
-                val mockRepository = mockk<RelayRepository>()
-                val mockDomainService = mockk<RelayDomainService>()
-                val mockRelay = mockk<Relay>(relaxed = true)
-                val mockUpdatedRelay = mockk<Relay>(relaxed = true)
-
-                // モックの設定
-                coEvery { mockRepository.findByUserIdAndReviewUUID(userID, reviewUUID) } returns mockRelay
-                coEvery { mockDomainService.reReview(mockRelay) } returns mockUpdatedRelay
-                coEvery { mockRepository.save(any()) } returns Unit
-                every { mockRelay.reviewUUID.value } returns reviewUUID
-                every { mockUpdatedRelay.reviewUUID.value } returns reviewUUID
-                every { mockRelay.unsetReReview() } returns Unit
-
-                // テスト実行
-                val useCase = MarkRelayStatusUseCase(mockRepository, mockDomainService)
-                val request = RelayStatusToggleRequest(userID, reviewUUID, toggleStatus)
-
-                val response = runBlocking { useCase.execute(request) }
-
-                // 検証
-                response.reviewUUID shouldBe reviewUUID
-                coVerify(exactly = 1) { mockRepository.findByUserIdAndReviewUUID(userID, reviewUUID) }
-                coVerify(exactly = 1) { mockRepository.save(any()) }
-
-                if (toggleStatus) {
-                    coVerify(exactly = 1) { mockDomainService.reReview(mockRelay) }
-                    coVerify(exactly = 0) { mockRelay.unsetReReview() }
-                } else {
-                    coVerify(exactly = 0) { mockDomainService.reReview(any()) }
-                    coVerify(exactly = 1) { mockRelay.unsetReReview() }
-                }
             }
         }
     }
@@ -134,10 +94,9 @@ class MarkRelayStatusUseCaseTest : FreeSpec({
                 // 各テスト実行前にモックをクリア
                 clearAllMocks()
 
+                // モックの設定（nullを返す）
                 val mockRepository = mockk<RelayRepository>()
                 val mockDomainService = mockk<RelayDomainService>()
-
-                // モックの設定（nullを返す）
                 coEvery { mockRepository.findByUserIdAndReviewUUID(userID, reviewUUID) } returns null
 
                 // テスト実行
@@ -145,7 +104,7 @@ class MarkRelayStatusUseCaseTest : FreeSpec({
                 val request = RelayStatusToggleRequest(userID, reviewUUID, toggleStatus)
 
                 val exception = shouldThrow<InvalidInputException> {
-                    runBlocking { useCase.execute(request) }
+                    useCase.execute(request)
                 }
 
                 // 検証

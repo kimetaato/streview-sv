@@ -25,7 +25,6 @@ import io.mockk.just
 import io.mockk.mockk
 import io.mockk.mockkObject
 import io.mockk.verify
-import kotlinx.coroutines.runBlocking
 import kotlinx.datetime.LocalDate
 
 class EncounterUseCaseTest : FreeSpec({
@@ -37,9 +36,9 @@ class EncounterUseCaseTest : FreeSpec({
         LocalDate(year, month, day)
     }
     // 複数日付の生成
-    val encounterDatesArb = Arb.set(encounterDateArb, 2..2).map { it.toList() }
+    val encounterDatesArb = Arb.set(encounterDateArb, 2..5).map { it.toList() }
     // 複数IDの生成
-    val encounterIDsArb = Arb.set(userIDArb, 2..2).map { it.toList() }
+    val encounterIDsArb = Arb.set(userIDArb, 2..5).map { it.toList() }
 
     "EncounterUseCaseの正常系テスト" - {
 
@@ -104,7 +103,7 @@ class EncounterUseCaseTest : FreeSpec({
                     encounters = encounters
                 )
 
-                val response = runBlocking { useCase.execute(request) }
+                val response = useCase.execute(request)
 
                 // 検証
                 response.result shouldBe true // レスポンス成功してる？
