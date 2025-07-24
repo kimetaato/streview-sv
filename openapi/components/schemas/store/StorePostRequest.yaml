@@ -1,0 +1,33 @@
+# StorePostRequest.yaml
+# 店舗登録時（POST）のリクエストスキーマ
+
+type: object
+required:
+  - s_name
+  - geo_location
+  - genre
+properties:
+  s_name:
+    type: string
+    description: 店舗名
+  genre_id:
+    type: string
+    description: ジャンルのID
+  geo_location:
+    type: string
+    description: 緯度・経度などの位置情報
+  address:
+    type: string
+    description: 住所
+phone_number:
+  type: [string, "null"]
+  description: 電話番号
+
+opening_time:
+  type: [string, "null"]
+  description: 営業時間
+
+photo:
+  type: [string, "null"]
+  format: binary
+  description: 店舗の画像
