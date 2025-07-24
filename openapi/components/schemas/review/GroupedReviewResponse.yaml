@@ -1,0 +1,9 @@
+# /reviews/shared, /mine, /gone, /want などで使われる、複数のレビューを店舗単位でまとめたレスポンス形式
+
+type: object
+properties:
+  s_group:
+    type: array
+    description: 店舗ごとのレビューのグループ配列
+    items:
+      $ref: './StoreReviewGroup.yaml'
