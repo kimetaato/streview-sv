@@ -1,0 +1,19 @@
+# 一日分のすれ違い情報をまとめたオブジェクトスキーマ
+# EncounterRequest.yaml の中で使われる
+
+type: object
+required:
+  - date
+  - encounter
+properties:
+  date:
+    type: string
+    format: date
+    example: "2025-07-10"
+    description: すれ違いが発生した日付（YYYY-MM-DD形式）
+  encounter:
+    type: array
+    items:
+      type: string
+      example: "user123"
+    description: その日にすれ違ったユーザーIDの一覧
