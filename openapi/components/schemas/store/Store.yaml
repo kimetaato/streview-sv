@@ -1,0 +1,35 @@
+# レスポンス用レビュー全体の構造です
+# components.yaml から $ref: 'schemas/review/Store.yaml' で参照されます
+
+type: object
+properties:
+  s_id:
+    type: string
+    description: 店舗ID
+  s_name:
+    type: string
+    description: 店舗名
+  genre:
+    type: string
+    description: 店舗のジャンル
+  address:
+    type: string
+    description: 店舗の住所
+  geo_location:
+    type: string
+    description: 店舗の緯度経度（カンマ区切り or GeoJSON的）
+  description:
+    type: string
+    description: 店舗の紹介文
+  opening_time:
+    type: string
+    description: 営業時間
+  star:
+    type: number
+    description: 平均評価
+  images:
+    type: array
+    items:
+      type: string
+      format: binary
+    description: 店舗画像の一覧
