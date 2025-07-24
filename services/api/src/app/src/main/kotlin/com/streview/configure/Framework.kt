@@ -1,16 +1,22 @@
 package com.streview.configure
 
+import com.streview.application.events.EncounterAddEventHandler
 import com.streview.application.services.EncounterDecryptionConfig
 import com.streview.application.services.EncounterDecryptionService
 import com.streview.application.services.ImageStorageConfig
 import com.streview.application.services.ImageStorageService
+import com.streview.application.usecases.encounters.EncounterUseCase
 import com.streview.application.usecases.relays.MarkRelayStatusUseCase
 import com.streview.application.usecases.stores.TryStoreUseCase
 import com.streview.application.usecases.users.RegisterUserUseCase
+import com.streview.domain.commons.event.EventBus
+import com.streview.domain.encounters.EncounterAddDomainEvent
+import com.streview.domain.encounters.EncounterRepository
 import com.streview.domain.images.ImageRepository
 import com.streview.domain.relays.RelayRepository
 import com.streview.domain.stores.StoreRepository
 import com.streview.domain.users.UserRepository
+import com.streview.infrastructure.database.encounters.EncounterRepositoryImpl
 import com.streview.infrastructure.database.images.ImageRepositoryImpl
 import com.streview.infrastructure.database.relays.RelayRepositoryImpl
 import com.streview.infrastructure.database.stores.StoreRepositoryImpl
@@ -32,6 +38,9 @@ val useCaseModule = module {
     }
     single<MarkRelayStatusUseCase> {
         MarkRelayStatusUseCase(get(), get())
+    }
+    single<EncounterUseCase> {
+        EncounterUseCase(get(), get())
     }
 }
 
@@ -69,6 +78,26 @@ val repositoryModule = module {
     single<RelayRepository> {
         RelayRepositoryImpl()
     }
+    single<EncounterRepository> {
+        EncounterRepositoryImpl()
+    }
+}
+
+val eventModule = module {
+    single {
+        EventBus
+    }
+    single { // TODO: 依存関係はまだ足りない
+        EncounterAddEventHandler(get(), get())
+    }
+
+    // イベントを購読する
+    factory { (eventBus: EventBus) ->
+        {
+            // EventHandlerを登録
+            eventBus.subscribe(EncounterAddDomainEvent::class.java, get<EncounterAddEventHandler>())
+        }
+    }
 }
 
 // 各種ファイルから読み取った値を依存関係に登録
@@ -98,7 +127,8 @@ fun Application.configureFramework() {
             applicationServiceModule,
             domainServiceModule,
             repositoryModule,
-            configureModule
+            configureModule,
+            eventModule
         )
     }
 }
