@@ -1,0 +1,35 @@
+# 周辺の店舗位置情報を返すレスポンス形式
+# /stores/locations で参照される
+
+type: object
+properties:
+  stores:
+    type: array
+    description: 該当する店舗の配列
+    items:
+      type: object
+      properties:
+        s_id:
+          type: string
+          description: 店舗ID
+        s_name:
+          type: string
+          description: 店舗名
+        geo_location:
+          type: object
+          description: 緯度経度情報
+          properties:
+            lat:
+              type: number
+              format: double
+              description: 緯度
+            lng:
+              type: number
+              format: double
+              description: 経度
+          required:
+            - lat
+            - lng
+        address:
+          type: string
+          description: 店舗の住所
