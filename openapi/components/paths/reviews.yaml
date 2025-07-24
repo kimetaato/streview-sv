@@ -1,0 +1,129 @@
+# レビューに関する登録・取得系エンドポイントをまとめたパス定義
+
+/reviews:
+  post:
+    summary: 新規レビュー投稿
+    description: 画像を含めてレビューを登録（multipart/form-data）
+    requestBody:
+      required: true
+      content:
+        multipart/form-data:
+          schema:
+            $ref: '../components/schemas/review/Review.yaml'
+    responses:
+      '201': { description: 登録成功 }
+      '400': { description: 不正なリクエスト }
+      '401': { description: 認証が必要 }
+      '500': { description: サーバー内部エラー }
+
+/reviews/{r_id}:
+  get:
+    summary: レビュー詳細取得
+    parameters:
+      - name: r_id
+        in: path
+        required: true
+        schema: { type: string }
+    responses:
+      '200':
+        description: 詳細情報
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '../components/schemas/review/ReviewDetail.yaml'
+      '404': { description: 見つからない }
+      '500': { description: サーバー内部エラー }
+
+  put:
+    summary: レビュー更新
+    parameters:
+      - name: r_id
+        in: path
+        required: true
+        schema: { type: string }
+    requestBody:
+      required: true
+      content:
+        multipart/form-data:
+          schema:
+            $ref: '../components/schemas/review/ReviewPostRequest.yaml'
+    responses:
+      '200': { description: 更新成功 }
+
+  delete:
+    summary: レビュー削除
+    parameters:
+      - name: r_id
+        in: path
+        required: true
+        schema: { type: string }
+    responses:
+      '204': { description: 削除成功 }
+
+  patch:
+    summary: レビューをリレビューへと変更する
+    parameters:
+      - name: r_id
+        in: path
+        required: true
+        schema: { type: string }
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '../components/schemas/review/ReviewUpdateRequest.yaml'
+    responses:
+      '200': { description: 更新成功 }
+      '400': { description: 不正なリクエスト }
+      '404': { description: 該当レビューが存在しません }
+
+/reviews/shared:
+  get:
+    summary: 共有されたレビューを取得
+    description: 他ユーザーから共有されたレビューを取得
+    responses:
+      '200':
+        description: 取得成功
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '../components/schemas/review/GroupedReviewResponse.yaml'
+      '500': { description: サーバー内部エラー }
+
+/reviews/mine:
+  get:
+    summary: 自分のレビューを取得
+    responses:
+      '200':
+        description: 取得成功
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '../components/schemas/review/GroupedReviewResponse.yaml'
+      '401': { description: 認証が必要です }
+      '500': { description: サーバー内部エラー }
+
+/reviews/gone:
+  get:
+    summary: 訪れた店舗のレビューを取得
+    responses:
+      '200':
+        description: 取得成功
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '../components/schemas/review/GroupedReviewResponse.yaml'
+      '500': { description: サーバー内部エラー }
+
+/reviews/want:
+  get:
+    summary: 行きたい店舗のレビューを取得
+    responses:
+      '200':
+        description: 取得成功
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '../components/schemas/review/GroupedReviewResponse.yaml'
+      '500': { description: サーバー内部エラー }

@@ -1,0 +1,71 @@
+# ユーザー関連のプロフィール情報や共有モード設定などをまとめた定義
+
+/users/profile/{u_id}:
+  get:
+    summary: ユーザープロフィール取得
+    description: 指定されたユーザーIDのプロフィール情報を取得します。
+    parameters:
+      - name: u_id
+        in: path
+        required: true
+        schema:
+          type: string
+    responses:
+      '200':
+        description: プロフィール取得成功
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/user/UserProfile.yaml'
+      '404': { description: ユーザーが見つかりません }
+      '500': { description: サーバー内部エラー }
+
+  put:
+    summary: ユーザープロフィール更新
+    description: 指定されたユーザーIDのプロフィールを更新します。
+    parameters:
+      - name: u_id
+        in: path
+        required: true
+        schema:
+          type: string
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '../components/schemas/user/UserProfile.yaml'
+    responses:
+      '200': { description: プロフィール更新成功 }
+      '400': { description: 不正なリクエスト }
+      '404': { description: ユーザーが見つかりません }
+      '500': { description: サーバー内部エラー }
+
+/users/settings/share_mode:
+  get:
+    summary: 共有設定情報の取得
+    description: ユーザーの共有情報設定を取得します。
+    responses:
+      '200':
+        description: 共有設定情報取得成功
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/user/ShareMode.yaml'
+      '404': { description: ユーザーが見つかりません }
+      '500': { description: サーバー内部エラー }
+
+  put:
+    summary: 共有設定更新
+    description: ユーザーの共有設定を更新します。
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '../components/schemas/user/ShareMode.yaml'
+    responses:
+      '200': { description: 共有設定更新成功 }
+      '400': { description: 不正なリクエスト }
+      '404': { description: ユーザーが見つかりません }
+      '500': { description: サーバー内部エラー }
