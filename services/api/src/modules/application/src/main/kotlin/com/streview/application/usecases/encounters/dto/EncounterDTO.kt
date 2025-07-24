@@ -21,4 +21,4 @@ data class DailyEncounter(val encounterDate: LocalDate, val encryptedEncounterID
 data class EncounterRequest(val userID: String, val encounters: List<DailyEncounter>) : InputPort
 
 @Serializable
-data class EncounterResponse(val result: Boolean) : OutputPort
+data class EncounterResponse(val encounterCount: Int) : OutputPort

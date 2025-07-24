@@ -2,6 +2,7 @@ package com.streview.domain.encounters
 
 import com.streview.domain.commons.UserID
 import com.streview.domain.exceptions.DuplicateEncounterException
+import com.streview.domain.exceptions.InvalidInputException
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.FreeSpec
 import io.kotest.matchers.collections.shouldBeEmpty
@@ -64,11 +65,10 @@ class EncounterTest : FreeSpec({
                 checkAll(validUserIDArb, validUserIDArb, validEncounterDateArb) { actorID, newUserID, encounterDate ->
                     val encounter = Encounter.factory(actorID, encounterDate)
                     if (actorID != newUserID) {
-                        val updatedEncounter = encounter.add(UserID(newUserID))
+                        encounter.add(UserID(newUserID))
 
-                        updatedEncounter.encounterIDs shouldHaveSize 1
-                        updatedEncounter.encounterIDs shouldContain UserID(newUserID)
-                        updatedEncounter shouldBe encounter
+                        encounter.encounterIDs shouldHaveSize 1
+                        encounter.encounterIDs shouldContain UserID(newUserID)
                     }
                 }
             }
@@ -78,10 +78,12 @@ class EncounterTest : FreeSpec({
             "プロパティテスト: 自分自身を追加してもencounterIDsは変更されない" {
                 checkAll(validUserIDArb, validEncounterDateArb) { actorID, encounterDate ->
                     val encounter = Encounter.factory(actorID, encounterDate)
-                    val updatedEncounter = encounter.add(UserID(actorID))
 
-                    updatedEncounter.encounterIDs.shouldBeEmpty()
-                    updatedEncounter shouldBe encounter
+                    shouldThrow<InvalidInputException> {
+                        encounter.add(UserID(actorID))
+                    }
+
+                    encounter.encounterIDs.shouldBeEmpty()
                 }
             }
         }
