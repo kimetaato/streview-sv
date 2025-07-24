@@ -1,0 +1,18 @@
+# ユーザープロフィールのレスポンススキーマ
+# GET /users/profile/{id} などで使われる
+
+type: object
+properties:
+  data:
+    type: object
+    properties:
+      name:
+        type: string
+      icon_id:
+        type: string
+      genre:
+        type: string
+      gender:
+        type: string
+        enum: [male, female, unknown]
+        description: ユーザーの性別
