@@ -1,0 +1,7 @@
+# ReviewUpdateRequest.yaml
+# PATCH 用のレビュー更新リクエスト（is_rr のみ）
+
+type: object
+properties:
+  is_rr:
+    type: boolean
