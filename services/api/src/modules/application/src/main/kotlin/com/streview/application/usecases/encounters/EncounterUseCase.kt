@@ -16,10 +16,10 @@ class EncounterUseCase(
         var encounterCount = 0
         // 日付ごとのエンティティで処理を行う
         input.encounters.map {
-            val encounter = eR.findByID(input.userID, it.encounterDate)
+            val encounter = eR.findByID(input.userID, it.date)
 
             // すれ違いを追加
-            it.encryptedEncounterIDs.forEach { encryptedEncounterID ->
+            it.encounter.forEach { encryptedEncounterID ->
                 // 暗号化されたencounterIDから実際のUserIDを抽出
                 val actualUserID = dS.extractUserID(encryptedEncounterID)
                 try {
