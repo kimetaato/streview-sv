@@ -1,0 +1,19 @@
+# すれ違い情報登録時のAPI定義
+
+/encounters:
+  post:
+    summary: すれ違い情報の登録
+    description: ユーザがすれ違ったほかのユーザ情報を日付ごとに登録します。
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '../components/schemas/encounter/EncounterRequest.yaml'
+    responses:
+      '201':
+        description: 登録成功
+      '400':
+        description: 不正なリクエスト
+      '500':
+        description: サーバー内部エラー
