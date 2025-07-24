@@ -26,6 +26,9 @@ allprojects {
             events("passed", "skipped", "failed")
             showStandardStreams = false
         }
+        failFast = true
+        maxParallelForks = Runtime.getRuntime().availableProcessors()
+
         systemProperties = System.getProperties().map { it.key.toString() to it.value }.toMap()
     }
 }
