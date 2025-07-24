@@ -1,0 +1,23 @@
+# 店舗詳細に含まれるレビュー情報
+# GET /stores/{s_id} のレスポンスに含まれるレビュー情報
+
+type: object
+properties:
+  icon_id:
+    type: string
+  star:
+    type: number
+    format: float
+    minimum: 0.5
+    maximum: 5.0
+  genre:
+    type: string
+  gender:
+    type: string
+    enum: [male, female, unknown]
+    description: ユーザーの性別
+  created_at:
+    type: string
+    format: date-time
+  comment:
+    type: string
