@@ -1,0 +1,12 @@
+# すれ違い情報のリクエストスキーマ
+# POST /encounters で使用する
+
+type: object
+required:
+  - encounters
+properties:
+  encounters:
+    type: array
+    description: 日付ごとのすれ違い情報の配列
+    items:
+      $ref: './EncounterRecord.yaml'  # 個々のすれ違い記録を定義した別スキーマ
