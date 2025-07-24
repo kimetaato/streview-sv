@@ -3,6 +3,7 @@ package com.streview.domain.encounters
 import com.streview.domain.commons.UserID
 import com.streview.domain.commons.event.DomainEvent
 import com.streview.domain.exceptions.DuplicateEncounterException
+import com.streview.domain.exceptions.InvalidInputException
 import kotlinx.datetime.Clock
 import kotlinx.datetime.LocalDate
 import kotlinx.datetime.TimeZone
@@ -40,27 +41,24 @@ class Encounter private constructor(
     }
 
     // すれ違いしたユーザーを追加する
-    fun add(encounterID: UserID): Encounter {
-        if (encounterID == actorID) {
-            return this
+    fun add(encounterID: UserID) {
+        when (encounterID) {
+            actorID -> throw InvalidInputException("不正な入力値が含まれています。")
+            in _encounterIDs -> throw DuplicateEncounterException("すでにすれ違っています。")
+            else -> {
+                // すれちがいを追加
+                _encounterIDs.add(encounterID)
+
+                // ドメインイベントを追加
+                _domainEvents.add(
+                    EncounterAddDomainEvent(
+                        actorID = actorID,
+                        encounterDate = encounterDate,
+                        encounterID = encounterID,
+                    )
+                )
+            }
         }
-
-        if (_encounterIDs.contains(encounterID)) {
-            throw DuplicateEncounterException("すでにすれ違っています。:$encounterDate")
-        }
-
-        // すれちがいを追加
-        _encounterIDs.add(encounterID)
-
-        // ドメインイベントを追加
-        _domainEvents.add(
-            EncounterAddDomainEvent(
-                actorID = actorID,
-                encounterDate = encounterDate,
-                encounterID = encounterID,
-            )
-        )
-        return this
     }
 }
 
