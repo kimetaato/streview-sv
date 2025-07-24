@@ -1,9 +1,13 @@
 name: CI
 on:
   push:
-    branches: [main, develop]
+    branches:
+      - main
+      - develop
   pull_request:
-    branches: [main, develop]
+    branches:
+      - main
+      - develop
 
 env:
   TZ: Asia/Tokyo
@@ -24,6 +28,9 @@ jobs:
 
       - name: Setup Gradle
         uses: ./.github/actions/setup
+        with:
+          java-version: '21'
+          working-directory: './services/api/src'
 
       - name: Download dependencies
         working-directory: ./services/api/src/
@@ -37,14 +44,13 @@ jobs:
       presentation: ${{ steps.changes.outputs.presentation }}
       application: ${{ steps.changes.outputs.application }}
       domain: ${{ steps.changes.outputs.domain }}
-      any-changed: ${{ steps.changes.outputs.changes }}
+
     steps:
       - uses: actions/checkout@v4
 
       - uses: dorny/paths-filter@v3
         id: changes
         with:
-          list-files: json
           filters: |
             app:
               - 'services/api/src/app/**'
@@ -62,99 +68,114 @@ jobs:
               - 'services/api/src/modules/domain/**'
               - 'services/api/src/*.gradle.kts'
 
-  # 並列テスト（Matrix使用）
-  test:
-    needs: [setup, changes]
-    if: ${{ needs.changes.outputs.any-changed == 'true' }}
-    strategy:
-      matrix:
-        module: [app, infrastructure, presentation, application, domain]
-      fail-fast: false  # 1つ失敗しても他を続ける
+  test-app:
+    needs:
+      - setup
+      - changes
     runs-on: ubuntu-latest
+    if: ${{ needs.changes.outputs.app == 'true' }}
     steps:
       - uses: actions/checkout@v4
 
-      - name: Check if ${{ matrix.module }} changed
-        id: should-run
-        run: |
-          MODULE_CHANGED="${{ needs.changes.outputs[matrix.module] }}"
-          if [[ "$MODULE_CHANGED" == "true" ]]; then
-            echo "run=true" >> $GITHUB_OUTPUT
-            echo "✅ ${{ matrix.module }} module changed, running tests"
-          else
-            echo "run=false" >> $GITHUB_OUTPUT
-            echo "⏭️ ${{ matrix.module }} module unchanged, skipping tests"
-          fi
+      - name: Setup Gradle
+        uses: ./.github/actions/setup
+        with:
+          java-version: '21'
+          working-directory: './services/api/src'
+
+      - name: test app module
+        working-directory: ./services/api/src/
+        run: ./gradlew app:test
+
+  test-presentation:
+    needs:
+      - setup
+      - changes
+    runs-on: ubuntu-latest
+    if: ${{ needs.changes.outputs.presentation == 'true' }}
+    steps:
+      - uses: actions/checkout@v4
 
       - name: Setup Gradle
-        if: steps.should-run.outputs.run == 'true'
         uses: ./.github/actions/setup
-
-      - name: Test ${{ matrix.module }} module
-        if: steps.should-run.outputs.run == 'true'
-        working-directory: ./services/api/src/
-        run: |
-          if [[ "${{ matrix.module }}" == "app" ]]; then
-            ./gradlew app:test --no-daemon --continue
-          else
-            ./gradlew modules:${{ matrix.module }}:test --no-daemon --continue
-          fi
-
-      - name: Upload test results
-        if: always() && steps.should-run.outputs.run == 'true'
-        uses: actions/upload-artifact@v4
         with:
-          name: test-results-${{ matrix.module }}
-          path: |
-            services/api/src/**/build/reports/tests/
-            services/api/src/**/build/test-results/
-          retention-days: 3
+          java-version: '21'
+          working-directory: './services/api/src'
 
-  # 統合Linter
+      - name: test presentation module
+        working-directory: ./services/api/src/
+        run: ./gradlew modules:presentation:test
+
+  test-infrastructure:
+    needs:
+      - setup
+      - changes
+    runs-on: ubuntu-latest
+    if: ${{ needs.changes.outputs.infrastructure == 'true' }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Gradle
+        uses: ./.github/actions/setup
+        with:
+          java-version: '21'
+          working-directory: './services/api/src'
+
+      - name: test infrastructure module
+        working-directory: ./services/api/src/
+        run: ./gradlew modules:infrastructure:test
+
+  test-application:
+    needs:
+      - setup
+      - changes
+    runs-on: ubuntu-latest
+    if: ${{ needs.changes.outputs.application == 'true' }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Gradle
+        uses: ./.github/actions/setup
+        with:
+          java-version: '21'
+          working-directory: './services/api/src'
+
+      - name: test application module
+        working-directory: ./services/api/src/
+        run: ./gradlew modules:application:test
+
+  test-domain:
+    needs:
+      - setup
+      - changes
+    runs-on: ubuntu-latest
+    if: ${{ needs.changes.outputs.domain == 'true' }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Gradle
+        uses: ./.github/actions/setup
+        with:
+          java-version: '21'
+          working-directory: './services/api/src'
+
+      - name: test domain module
+        working-directory: ./services/api/src/
+        run: ./gradlew modules:domain:test
+
   linter:
-    needs: [setup, changes]
-    if: ${{ needs.changes.outputs.any-changed == 'true' }}
+    needs:
+      - setup
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
 
       - name: Setup Gradle
         uses: ./.github/actions/setup
-
-      - name: Run Detekt
-        working-directory: ./services/api/src/
-        run: ./gradlew detekt --no-daemon --continue
-
-      - name: Upload Detekt results
-        if: always()
-        uses: actions/upload-artifact@v4
         with:
-          name: detekt-results
-          path: |
-            services/api/src/**/build/reports/detekt/
-          retention-days: 3
+          java-version: '21'
+          working-directory: './services/api/src'
 
-  # テスト結果サマリー
-  test-summary:
-    needs: [test, linter]
-    if: always()
-    runs-on: ubuntu-latest
-    steps:
-      - name: Test Summary
-        run: |
-          echo "## Test Results Summary" >> $GITHUB_STEP_SUMMARY
-          echo "| Module | Status |" >> $GITHUB_STEP_SUMMARY
-          echo "|--------|--------|" >> $GITHUB_STEP_SUMMARY
-          
-          # 各テストジョブの結果を確認（簡略化）
-          if [[ "${{ needs.test.result }}" == "success" ]]; then
-            echo "| Tests | ✅ Passed |" >> $GITHUB_STEP_SUMMARY
-          else
-            echo "| Tests | ❌ Failed |" >> $GITHUB_STEP_SUMMARY
-          fi
-          
-          if [[ "${{ needs.linter.result }}" == "success" ]]; then
-            echo "| Linter | ✅ Passed |" >> $GITHUB_STEP_SUMMARY
-          else
-            echo "| Linter | ❌ Failed |" >> $GITHUB_STEP_SUMMARY
-          fi
+      - name: run lint
+        working-directory: ./services/api/src/
+        run: ./gradlew detekt

@@ -1,5 +1,16 @@
 name: 'Setup Gradle Environment'
-description: 'Setup JDK and Gradle with caching'
+description: 'Setup JDK and Gradle with caching for faster builds'
+
+# 入力パラメータ（オプション）
+inputs:
+  java-version:
+    description: 'Java version to setup'
+    required: false
+    default: '21'
+  working-directory:
+    description: 'Working directory for Gradle'
+    required: false
+    default: './services/api/src'
 
 runs:
   using: "composite"
@@ -7,7 +18,7 @@ runs:
     - name: Setup JDK
       uses: actions/setup-java@v4
       with:
-        java-version: '21'
+        java-version: ${{ inputs.java-version }}
         distribution: 'temurin'
 
     - name: Cache Gradle
@@ -16,19 +27,13 @@ runs:
         path: |
           ~/.gradle/caches
           ~/.gradle/wrapper
-          services/api/src/.gradle/
-        key: gradle-${{ hashFiles('services/api/src/**/*.gradle*', 'services/api/src/**/gradle-wrapper.properties') }}
+          ${{ inputs.working-directory }}/.gradle/
+        key: gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
         restore-keys: |
-          gradle-${{ hashFiles('services/api/src/**/*.gradle*') }}
+          gradle-${{ hashFiles('**/*.gradle*') }}
           gradle-
 
-    - name: Ensure gradlew is executable
+    # シェルコマンドも実行可能
+    - name: Make gradlew executable
       shell: bash
-      working-directory: services/api/src
-      run: |
-        if [ -f "./gradlew" ]; then
-          chmod +x ./gradlew
-        else
-          echo "Error: gradlew not found in $(pwd)"
-          exit 1
-        fi
+      run: chmod +x ${{ inputs.working-directory }}/gradlew
