@@ -1,0 +1,25 @@
+# StoreWithReviews.yaml
+# 店舗詳細取得（レビュー付き）のレスポンススキーマ
+
+type: object
+properties:
+  data:
+    type: object
+    properties:
+      s_name:
+        type: string
+        description: 店舗名
+      images:
+        type: array
+        items:
+          type: string
+          format: binary
+        description: 店舗画像のリスト
+      description:
+        type: string
+        description: 店舗の紹介文
+      reviews:
+        type: array
+        items:
+          $ref: '../review/ReviewBrief.yaml'
+        description: この店舗に対するレビューの一覧
