@@ -7,6 +7,8 @@ import com.streview.domain.encounters.EncounterAddDomainEvent
 import com.streview.domain.relays.Relay
 import com.streview.domain.relays.RelayRepository
 import com.streview.domain.users.UserRepository
+import kotlinx.coroutines.delay
+import org.jetbrains.exposed.v1.r2dbc.transactions.suspendTransaction
 
 class EncounterAddEventHandler(
     private val userRepository: UserRepository,
@@ -14,29 +16,48 @@ class EncounterAddEventHandler(
     // TODO: StoreRepositoryとReviewRepositoryが必要
 ) : EventHandler<EncounterAddDomainEvent> {
     override suspend fun handle(event: EncounterAddDomainEvent) {
-        // 自身の共有優先度を取得
-        val user = userRepository.findByID(event.actorID)
-        if (user == null) {
-            // イベント発行前に見てるので存在しえない
-            return
+        suspendTransaction {
+            // 自身の共有優先度を取得
+            val user = userRepository.findByID(event.actorID)
+            if (user == null) {
+                // イベント発行前に見てるので存在しえない
+                return@suspendTransaction
+            }
+            // 自身の所有Reviewを取得
+            val ownReviews = relayRepository.findAllByUserId(event.actorID)
+
+            // ownReviews から自身の所有する reviewUUID のセットを作成
+            val ownReviewUUIDs = ownReviews.map { it.reviewUUID }.toSet()
+
+            // ReReviewから取得
+            determineReReview(event.actorID, event.encounterID, ownReviewUUIDs)
+
+            // TODO: Reviewから取得
+            determineReview(event.actorID, event.encounterID, ownReviewUUIDs)
         }
-        /**
-         * HACK: 現状のテーブル設計だと複雑なステップで絞り込み条件に合致したレビューを探す必要がある
-         *  1. 自身の優先度取得
-         *  2. 投稿したレビュー一覧を取得
-         *  3. 取得条件に応じて、追加情報取得(現在地: 店舗位置, いいね: Relayの数, エリア: 両方)
-         *  4. 追加情報を元にフィルターする
-         *  5. これを投稿したレビュー、再共有ビューで2回行う必要がある。
-         *
-         *  TODO: リードモデル作って解決したい。
-         *   ReviewUUID, GeoLocation, iSReReviewCount
-         * */
-        factoryNewRely(user.userID, UUID.generate())
     }
 
-    private suspend fun factoryNewRely(userID: UserID, reviewUUID: UUID) {
-        val newRelay = Relay.factory(userID.value, reviewUUID.value)
+    private suspend fun determineReReview(actorID: UserID, encounterID: UserID, ownReviewUUIDs: Set<UUID>) {
+        val encounterReReviews = relayRepository.findReReviewByUserId(encounterID)
+
+        val reviewUUIDsNotInOwnReviews = encounterReReviews
+            .map { it.reviewUUID } // encounterReReviews から reviewUUID だけを抽出
+            .filterNot { it in ownReviewUUIDs } // ownReviewUUIDs に含まれていないものを選択
+
+        // TODO: 追加のフィルターロジック 現在はランダム
+        val reviewUUID = reviewUUIDsNotInOwnReviews.random()
+
+        val newRelay = Relay.factory(actorID.value, reviewUUID.value)
 
         relayRepository.save(newRelay)
+    }
+
+    private suspend fun determineReview(actorID: UserID, encounterID: UserID, ownReviewUUIDs: Set<UUID>) {
+        // TODO: 処理の実装
+        println("actorID: $actorID")
+        println("encounterID: $encounterID")
+        println("ownReviewUUIDs: $ownReviewUUIDs")
+        delay(10)
+        return
     }
 }
