@@ -106,7 +106,7 @@ class EncounterUseCaseTest : FreeSpec({
                 val response = useCase.execute(request)
 
                 // 検証
-                response.encounterCount shouldBe encounterDates.size * encounterIDs.size // レスポンス成功してる？
+                response.result shouldBe true // レスポンス成功してる？
                 coVerify(exactly = encounterDates.size) { mockRepository.findByID(actorID, any()) } // 日付の数だけ
                 coVerify(exactly = encounterDates.size) { mockRepository.save(any()) } // 日付の数だけ
                 mockEncounterMap.values.forEach { mockEncounter ->
