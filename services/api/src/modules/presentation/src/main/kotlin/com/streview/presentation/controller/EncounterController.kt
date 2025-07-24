@@ -16,7 +16,7 @@ import org.koin.ktor.ext.inject
 fun Route.encounterController() {
     val encounterUseCase: EncounterUseCase by inject()
 
-    post("/encounter") {
+    post("/encounters") {
         @Serializable
         data class RequestJson(val encounters: List<DailyEncounter>)
 

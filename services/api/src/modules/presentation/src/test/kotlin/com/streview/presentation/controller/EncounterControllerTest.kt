@@ -44,7 +44,7 @@ class EncounterControllerTest : FreeSpec({
                     routing { authenticate("firebase-auth") { encounterController() } }
                 }
 
-                val response = client.post("/encounter") {
+                val response = client.post("/encounters") {
                     header(HttpHeaders.Authorization, "Bearer test-token")
                     contentType(ContentType.Application.Json)
                     setBody("""{"encounters": [{"date": "2024-01-15", "encounter": ["enc1", "enc2"]}]}""")
@@ -71,7 +71,7 @@ class EncounterControllerTest : FreeSpec({
                     routing { authenticate("firebase-auth") { encounterController() } }
                 }
 
-                val response = client.post("/encounter") {
+                val response = client.post("/encounters") {
                     header(HttpHeaders.Authorization, "Bearer test-token")
                     contentType(ContentType.Application.Json)
                     setBody("""{"encounters": []}""")
@@ -98,7 +98,7 @@ class EncounterControllerTest : FreeSpec({
                     routing { authenticate("firebase-auth") { encounterController() } }
                 }
 
-                val response = client.post("/encounter") {
+                val response = client.post("/encounters") {
                     contentType(ContentType.Application.Json)
                     setBody("""{"encounters": []}""")
                 }
@@ -122,7 +122,7 @@ class EncounterControllerTest : FreeSpec({
                     routing { authenticate("firebase-auth") { encounterController() } }
                 }
 
-                val response = client.post("/encounter") {
+                val response = client.post("/encounters") {
                     header(HttpHeaders.Authorization, "Bearer test-token")
                     contentType(ContentType.Application.Json)
                     setBody("""{"invalid": "json"}""")
@@ -148,7 +148,7 @@ class EncounterControllerTest : FreeSpec({
                     routing { authenticate("firebase-auth") { encounterController() } }
                 }
 
-                val response = client.post("/encounter") {
+                val response = client.post("/encounters") {
                     header(HttpHeaders.Authorization, "Bearer test-token")
                     contentType(ContentType.Application.Json)
                     setBody("""{"encounters": [{"date": "2024-01-15", "encounter": ["enc1"]}]}""")
