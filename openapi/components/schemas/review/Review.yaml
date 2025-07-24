@@ -1,0 +1,46 @@
+# レスポンス用レビュー全体の構造です
+# components.yaml から $ref: 'schemas/review/Review.yaml' で参照されます
+
+type: object
+properties:
+  r_id:
+    type: string
+    description: レビューID
+  title:
+    type: string
+    description: レビューのタイトル
+  comment:
+    type: string
+    description: レビュー本文
+  star:
+    type: number
+    format: float
+    minimum: 0.5
+    maximum: 5.0
+    description: 評価の星（0.5〜5.0）
+  created_at:
+    type: string
+    format: date-time
+    description: レビューの作成日時
+  user:
+    type: object
+    description: レビュー投稿者の情報
+    properties:
+      icon_id:
+        type: string
+        description: ユーザーアイコンのID
+      gender:
+        type: string
+        enum: [male, female, unknown]
+        description: ユーザーの性別
+  photo:
+    type: string
+    format: binary
+    description: 添付画像
+required:
+  - r_id
+  - title
+  - comment
+  - star
+  - created_at
+  - user
