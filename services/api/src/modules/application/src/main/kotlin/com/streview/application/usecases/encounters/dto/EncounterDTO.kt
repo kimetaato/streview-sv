@@ -6,11 +6,11 @@ import kotlinx.datetime.LocalDate
 import kotlinx.serialization.Serializable
 
 /**
- * @param encounterDate すれ違った日にち
- * @param encryptedEncounterIDs その日にすれ違ったユーザーの暗号化文字列
+ * @param date すれ違った日にち
+ * @param encounter その日にすれ違ったユーザーの暗号化文字列
  */
 @Serializable
-data class DailyEncounter(val encounterDate: LocalDate, val encryptedEncounterIDs: List<String>)
+data class DailyEncounter(val date: LocalDate, val encounter: List<String>)
 
 /**
  * すれ違いリクエストのDTO

@@ -1,5 +1,5 @@
 import io.gitlab.arturbosch.detekt.Detekt
-
+// test変更
 plugins {
     alias(libs.plugins.kotlin.jvm)
     alias(libs.plugins.detekt.plugin)
