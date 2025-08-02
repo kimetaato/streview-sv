@@ -1,48 +1,70 @@
 package com.streview.domain.stores
 
-import java.util.*
+import com.github.michaelbull.result.Result
+import com.streview.domain.commons.GeoLocation
+import com.streview.domain.commons.UUID
+import com.streview.domain.commons.errors.ValidationError
+import com.streview.domain.commons.result.build
+import com.streview.domain.stores.vo.Address
+import com.streview.domain.stores.vo.Description
+import com.streview.domain.stores.vo.Genre
+import com.streview.domain.stores.vo.Name
+import com.streview.domain.stores.vo.Open
+import com.streview.domain.stores.vo.Tel
 
-data class Store(
-    val id: Id,
+class Store private constructor(
+    val storeUUID: UUID,
     val name: Name,
+    val genre: Genre,
+    val address: Address,
+    val tel: Tel,
+    val description: Description,
+    val open: Open,
+    val geoLocation: GeoLocation,
 ) {
     companion object {
-        fun factory(name: String): Store {
-            return Store(
-                id = Id.generate(),
-                name = Name(name),
-            )
+        fun create(
+            name: String,
+            genre: String,
+            address: String,
+            tel: String,
+            description: String,
+            open: String,
+            latitude: Double,
+            longitude: Double
+        ): Result<Store, ValidationError> {
+            return build( // VOから生成した値をまとめて返すだけの関数に適当に値を突っ込んで拾う
+                Name.create(name),
+                Genre.create(genre),
+                Address.create(address),
+                Tel.create(tel),
+                Description.create(description),
+                Open.create(open),
+                GeoLocation.create(latitude, longitude)
+            ) { name, genre, address, tel, description, open, geoLocation ->
+                Store(UUID.generate(), name, genre, address, tel, description, open, geoLocation)
+            }
         }
 
-        fun reconstruct(id: String, name: String): Store {
-            return Store(
-                id = Id(id),
-                name = Name(name),
-            )
-        }
-    }
-}
-
-// 値オブジェクト
-
-@JvmInline
-value class Id(val value: String) { // TODO: UUIDを生成すべき
-    companion object {
-        val length = 36
-
-        fun generate(): Id {
-            val newId = UUID.randomUUID().toString()
-            return Id(newId)
-        }
-    }
-
-    init {
-        require(value.length == length) { "入力値が不正です。" }
-    }
-}
-
-@JvmInline
-value class Name(val value: String) {
-    init {
+        fun reconstruct(
+            storeUUID: String,
+            name: String,
+            genre: String,
+            address: String,
+            tel: String,
+            description: String,
+            open: String,
+            latitude: Double,
+            longitude: Double
+        ): Store = Store(
+            UUID.generate(storeUUID),
+            Name.reconstruct(name),
+            Genre.reconstruct(genre),
+            Address.reconstruct(address),
+            Tel.reconstruct(tel),
+            Description.reconstruct(description),
+            Open.reconstruct(open),
+            GeoLocation.reconstruct(latitude, longitude)
+        )
     }
 }

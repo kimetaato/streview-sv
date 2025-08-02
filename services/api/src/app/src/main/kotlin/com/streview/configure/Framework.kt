@@ -7,19 +7,16 @@ import com.streview.application.services.ImageStorageConfig
 import com.streview.application.services.ImageStorageService
 import com.streview.application.usecases.encounters.EncounterUseCase
 import com.streview.application.usecases.relays.MarkRelayStatusUseCase
-import com.streview.application.usecases.stores.TryStoreUseCase
 import com.streview.application.usecases.users.RegisterUserUseCase
 import com.streview.domain.commons.event.EventBus
 import com.streview.domain.encounters.EncounterAddDomainEvent
 import com.streview.domain.encounters.EncounterRepository
 import com.streview.domain.images.ImageRepository
 import com.streview.domain.relays.RelayRepository
-import com.streview.domain.stores.StoreRepository
 import com.streview.domain.users.UserRepository
 import com.streview.infrastructure.database.encounters.EncounterRepositoryImpl
 import com.streview.infrastructure.database.images.ImageRepositoryImpl
 import com.streview.infrastructure.database.relays.RelayRepositoryImpl
-import com.streview.infrastructure.database.stores.StoreRepositoryImpl
 import com.streview.infrastructure.database.users.UserRepositoryImpl
 import com.streview.infrastructure.storages.images.ImageStorageServiceImpl
 import com.streview.service.relays.RelayDomainService
@@ -52,9 +49,6 @@ val applicationServiceModule = module {
     single<EncounterDecryptionService> {
         EncounterDecryptionService(get())
     }
-    single<TryStoreUseCase> {
-        TryStoreUseCase(get())
-    }
 }
 
 // ドメイン層のサービスを依存関係に登録
@@ -71,9 +65,6 @@ val repositoryModule = module {
     }
     single<ImageRepository> {
         ImageRepositoryImpl()
-    }
-    single<StoreRepository> {
-        StoreRepositoryImpl()
     }
     single<RelayRepository> {
         RelayRepositoryImpl()
