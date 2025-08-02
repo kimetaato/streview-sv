@@ -8,10 +8,9 @@ dependencies {
     implementation(libs.kotlinx.cotoutines)
     implementation(libs.kotlinx.datetime)
     implementation(libs.kotlinx.serialization.json)
+    implementation(libs.kotlin.result)
     implementation(libs.uuid)
 
     // test
     testImplementation(libs.bundles.kotest.core)
 }
-
-
