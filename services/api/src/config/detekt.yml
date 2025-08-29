@@ -16,8 +16,7 @@ complexity:
     threshold: 5 # 閾値を4から5に緩和 (デフォルトは4)
   LongParameterList:
     constructorThreshold: 10
-    functionThreshold: 10 # 関数の引数の上限を8に修正 引数のパラメータ数の制限によって、エンティティの生成の引数にdata classなどを別途定義する昼用が出てくるため
-
+    functionThreshold: 10 # 関数の引数の上限を10に修正 引数のパラメータ数の制限によって、エンティティの生成の引数にdata classなどを別途定義する昼用が出てくるため
 # 空のコードブロックに関する問題
 empty-blocks:
   active: true
