@@ -1,7 +1,6 @@
 package com.streview.configure
 
 import com.streview.presentation.controller.relayController
-import com.streview.presentation.controller.storeController
 import com.streview.presentation.controller.userController
 import io.ktor.server.application.*
 import io.ktor.server.auth.*
@@ -23,7 +22,6 @@ fun Application.configureRouting() {
 
         authenticate("firebase-auth") {
             userController()
-            storeController()
             relayController()
         }
     }

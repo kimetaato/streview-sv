@@ -18,5 +18,8 @@ value class UUID(val value: String) {
         fun generate(): UUID {
             return UUID(StreviewUuid.randomUUID().toString())
         }
+        fun reconstruct(uuid: String): UUID {
+            return UUID(uuid)
+        }
     }
 }
