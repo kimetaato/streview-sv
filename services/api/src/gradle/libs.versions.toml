@@ -54,6 +54,10 @@ jdbc-postgresql = { module = "org.postgresql:postgresql", version.ref = "jdbc-po
 ktor-server-core = { module = "io.ktor:ktor-server-core", version.ref = "ktor-version" }
 ktor-server-config-yaml = { module = "io.ktor:ktor-server-config-yaml", version.ref = "ktor-version" }  # application.confをyaml形式で記述可能にする
 ktor-server-netty = { module = "io.ktor:ktor-server-netty", version.ref = "ktor-version" }
+# HTTP Client
+ktor-client-core = { module = "io.ktor:ktor-client-core", version.ref = "ktor-version" }
+ktor-client-cio = { module = "io.ktor:ktor-client-cio", version.ref = "ktor-version" }
+ktor-client-content-negotiation = { module = "io.ktor:ktor-client-content-negotiation", version.ref = "ktor-version" }
 # リクエスト/レスポンス制御
 ktor-server-cors = { module = "io.ktor:ktor-server-cors", version.ref = "ktor-version" }
 ktor-status-page = { module = "io.ktor:ktor-server-status-pages", version.ref = "ktor-version" }
@@ -111,6 +115,8 @@ ktor-core = ["ktor-server-core", "ktor-server-config-yaml", "ktor-server-netty"]
 ktor-utils = ["ktor-server-cors", "ktor-status-page", "ktor-server-content-negotiation", "ktor-serialization-kotlinx-json"]
 # Ktor 認証
 ktor-auth = ["ktor-server-auth", "ktor-firebase"]
+# Ktor HTTP Client
+ktor-client = ["ktor-client-core", "ktor-client-cio", "ktor-client-content-negotiation"]
 
 # Exposed コア機能
 exposed-core = ["exposed-core", "exposed-kotlin-datetime"]

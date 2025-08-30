@@ -37,6 +37,8 @@ services:
     environment:
       TZ: ${TZ}
       TESTCONTAINERS_HOST_OVERRIDE: "host.docker.internal" # testcontainersが利用するhost
+      GOOGLE_API_KEY: ${GOOGLE_API_KEY}
+      HOT_PEPPER_API_KEY: ${HOTPEPPER_API_KEY}
     extra_hosts:
       - "host.docker.internal:host-gateway" # Docker for Mac/Windowsの場合ホスト名の解決に必要
     depends_on:

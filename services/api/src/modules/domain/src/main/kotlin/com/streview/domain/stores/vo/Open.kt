@@ -10,7 +10,7 @@ class Open private constructor(
     val value: String
 ) {
     companion object {
-        private const val MAX_LENGTH = 100
+        private const val MAX_LENGTH = 255
         fun create(open: String): Result<Open, ValidationError> {
             val trimmedOpen = open.trim()
             return when {

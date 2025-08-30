@@ -46,6 +46,7 @@ fun configureDatabase() {
                 StoresTable.insert {
                     it[id] = "85e15cf9-3555-45e4-ad77-920432ad937d"
                     it[name] = "木製ロケット"
+                    it[genre] = "オムライス"
                     it[address] = "〒610-0121 京都府城陽市寺田正道9−14"
                     it[denwaBango] = "0774-26-8440"
                     it[description] = "うまいオムライス屋さん"

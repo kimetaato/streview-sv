@@ -13,13 +13,19 @@ import com.streview.domain.encounters.EncounterAddDomainEvent
 import com.streview.domain.encounters.EncounterRepository
 import com.streview.domain.images.ImageRepository
 import com.streview.domain.relays.RelayRepository
+import com.streview.domain.stores.StoreRepository
 import com.streview.domain.users.UserRepository
+import com.streview.infrastructure.api.stores.GooglePlacesDataSource
+import com.streview.infrastructure.api.stores.HotPepperDataSource
 import com.streview.infrastructure.database.encounters.EncounterRepositoryImpl
 import com.streview.infrastructure.database.images.ImageRepositoryImpl
 import com.streview.infrastructure.database.relays.RelayRepositoryImpl
+import com.streview.infrastructure.database.stores.StoreDatabaseDataSource
 import com.streview.infrastructure.database.users.UserRepositoryImpl
+import com.streview.infrastructure.repository.stores.StoreRepositoryImpl
 import com.streview.infrastructure.storages.images.ImageStorageServiceImpl
 import com.streview.service.relays.RelayDomainService
+import io.ktor.client.HttpClient
 import io.ktor.server.application.*
 import kotlinx.io.buffered
 import kotlinx.io.files.Path
@@ -72,6 +78,29 @@ val repositoryModule = module {
     single<EncounterRepository> {
         EncounterRepositoryImpl()
     }
+    single<StoreRepository> {
+        StoreRepositoryImpl(get(), get(), get())
+    }
+}
+
+// Store関連のデータソース
+val storeDataSourceModule = module {
+    single<HotPepperDataSource> {
+        HotPepperDataSource(get())
+    }
+    single<GooglePlacesDataSource> {
+        GooglePlacesDataSource(get())
+    }
+    single<StoreDatabaseDataSource> {
+        StoreDatabaseDataSource()
+    }
+}
+
+// HTTPクライアント設定
+val httpClientModule = module {
+    single<HttpClient> {
+        createHttpClient()
+    }
 }
 
 val eventModule = module {
@@ -118,6 +147,8 @@ fun Application.configureFramework() {
             applicationServiceModule,
             domainServiceModule,
             repositoryModule,
+            storeDataSourceModule,
+            httpClientModule,
             configureModule,
             eventModule
         )

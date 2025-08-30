@@ -1,10 +1,21 @@
 import io.gitlab.arturbosch.detekt.Detekt
+
 // test変更
 plugins {
     alias(libs.plugins.kotlin.jvm)
     alias(libs.plugins.detekt.plugin)
 }
 
+tasks.register<JavaExec>("addSampleData") {
+    description = "Add sample data to database"
+    group = "application"
+
+    // 実行するクラスを指定
+    mainClass.set("com.streview.SampleDataGeneratorKt")
+
+    // クラスパスを設定（appモジュールのクラスパスを使用）
+    classpath = project("app").sourceSets.main.get().runtimeClasspath
+}
 allprojects {
     apply(plugin = "io.gitlab.arturbosch.detekt")
 

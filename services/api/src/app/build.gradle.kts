@@ -9,11 +9,14 @@ application {
 }
 
 dependencies {
+    implementation(libs.kotlin.result)
     // Ktor
     implementation(libs.bundles.ktor.core)
     implementation(libs.bundles.ktor.utils)
     implementation(libs.bundles.ktor.auth)
 
+    // HTTP Client
+    implementation(libs.bundles.ktor.client)
     // swagger
     implementation(libs.ktor.server.swagger)
 

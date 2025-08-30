@@ -1,11 +1,18 @@
 plugins {
     alias(libs.plugins.kotlin.jvm)
+    alias(libs.plugins.kotlin.plugin.serialization)
 }
 
 dependencies {
     // utils
     implementation(libs.kotlinx.cotoutines)
     implementation(libs.kotlinx.io.core)
+    implementation(libs.kotlin.result)
+
+    // HTTP Client
+    implementation(libs.bundles.ktor.client)
+    implementation(libs.ktor.serialization.kotlinx.json)
+    implementation(libs.ktor.client.content.negotiation)
 
     // ORM
     implementation(libs.bundles.exposed.core)
@@ -17,7 +24,7 @@ dependencies {
     // test
     testImplementation(libs.bundles.kotest.core)
     testImplementation(libs.kotest.containers)
-    testImplementation(libs.jdbc.postgresql)    // テストコンテナをマイグレーションするときに必要
+    testImplementation(libs.jdbc.postgresql) // テストコンテナをマイグレーションするときに必要
 
     // モジュールの関連付け
     implementation(project(":modules:domain"))
