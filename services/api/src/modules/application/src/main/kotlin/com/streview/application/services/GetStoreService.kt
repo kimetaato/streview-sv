@@ -18,7 +18,7 @@ class GetStoreService(
     /**
      * Geofence設置用
      */
-    suspend fun findNearByStore(userID: UserID, geoLocation: GeoLocation): Result<List<Store>, DomainError> {
+    suspend fun searchNearByStore(userID: UserID, geoLocation: GeoLocation): Result<List<Store>, DomainError> {
         return relayRepository.findAllByUserId(userID)
             .andThen { relays ->
                 reviewRepository.findInUUIDs(relays.map { it.reviewUUID })
@@ -26,6 +26,4 @@ class GetStoreService(
                 storeRepository.sortByDistanceInUUIDs(reviews.map { it.storeUUID }, geoLocation)
             }
     }
-
-    suspend fun find
 }

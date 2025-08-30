@@ -1,6 +1,5 @@
 package com.streview.configure
 
-import com.streview.application.events.EncounterAddEventHandler
 import com.streview.application.services.EncounterDecryptionConfig
 import com.streview.application.services.EncounterDecryptionService
 import com.streview.application.services.ImageStorageConfig
@@ -9,7 +8,6 @@ import com.streview.application.usecases.encounters.EncounterUseCase
 import com.streview.application.usecases.relays.MarkRelayStatusUseCase
 import com.streview.application.usecases.users.RegisterUserUseCase
 import com.streview.domain.commons.event.EventBus
-import com.streview.domain.encounters.EncounterAddDomainEvent
 import com.streview.domain.encounters.EncounterRepository
 import com.streview.domain.images.ImageRepository
 import com.streview.domain.relays.RelayRepository
@@ -50,7 +48,7 @@ val useCaseModule = module {
 // アプリケーション層のサービスを依存関係に登録
 val applicationServiceModule = module {
     single<ImageStorageService> {
-        ImageStorageServiceImpl(get())
+        ImageStorageServiceImpl(get(), get())
     }
     single<EncounterDecryptionService> {
         EncounterDecryptionService(get())
@@ -107,28 +105,23 @@ val eventModule = module {
     single {
         EventBus
     }
-    single { // TODO: 依存関係はまだ足りない
-        EncounterAddEventHandler(get(), get())
-    }
-
-    // イベントを購読する
-    factory { (eventBus: EventBus) ->
-        {
-            // EventHandlerを登録
-            eventBus.subscribe(EncounterAddDomainEvent::class.java, get<EncounterAddEventHandler>())
-        }
-    }
+//    single { // TODO: 依存関係はまだ足りない
+//        EncounterAddEventHandler(get(), get())
+//    }
+//
+//    // イベントを購読する
+//    factory { (eventBus: EventBus) ->
+//        {
+//            // EventHandlerを登録
+//            eventBus.subscribe(EncounterAddDomainEvent::class.java, get<EncounterAddEventHandler>())
+//        }
+//    }
 }
 
 // 各種ファイルから読み取った値を依存関係に登録
 val configureModule = module {
     single<ImageStorageConfig> {
-        val imageConfigSection = get<Application>().environment.config.config("app.storage.images")
-        ImageStorageConfig(
-            imageConfigSection.keys().associateWith { key ->
-                imageConfigSection.property(key).getString()
-            }
-        )
+        ImageStorageConfig()
     }
     single<EncounterDecryptionConfig> {
         // 環境変数から秘密鍵ファイルのパスを取得し、読み込んだ内容をconfigに渡す

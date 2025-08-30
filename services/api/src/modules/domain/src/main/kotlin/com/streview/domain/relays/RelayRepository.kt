@@ -16,7 +16,7 @@ interface RelayRepository {
      * Relays を保存または更新する
      * @param relay 保存対象の Relays モデル
      */
-    suspend fun save(relay: Relay)
+    suspend fun save(relay: Relay): Result<Relay, DomainError>
 
     /**
      * ユーザーが所有するRelayをリストで取得する

@@ -1,12 +1,12 @@
-package com.streview.application.stores
+package com.streview.application.usecases.stores
 
 import com.github.michaelbull.result.Ok
 import com.github.michaelbull.result.Result
 import com.github.michaelbull.result.andThen
 import com.streview.application.services.GetStoreService
-import com.streview.application.stores.dto.GetGeofenceRequest
-import com.streview.application.stores.dto.GetGeofenceResponse
-import com.streview.application.stores.dto.StoreHeader
+import com.streview.application.usecases.stores.dto.GetGeofenceRequest
+import com.streview.application.usecases.stores.dto.GetGeofenceResponse
+import com.streview.application.usecases.stores.dto.StoreHeader
 import com.streview.domain.commons.GeoLocation
 import com.streview.domain.commons.UserID
 import com.streview.domain.commons.errors.DomainError
@@ -21,7 +21,7 @@ class GetGeofenceUseCase(
             latitude = input.location.lat,
             longitude = input.location.lng,
         ).andThen {
-            getStoreService.findNearByStore(userID, it)
+            getStoreService.searchNearByStore(userID, it)
         }.andThen { stores ->
             val storeHeaders = stores.map { store ->
                 StoreHeader(

@@ -1,10 +1,14 @@
 package com.streview.infrastructure.storages.images
 
+import com.github.michaelbull.result.Err
+import com.github.michaelbull.result.fold
+import com.github.michaelbull.result.getOrElse
 import com.luciad.imageio.webp.CompressionType
 import com.luciad.imageio.webp.WebPWriteParam
 import com.streview.application.services.ImageStorageConfig
 import com.streview.application.services.ImageStorageService
 import com.streview.application.services.ImageType
+import com.streview.domain.images.ImageRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import kotlinx.io.Source
@@ -20,7 +24,10 @@ import javax.imageio.ImageIO
 import javax.imageio.ImageWriteParam
 import javax.imageio.ImageWriter
 
-class ImageStorageServiceImpl(private val config: ImageStorageConfig) : ImageStorageService {
+class ImageStorageServiceImpl(
+    private val config: ImageStorageConfig,
+    private val imageRepository: ImageRepository
+) : ImageStorageService {
 
     companion object {
         private const val MAX_IMAGE_WIDTH = 1080
@@ -49,12 +56,8 @@ class ImageStorageServiceImpl(private val config: ImageStorageConfig) : ImageSto
      * 出力パスを準備し、必要に応じてディレクトリを作成する
      */
     private fun prepareOutputPath(fileName: String, imageType: ImageType): Path {
-        val baseDir = config.directories[imageType.value]
-        check(!baseDir.isNullOrBlank()) {
-            "Output directory not configured for image type: ${imageType.value}"
-        }
-
-        val outputDir = Path(baseDir)
+        val typeDir = "${config.baseDirectory}/${imageType.value}"
+        val outputDir = Path(typeDir)
         val outputPath = Path(outputDir, "$fileName$WEBP_EXTENSION")
 
         SystemFileSystem.createDirectories(outputDir)
@@ -142,9 +145,16 @@ class ImageStorageServiceImpl(private val config: ImageStorageConfig) : ImageSto
     }
 
     override suspend fun generateUrl(
-        fileName: String,
+        imageUUID: com.streview.domain.commons.UUID,
         imageType: ImageType
     ): String {
-        TODO("Not yet implemented")
+        return imageRepository.findByID(imageUUID)
+            .fold(
+                success = { image ->
+                    check(image != null)
+                    return "/static/images/${imageType.value}/${image.fileName.value}$WEBP_EXTENSION"
+                },
+                failure = { Err(it).getOrElse { "" } }
+            )
     }
 }

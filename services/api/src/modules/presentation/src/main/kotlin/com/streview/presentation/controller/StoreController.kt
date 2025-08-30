@@ -1,9 +1,8 @@
 package com.streview.presentation.controller
 
-import com.github.michaelbull.result.getOrThrow
-import com.streview.application.stores.GetGeofenceUseCase
-import com.streview.application.stores.dto.GetGeofenceRequest
-import com.streview.application.stores.dto.Location
+import com.streview.application.usecases.stores.GetGeofenceUseCase
+import com.streview.application.usecases.stores.dto.GetGeofenceRequest
+import com.streview.application.usecases.stores.dto.Location
 import io.ktor.http.HttpStatusCode
 import io.ktor.server.auth.UserIdPrincipal
 import io.ktor.server.auth.principal
@@ -31,7 +30,7 @@ fun Route.storeController() {
             location = Location(request.location.lat, request.location.lng),
         )
 
-        call.respond(HttpStatusCode.OK, getGeofenceUseCase.execute(input).getOrThrow())
+        call.respond(HttpStatusCode.OK, getGeofenceUseCase.execute(input))
     }
 
     post("/stores/search") {

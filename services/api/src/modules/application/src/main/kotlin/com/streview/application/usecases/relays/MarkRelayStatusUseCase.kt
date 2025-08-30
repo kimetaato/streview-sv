@@ -1,5 +1,6 @@
 package com.streview.application.usecases.relays
 
+import com.github.michaelbull.result.fold
 import com.streview.application.usecases.UseCase
 import com.streview.application.usecases.relays.dto.RelayStatusToggleRequest
 import com.streview.application.usecases.relays.dto.RelayStatusToggleResponse
@@ -16,25 +17,31 @@ class MarkRelayStatusUseCase(
 ) : UseCase<RelayStatusToggleRequest, RelayStatusToggleResponse> {
     override suspend fun execute(input: RelayStatusToggleRequest): RelayStatusToggleResponse {
         // Relayを取得
-        val relay = repository.findByUserIdAndReviewUUID(input.userID, input.reviewUUID)
-        if (relay == null) {
-            throw InvalidInputException(message = "対象のレビューが存在しません。")
-        }
+        return repository.findByUserIdAndReviewUUID(input.userID, input.reviewUUID).fold(
+            success = { relay ->
+                if (relay == null) {
+                    throw InvalidInputException(message = "対象のレビューが存在しません。")
+                }
 
-        // ステータスの更新を行う
-        val toggledRelay = if (input.toggleStatus) {
-            domainService.reReview(relay)
-        } else {
-            relay.unsetReReview()
-            relay
-        }
+                // ステータスの更新を行う
+                val toggledRelay = if (input.toggleStatus) {
+                    domainService.reReview(relay)
+                } else {
+                    relay.unsetReReview()
+                    relay
+                }
 
-        // 更新された Relays を保存
-        repository.save(toggledRelay)
+                // 更新された Relays を保存
+                repository.save(toggledRelay)
 
-        // 正常終了
-        return RelayStatusToggleResponse(
-            toggledRelay.reviewUUID.value,
+                // 正常終了
+                RelayStatusToggleResponse(
+                    toggledRelay.reviewUUID.value,
+                )
+            },
+            failure = { domainError ->
+                throw domainError
+            }
         )
     }
 }

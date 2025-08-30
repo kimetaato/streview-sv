@@ -27,17 +27,6 @@ class CompletedReview private constructor(
                 now
             )
         }
-        fun from(draftReview: DraftReview): CompletedReview { // 下書きから作成
-            val now = Clock.System.now().toLocalDateTime(TimeZone.currentSystemDefault())
-            return CompletedReview(
-                draftReview.comment,
-                draftReview.star,
-                draftReview.imageUUIDs,
-                true,
-                now,
-                now
-            )
-        }
 
         fun reconstruct(
             comment: String,

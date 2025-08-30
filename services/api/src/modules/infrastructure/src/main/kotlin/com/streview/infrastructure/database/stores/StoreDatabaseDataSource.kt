@@ -31,6 +31,7 @@ class StoreDatabaseDataSource {
                     StoresTable.description,
                     StoresTable.openingTime,
                     StoresTable.latitude,
+                    StoresTable.longitude
                 )
                 .where { StoresTable.id eq uuid.value }
                 .firstOrNull()?.let { row ->
@@ -90,6 +91,7 @@ class StoreDatabaseDataSource {
                 StoresTable.description,
                 StoresTable.openingTime,
                 StoresTable.latitude,
+                StoresTable.longitude
             ).where {
                 StoresTable.id inList uuids.map { it.value }
             }.toList().map { row ->

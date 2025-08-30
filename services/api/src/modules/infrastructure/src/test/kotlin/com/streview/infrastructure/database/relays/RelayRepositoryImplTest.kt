@@ -1,5 +1,6 @@
 package com.streview.infrastructure.database.relays
 
+import com.github.michaelbull.result.getOrThrow
 import com.streview.domain.relays.Relay
 import io.kotest.core.spec.style.FreeSpec
 import io.kotest.matchers.shouldBe
@@ -27,9 +28,9 @@ class RelayRepositoryImplTest : FreeSpec({
                     suspendTransaction {
                         val relay = Relay.factory(userID, reviewUUID)
 
-                        repository.save(relay)
+                        repository.save(relay).getOrThrow()
 
-                        val savedRelay = repository.findByUserIdAndReviewUUID(userID, reviewUUID)
+                        val savedRelay = repository.findByUserIdAndReviewUUID(userID, reviewUUID).getOrThrow()
                         savedRelay shouldNotBe null
                         savedRelay!!.userID.value shouldBe userID
                         savedRelay.reviewUUID.value shouldBe reviewUUID
@@ -45,9 +46,9 @@ class RelayRepositoryImplTest : FreeSpec({
                     suspendTransaction {
                         val relay = Relay.reconstruct(userID, reviewUUID, true)
 
-                        repository.save(relay)
+                        repository.save(relay).getOrThrow()
 
-                        val savedRelay = repository.findByUserIdAndReviewUUID(userID, reviewUUID)
+                        val savedRelay = repository.findByUserIdAndReviewUUID(userID, reviewUUID).getOrThrow()
                         savedRelay shouldNotBe null
                         savedRelay!!.userID.value shouldBe userID
                         savedRelay.reviewUUID.value shouldBe reviewUUID
@@ -62,12 +63,12 @@ class RelayRepositoryImplTest : FreeSpec({
                 checkAll(validUserIDArb, reviewUUIDArb) { userID, reviewUUID ->
                     suspendTransaction {
                         val originalRelay = Relay.factory(userID, reviewUUID)
-                        repository.save(originalRelay)
+                        repository.save(originalRelay).getOrThrow()
 
                         val updatedRelay = Relay.reconstruct(userID, reviewUUID, true)
-                        repository.save(updatedRelay)
+                        repository.save(updatedRelay).getOrThrow()
 
-                        val savedRelay = repository.findByUserIdAndReviewUUID(userID, reviewUUID)
+                        val savedRelay = repository.findByUserIdAndReviewUUID(userID, reviewUUID).getOrThrow()
                         savedRelay shouldNotBe null
                         savedRelay!!.userID.value shouldBe userID
                         savedRelay.reviewUUID.value shouldBe reviewUUID
@@ -84,9 +85,9 @@ class RelayRepositoryImplTest : FreeSpec({
                 checkAll(validUserIDArb, reviewUUIDArb, Arb.boolean()) { userID, reviewUUID, isReReviewed ->
                     suspendTransaction {
                         val originalRelay = Relay.reconstruct(userID, reviewUUID, isReReviewed)
-                        repository.save(originalRelay)
+                        repository.save(originalRelay).getOrThrow()
 
-                        val foundRelay = repository.findByUserIdAndReviewUUID(userID, reviewUUID)
+                        val foundRelay = repository.findByUserIdAndReviewUUID(userID, reviewUUID).getOrThrow()
 
                         foundRelay shouldNotBe null
                         foundRelay!!.userID.value shouldBe userID
@@ -101,7 +102,7 @@ class RelayRepositoryImplTest : FreeSpec({
             "プロパティテスト: 存在しないrelayの場合nullを返すこと" {
                 checkAll(validUserIDArb, reviewUUIDArb) { userID, reviewUUID ->
                     suspendTransaction {
-                        val foundRelay = repository.findByUserIdAndReviewUUID(userID, reviewUUID)
+                        val foundRelay = repository.findByUserIdAndReviewUUID(userID, reviewUUID).getOrThrow()
                         foundRelay shouldBe null
 
                         rollback()
@@ -114,9 +115,9 @@ class RelayRepositoryImplTest : FreeSpec({
                     if (correctReviewUUID != wrongReviewUUID) {
                         suspendTransaction {
                             val relay = Relay.factory(userID, correctReviewUUID)
-                            repository.save(relay)
+                            repository.save(relay).getOrThrow()
 
-                            val foundRelay = repository.findByUserIdAndReviewUUID(userID, wrongReviewUUID)
+                            val foundRelay = repository.findByUserIdAndReviewUUID(userID, wrongReviewUUID).getOrThrow()
                             foundRelay shouldBe null
 
                             rollback()
@@ -130,9 +131,9 @@ class RelayRepositoryImplTest : FreeSpec({
                     if (correctUserID != wrongUserID) {
                         suspendTransaction {
                             val relay = Relay.factory(correctUserID, reviewUUID)
-                            repository.save(relay)
+                            repository.save(relay).getOrThrow()
 
-                            val foundRelay = repository.findByUserIdAndReviewUUID(wrongUserID, reviewUUID)
+                            val foundRelay = repository.findByUserIdAndReviewUUID(wrongUserID, reviewUUID).getOrThrow()
                             foundRelay shouldBe null
 
                             rollback()
@@ -148,8 +149,8 @@ class RelayRepositoryImplTest : FreeSpec({
                     suspendTransaction {
                         val originalRelay = Relay.reconstruct(userID, reviewUUID, isReReviewed)
 
-                        repository.save(originalRelay)
-                        val retrievedRelay = repository.findByUserIdAndReviewUUID(userID, reviewUUID)
+                        repository.save(originalRelay).getOrThrow()
+                        val retrievedRelay = repository.findByUserIdAndReviewUUID(userID, reviewUUID).getOrThrow()
 
                         retrievedRelay shouldNotBe null
                         retrievedRelay!!.userID.value shouldBe originalRelay.userID.value
@@ -173,11 +174,11 @@ class RelayRepositoryImplTest : FreeSpec({
                             val relay1 = Relay.reconstruct(userID1, reviewUUID1, false)
                             val relay2 = Relay.reconstruct(userID2, reviewUUID2, true)
 
-                            repository.save(relay1)
-                            repository.save(relay2)
+                            repository.save(relay1).getOrThrow()
+                            repository.save(relay2).getOrThrow()
 
-                            val foundRelay1 = repository.findByUserIdAndReviewUUID(userID1, reviewUUID1)
-                            val foundRelay2 = repository.findByUserIdAndReviewUUID(userID2, reviewUUID2)
+                            val foundRelay1 = repository.findByUserIdAndReviewUUID(userID1, reviewUUID1).getOrThrow()
+                            val foundRelay2 = repository.findByUserIdAndReviewUUID(userID2, reviewUUID2).getOrThrow()
 
                             foundRelay1 shouldNotBe null
                             foundRelay2 shouldNotBe null

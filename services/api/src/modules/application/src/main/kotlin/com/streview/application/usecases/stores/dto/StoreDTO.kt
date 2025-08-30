@@ -1,4 +1,4 @@
-package com.streview.application.stores.dto
+package com.streview.application.usecases.stores.dto
 
 import com.streview.application.usecases.InputPort
 import com.streview.application.usecases.OutputPort

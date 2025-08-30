@@ -1,6 +1,11 @@
 package com.streview.infrastructure.database.images
 
+import com.github.michaelbull.result.Err
+import com.github.michaelbull.result.Ok
+import com.github.michaelbull.result.Result
 import com.streview.domain.commons.UUID
+import com.streview.domain.commons.errors.DomainError
+import com.streview.domain.commons.errors.TechnicalError
 import com.streview.domain.images.Image
 import com.streview.domain.images.ImageRepository
 import com.streview.infrastructure.database.models.ImagesTable
@@ -9,22 +14,30 @@ import org.jetbrains.exposed.v1.r2dbc.insert
 import org.jetbrains.exposed.v1.r2dbc.select
 
 class ImageRepositoryImpl : ImageRepository {
-    override suspend fun findByID(imageId: UUID): Image? {
-        return ImagesTable
-            .select(
-                ImagesTable.id,
-                ImagesTable.fileName
+    override suspend fun findByID(imageId: UUID): Result<Image?, DomainError> =
+        try {
+            Ok(
+                ImagesTable
+                    .select(
+                        ImagesTable.id,
+                        ImagesTable.fileName
+                    )
+                    .where { ImagesTable.id eq imageId.value }
+                    .singleOrNull()?.let { row ->
+                        toDomain(row)
+                    }
             )
-            .where { ImagesTable.id eq imageId.value }
-            .singleOrNull()?.let { row ->
-                toDomain(row)
-            }
-    }
-
-    override suspend fun save(image: Image): Image {
-        ImagesTable.insert { statement ->
-            toTable(image) (statement)
+        } catch (e: Exception) {
+            Err(TechnicalError.DatabaseError(false, e))
         }
-        return image
-    }
+
+    override suspend fun save(image: Image): Result<Image, DomainError> =
+        try {
+            ImagesTable.insert { statement ->
+                toTable(image)(statement)
+            }
+            Ok(image)
+        } catch (e: Exception) {
+            Err(TechnicalError.DatabaseError(false, e))
+        }
 }

@@ -1,5 +1,6 @@
 package com.streview.infrastructure.database.encounters
 
+import com.github.michaelbull.result.getOrThrow
 import com.streview.domain.encounters.Encounter
 import io.kotest.core.spec.style.FreeSpec
 import io.kotest.matchers.collections.shouldHaveSize
@@ -47,7 +48,7 @@ class EncounterRepositoryImplTest : FreeSpec({
                     suspendTransaction {
                         val encounter = Encounter.factory(actorID, encounterDate, encounterIDs)
 
-                        val savedEncounter = repository.save(encounter)
+                        val savedEncounter = repository.save(encounter).getOrThrow()
 
                         savedEncounter.actorID.value shouldBe actorID
                         savedEncounter.encounterDate.value shouldBe encounterDate
@@ -67,7 +68,7 @@ class EncounterRepositoryImplTest : FreeSpec({
 
                         repository.save(originalEncounter)
 
-                        val foundEncounter = repository.findByID(actorID, encounterDate)
+                        val foundEncounter = repository.findByID(actorID, encounterDate).getOrThrow()!!
 
                         foundEncounter.actorID.value shouldBe actorID
                         foundEncounter.encounterDate.value shouldBe encounterDate
@@ -87,8 +88,8 @@ class EncounterRepositoryImplTest : FreeSpec({
                     suspendTransaction {
                         val originalEncounter = Encounter.factory(actorID, encounterDate, encounterIDs)
 
-                        val savedEncounter = repository.save(originalEncounter)
-                        val retrievedEncounter = repository.findByID(actorID, encounterDate)
+                        val savedEncounter = repository.save(originalEncounter).getOrThrow()
+                        val retrievedEncounter = repository.findByID(actorID, encounterDate).getOrThrow()!!
 
                         savedEncounter.actorID shouldBe retrievedEncounter.actorID
                         savedEncounter.encounterDate shouldBe retrievedEncounter.encounterDate

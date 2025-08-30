@@ -1,5 +1,6 @@
 package com.streview.application.usecases.users
 
+import com.github.michaelbull.result.fold
 import com.streview.application.services.ImageStorageService
 import com.streview.application.services.ImageType
 import com.streview.application.usecases.UseCase
@@ -20,15 +21,22 @@ import kotlin.random.Random
 class RegisterUserUseCase(val uR: UserRepository, val iR: ImageRepository, val iS: ImageStorageService) :
     UseCase<RegisterUserRequest, RegisterUserResponse> {
     override suspend fun execute(input: RegisterUserRequest): RegisterUserResponse {
-        val user = suspendTransaction {
+        return suspendTransaction {
             println(input)
             // ユーザーIDを生成する
             val userID = UserID(input.userID)
 
             // ユーザーが存在しないことを確かめる
-            uR.findByID(userID)?.let {
-                throw ConflictException("すでに登録されています。")
-            }
+            uR.findByID(userID).fold(
+                success = { existingUser ->
+                    if (existingUser != null) {
+                        throw ConflictException("すでに登録されています。")
+                    }
+                },
+                failure = { domainError ->
+                    throw domainError
+                }
+            )
 
             // 画像のファイルパスを生成
             val fileName = "${Clock.System.now().toEpochMilliseconds()}_${Random.nextInt(1000, 10000)}"
@@ -52,9 +60,14 @@ class RegisterUserUseCase(val uR: UserRepository, val iR: ImageRepository, val i
             val newUser = User.create(userID, profile)
 
             // ユーザーを登録する
-            uR.create(newUser)
+            uR.save(newUser).fold(
+                success = { savedUser ->
+                    RegisterUserResponse(savedUser.userID.value)
+                },
+                failure = { domainError ->
+                    throw domainError
+                }
+            )
         }
-        // 　登録したユーザーのIDを返す
-        return RegisterUserResponse(user.userID.value)
     }
 }

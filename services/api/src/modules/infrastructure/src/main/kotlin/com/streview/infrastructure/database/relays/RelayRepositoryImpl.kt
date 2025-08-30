@@ -1,6 +1,11 @@
 package com.streview.infrastructure.database.relays
 
+import com.github.michaelbull.result.Err
+import com.github.michaelbull.result.Ok
+import com.github.michaelbull.result.Result
 import com.streview.domain.commons.UserID
+import com.streview.domain.commons.errors.DomainError
+import com.streview.domain.commons.errors.TechnicalError
 import com.streview.domain.relays.Relay
 import com.streview.domain.relays.RelayRepository
 import com.streview.infrastructure.database.models.RelaysTable
@@ -17,48 +22,67 @@ class RelayRepositoryImpl : RelayRepository {
     override suspend fun findByUserIdAndReviewUUID(
         userID: String,
         reviewUUID: String
-    ): Relay? {
-        return RelaysTable
-            .select(
-                RelaysTable.userID,
-                RelaysTable.reviewUUID,
-                RelaysTable.isReReviewed
+    ): Result<Relay?, DomainError> =
+        try {
+            Ok(
+                RelaysTable
+                    .select(
+                        RelaysTable.userID,
+                        RelaysTable.reviewUUID,
+                        RelaysTable.isReReviewed
+                    )
+                    .where((RelaysTable.userID eq userID) and (RelaysTable.reviewUUID eq reviewUUID))
+                    .singleOrNull()?.let { row ->
+                        toDomain(row)
+                    }
             )
-            .where((RelaysTable.userID eq userID) and (RelaysTable.reviewUUID eq reviewUUID))
-            .singleOrNull()?.let { row ->
-                toDomain(row)
-            }
-    }
-
-    override suspend fun save(relay: Relay) {
-        RelaysTable.upsert { statement ->
-            toTable(relay)(statement)
+        } catch (e: Exception) {
+            Err(TechnicalError.DatabaseError(false, e))
         }
-    }
 
-    override suspend fun findAllByUserId(userID: UserID): List<Relay> {
-        return RelaysTable
-            .select(
-                RelaysTable.userID,
-                RelaysTable.reviewUUID,
-                RelaysTable.isReReviewed
-            )
-            .where(
-                RelaysTable.userID eq userID.value
-            )
-            .map { row -> toDomain(row) }.toList()
-    }
+    override suspend fun save(relay: Relay): Result<Relay, DomainError> =
+        try {
+            RelaysTable.upsert { statement ->
+                toTable(relay)(statement)
+            }
+            Ok(relay)
+        } catch (e: Exception) {
+            Err(TechnicalError.DatabaseError(false, e))
+        }
 
-    override suspend fun findReReviewByUserId(userID: UserID): List<Relay> {
-        return RelaysTable
-            .select(
-                RelaysTable.userID,
-                RelaysTable.reviewUUID,
-                RelaysTable.isReReviewed
+    override suspend fun findAllByUserId(userID: UserID): Result<List<Relay>, DomainError> =
+        try {
+            Ok(
+                RelaysTable
+                    .select(
+                        RelaysTable.userID,
+                        RelaysTable.reviewUUID,
+                        RelaysTable.isReReviewed
+                    )
+                    .where(
+                        RelaysTable.userID eq userID.value
+                    )
+                    .map { row -> toDomain(row) }.toList()
             )
-            .where(
-                RelaysTable.userID eq userID.value and RelaysTable.isReReviewed eq Op.TRUE
+        } catch (e: Exception) {
+            Err(TechnicalError.DatabaseError(false, e))
+        }
+
+    override suspend fun findReReviewByUserId(userID: UserID): Result<List<Relay>, DomainError> =
+        try {
+            Ok(
+                RelaysTable
+                    .select(
+                        RelaysTable.userID,
+                        RelaysTable.reviewUUID,
+                        RelaysTable.isReReviewed
+                    )
+                    .where(
+                        RelaysTable.userID eq userID.value and RelaysTable.isReReviewed eq Op.TRUE
+                    )
+                    .map { row -> toDomain(row) }.toList()
             )
-            .map { row -> toDomain(row) }.toList()
-    }
+        } catch (e: Exception) {
+            Err(TechnicalError.DatabaseError(false, e))
+        }
 }

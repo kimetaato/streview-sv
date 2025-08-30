@@ -2,6 +2,7 @@ package com.streview.infrastructure.database
 
 import com.streview.infrastructure.database.models.EncounterTable
 import com.streview.infrastructure.database.models.RelaysTable
+import com.streview.infrastructure.database.models.StoresTable
 import io.kotest.core.annotation.AutoScan
 import io.kotest.core.listeners.AfterProjectListener
 import io.kotest.core.listeners.BeforeProjectListener
@@ -63,7 +64,7 @@ object DatabaseSetupListener : BeforeProjectListener, AfterProjectListener {
             }
         )
         suspendTransaction {
-            SchemaUtils.create(EncounterTable, RelaysTable)
+            SchemaUtils.create(EncounterTable, RelaysTable, StoresTable)
         }
     }
 
