@@ -1,11 +1,10 @@
 package com.streview.application.usecases.encounters
 
+import com.github.michaelbull.result.Ok
 import com.streview.application.services.EncounterDecryptionService
 import com.streview.application.usecases.encounters.dto.DailyEncounter
 import com.streview.application.usecases.encounters.dto.EncounterRequest
 import com.streview.domain.commons.UserID
-import com.streview.domain.commons.event.DomainEvent
-import com.streview.domain.commons.event.EventBus
 import com.streview.domain.encounters.Encounter
 import com.streview.domain.encounters.EncounterRepository
 import io.kotest.core.spec.style.FreeSpec
@@ -23,7 +22,6 @@ import io.mockk.coVerify
 import io.mockk.every
 import io.mockk.just
 import io.mockk.mockk
-import io.mockk.mockkObject
 import io.mockk.verify
 import kotlinx.datetime.LocalDate
 
@@ -50,7 +48,6 @@ class EncounterUseCaseTest : FreeSpec({
             ) { actorID, encounterDates, encounterIDs ->
                 // 各テスト実行前にモックをクリア
                 clearAllMocks()
-                mockkObject(EventBus)
 
                 val mockRepository = mockk<EncounterRepository>()
                 val mockDecryptionService = mockk<EncounterDecryptionService>()
@@ -60,12 +57,7 @@ class EncounterUseCaseTest : FreeSpec({
                  */
                 val mockEncounterMap = encounterDates.associateWith { date ->
                     val mockEncounter = mockk<Encounter>(relaxed = true)
-                    val domainEvents = mutableListOf<DomainEvent>()
-                    every { mockEncounter.add(any()) } answers {
-                        domainEvents.add(mockk<DomainEvent>())
-                        mockEncounter
-                    }
-                    every { mockEncounter.domainEvents } returns domainEvents
+                    every { mockEncounter.add(any()) } just Runs
                     mockEncounter
                 }
 
@@ -74,14 +66,14 @@ class EncounterUseCaseTest : FreeSpec({
                  * 引数で指定される日付に応じて返すMockを変更する
                  */
                 coEvery { mockRepository.findByID(actorID, any()) } answers {
-                    val date = secondArg<LocalDate>() //
-                    mockEncounterMap[date]!!
+                    val date = secondArg<LocalDate>()
+                    Ok(mockEncounterMap[date])
                 }
 
                 /**
                  * 自身のインスタンスを返す。
                  */
-                coEvery { mockRepository.save(any()) } answers { firstArg() }
+                coEvery { mockRepository.save(any()) } answers { Ok(firstArg()) }
 
                 /**
                  * 入力されたものからUserIDを生成する
@@ -91,7 +83,7 @@ class EncounterUseCaseTest : FreeSpec({
                 /**
                  * イベント発行するよ〜
                  */
-                coEvery { EventBus.publish(any<DomainEvent>()) } just Runs
+                // EventBusのモックは不要（UseCaseでイベント処理をしていないため）
 
                 // テスト実行
                 val useCase = EncounterUseCase(mockRepository, mockDecryptionService)
@@ -111,12 +103,10 @@ class EncounterUseCaseTest : FreeSpec({
                 coVerify(exactly = encounterDates.size) { mockRepository.save(any()) } // 日付の数だけ
                 mockEncounterMap.values.forEach { mockEncounter ->
                     coVerify(exactly = encounterIDs.size) { mockEncounter.add(any()) }
-                    mockEncounter.domainEvents.size shouldBe encounterIDs.size
                 }
                 verify(exactly = encounterDates.size * encounterIDs.size) {
                     mockDecryptionService.extractUserID(any())
                 } // IDの数だけ呼び出される
-                coVerify(exactly = encounterDates.size * encounterIDs.size) { EventBus.publish(any<DomainEvent>()) }
             }
         }
     }

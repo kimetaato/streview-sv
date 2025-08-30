@@ -1,5 +1,6 @@
 package com.streview.application.usecases.relays
 
+import com.github.michaelbull.result.Ok
 import com.streview.application.usecases.relays.dto.RelayStatusToggleRequest
 import com.streview.domain.exceptions.InvalidInputException
 import com.streview.domain.relays.Relay
@@ -38,9 +39,9 @@ class MarkRelayStatusUseCaseTest : FreeSpec({
                 val mockUpdatedRelay = mockk<Relay>(relaxed = true)
 
                 // モックの設定
-                coEvery { mockRepository.findByUserIdAndReviewUUID(userID, reviewUUID) } returns mockRelay
+                coEvery { mockRepository.findByUserIdAndReviewUUID(userID, reviewUUID) } returns Ok(mockRelay)
                 coEvery { mockDomainService.reReview(mockRelay) } returns mockUpdatedRelay
-                coEvery { mockRepository.save(mockUpdatedRelay) } returns Unit
+                coEvery { mockRepository.save(mockUpdatedRelay) } returns Ok(mockUpdatedRelay)
                 every { mockUpdatedRelay.reviewUUID.value } returns reviewUUID
 
                 // テスト実行
@@ -67,8 +68,8 @@ class MarkRelayStatusUseCaseTest : FreeSpec({
                 val mockRelay = mockk<Relay>(relaxed = true)
 
                 // モックの設定
-                coEvery { mockRepository.findByUserIdAndReviewUUID(userID, reviewUUID) } returns mockRelay
-                coEvery { mockRepository.save(mockRelay) } returns Unit
+                coEvery { mockRepository.findByUserIdAndReviewUUID(userID, reviewUUID) } returns Ok(mockRelay)
+                coEvery { mockRepository.save(mockRelay) } returns Ok(mockRelay)
                 every { mockRelay.reviewUUID.value } returns reviewUUID
                 every { mockRelay.unsetReReview() } returns Unit
 
@@ -97,7 +98,7 @@ class MarkRelayStatusUseCaseTest : FreeSpec({
                 // モックの設定（nullを返す）
                 val mockRepository = mockk<RelayRepository>()
                 val mockDomainService = mockk<RelayDomainService>()
-                coEvery { mockRepository.findByUserIdAndReviewUUID(userID, reviewUUID) } returns null
+                coEvery { mockRepository.findByUserIdAndReviewUUID(userID, reviewUUID) } returns Ok(null)
 
                 // テスト実行
                 val useCase = MarkRelayStatusUseCase(mockRepository, mockDomainService)
