@@ -8,6 +8,7 @@ dependencies {
     implementation(libs.kotlinx.datetime)
     implementation(libs.kotlinx.io.core)
     implementation(libs.kotlinx.serialization.json)
+    implementation(libs.kotlin.result)
 
     // トランザクション TODO: 依存関係から取り除く
     implementation(libs.exposed.r2dbc)

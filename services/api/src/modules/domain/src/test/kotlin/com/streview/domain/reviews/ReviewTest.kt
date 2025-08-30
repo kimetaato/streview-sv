@@ -30,7 +30,7 @@ class ReviewTest : FreeSpec({
                     val uuids = imageUUIDs.map { UUID.generate() }
                     val draftReview = DraftReview.factory(comment, star, uuids)
 
-                    val review = Review.factory(writerID, draftReview, null)
+                    val review = Review.create(writerID, draftReview, null)
 
                     review.writerID.value shouldBe writerID
                     review.draftReview shouldBe draftReview
@@ -45,7 +45,7 @@ class ReviewTest : FreeSpec({
                     val uuids = imageUUIDs.map { UUID.generate() }
                     val completedReview = CompletedReview.factory(comment, star, uuids)
 
-                    val review = Review.factory(writerID, null, completedReview)
+                    val review = Review.create(writerID, null, completedReview)
 
                     review.writerID.value shouldBe writerID
                     review.draftReview shouldBe null
@@ -56,7 +56,7 @@ class ReviewTest : FreeSpec({
 
             "プロパティテスト: 両方nullで正しく作成される" {
                 checkAll(validUserIDArb) { writerID ->
-                    val review = Review.factory(writerID, null, null)
+                    val review = Review.create(writerID, null, null)
 
                     review.writerID.value shouldBe writerID
                     review.draftReview shouldBe null
@@ -91,7 +91,7 @@ class ReviewTest : FreeSpec({
                             writerID, comment, star, imageUUIDs ->
                         val uuids = imageUUIDs.map { UUID.generate() }
                         val draftReview = DraftReview.factory(comment, star, uuids)
-                        val review = Review.factory(writerID, draftReview, null)
+                        val review = Review.create(writerID, draftReview, null)
 
                         val completedReview = review.complete()
 
@@ -110,7 +110,7 @@ class ReviewTest : FreeSpec({
             "異常系" - {
                 "プロパティテスト: DraftReviewがnullの場合、InvalidInputExceptionが発生する" {
                     checkAll(validUserIDArb) { writerID ->
-                        val review = Review.factory(writerID, null, null)
+                        val review = Review.create(writerID, null, null)
 
                         shouldThrow<InvalidInputException> {
                             review.complete()
@@ -127,7 +127,7 @@ class ReviewTest : FreeSpec({
                             writerID, comment, star, imageUUIDs, additionalText ->
                         val uuids = imageUUIDs.map { UUID.generate() }
                         val completedReview = CompletedReview.factory(comment, star, uuids)
-                        val review = Review.factory(writerID, null, completedReview)
+                        val review = Review.create(writerID, null, completedReview)
 
                         val updatedReview = review.postscript(additionalText)
 
@@ -144,7 +144,7 @@ class ReviewTest : FreeSpec({
                             writerID, comment, star, imageUUIDs, newStar ->
                         val uuids = imageUUIDs.map { UUID.generate() }
                         val completedReview = CompletedReview.factory(comment, star, uuids)
-                        val review = Review.factory(writerID, null, completedReview)
+                        val review = Review.create(writerID, null, completedReview)
 
                         val updatedReview = review.postscript(star = newStar)
 
@@ -164,7 +164,7 @@ class ReviewTest : FreeSpec({
                     ) { writerID, comment, star, imageUUIDs, additionalText, newStar ->
                         val uuids = imageUUIDs.map { UUID.generate() }
                         val completedReview = CompletedReview.factory(comment, star, uuids)
-                        val review = Review.factory(writerID, null, completedReview)
+                        val review = Review.create(writerID, null, completedReview)
 
                         val updatedReview = review.postscript(additionalText, newStar)
 
@@ -177,7 +177,7 @@ class ReviewTest : FreeSpec({
             "異常系" - {
                 "プロパティテスト: CompletedReviewがnullの場合、InvalidInputExceptionが発生する" {
                     checkAll(validUserIDArb, validCommentArb) { writerID, additionalText ->
-                        val review = Review.factory(writerID, null, null)
+                        val review = Review.create(writerID, null, null)
 
                         shouldThrow<InvalidInputException> {
                             review.postscript(additionalText)
@@ -193,7 +193,7 @@ class ReviewTest : FreeSpec({
                         writerID, comment, star, imageUUIDs ->
                     val uuids = imageUUIDs.map { UUID.generate() }
                     val completedReview = CompletedReview.factory(comment, star, uuids)
-                    val review = Review.factory(writerID, null, completedReview)
+                    val review = Review.create(writerID, null, completedReview)
 
                     val privateReview = review.setPrivate()
 
@@ -207,7 +207,7 @@ class ReviewTest : FreeSpec({
 
             "CompletedReviewがnullの場合でも例外は発生しない" {
                 checkAll(validUserIDArb) { writerID ->
-                    val review = Review.factory(writerID, null, null)
+                    val review = Review.create(writerID, null, null)
 
                     val privateReview = review.setPrivate()
 
@@ -222,7 +222,7 @@ class ReviewTest : FreeSpec({
                         writerID, comment, star, imageUUIDs ->
                     val uuids = imageUUIDs.map { UUID.generate() }
                     val completedReview = CompletedReview.factory(comment, star, uuids)
-                    val review = Review.factory(writerID, null, completedReview)
+                    val review = Review.create(writerID, null, completedReview)
                     val privateReview = review.setPrivate()
 
                     val publicReview = privateReview.setPublic()
@@ -237,7 +237,7 @@ class ReviewTest : FreeSpec({
 
             "CompletedReviewがnullの場合でも例外は発生しない" {
                 checkAll(validUserIDArb) { writerID ->
-                    val review = Review.factory(writerID, null, null)
+                    val review = Review.create(writerID, null, null)
 
                     val publicReview = review.setPublic()
 
@@ -340,7 +340,7 @@ class ReviewTest : FreeSpec({
 
             // 下書きレビューの作成
             val draftReview = DraftReview.factory(comment, star, imageUUIDs)
-            val review = Review.factory(writerID, draftReview, null)
+            val review = Review.create(writerID, draftReview, null)
 
             // 下書きを完了状態に変換
             val completedReview = review.complete()

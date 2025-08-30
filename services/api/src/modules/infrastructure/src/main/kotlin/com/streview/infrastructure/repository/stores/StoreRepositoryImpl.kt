@@ -23,6 +23,11 @@ class StoreRepositoryImpl(
 
     override suspend fun save(store: Store): Result<Store, DomainError> = db.save(store)
 
+    override suspend fun sortByDistanceInUUIDs(
+        uuids: List<UUID>,
+        geoLocation: GeoLocation
+    ): Result<List<Store>, DomainError> = db.sortByDistanceInUUIDs(uuids, geoLocation)
+
     override suspend fun searchFromGeoLocation(geoLocation: GeoLocation): Result<List<Store>, DomainError> {
         val stores = mutableListOf<Store>()
 

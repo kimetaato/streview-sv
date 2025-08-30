@@ -140,4 +140,11 @@ class ImageStorageServiceImpl(private val config: ImageStorageConfig) : ImageSto
         }
         return params
     }
+
+    override suspend fun generateUrl(
+        fileName: String,
+        imageType: ImageType
+    ): String {
+        TODO("Not yet implemented")
+    }
 }

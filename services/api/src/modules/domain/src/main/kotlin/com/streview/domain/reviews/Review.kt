@@ -2,70 +2,53 @@ package com.streview.domain.reviews
 
 import com.streview.domain.commons.UUID
 import com.streview.domain.commons.UserID
-import com.streview.domain.exceptions.InvalidInputException
 import java.math.BigDecimal
 
 class Review private constructor(
     val reviewUUID: UUID,
     val writerID: UserID,
-    val draftReview: DraftReview?,
-    val completedReview: CompletedReview?,
+    val storeUUID: UUID,
+    val completedReview: CompletedReview,
 ) {
     companion object {
-        fun factory(
+        fun create(
             writerID: String,
-            draftReview: DraftReview?,
-            completedReview: CompletedReview?,
+            storeUUID: UUID,
+            completedReview: CompletedReview,
         ): Review {
             return Review(
                 UUID.generate(),
                 UserID(writerID),
-                draftReview,
+                storeUUID,
                 completedReview,
             )
         }
         fun reconstruct(
             reviewUUID: String,
             writerID: String,
-            draftReview: DraftReview?,
-            completedReview: CompletedReview?,
+            storeUUID: String,
+            completedReview: CompletedReview,
         ): Review {
             return Review(
                 UUID(reviewUUID),
                 UserID(writerID),
-                draftReview,
+                UUID(storeUUID),
                 completedReview,
             )
         }
     }
 
     /**
-     * Draftに存在するReviewをCompletedに移動する
-     */
-    fun complete(): Review {
-        val completedReview = draftReview?.let {
-            CompletedReview.from(it)
-        } ?: throw InvalidInputException("相当する下書きはありません。")
-
-        return Review(
-            reviewUUID,
-            writerID,
-            null,
-            completedReview,
-        )
-    }
-
-    /**
      * 投稿済みレビューにコメントを追記する
      */
     fun postscript(text: String? = null, star: BigDecimal? = null): Review {
-        val completedReview = completedReview?.postscript(text, star) ?: throw InvalidInputException("相当するレビューはありません")
+        val completedReview = completedReview.postscript(text, star)
 
         return Review(
             reviewUUID,
             writerID,
-            null,
-            completedReview
+            storeUUID,
+            completedReview,
         )
     }
 
@@ -73,12 +56,12 @@ class Review private constructor(
      * レビューを非公開にする
      */
     fun setPrivate(): Review {
-        val completedReview = completedReview?.setPrivate()
+        val completedReview = completedReview.setPrivate()
 
         return Review(
             reviewUUID,
             writerID,
-            null,
+            storeUUID,
             completedReview,
         )
     }
@@ -87,13 +70,13 @@ class Review private constructor(
      * レビューを公開にする
      */
     fun setPublic(): Review {
-        val completedReview = completedReview?.setPublic()
+        val completedReview = completedReview.setPublic()
 
         return Review(
             reviewUUID,
             writerID,
-            null,
-            completedReview,
+            storeUUID,
+            completedReview
         )
     }
 }

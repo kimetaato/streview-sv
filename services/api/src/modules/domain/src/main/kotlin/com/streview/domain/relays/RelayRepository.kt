@@ -1,6 +1,8 @@
 package com.streview.domain.relays
 
+import com.github.michaelbull.result.Result
 import com.streview.domain.commons.UserID
+import com.streview.domain.commons.errors.DomainError
 
 interface RelayRepository {
     /**
@@ -8,7 +10,7 @@ interface RelayRepository {
      * @param userID 対象ユーザーのID
      * @return 該当する Relays（存在しない場合は null）
      */
-    suspend fun findByUserIdAndReviewUUID(userID: String, reviewUUID: String): Relay?
+    suspend fun findByUserIdAndReviewUUID(userID: String, reviewUUID: String): Result<Relay?, DomainError>
 
     /**
      * Relays を保存または更新する
@@ -19,10 +21,10 @@ interface RelayRepository {
     /**
      * ユーザーが所有するRelayをリストで取得する
      */
-    suspend fun findAllByUserId(userID: UserID): List<Relay>
+    suspend fun findAllByUserId(userID: UserID): Result<List<Relay>, DomainError>
 
     /**
      * ユーザーが再共有に設定しているもののリスト
      */
-    suspend fun findReReviewByUserId(userID: UserID): List<Relay>
+    suspend fun findReReviewByUserId(userID: UserID): Result<List<Relay>, DomainError>
 }

@@ -6,6 +6,7 @@ plugins {
 dependencies {
     // utils
     implementation(libs.kotlinx.serialization.json)
+    implementation(libs.kotlin.result)
 
     // Ktor
     implementation(libs.ktor.server.core)
