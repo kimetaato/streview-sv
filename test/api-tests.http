@@ -1,0 +1,142 @@
+# streview API テスト用リクエストファイル
+# IntelliJ IDEA HTTP Client で使用
+# 
+# 使用方法:
+# 1. アプリケーションを起動: docker exec streview_api bash -c "cd /app/src && ./gradlew run"
+# 2. Firebase認証トークンを取得（以下のFirebaseセクション参照）
+# 3. 各リクエストの左側の実行ボタン（▶️）をクリック
+
+@baseUrl = http://localhost:8080
+@firebaseApiKey = AIzaSyCRf7mfe0KrSmdJu7FTCdLB_-qWT3wcbGg
+@email = test01@example.com
+@password = test01
+
+###
+### 📋 Firebase 認証手順（以下の順序で実行）
+###
+
+###
+# ステップ1: 新規ユーザー登録（初回のみ）
+# 既にFirebaseアカウントがある場合はステップ2へ
+POST https://identitytoolkit.googleapis.com/v1/accounts:signUp?key={{firebaseApiKey}}
+Content-Type: application/json
+
+{
+  "email": "{{email}}",
+  "password": "{{password}}",
+  "returnSecureToken": true
+}
+
+> {%
+    client.global.set("firebaseToken", idToken);
+    client.global.set("refreshToken", refreshToken);
+%}
+###
+# ステップ2: サインイン（既存ユーザーまたは登録後）
+POST https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key={{firebaseApiKey}}
+Content-Type: application/json
+
+{
+  "email": "{{email}}",
+  "password": "{{password}}",
+  "returnSecureToken": true
+}
+
+> {%
+    client.global.set("firebaseToken", response.body.idToken);
+    client.global.set("refreshToken", response.body.refreshToken);
+%}
+
+###
+### 基本的なAPIテスト
+###
+
+###
+# 基本的な生存確認
+GET {{baseUrl}}/
+Content-Type: application/json
+
+###
+### 🔐 認証が必要なAPIテスト（Firebase認証完了後に実行）
+###
+
+### 
+# ユーザー登録 (Firebase認証必要)
+POST {{baseUrl}}/users/registers
+Authorization: Bearer {{firebaseToken}}
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="name"
+
+テストユーザー
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="birthday"
+
+1990-01-01
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="gender"
+
+male
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="file"; filename="avatar.jpg"
+Content-Type: image/jpeg
+
+< ./test-files/dummy1.png
+------WebKitFormBoundary7MA4YWxkTrZu0gW--
+
+###
+# レビュー投稿 (Firebase認証必要)
+# 事前に上記のFirebase認証を完了してください
+POST {{baseUrl}}/reviews/
+Authorization: Bearer {{firebaseToken}}
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="storeUUID"
+
+test-store-uuid-12345
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="comment"
+
+美味しいお店でした！雰囲気も良くて、また来たいと思います。スタッフの方も親切で、料理の説明も丁寧でした。
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="star"
+
+4.5
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="file"; filename="review.jpg"
+Content-Type: image/png
+
+< ./test-files/dummy4.png
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+
+###
+# GeoFence一覧取得
+POST {{baseUrl}}/stores/geofence
+Authorization: Bearer {{firebaseToken}}
+Content-Type: application/json
+
+{
+  "location": {
+    "lat": 35.159,
+    "lng": 135.1
+  }
+}
+
+> {%
+    client.log(response)
+ %}
+
+
+
+
+###
+# マイレビュー一覧取得 (Firebase認証必要)
+# 事前に上記のFirebase認証を完了してください  
+GET {{baseUrl}}/reviews/post
+Authorization: Bearer {{firebaseToken}}
+Content-Type: application/json
+
+
+
