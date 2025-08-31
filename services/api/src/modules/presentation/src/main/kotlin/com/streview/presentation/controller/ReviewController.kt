@@ -81,8 +81,8 @@ fun Route.reviewController() {
             val res = getMyReviewsUseCase.execute(input)
             val origin = call.request.origin
 
-            // 基本的な方法
-            val baseUrl = "${origin.scheme}://${origin.serverHost}:${origin.serverPort}"
+            // 画像パスを相対パスから絶対パスに変換
+            val baseUrl = "${origin.scheme}://${origin.serverHost}"
             val convert = res.copy(
                 reviews = res.reviews.map {
                         review ->

@@ -152,7 +152,7 @@ class ImageStorageServiceImpl(
             .fold(
                 success = { image ->
                     check(image != null)
-                    return "/static/images/${imageType.value}/${image.fileName.value}$WEBP_EXTENSION"
+                    return "/static/${imageType.value}/${image.fileName.value}$WEBP_EXTENSION"
                 },
                 failure = { Err(it).getOrElse { "" } }
             )
