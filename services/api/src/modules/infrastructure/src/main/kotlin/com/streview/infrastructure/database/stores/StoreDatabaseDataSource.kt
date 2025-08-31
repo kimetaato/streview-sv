@@ -14,15 +14,41 @@ import kotlinx.coroutines.flow.toList
 import kotlinx.datetime.Clock
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toLocalDateTime
+import org.jetbrains.exposed.v1.core.SqlExpressionBuilder.inList
 import org.jetbrains.exposed.v1.r2dbc.insert
 import org.jetbrains.exposed.v1.r2dbc.select
+import org.jetbrains.exposed.v1.r2dbc.selectAll
 import kotlin.math.*
 
 class StoreDatabaseDataSource {
-    suspend fun findByUUID(uuid: UUID): Result<Store, DomainError> {
+    suspend fun findByUUID(uuid: UUID): Result<Store?, DomainError> =
         try {
-            val store = StoresTable
-                .select(
+            Ok(
+                StoresTable
+                    .selectAll()
+                    .where { StoresTable.id eq uuid.value }
+                    .firstOrNull()?.let { row ->
+                        Store.reconstruct(
+                            storeUUID = row[StoresTable.id],
+                            name = row[StoresTable.name],
+                            genre = row[StoresTable.genre],
+                            address = row[StoresTable.address],
+                            tel = row[StoresTable.denwaBango],
+                            description = row[StoresTable.description],
+                            open = row[StoresTable.openingTime],
+                            latitude = row[StoresTable.latitude],
+                            longitude = row[StoresTable.longitude]
+                        )
+                    }
+            )
+        } catch (e: Exception) {
+            Err(TechnicalError.DatabaseError(false, e))
+        }
+
+    suspend fun findInUUIDs(uuids: List<UUID>): Result<List<Store>, DomainError> =
+        try {
+            Ok(
+                StoresTable.select(
                     StoresTable.id,
                     StoresTable.name,
                     StoresTable.genre,
@@ -33,29 +59,24 @@ class StoreDatabaseDataSource {
                     StoresTable.latitude,
                     StoresTable.longitude
                 )
-                .where { StoresTable.id eq uuid.value }
-                .firstOrNull()?.let { row ->
-                    Store.reconstruct(
-                        storeUUID = row[StoresTable.id],
-                        name = row[StoresTable.name],
-                        genre = row[StoresTable.genre],
-                        address = row[StoresTable.address],
-                        tel = row[StoresTable.denwaBango],
-                        description = row[StoresTable.description],
-                        open = row[StoresTable.openingTime],
-                        latitude = row[StoresTable.latitude],
-                        longitude = row[StoresTable.longitude]
-                    )
-                }
-            return if (store != null) {
-                Ok(store)
-            } else {
-                Err(TechnicalError.DatabaseError(false, Exception("Store not found")))
-            }
+                    .where(StoresTable.id inList uuids.map { it.value })
+                    .toList().map { row ->
+                        Store.reconstruct(
+                            storeUUID = row[StoresTable.id],
+                            name = row[StoresTable.name],
+                            genre = row[StoresTable.genre],
+                            address = row[StoresTable.address],
+                            tel = row[StoresTable.denwaBango],
+                            description = row[StoresTable.description],
+                            open = row[StoresTable.openingTime],
+                            latitude = row[StoresTable.latitude],
+                            longitude = row[StoresTable.longitude]
+                        )
+                    }
+            )
         } catch (e: Exception) {
-            return Err(TechnicalError.DatabaseError(false, e))
+            Err(TechnicalError.DatabaseError(false, e))
         }
-    }
 
     suspend fun save(store: Store): Result<Store, DomainError> {
         return try {

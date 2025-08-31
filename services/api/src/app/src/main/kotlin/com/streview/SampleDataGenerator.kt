@@ -3,14 +3,13 @@ package com.streview
 import com.github.michaelbull.result.fold
 import com.streview.application.services.EncounterDecryptionConfig
 import com.streview.application.services.ImageStorageConfig
-import com.streview.configure.applicationServiceModule
 import com.streview.configure.configureDatabase
-import com.streview.configure.domainServiceModule
-import com.streview.configure.eventModule
+import com.streview.configure.dependency.application.applicationServiceModule
+import com.streview.configure.dependency.application.useCaseModule
+import com.streview.configure.dependency.domain.domainServiceModule
+import com.streview.configure.dependency.domain.eventModule
+import com.streview.configure.dependency.domain.repositoryModule
 import com.streview.configure.httpClientModule
-import com.streview.configure.repositoryModule
-import com.streview.configure.storeDataSourceModule
-import com.streview.configure.useCaseModule
 import com.streview.domain.commons.GeoLocation
 import com.streview.domain.stores.StoreRepository
 import kotlinx.coroutines.runBlocking
@@ -85,7 +84,6 @@ fun main() = runBlocking {
             applicationServiceModule,
             domainServiceModule,
             repositoryModule,
-            storeDataSourceModule,
             httpClientModule,
             sampleDataConfigModule,
             eventModule

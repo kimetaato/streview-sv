@@ -1,6 +1,7 @@
 package com.streview.domain.reviews
 
 import com.streview.domain.commons.UUID
+import com.streview.domain.commons.UserID
 import io.kotest.core.spec.style.FreeSpec
 import io.kotest.matchers.shouldBe
 import io.kotest.property.Arb
@@ -27,9 +28,10 @@ class ReviewTest : FreeSpec({
                 checkAll(validUserIDArb, uuidArb, validCommentArb, validStarArb, imageCountArb) {
                         writerID, storeUUID, comment, star, imageCount ->
                     val uuids = List(imageCount) { UUID.generate() }
-                    val completedReview = CompletedReview.factory(comment, star, uuids)
+                    val completedReview = CompletedReview.create(comment, star, uuids)
+                    val writer = UserID(writerID)
 
-                    val review = Review.create(writerID, UUID.generate(storeUUID), completedReview)
+                    val review = Review.create(writer, UUID.generate(storeUUID), completedReview)
 
                     review.writerID.value shouldBe writerID
                     review.completedReview shouldBe completedReview
@@ -43,7 +45,7 @@ class ReviewTest : FreeSpec({
                 checkAll(reviewUUIDArb, validUserIDArb, uuidArb, validCommentArb, validStarArb, imageCountArb) {
                         reviewUUID, writerID, storeUUID, comment, star, imageCount ->
                     val uuids = List(imageCount) { UUID.generate() }
-                    val completedReview = CompletedReview.factory(comment, star, uuids)
+                    val completedReview = CompletedReview.create(comment, star, uuids)
 
                     val review = Review.reconstruct(reviewUUID, writerID, storeUUID, completedReview)
 
@@ -61,8 +63,10 @@ class ReviewTest : FreeSpec({
                     checkAll(validUserIDArb, uuidArb, validCommentArb, validStarArb, imageCountArb, validCommentArb) {
                             writerID, storeUUID, comment, star, imageCount, additionalText ->
                         val uuids = List(imageCount) { UUID.generate() }
-                        val completedReview = CompletedReview.factory(comment, star, uuids)
-                        val review = Review.create(writerID, UUID.generate(storeUUID), completedReview)
+                        val completedReview = CompletedReview.create(comment, star, uuids)
+                        val writer = UserID(writerID)
+
+                        val review = Review.create(writer, UUID.generate(storeUUID), completedReview)
 
                         val updatedReview = review.postscript(additionalText)
 
@@ -76,8 +80,10 @@ class ReviewTest : FreeSpec({
                     checkAll(validUserIDArb, uuidArb, validCommentArb, validStarArb, imageCountArb, validStarArb) {
                             writerID, storeUUID, comment, star, imageCount, newStar ->
                         val uuids = List(imageCount) { UUID.generate() }
-                        val completedReview = CompletedReview.factory(comment, star, uuids)
-                        val review = Review.create(writerID, UUID.generate(storeUUID), completedReview)
+                        val completedReview = CompletedReview.create(comment, star, uuids)
+                        val writer = UserID(writerID)
+
+                        val review = Review.create(writer, UUID.generate(storeUUID), completedReview)
 
                         val updatedReview = review.postscript(star = newStar)
 
@@ -96,8 +102,10 @@ class ReviewTest : FreeSpec({
                         validStarArb
                     ) { writerID, storeUUID, comment, star, imageCount, additionalText, newStar ->
                         val uuids = List(imageCount) { UUID.generate() }
-                        val completedReview = CompletedReview.factory(comment, star, uuids)
-                        val review = Review.create(writerID, UUID.generate(storeUUID), completedReview)
+                        val completedReview = CompletedReview.create(comment, star, uuids)
+                        val writer = UserID(writerID)
+
+                        val review = Review.create(writer, UUID.generate(storeUUID), completedReview)
 
                         val updatedReview = review.postscript(additionalText, newStar)
 
@@ -113,8 +121,10 @@ class ReviewTest : FreeSpec({
                 checkAll(validUserIDArb, uuidArb, validCommentArb, validStarArb, imageCountArb) {
                         writerID, storeUUID, comment, star, imageCount ->
                     val uuids = List(imageCount) { UUID.generate() }
-                    val completedReview = CompletedReview.factory(comment, star, uuids)
-                    val review = Review.create(writerID, UUID.generate(storeUUID), completedReview)
+                    val completedReview = CompletedReview.create(comment, star, uuids)
+                    val writer = UserID(writerID)
+
+                    val review = Review.create(writer, UUID.generate(storeUUID), completedReview)
 
                     val privateReview = review.setPrivate()
 
@@ -130,8 +140,10 @@ class ReviewTest : FreeSpec({
                 checkAll(validUserIDArb, uuidArb, validCommentArb, validStarArb, imageCountArb) {
                         writerID, storeUUID, comment, star, imageCount ->
                     val uuids = List(imageCount) { UUID.generate() }
-                    val completedReview = CompletedReview.factory(comment, star, uuids)
-                    val review = Review.create(writerID, UUID.generate(storeUUID), completedReview)
+                    val completedReview = CompletedReview.create(comment, star, uuids)
+                    val writer = UserID(writerID)
+
+                    val review = Review.create(writer, UUID.generate(storeUUID), completedReview)
                     val privateReview = review.setPrivate()
 
                     val publicReview = privateReview.setPublic()

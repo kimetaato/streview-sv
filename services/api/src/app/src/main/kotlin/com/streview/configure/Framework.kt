@@ -1,28 +1,12 @@
 package com.streview.configure
 
 import com.streview.application.services.EncounterDecryptionConfig
-import com.streview.application.services.EncounterDecryptionService
 import com.streview.application.services.ImageStorageConfig
-import com.streview.application.services.ImageStorageService
-import com.streview.application.usecases.encounters.EncounterUseCase
-import com.streview.application.usecases.relays.MarkRelayStatusUseCase
-import com.streview.application.usecases.users.RegisterUserUseCase
-import com.streview.domain.commons.event.EventBus
-import com.streview.domain.encounters.EncounterRepository
-import com.streview.domain.images.ImageRepository
-import com.streview.domain.relays.RelayRepository
-import com.streview.domain.stores.StoreRepository
-import com.streview.domain.users.UserRepository
-import com.streview.infrastructure.api.stores.GooglePlacesDataSource
-import com.streview.infrastructure.api.stores.HotPepperDataSource
-import com.streview.infrastructure.database.encounters.EncounterRepositoryImpl
-import com.streview.infrastructure.database.images.ImageRepositoryImpl
-import com.streview.infrastructure.database.relays.RelayRepositoryImpl
-import com.streview.infrastructure.database.stores.StoreDatabaseDataSource
-import com.streview.infrastructure.database.users.UserRepositoryImpl
-import com.streview.infrastructure.repository.stores.StoreRepositoryImpl
-import com.streview.infrastructure.storages.images.ImageStorageServiceImpl
-import com.streview.service.relays.RelayDomainService
+import com.streview.configure.dependency.application.applicationServiceModule
+import com.streview.configure.dependency.application.useCaseModule
+import com.streview.configure.dependency.domain.domainServiceModule
+import com.streview.configure.dependency.domain.eventModule
+import com.streview.configure.dependency.domain.repositoryModule
 import io.ktor.client.HttpClient
 import io.ktor.server.application.*
 import kotlinx.io.buffered
@@ -32,90 +16,11 @@ import kotlinx.io.readString
 import org.koin.dsl.module
 import org.koin.ktor.plugin.Koin
 
-// トランザクションを簡単に貼りたいがさっぱりわからない
-val useCaseModule = module {
-    single<RegisterUserUseCase> {
-        RegisterUserUseCase(get(), get(), get())
-    }
-    single<MarkRelayStatusUseCase> {
-        MarkRelayStatusUseCase(get(), get())
-    }
-    single<EncounterUseCase> {
-        EncounterUseCase(get(), get())
-    }
-}
-
-// アプリケーション層のサービスを依存関係に登録
-val applicationServiceModule = module {
-    single<ImageStorageService> {
-        ImageStorageServiceImpl(get(), get())
-    }
-    single<EncounterDecryptionService> {
-        EncounterDecryptionService(get())
-    }
-}
-
-// ドメイン層のサービスを依存関係に登録
-val domainServiceModule = module {
-    single<RelayDomainService> {
-        RelayDomainService()
-    }
-}
-
-// インフラストラクチャ層のリポジトリの実装を依存関係に登録
-val repositoryModule = module {
-    single<UserRepository> {
-        UserRepositoryImpl()
-    }
-    single<ImageRepository> {
-        ImageRepositoryImpl()
-    }
-    single<RelayRepository> {
-        RelayRepositoryImpl()
-    }
-    single<EncounterRepository> {
-        EncounterRepositoryImpl()
-    }
-    single<StoreRepository> {
-        StoreRepositoryImpl(get(), get(), get())
-    }
-}
-
-// Store関連のデータソース
-val storeDataSourceModule = module {
-    single<HotPepperDataSource> {
-        HotPepperDataSource(get())
-    }
-    single<GooglePlacesDataSource> {
-        GooglePlacesDataSource(get())
-    }
-    single<StoreDatabaseDataSource> {
-        StoreDatabaseDataSource()
-    }
-}
-
 // HTTPクライアント設定
 val httpClientModule = module {
     single<HttpClient> {
         createHttpClient()
     }
-}
-
-val eventModule = module {
-    single {
-        EventBus
-    }
-//    single { // TODO: 依存関係はまだ足りない
-//        EncounterAddEventHandler(get(), get())
-//    }
-//
-//    // イベントを購読する
-//    factory { (eventBus: EventBus) ->
-//        {
-//            // EventHandlerを登録
-//            eventBus.subscribe(EncounterAddDomainEvent::class.java, get<EncounterAddEventHandler>())
-//        }
-//    }
 }
 
 // 各種ファイルから読み取った値を依存関係に登録
@@ -140,7 +45,6 @@ fun Application.configureFramework() {
             applicationServiceModule,
             domainServiceModule,
             repositoryModule,
-            storeDataSourceModule,
             httpClientModule,
             configureModule,
             eventModule

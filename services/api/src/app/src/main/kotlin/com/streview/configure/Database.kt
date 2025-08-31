@@ -2,8 +2,10 @@ package com.streview.configure
 
 import com.streview.infrastructure.database.models.EncounterTable
 import com.streview.infrastructure.database.models.ImagesTable
+import com.streview.infrastructure.database.models.ReviewTable
 import com.streview.infrastructure.database.models.StoresTable
 import com.streview.infrastructure.database.models.UsersTable
+import com.streview.infrastructure.database.models.VisitTable
 import io.r2dbc.spi.ConnectionFactories
 import io.r2dbc.spi.ConnectionFactory
 import io.r2dbc.spi.ConnectionFactoryOptions.*
@@ -39,7 +41,9 @@ fun configureDatabase() {
                 ImagesTable,
                 UsersTable,
                 StoresTable,
-                EncounterTable
+                EncounterTable,
+                ReviewTable,
+                VisitTable
             )
 
             if (StoresTable.selectAll().empty()) {

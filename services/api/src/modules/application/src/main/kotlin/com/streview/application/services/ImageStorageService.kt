@@ -11,10 +11,5 @@ interface ImageStorageService {
 }
 
 enum class ImageType(val value: String) {
-    UserIcon("user_icon"), Review("review"), Store("store");
-
-    companion object {
-        private val map = ImageType.entries.associateBy(ImageType::value)
-        fun fromValue(type: String) = map[type] ?: throw TypeCastException("Unknown type $type")
-    }
+    UserIcon("icons"), Review("reviews"), Store("stores")
 }

@@ -12,22 +12,29 @@ import io.ktor.server.response.*
 fun Application.configureStatusPage() {
     install(StatusPages) {
         // 例外に対するレスポンスを定義する
-        exception<NotFoundException> { call, _ ->
+        exception<NotFoundException> { call, cause ->
+            println(cause.message)
             return@exception call.respond(HttpStatusCode.NotFound)
         }
         exception<InvalidInputException> { call, cause ->
+            println(cause.message)
             return@exception call.respond(HttpStatusCode.BadRequest, cause.message ?: "")
         }
         // バリデーションに問題問題があった場合のエラーレスポンス
         exception<ValidationException> { call, cause ->
+            println(cause.validationErrors)
             return@exception call.respond(HttpStatusCode.BadRequest, cause.validationErrors)
         }
         exception<ConflictException> { call, cause ->
+            println(cause.message)
             return@exception call.respond(HttpStatusCode.Conflict, cause.message ?: "")
         }
 
         // 独自定義していない例外が発生した場合
-        exception<Throwable> { call, _ ->
+        exception<Throwable> { call, cause ->
+            println(cause.message)
+            println(cause.toString())
+            println(cause.stackTraceToString())
             return@exception call.response.status(HttpStatusCode.InternalServerError)
         }
     }

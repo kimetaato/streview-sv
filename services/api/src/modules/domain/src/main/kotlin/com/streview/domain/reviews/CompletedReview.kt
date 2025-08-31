@@ -16,7 +16,7 @@ class CompletedReview private constructor(
     val updatedAt: LocalDateTime,
 ) {
     companion object {
-        fun factory(comment: String, star: BigDecimal, imageUUIDs: List<UUID>): CompletedReview { // 新規作成
+        fun create(comment: String, star: BigDecimal, imageUUIDs: List<UUID>): CompletedReview { // 新規作成
             val now = Clock.System.now().toLocalDateTime(TimeZone.currentSystemDefault())
             return CompletedReview(
                 Comment(comment),

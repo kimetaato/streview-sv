@@ -6,12 +6,14 @@ plugins {
 dependencies {
     // utils
     implementation(libs.kotlinx.serialization.json)
+    implementation(libs.kotlinx.datetime)
     implementation(libs.kotlin.result)
 
     // Ktor
     implementation(libs.ktor.server.core)
     implementation(libs.koin.ktor)
     implementation(libs.ktor.server.auth)
+    // implementation(libs.ktor.resources) // TODO: ライブラリ定義が存在しないため一時的にコメントアウト
 
     // test
     testImplementation(libs.bundles.kotest.core)

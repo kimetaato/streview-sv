@@ -12,13 +12,13 @@ class Review private constructor(
 ) {
     companion object {
         fun create(
-            writerID: String,
+            writerID: UserID,
             storeUUID: UUID,
             completedReview: CompletedReview,
         ): Review {
             return Review(
                 UUID.generate(),
-                UserID(writerID),
+                writerID,
                 storeUUID,
                 completedReview,
             )

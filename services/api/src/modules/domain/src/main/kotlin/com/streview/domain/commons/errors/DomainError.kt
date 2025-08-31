@@ -33,13 +33,6 @@ sealed class ValidationError : DomainError() {
 }
 
 /**
- * ドメインのルール上の制約を満たさない場合に発生するエラーを定義する。
- */
-sealed class BusinessRuleError : DomainError() {
-    object NotFound : BusinessRuleError()
-}
-
-/**
  * エンティティのライフサイクル上不可能な状態の場合に発生するエラー
  */
 sealed class EntityError : DomainError() {
