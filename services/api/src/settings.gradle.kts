@@ -22,3 +22,5 @@ include("modules:application")
 include("modules:domain")
 include("modules:presentation")
 include("modules:infrastructure")
+include("modules:utils")
+

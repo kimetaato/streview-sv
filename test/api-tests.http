@@ -146,7 +146,7 @@ Content-Type: application/json
 ###
 # マイレビュー一覧取得 (Firebase認証必要)
 # 事前に上記のFirebase認証を完了してください  
-GET {{baseUrl}}/reviews/post
+GET {{baseUrl}}/reviews/posted
 Authorization: Bearer {{firebaseToken}}
 Content-Type: application/json
 

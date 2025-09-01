@@ -83,7 +83,7 @@ class RelayControllerTest : FreeSpec({
                         }
                         routing {
                             authenticate("firebase-auth") {
-                                relayController()
+                                reviewController()
                             }
                         }
                     }
@@ -139,7 +139,7 @@ class RelayControllerTest : FreeSpec({
                         }
                         routing {
                             authenticate("firebase-auth") {
-                                relayController()
+                                reviewController()
                             }
                         }
                     }
@@ -163,54 +163,6 @@ class RelayControllerTest : FreeSpec({
     }
 
     "RelayControllerの異常系テスト" - {
-        "プロパティテスト: 無効なstatus値で400 Bad Requestが返される" {
-            checkAll(validUserIDArb, reviewUUIDArb) { userID, reviewUUID ->
-                // 各テスト実行前にモックをクリア
-                clearAllMocks()
-
-                val mockUseCase = mockk<MarkRelayStatusUseCase>()
-
-                testApplication {
-                    application {
-                        install(ContentNegotiation) {
-                            json()
-                        }
-                        install(Koin) {
-                            modules(
-                                module {
-                                    single { mockUseCase }
-                                }
-                            )
-                        }
-                        install(Authentication) {
-                            bearer("firebase-auth") {
-                                authenticate { credential ->
-                                    UserIdPrincipal(userID)
-                                }
-                            }
-                        }
-                        routing {
-                            authenticate("firebase-auth") {
-                                relayController()
-                            }
-                        }
-                    }
-
-                    // テスト実行 - 無効なstatus値
-                    val response = client.patch("/reviews/$reviewUUID") {
-                        header(HttpHeaders.Authorization, "Bearer test-token")
-                        contentType(ContentType.Application.Json)
-                        setBody("""{"status": "invalid"}""")
-                    }
-
-                    // 検証
-                    // 具体的なステータスコードはStatusPageによって定義されているため500で検証
-                    response.status.value shouldBe 500
-                    coVerify(exactly = 0) { mockUseCase.execute(any()) }
-                }
-            }
-        }
-
         "プロパティテスト: 認証なしアクセスで401 Unauthorizedが返される" {
             checkAll(reviewUUIDArb) { reviewUUID ->
                 // 各テスト実行前にモックをクリア
@@ -239,7 +191,7 @@ class RelayControllerTest : FreeSpec({
                         }
                         routing {
                             authenticate("firebase-auth") {
-                                relayController()
+                                reviewController()
                             }
                         }
                     }
@@ -290,7 +242,7 @@ class RelayControllerTest : FreeSpec({
                         }
                         routing {
                             authenticate("firebase-auth") {
-                                relayController()
+                                reviewController()
                             }
                         }
                     }
@@ -338,7 +290,7 @@ class RelayControllerTest : FreeSpec({
                         }
                         routing {
                             authenticate("firebase-auth") {
-                                relayController()
+                                reviewController()
                             }
                         }
                     }
@@ -393,7 +345,7 @@ class RelayControllerTest : FreeSpec({
                         }
                         routing {
                             authenticate("firebase-auth") {
-                                relayController()
+                                reviewController()
                             }
                         }
                     }

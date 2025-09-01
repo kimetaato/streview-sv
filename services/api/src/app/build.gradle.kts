@@ -14,6 +14,7 @@ dependencies {
     implementation(libs.bundles.ktor.core)
     implementation(libs.bundles.ktor.utils)
     implementation(libs.bundles.ktor.auth)
+    implementation(libs.ktor.server.resources)
 
     // HTTP Client
     implementation(libs.bundles.ktor.client)

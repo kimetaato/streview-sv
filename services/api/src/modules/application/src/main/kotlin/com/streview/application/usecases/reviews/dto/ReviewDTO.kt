@@ -41,3 +41,12 @@ data class Review(
     val storeName: String,
     val storeUUID: String,
 )
+
+data class GetReReviewRequest(
+    val userID: String,
+) : InputPort
+
+@Serializable
+data class GetReReviewResponse(
+    val reviews: List<Review>
+) : OutputPort

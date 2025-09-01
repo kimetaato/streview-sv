@@ -92,7 +92,7 @@ class RelayRepositoryImpl : RelayRepository {
                 RelaysTable
                     .selectAll()
                     .where(
-                        RelaysTable.userID eq userID.value and RelaysTable.isReReviewed eq Op.TRUE
+                        RelaysTable.userID eq userID.value and RelaysTable.isReReview eq Op.TRUE
                     )
                     .map { row -> toDomain(row) }.toList()
             )

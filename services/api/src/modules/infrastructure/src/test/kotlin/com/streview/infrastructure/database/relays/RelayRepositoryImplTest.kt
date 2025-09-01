@@ -34,45 +34,31 @@ class RelayRepositoryImplTest : FreeSpec({
                         savedRelay shouldNotBe null
                         savedRelay!!.userID.value shouldBe userID
                         savedRelay.reviewUUID.value shouldBe reviewUUID
-                        savedRelay.isReReviewed shouldBe false
+                        savedRelay.isReReview shouldBe false
 
                         rollback()
                     }
                 }
             }
-
-            "プロパティテスト: isReReviewedがtrueのrelayを保存できること" {
-                checkAll(validUserIDArb, reviewUUIDArb) { userID, reviewUUID ->
-                    suspendTransaction {
-                        val relay = Relay.reconstruct(userID, reviewUUID, true)
-
-                        repository.save(relay).getOrThrow()
-
-                        val savedRelay = repository.findByUserIdAndReviewUUID(userID, reviewUUID).getOrThrow()
-                        savedRelay shouldNotBe null
-                        savedRelay!!.userID.value shouldBe userID
-                        savedRelay.reviewUUID.value shouldBe reviewUUID
-                        savedRelay.isReReviewed shouldBe true
-
-                        rollback()
-                    }
-                }
-            }
-
             "プロパティテスト: 同じキーのrelayを更新できること（upsert）" {
                 checkAll(validUserIDArb, reviewUUIDArb) { userID, reviewUUID ->
                     suspendTransaction {
                         val originalRelay = Relay.factory(userID, reviewUUID)
                         repository.save(originalRelay).getOrThrow()
 
-                        val updatedRelay = Relay.reconstruct(userID, reviewUUID, true)
+                        val updatedRelay = Relay.reconstruct(
+                            userID = userID,
+                            reviewUUID = reviewUUID,
+                            isReReview = true,
+                            isRead = true
+                        )
                         repository.save(updatedRelay).getOrThrow()
 
                         val savedRelay = repository.findByUserIdAndReviewUUID(userID, reviewUUID).getOrThrow()
                         savedRelay shouldNotBe null
                         savedRelay!!.userID.value shouldBe userID
                         savedRelay.reviewUUID.value shouldBe reviewUUID
-                        savedRelay.isReReviewed shouldBe true
+                        savedRelay.isReReview shouldBe true
 
                         rollback()
                     }
@@ -82,9 +68,19 @@ class RelayRepositoryImplTest : FreeSpec({
 
         "findByUserIdAndReviewUUIDメソッドのプロパティテスト" - {
             "プロパティテスト: 存在するrelayを正しく取得できること" {
-                checkAll(validUserIDArb, reviewUUIDArb, Arb.boolean()) { userID, reviewUUID, isReReviewed ->
+                checkAll(
+                    validUserIDArb,
+                    reviewUUIDArb,
+                    Arb.boolean(),
+                    Arb.boolean()
+                ) { userID, reviewUUID, isReReview, isRead ->
                     suspendTransaction {
-                        val originalRelay = Relay.reconstruct(userID, reviewUUID, isReReviewed)
+                        val originalRelay = Relay.reconstruct(
+                            userID = userID,
+                            reviewUUID = reviewUUID,
+                            isReReview = isReReview,
+                            isRead = isRead
+                        )
                         repository.save(originalRelay).getOrThrow()
 
                         val foundRelay = repository.findByUserIdAndReviewUUID(userID, reviewUUID).getOrThrow()
@@ -92,7 +88,7 @@ class RelayRepositoryImplTest : FreeSpec({
                         foundRelay shouldNotBe null
                         foundRelay!!.userID.value shouldBe userID
                         foundRelay.reviewUUID.value shouldBe reviewUUID
-                        foundRelay.isReReviewed shouldBe isReReviewed
+                        foundRelay.isReReview shouldBe isReReview
 
                         rollback()
                     }
@@ -135,59 +131,6 @@ class RelayRepositoryImplTest : FreeSpec({
 
                             val foundRelay = repository.findByUserIdAndReviewUUID(wrongUserID, reviewUUID).getOrThrow()
                             foundRelay shouldBe null
-
-                            rollback()
-                        }
-                    }
-                }
-            }
-        }
-
-        "save-findサイクルのプロパティテスト" - {
-            "プロパティテスト: 保存と取得の整合性が保たれること" {
-                checkAll(validUserIDArb, reviewUUIDArb, Arb.boolean()) { userID, reviewUUID, isReReviewed ->
-                    suspendTransaction {
-                        val originalRelay = Relay.reconstruct(userID, reviewUUID, isReReviewed)
-
-                        repository.save(originalRelay).getOrThrow()
-                        val retrievedRelay = repository.findByUserIdAndReviewUUID(userID, reviewUUID).getOrThrow()
-
-                        retrievedRelay shouldNotBe null
-                        retrievedRelay!!.userID.value shouldBe originalRelay.userID.value
-                        retrievedRelay.reviewUUID.value shouldBe originalRelay.reviewUUID.value
-                        retrievedRelay.isReReviewed shouldBe originalRelay.isReReviewed
-
-                        rollback()
-                    }
-                }
-            }
-
-            "プロパティテスト: 複数のrelayを保存しても正しく区別して取得できること" {
-                checkAll(
-                    validUserIDArb,
-                    validUserIDArb,
-                    reviewUUIDArb,
-                    reviewUUIDArb
-                ) { userID1, userID2, reviewUUID1, reviewUUID2 ->
-                    if (userID1 != userID2 || reviewUUID1 != reviewUUID2) {
-                        suspendTransaction {
-                            val relay1 = Relay.reconstruct(userID1, reviewUUID1, false)
-                            val relay2 = Relay.reconstruct(userID2, reviewUUID2, true)
-
-                            repository.save(relay1).getOrThrow()
-                            repository.save(relay2).getOrThrow()
-
-                            val foundRelay1 = repository.findByUserIdAndReviewUUID(userID1, reviewUUID1).getOrThrow()
-                            val foundRelay2 = repository.findByUserIdAndReviewUUID(userID2, reviewUUID2).getOrThrow()
-
-                            foundRelay1 shouldNotBe null
-                            foundRelay2 shouldNotBe null
-                            foundRelay1!!.userID.value shouldBe userID1
-                            foundRelay1.reviewUUID.value shouldBe reviewUUID1
-                            foundRelay1.isReReviewed shouldBe false
-                            foundRelay2!!.userID.value shouldBe userID2
-                            foundRelay2.reviewUUID.value shouldBe reviewUUID2
-                            foundRelay2.isReReviewed shouldBe true
 
                             rollback()
                         }

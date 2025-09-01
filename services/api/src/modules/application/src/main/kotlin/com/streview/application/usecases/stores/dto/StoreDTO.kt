@@ -26,7 +26,7 @@ data class Location(
 @Serializable
 data class GetGeofenceResponse(
     val stores: List<StoreHeader>,
-    val range: Double
+    val range: Int
 ) : OutputPort
 
 @Serializable

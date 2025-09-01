@@ -4,25 +4,14 @@ import com.github.michaelbull.result.getOrThrow
 import com.streview.domain.commons.GeoLocation
 import com.streview.domain.stores.Store
 import io.kotest.core.spec.style.FreeSpec
+import io.kotest.matchers.nulls.shouldNotBeNull
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.shouldNotBe
-import io.kotest.property.Arb
-import io.kotest.property.arbitrary.double
-import io.kotest.property.arbitrary.stringPattern
 import org.jetbrains.exposed.v1.r2dbc.transactions.suspendTransaction
 
 class StoreDatabaseDataSourceTest : FreeSpec({
 
     val dataSource = StoreDatabaseDataSource()
-
-    val validStoreNameArb = Arb.stringPattern("[a-zA-Z0-9あ-んア-ン一-龯]{1,100}")
-    val validGenreArb = Arb.stringPattern("[a-zA-Z0-9あ-んア-ン一-龯]{1,50}")
-    val validAddressArb = Arb.stringPattern("[a-zA-Z0-9あ-んア-ン一-龯 ]{1,200}")
-    val validTelArb = Arb.stringPattern("[0-9-]{10,15}")
-    val validDescriptionArb = Arb.stringPattern("[a-zA-Z0-9あ-んア-ン一-龯 ]{1,500}")
-    val validOpeningTimeArb = Arb.stringPattern("[0-9:月火水木金土日 -]{1,100}")
-    val validLatitudeArb = Arb.double(-90.0, 90.0)
-    val validLongitudeArb = Arb.double(-180.0, 180.0)
 
     "StoreDatabaseDataSourceの統合テスト" - {
         "saveメソッドのテスト" - {
@@ -75,6 +64,7 @@ class StoreDatabaseDataSourceTest : FreeSpec({
                     val foundStore = dataSource.findByUUID(originalStore.storeUUID).getOrThrow()
 
                     foundStore shouldNotBe null
+                    foundStore.shouldNotBeNull()
                     foundStore.storeUUID shouldBe originalStore.storeUUID
                     foundStore.name.value shouldBe "取得テスト店舗"
                     foundStore.genre.value shouldBe "洋食"
@@ -84,7 +74,6 @@ class StoreDatabaseDataSourceTest : FreeSpec({
                     foundStore.open.value shouldBe "12:00-23:00"
                     foundStore.geoLocation.latitude shouldBe 35.658034
                     foundStore.geoLocation.longitude shouldBe 139.758148
-
                     rollback()
                 }
             }
@@ -167,6 +156,7 @@ class StoreDatabaseDataSourceTest : FreeSpec({
                     val savedStore = dataSource.save(originalStore).getOrThrow()
                     val retrievedStore = dataSource.findByUUID(originalStore.storeUUID).getOrThrow()
 
+                    retrievedStore.shouldNotBeNull()
                     savedStore.storeUUID shouldBe retrievedStore.storeUUID
                     savedStore.name.value shouldBe retrievedStore.name.value
                     savedStore.genre.value shouldBe retrievedStore.genre.value

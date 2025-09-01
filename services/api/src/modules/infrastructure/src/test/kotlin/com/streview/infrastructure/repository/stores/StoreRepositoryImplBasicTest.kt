@@ -5,8 +5,8 @@ import com.streview.domain.commons.GeoLocation
 import com.streview.domain.stores.Store
 import com.streview.infrastructure.database.stores.StoreDatabaseDataSource
 import io.kotest.core.spec.style.FreeSpec
+import io.kotest.matchers.nulls.shouldNotBeNull
 import io.kotest.matchers.shouldBe
-import io.kotest.matchers.shouldNotBe
 import org.jetbrains.exposed.v1.r2dbc.transactions.suspendTransaction
 
 class StoreRepositoryImplBasicTest : FreeSpec({
@@ -35,7 +35,7 @@ class StoreRepositoryImplBasicTest : FreeSpec({
                     val retrievedStore = dbDataSource.findByUUID(store.storeUUID).getOrThrow()
 
                     // 検証
-                    retrievedStore shouldNotBe null
+                    retrievedStore.shouldNotBeNull()
                     retrievedStore.storeUUID shouldBe store.storeUUID
                     retrievedStore.name.value shouldBe "テスト店舗"
                     retrievedStore.genre.value shouldBe "和食"

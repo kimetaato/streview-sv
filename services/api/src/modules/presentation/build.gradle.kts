@@ -13,7 +13,7 @@ dependencies {
     implementation(libs.ktor.server.core)
     implementation(libs.koin.ktor)
     implementation(libs.ktor.server.auth)
-    // implementation(libs.ktor.resources) // TODO: ライブラリ定義が存在しないため一時的にコメントアウト
+    implementation(libs.ktor.server.resources)
 
     // test
     testImplementation(libs.bundles.kotest.core)

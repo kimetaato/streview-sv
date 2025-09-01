@@ -23,53 +23,83 @@ class RelayTest : FreeSpec({
                     val relay = Relay.factory(userID, reviewUUID)
                     relay.userID.value shouldBe userID
                     relay.reviewUUID.value shouldBe reviewUUID
-                    relay.isReReviewed shouldBe false
+                    relay.isReReview shouldBe false
                 }
             }
         }
         "再生成メソッドでRelayを作成する" - {
-            checkAll(validUserIDArb, reviewUUIDArb, Arb.boolean()) { userID, reviewUUID, isReReview ->
-                val relay = Relay.reconstruct(userID, reviewUUID, isReReview)
+            checkAll(
+                validUserIDArb,
+                reviewUUIDArb,
+                Arb.boolean(),
+                Arb.boolean()
+            ) { userID, reviewUUID, isReReview, isRead ->
+                val relay = Relay.reconstruct(
+                    userID = userID,
+                    reviewUUID = reviewUUID,
+                    isReReview = isReReview,
+                    isRead = isRead
+                )
                 relay.userID.value shouldBe userID
                 relay.reviewUUID.value shouldBe reviewUUID
-                relay.isReReviewed shouldBe isReReview
+                relay.isReReview shouldBe isReReview
             }
         }
-        "振る舞いメソッドでisRelayをtrueにする" - {
+        "振る舞いメソッドでisReReviewをtrueにする" - {
             checkAll(validUserIDArb, reviewUUIDArb) { userID, reviewUUID ->
-                val relay = Relay.reconstruct(userID, reviewUUID, false)
+                val relay = Relay.reconstruct(
+                    userID = userID,
+                    reviewUUID = reviewUUID,
+                    isReReview = false,
+                    isRead = true
+                )
                 relay.setReReview()
                 relay.userID.value shouldBe userID
                 relay.reviewUUID.value shouldBe reviewUUID
-                relay.isReReviewed shouldBe true
+                relay.isReReview shouldBe true
             }
         }
-        "振る舞いメソッドでisRelayをfalseにする" - {
+        "振る舞いメソッドでisReReviewをfalseにする" - {
             checkAll(validUserIDArb, reviewUUIDArb) { userID, reviewUUID ->
-                val relay = Relay.reconstruct(userID, reviewUUID, true)
+                val relay = Relay.reconstruct(
+                    userID = userID,
+                    reviewUUID = reviewUUID,
+                    isReReview = true,
+                    isRead = true
+                )
 
                 relay.unsetReReview()
 
                 relay.userID.value shouldBe userID
                 relay.reviewUUID.value shouldBe reviewUUID
-                relay.isReReviewed shouldBe false
+                relay.isReReview shouldBe false
             }
         }
 
         "すでに公開設定のものを公開設定しようとするとエラーになる" - {
             checkAll(validUserIDArb, reviewUUIDArb) { userID, reviewUUID ->
-                val relay = Relay.reconstruct(userID, reviewUUID, false)
+                val relay = Relay.reconstruct(
+                    userID = userID,
+                    reviewUUID = reviewUUID,
+                    isReReview = true,
+                    isRead = true
+                )
                 shouldThrow<InvalidInputException> {
-                    relay.unsetReReview()
+                    relay.setReReview()
                 }
             }
         }
 
-        "すでに日共有状態のものを非共有にしようとするとエラーになる" - {
+        "すでに非共有状態のものを非共有にしようとするとエラーになる" - {
             checkAll(validUserIDArb, reviewUUIDArb) { userID, reviewUUID ->
-                val relay = Relay.reconstruct(userID, reviewUUID, true)
+                val relay = Relay.reconstruct(
+                    userID = userID,
+                    reviewUUID = reviewUUID,
+                    isReReview = false,
+                    isRead = true
+                )
                 shouldThrow<InvalidInputException> {
-                    relay.setReReview()
+                    relay.unsetReReview()
                 }
             }
         }

@@ -11,11 +11,11 @@ import com.streview.domain.exceptions.InvalidInputException
 class Relay private constructor(
     val userID: UserID,
     val reviewUUID: UUID,
-    private var _isReReviewed: Boolean, // 変更可能な値をラップすることでいい感じに
+    private var _isReReview: Boolean, // 変更可能な値をラップすることでいい感じに
     private var _isRead: Boolean
 ) {
-    val isReReviewed: Boolean
-        get() = _isReReviewed
+    val isReReview: Boolean
+        get() = _isReReview
     val isRead: Boolean
         get() = _isRead
 
@@ -41,8 +41,8 @@ class Relay private constructor(
      * internal修飾子を付与することによってapplicationレイヤーから参照されなくなり安全性が確保される
      */
     internal fun setReReview() {
-        if (_isReReviewed) throw InvalidInputException("既に設定されています。")
-        _isReReviewed = true
+        if (_isReReview) throw InvalidInputException("既に設定されています。")
+        _isReReview = true
     }
 
     /**
@@ -50,8 +50,8 @@ class Relay private constructor(
      * RelayのステータスをReReview状態から解除する
      */
     public fun unsetReReview() {
-        if (_isReReviewed.not()) throw InvalidInputException("既に解除されています。")
-        _isReReviewed = false
+        if (_isReReview.not()) throw InvalidInputException("既に解除されています。")
+        _isReReview = false
     }
 
     fun setRead() {
