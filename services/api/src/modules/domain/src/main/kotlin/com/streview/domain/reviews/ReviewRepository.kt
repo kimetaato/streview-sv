@@ -8,7 +8,7 @@ import com.streview.domain.commons.errors.DomainError
 interface ReviewRepository {
     suspend fun save(review: Review): Result<Review, DomainError>
     suspend fun findByWriterID(writerID: UserID): Result<List<Review>, DomainError>
-    suspend fun findByUUID(reviewUUID: UUID): Result<Review?, DomainError>
-    suspend fun findInUUIDs(uuids: List<UUID>): Result<List<Review>, DomainError>
-    suspend fun findByStoreUUIDs(storeUUIDs: List<UUID>): Result<List<Review>, DomainError>
+    suspend fun findByReviewUUID(reviewUUID: UUID): Result<Review?, DomainError>
+    suspend fun findInReviewUUIDs(reviewUUIDs: List<UUID>): Result<List<Review>, DomainError>
+    suspend fun findInStoreUUIDs(storeUUIDs: List<UUID>): Result<List<Review>, DomainError>
 }

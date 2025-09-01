@@ -13,7 +13,7 @@ class Image private constructor(
                 fileName = FileName(fileName),
             )
         }
-        fun create(imageUUID: String, fileName: String): Image {
+        fun reconstruct(imageUUID: String, fileName: String): Image {
             return Image(
                 imageUUID = UUID.generate(imageUUID),
                 fileName = FileName(fileName)

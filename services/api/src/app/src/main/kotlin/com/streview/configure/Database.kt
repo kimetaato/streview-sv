@@ -1,16 +1,15 @@
 package com.streview.configure
 
-import com.streview.infrastructure.database.models.EncounterTable
-import com.streview.infrastructure.database.models.ImagesTable
-import com.streview.infrastructure.database.models.ReviewTable
-import com.streview.infrastructure.database.models.StoresTable
-import com.streview.infrastructure.database.models.UsersTable
-import com.streview.infrastructure.database.models.VisitTable
+import com.streview.infrastructure.database.encounters.EncounterTable
+import com.streview.infrastructure.database.images.ImagesTable
+import com.streview.infrastructure.database.reviews.ReviewTable
+import com.streview.infrastructure.database.stores.StoreTable
+import com.streview.infrastructure.database.users.UserTable
+import com.streview.infrastructure.database.visits.VisitTable
 import io.r2dbc.spi.ConnectionFactories
 import io.r2dbc.spi.ConnectionFactory
 import io.r2dbc.spi.ConnectionFactoryOptions.*
 import kotlinx.coroutines.runBlocking
-import kotlinx.datetime.*
 import org.jetbrains.exposed.v1.core.vendors.PostgreSQLDialect
 import org.jetbrains.exposed.v1.r2dbc.*
 import org.jetbrains.exposed.v1.r2dbc.transactions.suspendTransaction
@@ -39,15 +38,15 @@ fun configureDatabase() {
         suspendTransaction {
             SchemaUtils.create(
                 ImagesTable,
-                UsersTable,
-                StoresTable,
+                UserTable,
+                StoreTable,
                 EncounterTable,
                 ReviewTable,
                 VisitTable
             )
 
-            if (StoresTable.selectAll().empty()) {
-                StoresTable.insert {
+            if (StoreTable.selectAll().empty()) {
+                StoreTable.insert {
                     it[storeUUID] = "85e15cf9-3555-45e4-ad77-920432ad937d"
                     it[name] = "木製ロケット"
                     it[genre] = "オムライス"
@@ -61,12 +60,6 @@ fun configureDatabase() {
                         "木曜 11:00~21:00" +
                         "金曜 11:00~22:00" +
                         "土曜 11:00~17:00"
-                    val currentMoment: Instant = Clock.System.now()
-                    val datetimeInUtc: LocalDateTime = currentMoment.toLocalDateTime(TimeZone.UTC)
-                    it[createdAt] = datetimeInUtc
-                    it[updatedAt] = datetimeInUtc
-                    it[deletedAt] = datetimeInUtc
-                    it[starCache] = 4.9
                     it[latitude] = 34.85743178543728
                     it[longitude] = 135.78065442190467
                 }

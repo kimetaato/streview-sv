@@ -38,7 +38,7 @@ class GetGeofenceUseCase(
              */
             visitRepository.findByUserIDAndWant(userID)
                 .andThen { visits ->
-                    storeRepository.sortByDistanceInUUIDs(visits.map { it.storeUUID }, geoLocation)
+                    storeRepository.sortByDistanceInStoreUUIDs(visits.map { it.storeUUID }, geoLocation)
                 }.andThen { stores ->
                     val range = haversineMeter(geoLocation, stores.last())
                     Ok(Pair(stores, range))

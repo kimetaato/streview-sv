@@ -1,9 +1,9 @@
-package com.streview.infrastructure.database.models
+package com.streview.infrastructure.database.users
 
 import org.jetbrains.exposed.v1.core.Table
 import org.jetbrains.exposed.v1.datetime.date
 
-object UsersTable : Table("users") {
+object UserTable : Table("users") {
     val userID = char("user_id", 28)
     val name = char("name", 50)
     val birthday = date("birthday")

@@ -46,7 +46,7 @@ class EncounterRepositoryImplTest : FreeSpec({
 
                 checkAll(combinedArb(), validEncounterDateArb) { (actorID, encounterIDs), encounterDate ->
                     suspendTransaction {
-                        val encounter = Encounter.factory(actorID, encounterDate, encounterIDs)
+                        val encounter = Encounter.reconstruct(actorID, encounterDate, encounterIDs)
 
                         val savedEncounter = repository.save(encounter).getOrThrow()
 
@@ -64,11 +64,12 @@ class EncounterRepositoryImplTest : FreeSpec({
             "プロパティテスト: 保存したencounterを取得できること" {
                 checkAll(combinedArb(), validEncounterDateArb) { (actorID, encounterIDs), encounterDate ->
                     suspendTransaction {
-                        val originalEncounter = Encounter.factory(actorID, encounterDate, encounterIDs)
+                        val originalEncounter = Encounter.reconstruct(actorID, encounterDate, encounterIDs)
 
                         repository.save(originalEncounter)
 
-                        val foundEncounter = repository.findByID(actorID, encounterDate).getOrThrow()!!
+                        val foundEncounter =
+                            repository.findByUserIDAndEncounterDate(actorID, encounterDate).getOrThrow()!!
 
                         foundEncounter.actorID.value shouldBe actorID
                         foundEncounter.encounterDate.value shouldBe encounterDate
@@ -86,10 +87,11 @@ class EncounterRepositoryImplTest : FreeSpec({
                 checkAll(combinedArb(), validEncounterDateArb) { (actorID, encounterIDs), encounterDate ->
 
                     suspendTransaction {
-                        val originalEncounter = Encounter.factory(actorID, encounterDate, encounterIDs)
+                        val originalEncounter = Encounter.reconstruct(actorID, encounterDate, encounterIDs)
 
                         val savedEncounter = repository.save(originalEncounter).getOrThrow()
-                        val retrievedEncounter = repository.findByID(actorID, encounterDate).getOrThrow()!!
+                        val retrievedEncounter =
+                            repository.findByUserIDAndEncounterDate(actorID, encounterDate).getOrThrow()!!
 
                         savedEncounter.actorID shouldBe retrievedEncounter.actorID
                         savedEncounter.encounterDate shouldBe retrievedEncounter.encounterDate

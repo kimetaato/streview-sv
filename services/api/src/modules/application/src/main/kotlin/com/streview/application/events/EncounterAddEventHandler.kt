@@ -30,7 +30,7 @@ class EncounterAddEventHandler(
             val user = userRepository.findByID(event.actorID)
 
             // これまでに受け取ったレビューUUID
-            val ownReviewUUIDs = relayRepository.findAllByUserId(event.actorID).fold(
+            val ownReviewUUIDs = relayRepository.findByUserId(event.actorID).fold(
                 success = { it.map { review -> review.reviewUUID } },
                 failure = { emptyList() }
             )
@@ -62,7 +62,7 @@ class EncounterAddEventHandler(
         val newRelay = Relay.factory(actorID.value, receiveReviewUUID.value)
 
         relayRepository.save(newRelay)
-        return reviewRepository.findByUUID(receiveReviewUUID).fold(
+        return reviewRepository.findByReviewUUID(receiveReviewUUID).fold(
             success = { review ->
                 review?.storeUUID
             },

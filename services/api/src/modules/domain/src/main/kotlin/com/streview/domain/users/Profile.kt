@@ -53,6 +53,17 @@ data class Profile(
                 throw ValidationException("入力内容に不備があります。", errors)
             }
         }
+        fun reconstruct(
+            name: String,
+            birthday: LocalDate,
+            gender: String,
+            imageUUID: String
+        ): Profile = Profile(
+            Name(name),
+            Birthday(birthday),
+            Gender.fromCode(gender),
+            UUID(imageUUID)
+        )
     }
 }
 

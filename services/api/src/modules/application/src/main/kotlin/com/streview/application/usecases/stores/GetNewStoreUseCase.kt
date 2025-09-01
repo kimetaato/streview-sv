@@ -29,7 +29,7 @@ class GetNewStoreUseCase(
             // 訪問データからストアを取得
             val stores = visitRepository.findByUserIDAndNeutral(userID)
                 .andThen { visits ->
-                    storeRepository.findInUUIDs(visits.map { it.storeUUID })
+                    storeRepository.findInStoreUUIDs(visits.map { it.storeUUID })
                 }.value
 
             // ユーザーのレビューを取得し既読に変更
@@ -40,7 +40,7 @@ class GetNewStoreUseCase(
                     }
                     relayRepository.saveAll(relays)
                 }.andThen { relays ->
-                    reviewRepository.findInUUIDs(relays.map { it.reviewUUID })
+                    reviewRepository.findInReviewUUIDs(relays.map { it.reviewUUID })
                 }.value
 
             // レビューをstoreUUID別にグループ化

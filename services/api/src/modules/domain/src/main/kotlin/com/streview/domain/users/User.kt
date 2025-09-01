@@ -18,9 +18,9 @@ data class User(
         }
 
         // DBから取得したときの再生成
-        fun create(userUuid: String, profile: Profile, catchMode: String): User {
+        fun reconstruct(userID: String, profile: Profile, catchMode: String): User {
             return User(
-                userID = UserID(userUuid),
+                userID = UserID(userID),
                 profile = profile,
                 catchMode = CatchMode.fromCode(catchMode.lowercase()),
             )

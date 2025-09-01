@@ -5,6 +5,6 @@ import com.streview.domain.commons.UUID
 import com.streview.domain.commons.errors.DomainError
 
 interface ImageRepository {
-    suspend fun findByID(imageId: UUID): Result<Image?, DomainError>
+    suspend fun findByImageUUID(imageUUID: UUID): Result<Image?, DomainError>
     suspend fun save(image: Image): Result<Image, DomainError>
 }

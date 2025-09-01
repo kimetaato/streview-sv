@@ -1,7 +1,6 @@
 package com.streview.infrastructure.database.visits
 
 import com.streview.domain.visits.Visit
-import com.streview.infrastructure.database.models.VisitTable
 import org.jetbrains.exposed.v1.core.ResultRow
 import org.jetbrains.exposed.v1.core.statements.UpdateBuilder
 

@@ -1,7 +1,9 @@
 package com.streview.infrastructure.api.stores
 
+import com.github.michaelbull.result.Err
+import com.github.michaelbull.result.Ok
 import com.github.michaelbull.result.Result
-import com.github.michaelbull.result.mapError
+import com.github.michaelbull.result.fold
 import com.github.michaelbull.result.runCatching
 import com.streview.domain.commons.GeoLocation
 import com.streview.domain.commons.errors.DomainError
@@ -27,12 +29,7 @@ class GooglePlacesDataSource(
 
         private const val PLACES_API_URL = "https://places.googleapis.com/v1/places:searchText"
         private const val FIELD_MASK = "places.displayName,places.location,places.nationalPhoneNumber,places.websiteUri"
-    }
-
-    private fun getApiKey(): String {
-        val apiKey = System.getenv(GOOGLE_API_KEY_ENV_NAME)
-        check(!apiKey.isNullOrBlank()) { "Google API Key is not set or empty" }
-        return apiKey
+        private val apiKey = System.getenv(GOOGLE_API_KEY_ENV_NAME)!!
     }
 
     private fun createBody(geoLocation: GeoLocation, storeName: String): GooglePlacesRequest = GooglePlacesRequest(
@@ -52,8 +49,6 @@ class GooglePlacesDataSource(
 
     suspend fun searchText(geoLocation: GeoLocation, storeName: String): Result<GooglePlace, DomainError> =
         runCatching {
-            val apiKey = getApiKey()
-
             val response = httpClient.post(PLACES_API_URL) {
                 // ヘッダー設定
                 header("Content-Type", "application/json")
@@ -67,14 +62,16 @@ class GooglePlacesDataSource(
             }
 
             check(response.status.value == 200)
-            val responseBody = response.body<GooglePlacesResponse>()
-            println(responseBody)
-            responseBody.places.first()
-        }.mapError { exception ->
-            print("Debug: $exception")
-            TechnicalError.ExternalServiceError(
-                serviceName = SERVICE_NAME,
-                cause = exception,
-            )
-        }
+            response.body<GooglePlacesResponse>().places.first()
+        }.fold(
+            success = { googlePlace -> Ok(googlePlace) },
+            failure = { throwable ->
+                Err(
+                    TechnicalError.ExternalServiceError(
+                        serviceName = SERVICE_NAME,
+                        cause = throwable,
+                    )
+                )
+            }
+        )
 }

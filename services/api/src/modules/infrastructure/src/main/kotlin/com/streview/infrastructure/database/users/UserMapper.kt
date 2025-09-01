@@ -1,10 +1,7 @@
 package com.streview.infrastructure.database.users
 
-import com.streview.domain.commons.UUID
-import com.streview.domain.exceptions.DataFormatException
 import com.streview.domain.users.Profile
 import com.streview.domain.users.User
-import com.streview.infrastructure.database.models.UsersTable
 import org.jetbrains.exposed.v1.core.ResultRow
 import org.jetbrains.exposed.v1.core.statements.UpdateBuilder
 
@@ -12,26 +9,17 @@ import org.jetbrains.exposed.v1.core.statements.UpdateBuilder
  * DBレコードからユーザードメインに変換する
  * @param row DBレコード
  */
-fun toDomain(row: ResultRow): User {
-    // プロフィールを作成
-    val profile: Profile = try {
-        Profile.create(
-            row[UsersTable.name],
-            row[UsersTable.birthday],
-            row[UsersTable.gender],
-            UUID(row[UsersTable.iconUUID])
-        )
-    } catch (e: Exception) {
-        throw DataFormatException("ユーザープロフィールが取得できませんでした。", e)
-    }
-
-    // ユーザードメインに変換する
-    return User.create(
-        row[UsersTable.userID],
-        profile,
-        row[UsersTable.catchMode],
+fun toDomain(row: ResultRow): User =
+    User.reconstruct(
+        userID = row[UserTable.userID],
+        catchMode = row[UserTable.catchMode],
+        profile = Profile.reconstruct(
+            name = row[UserTable.name],
+            birthday = row[UserTable.birthday],
+            gender = row[UserTable.gender],
+            imageUUID = row[UserTable.iconUUID]
+        ),
     )
-}
 
 /**
  * ユーザードメインをテーブルに変換する
@@ -39,7 +27,7 @@ fun toDomain(row: ResultRow): User {
  */
 fun toUserTable(user: User): (UpdateBuilder<*>) -> Unit {
     return {
-        with(UsersTable) {
+        with(UserTable) {
             it[userID] = user.userID.value
             it[name] = user.profile.name.value
             it[birthday] = user.profile.birthday.value

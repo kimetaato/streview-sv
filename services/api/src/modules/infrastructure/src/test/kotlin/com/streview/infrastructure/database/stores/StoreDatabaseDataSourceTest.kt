@@ -126,7 +126,7 @@ class StoreDatabaseDataSourceTest : FreeSpec({
 
                     // UUIDリストを逆順で渡して、距離順にソートされることを確認
                     val uuids = listOf(store3.storeUUID, store2.storeUUID, store1.storeUUID)
-                    val sortedStores = dataSource.sortByDistanceInUUIDs(uuids, baseLocation).getOrThrow()
+                    val sortedStores = dataSource.sortByDistanceInStoreUUIDs(uuids, baseLocation).getOrThrow()
 
                     // 距離順（近い順）にソートされていることを確認
                     sortedStores.size shouldBe 3

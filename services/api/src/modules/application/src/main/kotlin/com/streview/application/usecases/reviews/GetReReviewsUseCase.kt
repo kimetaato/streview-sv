@@ -27,11 +27,11 @@ class GetReReviewsUseCase(
 
             relayRepository.findReReviewByUserId(userID)
                 .andThen { reReviews ->
-                    reviewRepository.findInUUIDs(reReviews.map { it.reviewUUID })
+                    reviewRepository.findInReviewUUIDs(reReviews.map { it.reviewUUID })
                 }
                 .andThen { reviews ->
                     val storeUUIDs = reviews.map { it.storeUUID }.toSet().toList()
-                    storeRepository.findInUUIDs(storeUUIDs)
+                    storeRepository.findInStoreUUIDs(storeUUIDs)
                         .andThen { stores ->
                             val storeMap = stores.associateBy { it.storeUUID }
 

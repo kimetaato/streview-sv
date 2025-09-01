@@ -25,7 +25,7 @@ class GetMyReviewUseCase(
                 success = {
                     GetMyReviewsResponse(
                         it.map { review ->
-                            val storeName = storeRepository.findByUUID(review.storeUUID).fold(
+                            val storeName = storeRepository.findByStoreUUID(review.storeUUID).fold(
                                 success = { store ->
                                     store?.name?.value ?: "取得エラー"
                                 },

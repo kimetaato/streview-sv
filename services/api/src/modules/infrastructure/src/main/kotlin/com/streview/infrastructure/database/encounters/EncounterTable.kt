@@ -1,4 +1,4 @@
-package com.streview.infrastructure.database.models
+package com.streview.infrastructure.database.encounters
 
 import org.jetbrains.exposed.v1.core.Table
 import org.jetbrains.exposed.v1.datetime.date

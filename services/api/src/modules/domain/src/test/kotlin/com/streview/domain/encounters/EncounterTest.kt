@@ -28,7 +28,7 @@ class EncounterTest : FreeSpec({
     "Encounterのdomain model" - {
         "プロパティテスト: 任意のactorIDと日付で正しく作成される" {
             checkAll(validUserIDArb, validEncounterDateArb) { actorID, encounterDate ->
-                val encounter = Encounter.factory(actorID, encounterDate)
+                val encounter = Encounter.create(actorID, encounterDate)
 
                 encounter.actorID.value shouldBe actorID
                 encounter.encounterDate.value shouldBe encounterDate
@@ -44,7 +44,7 @@ class EncounterTest : FreeSpec({
                 validEncounterDateArb,
                 encounterIDsArb
             ) { actorID, encounterDate, encounterIDs ->
-                val encounter = Encounter.factory(actorID, encounterDate, encounterIDs)
+                val encounter = Encounter.reconstruct(actorID, encounterDate, encounterIDs)
 
                 encounter.actorID.value shouldBe actorID
                 encounter.encounterDate.value shouldBe encounterDate
@@ -57,7 +57,7 @@ class EncounterTest : FreeSpec({
 
         "プロパティテスト: 異なるユーザーIDを追加すると正しく追加される" {
             checkAll(validUserIDArb, validUserIDArb, validEncounterDateArb) { actorID, newUserID, encounterDate ->
-                val encounter = Encounter.factory(actorID, encounterDate)
+                val encounter = Encounter.create(actorID, encounterDate)
                 if (actorID != newUserID) {
                     encounter.add(UserID(newUserID))
 
@@ -69,7 +69,7 @@ class EncounterTest : FreeSpec({
 
         "プロパティテスト: 自分自身を追加してもencounterIDsは変更されない" {
             checkAll(validUserIDArb, validEncounterDateArb) { actorID, encounterDate ->
-                val encounter = Encounter.factory(actorID, encounterDate)
+                val encounter = Encounter.create(actorID, encounterDate)
 
                 shouldThrow<InvalidInputException> {
                     encounter.add(UserID(actorID))
@@ -86,7 +86,7 @@ class EncounterTest : FreeSpec({
                 validEncounterDateArb
             ) { actorID, duplicateUserID, encounterDate ->
                 if (actorID != duplicateUserID) {
-                    val encounter = Encounter.factory(actorID, encounterDate, listOf(duplicateUserID))
+                    val encounter = Encounter.reconstruct(actorID, encounterDate, listOf(duplicateUserID))
 
                     shouldThrow<DuplicateEncounterException> {
                         encounter.add(UserID(duplicateUserID))
@@ -103,7 +103,7 @@ class EncounterTest : FreeSpec({
                 validEncounterDateArb,
                 encounterIDsArb
             ) { actorID, encounterDate, encounterIDs ->
-                val encounter = Encounter.factory(actorID, encounterDate, encounterIDs)
+                val encounter = Encounter.reconstruct(actorID, encounterDate, encounterIDs)
                 val returnedList = encounter.encounterIDs
 
                 returnedList shouldHaveSize encounterIDs.size

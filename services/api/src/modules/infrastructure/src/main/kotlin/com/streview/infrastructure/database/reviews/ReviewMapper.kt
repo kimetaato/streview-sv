@@ -2,7 +2,6 @@ package com.streview.infrastructure.database.reviews
 
 import com.streview.domain.reviews.CompletedReview
 import com.streview.domain.reviews.Review
-import com.streview.infrastructure.database.models.ReviewTable
 import org.jetbrains.exposed.v1.core.ResultRow
 import org.jetbrains.exposed.v1.core.statements.UpdateBuilder
 

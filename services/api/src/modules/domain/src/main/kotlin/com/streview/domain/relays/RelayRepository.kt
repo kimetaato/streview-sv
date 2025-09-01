@@ -25,7 +25,7 @@ interface RelayRepository {
     /**
      * ユーザーが所有するRelayをリストで取得する
      */
-    suspend fun findAllByUserId(userID: UserID): Result<List<Relay>, DomainError>
+    suspend fun findByUserId(userID: UserID): Result<List<Relay>, DomainError>
 
     /**
      * ユーザーが再共有に設定しているもののリスト

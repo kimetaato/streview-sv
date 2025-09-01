@@ -23,7 +23,7 @@ class Encounter private constructor(
         get() = _domainEvents.toList()
 
     companion object {
-        fun factory(actorID: String, encounterDate: LocalDate): Encounter {
+        fun create(actorID: String, encounterDate: LocalDate): Encounter {
             return Encounter(
                 UserID(actorID),
                 EncounterDate(encounterDate),
@@ -31,9 +31,9 @@ class Encounter private constructor(
             )
         }
 
-        fun factory(userID: String, encounterDate: LocalDate, encounterIDs: List<String>): Encounter {
+        fun reconstruct(actorID: String, encounterDate: LocalDate, encounterIDs: List<String>): Encounter {
             return Encounter(
-                UserID(userID),
+                UserID(actorID),
                 EncounterDate(encounterDate),
                 encounterIDs.map { UserID(it) }.toMutableList(),
             )

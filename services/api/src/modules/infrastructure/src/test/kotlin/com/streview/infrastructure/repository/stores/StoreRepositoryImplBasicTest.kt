@@ -83,7 +83,7 @@ class StoreRepositoryImplBasicTest : FreeSpec({
 
                     // 距離順ソート（遠い店舗を先にリストに入れて、近い順に並ぶかテスト）
                     val uuids = listOf(farStore.storeUUID, nearStore.storeUUID)
-                    val sortedStores = dbDataSource.sortByDistanceInUUIDs(uuids, baseLocation).getOrThrow()
+                    val sortedStores = dbDataSource.sortByDistanceInStoreUUIDs(uuids, baseLocation).getOrThrow()
 
                     // 近い順にソートされていることを確認
                     sortedStores.size shouldBe 2

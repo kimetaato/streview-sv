@@ -148,7 +148,7 @@ class ImageStorageServiceImpl(
         imageUUID: com.streview.domain.commons.UUID,
         imageType: ImageType
     ): String {
-        return imageRepository.findByID(imageUUID)
+        return imageRepository.findByImageUUID(imageUUID)
             .fold(
                 success = { image ->
                     check(image != null)
