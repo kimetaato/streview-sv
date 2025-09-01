@@ -12,11 +12,15 @@ interface RelayRepository {
      */
     suspend fun findByUserIdAndReviewUUID(userID: String, reviewUUID: String): Result<Relay?, DomainError>
 
+    suspend fun findByUserIDAndIsNotRead(userID: UserID): Result<List<Relay>, DomainError>
+
     /**
      * Relays を保存または更新する
      * @param relay 保存対象の Relays モデル
      */
     suspend fun save(relay: Relay): Result<Relay, DomainError>
+
+    suspend fun saveAll(relays: List<Relay>): Result<List<Relay>, DomainError>
 
     /**
      * ユーザーが所有するRelayをリストで取得する

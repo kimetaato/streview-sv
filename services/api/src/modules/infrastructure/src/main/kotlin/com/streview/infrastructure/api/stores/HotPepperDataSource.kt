@@ -39,7 +39,6 @@ class HotPepperDataSource(
                 parameter("count", "20")
                 parameter("format", "json")
             }
-
             response.body<HotPepperResponse>().results
         }.mapError { exception ->
             TechnicalError.ExternalServiceError(

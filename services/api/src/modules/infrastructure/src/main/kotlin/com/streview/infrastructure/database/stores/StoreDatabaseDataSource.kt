@@ -10,6 +10,7 @@ import com.streview.domain.commons.errors.TechnicalError
 import com.streview.domain.stores.Store
 import com.streview.infrastructure.database.models.StoresTable
 import kotlinx.coroutines.flow.firstOrNull
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.toList
 import kotlinx.datetime.Clock
 import kotlinx.datetime.TimeZone
@@ -103,31 +104,23 @@ class StoreDatabaseDataSource {
 
     suspend fun sortByDistanceInUUIDs(uuids: List<UUID>, geoLocation: GeoLocation): Result<List<Store>, DomainError> {
         return try {
-            val stores = StoresTable.select(
-                StoresTable.id,
-                StoresTable.name,
-                StoresTable.genre,
-                StoresTable.address,
-                StoresTable.denwaBango,
-                StoresTable.description,
-                StoresTable.openingTime,
-                StoresTable.latitude,
-                StoresTable.longitude
-            ).where {
-                StoresTable.id inList uuids.map { it.value }
-            }.toList().map { row ->
-                Store.reconstruct(
-                    storeUUID = row[StoresTable.id],
-                    name = row[StoresTable.name],
-                    genre = row[StoresTable.genre],
-                    address = row[StoresTable.address],
-                    tel = row[StoresTable.denwaBango],
-                    description = row[StoresTable.description],
-                    open = row[StoresTable.openingTime],
-                    latitude = row[StoresTable.latitude],
-                    longitude = row[StoresTable.longitude]
-                )
-            }
+            val stores = StoresTable
+                .selectAll()
+                .where { StoresTable.id inList uuids.map { it.value } }
+                .map { row ->
+                    Store.reconstruct(
+                        storeUUID = row[StoresTable.id],
+                        name = row[StoresTable.name],
+                        genre = row[StoresTable.genre],
+                        address = row[StoresTable.address],
+                        tel = row[StoresTable.denwaBango],
+                        description = row[StoresTable.description],
+                        open = row[StoresTable.openingTime],
+                        latitude = row[StoresTable.latitude],
+                        longitude = row[StoresTable.longitude]
+                    )
+                }.toList()
+            println(stores)
 
             // 距離を計算し、元の店舗情報と一緒に新しいリストを作成
             val storesWithDistance = stores.map { store ->

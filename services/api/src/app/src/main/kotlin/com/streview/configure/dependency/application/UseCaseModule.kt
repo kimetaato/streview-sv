@@ -5,6 +5,7 @@ import com.streview.application.usecases.relays.MarkRelayStatusUseCase
 import com.streview.application.usecases.reviews.GetMyReviewUseCase
 import com.streview.application.usecases.reviews.PostReviewUseCase
 import com.streview.application.usecases.stores.GetGeofenceUseCase
+import com.streview.application.usecases.stores.GetNewStoreUseCase
 import com.streview.application.usecases.users.RegisterUserUseCase
 import org.koin.dsl.module
 
@@ -36,7 +37,10 @@ val reviewModule = module {
 
 val storeModule = module {
     single<GetGeofenceUseCase> {
-        GetGeofenceUseCase(get())
+        GetGeofenceUseCase(get(), get())
+    }
+    single<GetNewStoreUseCase> {
+        GetNewStoreUseCase(get(), get(), get(), get(), get())
     }
 }
 

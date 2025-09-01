@@ -35,19 +35,24 @@ class StoreRepositoryImpl(
 
         hotPepperDataSource.searchNearBy(geoLocation).fold(
             success = { hotPepperShop ->
+                println("DEBUG: ${hotPepperShop.shop.size} shop found")
                 hotPepperShop.shop.forEach { shop ->
                     googlePlacesDataSource.searchText(geoLocation, shop.name).fold(
                         success = {
+                            println("DEBUG: ${it.location} in ${shop.name} found.")
                             createMergedStore(
                                 hotpepperShop = shop,
                                 googlePlace = it
                             )?.let { store -> stores.add(store) }
                         },
-                        failure = {}
+                        failure = {
+                            print(it.stackTraceToString())
+                        }
                     )
                 }
             },
-            failure = { error ->
+            failure = {
+                print(it.stackTraceToString())
             }
         )
 

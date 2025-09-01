@@ -67,7 +67,9 @@ class GooglePlacesDataSource(
             }
 
             check(response.status.value == 200)
-            response.body<GooglePlacesResponse>().places.first()
+            val responseBody = response.body<GooglePlacesResponse>()
+            println(responseBody)
+            responseBody.places.first()
         }.mapError { exception ->
             print("Debug: $exception")
             TechnicalError.ExternalServiceError(

@@ -24,8 +24,8 @@ class PostReviewUseCase(
     private val imageRepository: ImageRepository,
     private val reviewRepository: ReviewRepository
 ) : UseCase<PostReviewRequest, PostReviewResponse> {
-    override suspend fun execute(input: PostReviewRequest): PostReviewResponse {
-        return suspendTransaction {
+    override suspend fun execute(input: PostReviewRequest): PostReviewResponse =
+        suspendTransaction {
             val userID = UserID(input.userID)
             val storeUUID = UUID.generate(input.storeUUID)
 
@@ -33,7 +33,7 @@ class PostReviewUseCase(
                 val fileName = "${Clock.System.now().toEpochMilliseconds()}_${Random.nextInt(1000, 10000)}"
                 // 画像を保存する
                 imageStorageService.save(imageSource, fileName, ImageType.Review)
-                // 画像ドメイン保存した画像の情報を保存する
+
                 val image: Image = Image.create(fileName)
 
                 // 画像パスを登録する
@@ -54,10 +54,9 @@ class PostReviewUseCase(
                         savedReview.reviewUUID.value
                     )
                 },
-                failure = { domainError ->
-                    throw domainError
+                failure = {
+                    throw it
                 }
             )
         }
-    }
 }

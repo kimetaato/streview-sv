@@ -11,11 +11,13 @@ import com.streview.domain.reviews.Review
 import com.streview.domain.reviews.ReviewRepository
 import com.streview.infrastructure.database.models.ReviewTable
 import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.singleOrNull
 import kotlinx.coroutines.flow.toList
 import org.jetbrains.exposed.v1.core.SqlExpressionBuilder.eq
 import org.jetbrains.exposed.v1.core.SqlExpressionBuilder.inList
 import org.jetbrains.exposed.v1.r2dbc.insert
 import org.jetbrains.exposed.v1.r2dbc.select
+import org.jetbrains.exposed.v1.r2dbc.selectAll
 import kotlin.collections.map
 
 class ReviewRepositoryImpl : ReviewRepository {
@@ -48,6 +50,20 @@ class ReviewRepositoryImpl : ReviewRepository {
                         ReviewTable.writerId eq writerID.value
                     )
                     .map { row -> toDomain(row) }.toList()
+            )
+        } catch (e: Exception) {
+            Err(TechnicalError.DatabaseError(false, e))
+        }
+
+    override suspend fun findByUUID(reviewUUID: UUID): Result<Review?, DomainError> =
+        try {
+            Ok(
+                ReviewTable
+                    .selectAll()
+                    .where { ReviewTable.id eq reviewUUID.value }
+                    .singleOrNull()?.let { row ->
+                        toDomain(row)
+                    }
             )
         } catch (e: Exception) {
             Err(TechnicalError.DatabaseError(false, e))

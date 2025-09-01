@@ -11,7 +11,11 @@ import com.streview.configure.dependency.domain.eventModule
 import com.streview.configure.dependency.domain.repositoryModule
 import com.streview.configure.httpClientModule
 import com.streview.domain.commons.GeoLocation
+import com.streview.domain.commons.UserID
+import com.streview.domain.stores.Store
 import com.streview.domain.stores.StoreRepository
+import com.streview.domain.visits.Visit
+import com.streview.domain.visits.VisitRepository
 import kotlinx.coroutines.runBlocking
 import org.jetbrains.exposed.v1.r2dbc.transactions.suspendTransaction
 import org.koin.core.component.KoinComponent
@@ -21,13 +25,14 @@ import org.koin.dsl.module
 
 class SampleDataGenerator : KoinComponent {
     private val storeRepository: StoreRepository by inject()
+    private val visitRepository: VisitRepository by inject()
 
     suspend fun generateSampleData() {
         println("サンプルデータの生成を開始します...")
 
         // 東京駅の座標でテスト
-        val tokyoStation = GeoLocation.reconstruct(35.6812, 139.7671)
-        println("東京駅周辺で店舗検索中...")
+        val tokyoStation = GeoLocation.reconstruct(34.701242, 135.496745)
+        println("梅田駅周辺で店舗検索中...")
 
         storeRepository.searchFromGeoLocation(tokyoStation).fold(
             success = { stores ->
@@ -41,13 +46,19 @@ class SampleDataGenerator : KoinComponent {
         println("サンプルデータの生成が完了しました")
     }
 
-    private suspend fun processStores(stores: List<com.streview.domain.stores.Store>) {
+    private suspend fun processStores(stores: List<Store>) {
         var savedCount = 0
         suspendTransaction {
             stores.forEach { store ->
                 storeRepository.save(store).fold(
                     success = {
                         println("店舗「${store.name.value}」を保存しました")
+                        visitRepository.save(
+                            Visit.create(
+                                UserID("M82cS3jFyGdsmZUNhipbkNvDnL72"),
+                                store.storeUUID
+                            )
+                        )
                         savedCount++
                     },
                     failure = { error ->

@@ -6,5 +6,6 @@ object RelaysTable : Table() {
     val userID = char("user_id", 28)
     val reviewUUID = char("review_uuid", 36)
     val isReReviewed = bool("is_re_reviewed")
+    val isRead = bool("is_read")
     override val primaryKey = PrimaryKey(userID, reviewUUID)
 }

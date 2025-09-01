@@ -11,24 +11,27 @@ import com.streview.domain.exceptions.InvalidInputException
 class Relay private constructor(
     val userID: UserID,
     val reviewUUID: UUID,
-    private var _isReReviewed: Boolean // 変更可能な値をラップすることでいい感じに
+    private var _isReReviewed: Boolean, // 変更可能な値をラップすることでいい感じに
+    private var _isRead: Boolean
 ) {
     val isReReviewed: Boolean
         get() = _isReReviewed
+    val isRead: Boolean
+        get() = _isRead
 
     companion object {
         /**
          * 新規作成
          */
         fun factory(userID: String, reviewUUID: String): Relay {
-            return Relay(UserID(userID), UUID.generate(reviewUUID), false)
+            return Relay(UserID(userID), UUID.generate(reviewUUID), false, false)
         }
 
         /**
          * 　DBなどからの再生成
          */
-        fun reconstruct(userID: String, reviewUUID: String, isReReview: Boolean): Relay {
-            return Relay(UserID(userID), UUID.generate(reviewUUID), isReReview)
+        fun reconstruct(userID: String, reviewUUID: String, isReReview: Boolean, isRead: Boolean): Relay {
+            return Relay(UserID(userID), UUID.generate(reviewUUID), isReReview, isRead)
         }
     }
 
@@ -49,5 +52,9 @@ class Relay private constructor(
     public fun unsetReReview() {
         if (_isReReviewed.not()) throw InvalidInputException("既に解除されています。")
         _isReReviewed = false
+    }
+
+    fun setRead() {
+        _isRead = true
     }
 }

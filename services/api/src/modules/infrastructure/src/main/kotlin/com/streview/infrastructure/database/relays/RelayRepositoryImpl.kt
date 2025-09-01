@@ -15,7 +15,8 @@ import kotlinx.coroutines.flow.toList
 import org.jetbrains.exposed.v1.core.Op
 import org.jetbrains.exposed.v1.core.SqlExpressionBuilder.eq
 import org.jetbrains.exposed.v1.core.and
-import org.jetbrains.exposed.v1.r2dbc.select
+import org.jetbrains.exposed.v1.r2dbc.batchUpsert
+import org.jetbrains.exposed.v1.r2dbc.selectAll
 import org.jetbrains.exposed.v1.r2dbc.upsert
 
 class RelayRepositoryImpl : RelayRepository {
@@ -26,15 +27,23 @@ class RelayRepositoryImpl : RelayRepository {
         try {
             Ok(
                 RelaysTable
-                    .select(
-                        RelaysTable.userID,
-                        RelaysTable.reviewUUID,
-                        RelaysTable.isReReviewed
-                    )
+                    .selectAll()
                     .where((RelaysTable.userID eq userID) and (RelaysTable.reviewUUID eq reviewUUID))
                     .singleOrNull()?.let { row ->
                         toDomain(row)
                     }
+            )
+        } catch (e: Exception) {
+            Err(TechnicalError.DatabaseError(false, e))
+        }
+
+    override suspend fun findByUserIDAndIsNotRead(userID: UserID): Result<List<Relay>, DomainError> =
+        try {
+            Ok(
+                RelaysTable
+                    .selectAll()
+                    .where { (RelaysTable.userID eq userID.value) and (RelaysTable.isRead eq false) }
+                    .map { row -> toDomain(row) }.toList()
             )
         } catch (e: Exception) {
             Err(TechnicalError.DatabaseError(false, e))
@@ -50,15 +59,24 @@ class RelayRepositoryImpl : RelayRepository {
             Err(TechnicalError.DatabaseError(false, e))
         }
 
+    override suspend fun saveAll(relays: List<Relay>): Result<List<Relay>, DomainError> =
+        try {
+            RelaysTable.batchUpsert(
+                data = relays,
+            ) { relay ->
+                toTable(relay)
+            }
+
+            Ok(relays)
+        } catch (e: Exception) {
+            Err(TechnicalError.DatabaseError(false, e))
+        }
+
     override suspend fun findAllByUserId(userID: UserID): Result<List<Relay>, DomainError> =
         try {
             Ok(
                 RelaysTable
-                    .select(
-                        RelaysTable.userID,
-                        RelaysTable.reviewUUID,
-                        RelaysTable.isReReviewed
-                    )
+                    .selectAll()
                     .where(
                         RelaysTable.userID eq userID.value
                     )
@@ -72,11 +90,7 @@ class RelayRepositoryImpl : RelayRepository {
         try {
             Ok(
                 RelaysTable
-                    .select(
-                        RelaysTable.userID,
-                        RelaysTable.reviewUUID,
-                        RelaysTable.isReReviewed
-                    )
+                    .selectAll()
                     .where(
                         RelaysTable.userID eq userID.value and RelaysTable.isReReviewed eq Op.TRUE
                     )
