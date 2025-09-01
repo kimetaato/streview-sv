@@ -37,7 +37,7 @@ class Visit private constructor(
                 userID = UserID(userID),
                 storeUUID = UUID(storeUUID),
                 _visitCount = visitCount,
-                _status = Status.valueOf(status)
+                _status = Status.entries.first { it.value == status }
             )
         }
     }

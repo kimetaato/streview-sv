@@ -6,7 +6,7 @@
 # 2. Firebase認証トークンを取得（以下のFirebaseセクション参照）
 # 3. 各リクエストの左側の実行ボタン（▶️）をクリック
 
-@baseUrl = http://localhost:8080
+@baseUrl = https://localhost/api
 @firebaseApiKey = AIzaSyCRf7mfe0KrSmdJu7FTCdLB_-qWT3wcbGg
 @email = test01@example.com
 @password = test01
@@ -128,8 +128,20 @@ Content-Type: application/json
     client.log(response)
  %}
 
+###
+# Visitステータス変更
+# お店に行きたい！ブロックなどを設定
+PUT {{baseUrl}}/stores/c5c9af45-2e34-4b96-b9a2-5507be6f6052
+Authorization: Bearer {{firebaseToken}}
+Content-Type: application/json
 
+{
+  "status": "wanted"
+}
 
+> {%
+ client.log(response)
+%}
 
 ###
 # マイレビュー一覧取得 (Firebase認証必要)

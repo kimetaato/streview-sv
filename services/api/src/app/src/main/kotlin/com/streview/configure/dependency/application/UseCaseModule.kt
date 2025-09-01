@@ -7,6 +7,7 @@ import com.streview.application.usecases.reviews.PostReviewUseCase
 import com.streview.application.usecases.stores.GetGeofenceUseCase
 import com.streview.application.usecases.stores.GetNewStoreUseCase
 import com.streview.application.usecases.users.RegisterUserUseCase
+import com.streview.application.usecases.visits.VisitStatusUseCase
 import org.koin.dsl.module
 
 val encounterModule = module {
@@ -50,6 +51,12 @@ val userModule = module {
     }
 }
 
+val visitModule = module {
+    single<VisitStatusUseCase> {
+        VisitStatusUseCase(get())
+    }
+}
+
 val useCaseModule = module {
     includes(
         encounterModule,
@@ -57,5 +64,6 @@ val useCaseModule = module {
         reviewModule,
         storeModule,
         userModule,
+        visitModule,
     )
 }

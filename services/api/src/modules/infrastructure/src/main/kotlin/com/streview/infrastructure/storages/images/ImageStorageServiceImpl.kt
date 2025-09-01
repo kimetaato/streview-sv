@@ -56,7 +56,7 @@ class ImageStorageServiceImpl(
      * 出力パスを準備し、必要に応じてディレクトリを作成する
      */
     private fun prepareOutputPath(fileName: String, imageType: ImageType): Path {
-        val typeDir = "${config.baseDirectory}/${imageType.value}"
+        val typeDir = "${config.directory}/${imageType.value}"
         val outputDir = Path(typeDir)
         val outputPath = Path(outputDir, "$fileName$WEBP_EXTENSION")
 
@@ -152,7 +152,7 @@ class ImageStorageServiceImpl(
             .fold(
                 success = { image ->
                     check(image != null)
-                    return "/static/${imageType.value}/${image.fileName.value}$WEBP_EXTENSION"
+                    return "${config.domain}/static/${imageType.value}/${image.fileName.value}$WEBP_EXTENSION"
                 },
                 failure = { Err(it).getOrElse { "" } }
             )

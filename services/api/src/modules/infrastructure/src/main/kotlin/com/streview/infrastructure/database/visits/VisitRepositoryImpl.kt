@@ -47,7 +47,7 @@ class VisitRepositoryImpl : VisitRepository {
             Ok(
                 VisitTable
                     .selectAll()
-                    .where { (VisitTable.userID eq userID.value) and (VisitTable.status eq Status.Wanted.name) }
+                    .where { (VisitTable.userID eq userID.value) and (VisitTable.status eq Status.Wanted.value) }
                     .map { row -> toDomain(row) }.toList()
             )
         } catch (e: Exception) {
@@ -59,7 +59,7 @@ class VisitRepositoryImpl : VisitRepository {
             Ok(
                 VisitTable
                     .selectAll()
-                    .where { (VisitTable.userID eq userID.value) and (VisitTable.status eq Status.Neutral.name) }
+                    .where { (VisitTable.userID eq userID.value) and (VisitTable.status eq Status.Neutral.value) }
                     .map { row -> toDomain(row) }.toList()
             )
         } catch (e: Exception) {

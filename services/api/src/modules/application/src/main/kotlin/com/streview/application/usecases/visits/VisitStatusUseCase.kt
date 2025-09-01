@@ -12,34 +12,36 @@ import com.streview.domain.commons.UserID
 import com.streview.domain.commons.errors.EntityError
 import com.streview.domain.visits.VisitRepository
 import com.streview.domain.visits.vo.Status
+import org.jetbrains.exposed.v1.r2dbc.transactions.suspendTransaction
 
 class VisitStatusUseCase(
     private val visitRepository: VisitRepository
 ) : UseCase<VisitStatusRequest, VisitStatusResponse> {
-    override suspend fun execute(input: VisitStatusRequest): VisitStatusResponse {
-        val userID = UserID(input.userID)
-        val storeUUID = UUID.generate(input.storeUUID)
-        val status = Status.create(input.status).fold(
-            success = { it },
-            failure = { throw it }
-        )
-        return visitRepository.findByUserIDAndStoreUUID(userID, storeUUID)
-            .andThen { visit ->
-                visit?.let { visit ->
-                    Ok(visit)
-                } ?: Err(EntityError.NotFound("visit"))
-            }.andThen { visit ->
-                visit.setStatus(status)
-                visitRepository.save(visit)
-            }.fold(
-                success = { visit ->
-                    VisitStatusResponse(
-                        visit.storeUUID.value,
-                    )
-                },
-                failure = {
-                    throw it
-                }
+    override suspend fun execute(input: VisitStatusRequest): VisitStatusResponse =
+        suspendTransaction {
+            val userID = UserID(input.userID)
+            val storeUUID = UUID.generate(input.storeUUID)
+            val status = Status.create(input.status).fold(
+                success = { it },
+                failure = { throw it }
             )
-    }
+            visitRepository.findByUserIDAndStoreUUID(userID, storeUUID)
+                .andThen { visit ->
+                    visit?.let { visit ->
+                        Ok(visit)
+                    } ?: Err(EntityError.NotFound("visit"))
+                }.andThen { visit ->
+                    visit.setStatus(status)
+                    visitRepository.save(visit)
+                }
+        }.fold(
+            success = { visit ->
+                VisitStatusResponse(
+                    visit.storeUUID.value,
+                )
+            },
+            failure = {
+                throw it
+            }
+        )
 }

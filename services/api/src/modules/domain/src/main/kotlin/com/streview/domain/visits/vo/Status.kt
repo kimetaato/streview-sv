@@ -13,13 +13,9 @@ enum class Status(val value: String) {
     Neutral("neutral");
 
     companion object {
-        fun create(value: String): Result<Status, DomainError> {
-            return try {
-                val status = valueOf(value)
+        fun create(value: String): Result<Status, DomainError> =
+            entries.find { it.value == value }?.let { status ->
                 Ok(status)
-            } catch (_: IllegalArgumentException) {
-                Err(ValidationError.InvalidFormat("status", InvalidFormatRules.PATTERN_MISMATCH, value))
-            }
-        }
+            } ?: Err(ValidationError.InvalidFormat("status", InvalidFormatRules.PATTERN_MISMATCH, value))
     }
 }

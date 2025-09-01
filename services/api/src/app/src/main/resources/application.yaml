@@ -16,3 +16,6 @@ ktor:
 app:
   security:
     secret: "/ssl/server.key"
+  storage:
+    directory: "/app/src/upload"
+  domain: "https://localhost"

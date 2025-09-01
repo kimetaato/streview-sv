@@ -78,18 +78,8 @@ fun Route.reviewController() {
             val input = GetMyReviewsRequest(
                 userID = userID,
             )
-            val res = getMyReviewsUseCase.execute(input)
-            val origin = call.request.origin
 
-            // 画像パスを相対パスから絶対パスに変換
-            val baseUrl = "${origin.scheme}://${origin.serverHost}"
-            val convert = res.copy(
-                reviews = res.reviews.map {
-                        review ->
-                    review.copy(imageUrls = review.imageUrls.map { text -> baseUrl + text })
-                }
-            )
-            call.respond(HttpStatusCode.OK, convert)
+            call.respond(HttpStatusCode.OK, getMyReviewsUseCase.execute(input))
         }
     }
 

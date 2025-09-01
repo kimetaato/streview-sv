@@ -23,6 +23,7 @@ fun Route.storeController() {
     val getGeofenceUseCase: GetGeofenceUseCase by inject()
     val checkInUseCase: CheckInUseCase by inject()
     val visitStatusUseCase: VisitStatusUseCase by inject()
+
     route("/stores") {
         post("/geofence") {
             @Serializable
@@ -70,6 +71,7 @@ fun Route.storeController() {
         }
 
         put("/{store_uuid}") {
+            @Serializable
             data class RequestJson(
                 val status: String,
             )

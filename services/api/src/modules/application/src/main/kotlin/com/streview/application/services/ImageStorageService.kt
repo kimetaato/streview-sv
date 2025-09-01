@@ -3,7 +3,10 @@ package com.streview.application.services
 import com.streview.domain.commons.UUID
 import kotlinx.io.Source
 
-data class ImageStorageConfig(val baseDirectory: String = "/app/src/upload")
+data class ImageStorageConfig(
+    val directory: String,
+    val domain: String
+)
 
 interface ImageStorageService {
     suspend fun save(image: Source, fileName: String, imageType: ImageType)

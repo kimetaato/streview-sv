@@ -74,7 +74,10 @@ class SampleDataGenerator : KoinComponent {
 // スタンドアローン実行用の設定モジュール
 val sampleDataConfigModule = module {
     single<ImageStorageConfig> {
-        ImageStorageConfig()
+        ImageStorageConfig(
+            "dummy-image-directory",
+            "dummy-domain.com"
+        )
     }
     single<EncounterDecryptionConfig> {
         EncounterDecryptionConfig("dummy-secret-key")

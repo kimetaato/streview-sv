@@ -26,7 +26,12 @@ val httpClientModule = module {
 // 各種ファイルから読み取った値を依存関係に登録
 val configureModule = module {
     single<ImageStorageConfig> {
-        ImageStorageConfig()
+        val directory = get<Application>().environment.config.property("app.storage.directory").getString()
+        val domain = get<Application>().environment.config.property("app.domain").getString()
+        ImageStorageConfig(
+            directory = directory,
+            domain = domain,
+        )
     }
     single<EncounterDecryptionConfig> {
         // 環境変数から秘密鍵ファイルのパスを取得し、読み込んだ内容をconfigに渡す
@@ -41,12 +46,12 @@ fun Application.configureFramework() {
     install(Koin) {
         modules(
             module { single { this@configureFramework } },
+            configureModule,
             useCaseModule,
             applicationServiceModule,
             domainServiceModule,
             repositoryModule,
             httpClientModule,
-            configureModule,
             eventModule
         )
     }
