@@ -5,7 +5,7 @@ import com.streview.infrastructure.database.models.EncounterTable
 import org.jetbrains.exposed.v1.core.ResultRow
 
 fun toDomain(list: List<ResultRow>): Encounter {
-    val actorID = list.first()[EncounterTable.id]
+    val actorID = list.first()[EncounterTable.userID]
     val encounterDate = list.first()[EncounterTable.encounterDate]
 
     val encounterIDs = mutableListOf<String>()

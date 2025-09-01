@@ -27,14 +27,14 @@ class StoreDatabaseDataSource {
             Ok(
                 StoresTable
                     .selectAll()
-                    .where { StoresTable.id eq uuid.value }
+                    .where { StoresTable.storeUUID eq uuid.value }
                     .firstOrNull()?.let { row ->
                         Store.reconstruct(
-                            storeUUID = row[StoresTable.id],
+                            storeUUID = row[StoresTable.storeUUID],
                             name = row[StoresTable.name],
                             genre = row[StoresTable.genre],
                             address = row[StoresTable.address],
-                            tel = row[StoresTable.denwaBango],
+                            tel = row[StoresTable.phoneNumber],
                             description = row[StoresTable.description],
                             open = row[StoresTable.openingTime],
                             latitude = row[StoresTable.latitude],
@@ -50,24 +50,24 @@ class StoreDatabaseDataSource {
         try {
             Ok(
                 StoresTable.select(
-                    StoresTable.id,
+                    StoresTable.storeUUID,
                     StoresTable.name,
                     StoresTable.genre,
                     StoresTable.address,
-                    StoresTable.denwaBango,
+                    StoresTable.phoneNumber,
                     StoresTable.description,
                     StoresTable.openingTime,
                     StoresTable.latitude,
                     StoresTable.longitude
                 )
-                    .where(StoresTable.id inList uuids.map { it.value })
+                    .where(StoresTable.storeUUID inList uuids.map { it.value })
                     .toList().map { row ->
                         Store.reconstruct(
-                            storeUUID = row[StoresTable.id],
+                            storeUUID = row[StoresTable.storeUUID],
                             name = row[StoresTable.name],
                             genre = row[StoresTable.genre],
                             address = row[StoresTable.address],
-                            tel = row[StoresTable.denwaBango],
+                            tel = row[StoresTable.phoneNumber],
                             description = row[StoresTable.description],
                             open = row[StoresTable.openingTime],
                             latitude = row[StoresTable.latitude],
@@ -82,11 +82,11 @@ class StoreDatabaseDataSource {
     suspend fun save(store: Store): Result<Store, DomainError> {
         return try {
             StoresTable.insert {
-                it[id] = store.storeUUID.value
+                it[storeUUID] = store.storeUUID.value
                 it[name] = store.name.value
                 it[genre] = store.genre.value
                 it[address] = store.address.value
-                it[denwaBango] = store.tel.value
+                it[phoneNumber] = store.tel.value
                 it[description] = store.description.value
                 it[openingTime] = store.open.value
                 it[latitude] = store.geoLocation.latitude
@@ -106,14 +106,14 @@ class StoreDatabaseDataSource {
         return try {
             val stores = StoresTable
                 .selectAll()
-                .where { StoresTable.id inList uuids.map { it.value } }
+                .where { StoresTable.storeUUID inList uuids.map { it.value } }
                 .map { row ->
                     Store.reconstruct(
-                        storeUUID = row[StoresTable.id],
+                        storeUUID = row[StoresTable.storeUUID],
                         name = row[StoresTable.name],
                         genre = row[StoresTable.genre],
                         address = row[StoresTable.address],
-                        tel = row[StoresTable.denwaBango],
+                        tel = row[StoresTable.phoneNumber],
                         description = row[StoresTable.description],
                         open = row[StoresTable.openingTime],
                         latitude = row[StoresTable.latitude],

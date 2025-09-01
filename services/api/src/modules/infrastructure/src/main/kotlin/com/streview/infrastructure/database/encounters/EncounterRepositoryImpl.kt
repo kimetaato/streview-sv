@@ -19,11 +19,11 @@ class EncounterRepositoryImpl : EncounterRepository {
     override suspend fun findByID(userID: String, encounterDate: LocalDate): Result<Encounter?, DomainError> {
         val list = EncounterTable
             .select(
-                EncounterTable.id,
+                EncounterTable.userID,
                 EncounterTable.encounterId,
                 EncounterTable.encounterDate,
             )
-            .where { (EncounterTable.id eq userID) and (EncounterTable.encounterDate eq encounterDate) }
+            .where { (EncounterTable.userID eq userID) and (EncounterTable.encounterDate eq encounterDate) }
             .toList()
         return Ok(toDomain(list))
     }
@@ -32,7 +32,7 @@ class EncounterRepositoryImpl : EncounterRepository {
         try {
             EncounterTable.batchInsert(encounter.encounterIDs, true) { encounterID ->
                 // このブロックは encounter.encounterIDs の各要素に対して一度ずつ呼ばれる
-                this[EncounterTable.id] = encounter.actorID.value
+                this[EncounterTable.userID] = encounter.actorID.value
                 this[EncounterTable.encounterDate] = encounter.encounterDate.value
                 this[EncounterTable.encounterId] = encounterID.value
             }

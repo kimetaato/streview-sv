@@ -20,14 +20,14 @@ class UserRepositoryImpl() : UserRepository {
             val user: User? =
                 UsersTable
                     .select(
-                        UsersTable.id,
+                        UsersTable.userID,
                         UsersTable.name,
                         UsersTable.birthday,
                         UsersTable.gender,
                         UsersTable.iconUUID,
                         UsersTable.catchMode
                     )
-                    .where { UsersTable.id eq userID.value }
+                    .where { UsersTable.userID eq userID.value }
                     .singleOrNull()?.let { row ->
                         toDomain(row)
                     }
@@ -51,7 +51,7 @@ class UserRepositoryImpl() : UserRepository {
     override suspend fun updateProfile(user: User): Result<User, DomainError> =
         try {
             UsersTable
-                .update({ UsersTable.id eq user.userID.value }) {
+                .update({ UsersTable.userID eq user.userID.value }) {
                     toUserTable(user)
                 }
             Ok(user)

@@ -8,7 +8,7 @@ import org.jetbrains.exposed.v1.core.statements.UpdateBuilder
 
 fun toDomain(row: ResultRow) =
     Review.reconstruct(
-        reviewUUID = row[ReviewTable.id],
+        reviewUUID = row[ReviewTable.reviewUUID],
         writerID = row[ReviewTable.writerId],
         storeUUID = row[ReviewTable.storeUUID],
         completedReview = CompletedReview.reconstruct(
@@ -24,7 +24,7 @@ fun toDomain(row: ResultRow) =
 fun toTable(review: Review): (UpdateBuilder<*>) -> Unit {
     return {
         with(ReviewTable) {
-            it[id] = review.reviewUUID.value
+            it[reviewUUID] = review.reviewUUID.value
             it[writerId] = review.writerID.value
             it[storeUUID] = review.storeUUID.value
             it[comment] = review.completedReview.comment.value

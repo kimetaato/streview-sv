@@ -7,7 +7,7 @@ import org.jetbrains.exposed.v1.core.statements.UpdateBuilder
 
 fun toDomain(row: ResultRow): Image {
     return Image.create(
-        row[ImagesTable.id],
+        row[ImagesTable.imageUUID],
         row[ImagesTable.fileName]
     )
 }
@@ -15,7 +15,7 @@ fun toDomain(row: ResultRow): Image {
 fun toTable(image: Image): (UpdateBuilder<*>) -> Unit {
     return {
         with(ImagesTable) {
-            it[id] = image.imageUUID.value
+            it[imageUUID] = image.imageUUID.value
             it[fileName] = image.fileName.value
         }
     }

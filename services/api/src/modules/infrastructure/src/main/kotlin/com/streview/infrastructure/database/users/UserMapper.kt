@@ -27,7 +27,7 @@ fun toDomain(row: ResultRow): User {
 
     // ユーザードメインに変換する
     return User.create(
-        row[UsersTable.id],
+        row[UsersTable.userID],
         profile,
         row[UsersTable.catchMode],
     )
@@ -40,7 +40,7 @@ fun toDomain(row: ResultRow): User {
 fun toUserTable(user: User): (UpdateBuilder<*>) -> Unit {
     return {
         with(UsersTable) {
-            it[id] = user.userID.value
+            it[userID] = user.userID.value
             it[name] = user.profile.name.value
             it[birthday] = user.profile.birthday.value
             it[gender] = user.profile.gender.value

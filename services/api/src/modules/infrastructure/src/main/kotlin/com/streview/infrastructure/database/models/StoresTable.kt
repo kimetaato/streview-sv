@@ -4,11 +4,11 @@ import org.jetbrains.exposed.v1.core.Table
 import org.jetbrains.exposed.v1.datetime.datetime
 
 object StoresTable : Table("stores") {
-    val id = varchar("id", 255)
+    val storeUUID = varchar("id", 255)
     val name = varchar("name", 255)
     val genre = varchar("genre", 255)
     val address = varchar("address", 255)
-    val denwaBango = varchar("denwa_bango", 255)
+    val phoneNumber = varchar("phone_number", 255)
     val description = text("description")
     val openingTime = text("opening_time")
     val createdAt = datetime("create_at")
@@ -17,6 +17,5 @@ object StoresTable : Table("stores") {
     val starCache = double("star_cache")
     val latitude = double("latitude")
     val longitude = double("longitude")
-
-    override val primaryKey = PrimaryKey(id)
+    override val primaryKey = PrimaryKey(storeUUID)
 }

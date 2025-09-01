@@ -19,10 +19,10 @@ class ImageRepositoryImpl : ImageRepository {
             Ok(
                 ImagesTable
                     .select(
-                        ImagesTable.id,
+                        ImagesTable.imageUUID,
                         ImagesTable.fileName
                     )
-                    .where { ImagesTable.id eq imageId.value }
+                    .where { ImagesTable.imageUUID eq imageId.value }
                     .singleOrNull()?.let { row ->
                         toDomain(row)
                     }

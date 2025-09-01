@@ -36,7 +36,7 @@ class ReviewRepositoryImpl : ReviewRepository {
             Ok(
                 ReviewTable
                     .select(
-                        ReviewTable.id,
+                        ReviewTable.reviewUUID,
                         ReviewTable.writerId,
                         ReviewTable.storeUUID,
                         ReviewTable.comment,
@@ -60,7 +60,7 @@ class ReviewRepositoryImpl : ReviewRepository {
             Ok(
                 ReviewTable
                     .selectAll()
-                    .where { ReviewTable.id eq reviewUUID.value }
+                    .where { ReviewTable.reviewUUID eq reviewUUID.value }
                     .singleOrNull()?.let { row ->
                         toDomain(row)
                     }
@@ -74,7 +74,7 @@ class ReviewRepositoryImpl : ReviewRepository {
             Ok(
                 ReviewTable
                     .select(
-                        ReviewTable.id,
+                        ReviewTable.reviewUUID,
                         ReviewTable.writerId,
                         ReviewTable.storeUUID,
                         ReviewTable.comment,
@@ -85,7 +85,7 @@ class ReviewRepositoryImpl : ReviewRepository {
                         ReviewTable.updatedAt
                     )
                     .where(
-                        ReviewTable.id inList uuids.map { it.value }
+                        ReviewTable.reviewUUID inList uuids.map { it.value }
                     )
                     .map { row -> toDomain(row) }.toList()
             )
@@ -98,7 +98,7 @@ class ReviewRepositoryImpl : ReviewRepository {
             Ok(
                 ReviewTable
                     .select(
-                        ReviewTable.id,
+                        ReviewTable.reviewUUID,
                         ReviewTable.writerId,
                         ReviewTable.storeUUID,
                         ReviewTable.comment,
