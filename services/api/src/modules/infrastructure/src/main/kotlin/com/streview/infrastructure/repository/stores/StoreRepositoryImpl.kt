@@ -21,8 +21,6 @@ class StoreRepositoryImpl(
     private val hotPepperDataSource: HotPepperDataSource,
     private val googlePlacesDataSource: GooglePlacesDataSource,
 ) : StoreRepository {
-    override suspend fun findByStoreUUID(storeUUID: UUID): Result<Store?, DomainError> = db.findByUUID(storeUUID)
-
     override suspend fun findInStoreUUIDs(storeUUIDs: List<UUID>): Result<List<Store>, DomainError> =
         db.findInUUIDs(storeUUIDs)
 

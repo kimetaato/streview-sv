@@ -30,17 +30,6 @@ class VisitRepositoryImpl : VisitRepository {
             failure = { throwable -> Err(TechnicalError.DatabaseError(false, throwable)) }
         )
 
-    override suspend fun findByUserID(userID: UserID): Result<List<Visit>, DomainError> =
-        runCatching {
-            VisitTable
-                .selectAll()
-                .where { VisitTable.userID eq userID.value }
-                .map { row -> toDomain(row) }.toList()
-        }.fold(
-            success = { visits -> Ok(visits) },
-            failure = { throwable -> Err(TechnicalError.DatabaseError(false, throwable)) }
-        )
-
     override suspend fun findByUserIDAndWant(userID: UserID): Result<List<Visit>, DomainError> =
         runCatching {
             VisitTable

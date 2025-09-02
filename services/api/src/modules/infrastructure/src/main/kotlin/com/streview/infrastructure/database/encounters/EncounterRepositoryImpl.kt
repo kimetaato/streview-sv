@@ -40,7 +40,7 @@ class EncounterRepositoryImpl : EncounterRepository {
                 .batchInsert(
                     data = encounter.encounterIDs
                 ) { encounterID ->
-                    toTable(encounter, encounterID)
+                    toTable(encounter, encounterID)(this)
                 }
         }.fold(
             success = { Ok(encounter) },

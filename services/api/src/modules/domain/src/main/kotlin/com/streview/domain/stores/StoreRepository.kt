@@ -6,7 +6,6 @@ import com.streview.domain.commons.UUID
 import com.streview.domain.commons.errors.DomainError
 
 interface StoreRepository {
-    suspend fun findByStoreUUID(storeUUID: UUID): Result<Store?, DomainError>
     suspend fun findInStoreUUIDs(storeUUIDs: List<UUID>): Result<List<Store>, DomainError>
     suspend fun save(store: Store): Result<Store, DomainError>
     suspend fun sortByDistanceInStoreUUIDs(

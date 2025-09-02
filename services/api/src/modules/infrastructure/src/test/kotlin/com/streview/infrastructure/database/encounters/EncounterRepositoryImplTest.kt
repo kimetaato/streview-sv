@@ -27,7 +27,7 @@ class EncounterRepositoryImplTest : FreeSpec({
 
     /**
      * Actor IDとEncounter ID間で重複を防止するためのID生成関数
-     * @param encounterIDsCount IntRange Encounter IDの生成すうに制限を持たせる。デフォルトでは1件
+     * @param encounterIDsCount IntRange Encounter IDの生成数に制限を持たせる。デフォルトでは1件
      */
     fun combinedArb(encounterIDsCount: IntRange = 1..1) = Arb.set(
         Arb.stringPattern("[a-zA-Z0-9]{28}"),
