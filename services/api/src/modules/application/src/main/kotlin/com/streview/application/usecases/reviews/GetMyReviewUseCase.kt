@@ -1,6 +1,8 @@
 package com.streview.application.usecases.reviews
 
+import com.github.michaelbull.result.andThen
 import com.github.michaelbull.result.fold
+import com.github.michaelbull.result.map
 import com.streview.application.services.ImageStorageService
 import com.streview.application.services.ImageType
 import com.streview.application.usecases.UseCase
@@ -21,38 +23,37 @@ class GetMyReviewUseCase(
         suspendTransaction {
             val userID = UserID(input.userID)
 
-            reviewRepository.findByWriterID(userID).fold(
-                success = {
-                    GetMyReviewsResponse(
-                        it.map { review ->
-                            val storeName = storeRepository.findByStoreUUID(review.storeUUID).fold(
-                                success = { store ->
-                                    store?.name?.value ?: "取得エラー"
-                                },
-                                failure = {
-                                    throw it
-                                }
-                            )
-
-                            val imageUrls = review.completedReview.imageUUIDs.map { imageUUID ->
-                                imageStorageService.generateUrl(imageUUID, ImageType.Review)
+            reviewRepository.findByWriterID(userID)
+                .andThen { reviews ->
+                    storeRepository.findInStoreUUIDs(reviews.map { it.storeUUID })
+                        .map { stores ->
+                            reviews.map { review ->
+                                Pair(review, stores.find { store -> store.storeUUID == review.storeUUID }!!)
                             }
-                            Review(
-                                reviewUUID = review.reviewUUID.value,
-                                comment = review.completedReview.comment.value,
-                                star = review.completedReview.star.value.toDouble(),
-                                createdAt = review.completedReview.createdAt,
-                                updatedAt = review.completedReview.updatedAt,
-                                storeName = storeName,
-                                storeUUID = review.storeUUID.value,
-                                imageUrls = imageUrls
-                            )
                         }
-                    )
-                },
-                failure = {
-                    throw it
                 }
-            )
-        }
+        }.fold(
+            success = { reviews ->
+                GetMyReviewsResponse(
+                    reviews = reviews.map { (review, store) ->
+                        val imageUrls = review.completedReview.imageUUIDs.map {
+                            imageStorageService.generateUrl(it, ImageType.Review)
+                        }
+                        Review(
+                            reviewUUID = review.reviewUUID.value,
+                            comment = review.completedReview.comment.value,
+                            star = review.completedReview.star.value.toDouble(),
+                            imageUrls = imageUrls,
+                            createdAt = review.completedReview.createdAt,
+                            updatedAt = review.completedReview.updatedAt,
+                            storeName = store.name.value,
+                            storeUUID = review.storeUUID.value,
+                        )
+                    }
+                )
+            },
+            failure = {
+                throw it
+            }
+        )
 }

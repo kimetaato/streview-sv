@@ -25,7 +25,6 @@ class GetNewStoreUseCase(
     override suspend fun execute(input: GetNewStoreRequest): GetNewStoreResponse =
         suspendTransaction {
             val userID = UserID(input.userID)
-
             // 訪問データからストアを取得
             val stores = visitRepository.findByUserIDAndNeutral(userID)
                 .andThen { visits ->

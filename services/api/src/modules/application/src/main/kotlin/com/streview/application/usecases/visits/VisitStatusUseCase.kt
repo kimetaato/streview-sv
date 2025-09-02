@@ -21,18 +21,17 @@ class VisitStatusUseCase(
         suspendTransaction {
             val userID = UserID(input.userID)
             val storeUUID = UUID.generate(input.storeUUID)
-            val status = Status.create(input.status).fold(
-                success = { it },
-                failure = { throw it }
-            )
-            visitRepository.findByUserIDAndStoreUUID(userID, storeUUID)
-                .andThen { visit ->
-                    visit?.let { visit ->
-                        Ok(visit)
-                    } ?: Err(EntityError.NotFound("visit"))
-                }.andThen { visit ->
-                    visit.setStatus(status)
-                    visitRepository.save(visit)
+            Status.create(input.status)
+                .andThen { status ->
+                    visitRepository.findByUserIDAndStoreUUID(userID, storeUUID)
+                        .andThen { visit ->
+                            visit?.let { visit ->
+                                Ok(visit)
+                            } ?: Err(EntityError.NotFound("visit"))
+                        }.andThen { visit ->
+                            visit.setStatus(status)
+                            visitRepository.save(visit)
+                        }
                 }
         }.fold(
             success = { visit ->
@@ -40,8 +39,8 @@ class VisitStatusUseCase(
                     visit.storeUUID.value,
                 )
             },
-            failure = {
-                throw it
+            failure = { domainError ->
+                throw domainError
             }
         )
 }

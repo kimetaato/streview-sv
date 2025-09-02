@@ -1,8 +1,8 @@
 package com.streview.application.usecases.stores
 
-import com.github.michaelbull.result.Ok
 import com.github.michaelbull.result.andThen
 import com.github.michaelbull.result.fold
+import com.github.michaelbull.result.map
 import com.streview.application.usecases.stores.dto.GetGeofenceRequest
 import com.streview.application.usecases.stores.dto.GetGeofenceResponse
 import com.streview.application.usecases.stores.dto.StoreHeader
@@ -39,22 +39,21 @@ class GetGeofenceUseCase(
             visitRepository.findByUserIDAndWant(userID)
                 .andThen { visits ->
                     storeRepository.sortByDistanceInStoreUUIDs(visits.map { it.storeUUID }, geoLocation)
-                }.andThen { stores ->
+                }.map { stores ->
                     val range = haversineMeter(geoLocation, stores.last())
-                    Ok(Pair(stores, range))
+                    Pair(stores, range)
                 }
         }.fold(
             success = { (stores, range) ->
-                val storeHeaders = stores.map { store ->
-                    StoreHeader(
-                        uuid = store.storeUUID.value,
-                        name = store.name.value,
-                        lat = store.geoLocation.latitude,
-                        lng = store.geoLocation.longitude
-                    )
-                }
                 GetGeofenceResponse(
-                    stores = storeHeaders,
+                    stores = stores.map { store ->
+                        StoreHeader(
+                            uuid = store.storeUUID.value,
+                            name = store.name.value,
+                            lat = store.geoLocation.latitude,
+                            lng = store.geoLocation.longitude
+                        )
+                    },
                     range = range
                 )
             },
