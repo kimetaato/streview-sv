@@ -1,0 +1,111 @@
+@baseUrl = https://localhost/api
+@firebaseApiKey = AIzaSyCRf7mfe0KrSmdJu7FTCdLB_-qWT3wcbGg
+
+### サンプルデータ作成スクリプト
+
+<{%
+    const userData = [
+        {
+            "email": "test01@example.com",
+            "password": "test01",
+            "name": "テストユーザー01",
+            "birthday": "1990-01-01",
+            "gender": "male"
+        },
+        {
+            "email": "test02@example.com",
+            "password": "test02",
+            "name": "テストユーザー02",
+            "birthday": "1985-05-15",
+            "gender": "female"
+        },
+        {
+            "email": "test03@example.com",
+            "password": "test03",
+            "name": "テストユーザー03",
+            "birthday": "1992-12-25",
+            "gender": "male"
+        }
+    ];
+
+    const createSampleUsers = async () => {
+        client.log("=== サンプルユーザー作成開始 ===");
+
+        for (let i = 0; i < userData.length; i++) {
+            const user = userData[i];
+            client.log(`ユーザー作成中: ${user.name} (${i + 1}/${userData.length})`);
+
+            try {
+                // 1. Firebaseサインイン
+                client.global.set("current_email", user.email);
+                client.global.set("current_password", user.password);
+                client.global.set("current_name", user.name);
+                client.global.set("current_birthday", user.birthday);
+                client.global.set("current_gender", user.gender);
+
+                client.log(`  Step 1: Firebase認証中... ${user.email}`);
+                await client.execute("sign-in");
+
+                // 少し待機
+                await new Promise(resolve => setTimeout(resolve, 500));
+
+                // 2. ユーザー登録
+                client.log(`  Step 2: ユーザー登録中... ${user.name}`);
+                await client.execute("user-register");
+
+                client.log(`  ✓ ${user.name} 作成成功`);
+
+                // API制限対策で待機
+                await new Promise(resolve => setTimeout(resolve, 1000));
+
+            } catch (error) {
+                client.log(`  ❌ ${user.name} 作成失敗: ${error.message}`);
+            }
+        }
+
+        client.log("=== サンプルユーザー作成完了 ===");
+    };
+
+    createSampleUsers();
+%}
+
+### サインイン
+# @name sign-in
+POST https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key={{firebaseApiKey}}
+Content-Type: application/json
+
+{
+  "email": "{{current_email}}",
+  "password": "{{current_password}}",
+  "returnSecureToken": true
+}
+
+> {%
+    client.global.set("firebaseToken", response.body.idToken);
+    client.global.set("refreshToken", response.body.refreshToken);
+%}
+
+###　ユーザー登録 (Firebase認証必要)
+# @name user-register
+POST {{baseUrl}}/users/registers
+Authorization: Bearer {{firebaseToken}}
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="name"
+
+{{current_name}}
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="birthday"
+
+{{current_birthday}}
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="gender"
+
+{{current_gender}}
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="file"; filename="avatar.jpg"
+Content-Type: image/jpeg
+
+< ./test-files/dummy1.png
+------WebKitFormBoundary7MA4YWxkTrZu0gW--

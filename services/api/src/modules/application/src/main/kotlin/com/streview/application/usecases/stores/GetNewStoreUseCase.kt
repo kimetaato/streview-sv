@@ -4,10 +4,10 @@ import com.github.michaelbull.result.andThen
 import com.streview.application.services.ImageStorageService
 import com.streview.application.services.ImageType
 import com.streview.application.usecases.UseCase
-import com.streview.application.usecases.stores.dto.GetNewStoreRequest
-import com.streview.application.usecases.stores.dto.GetNewStoreResponse
-import com.streview.application.usecases.stores.dto.ReviewRes
-import com.streview.application.usecases.stores.dto.StoreRes
+import com.streview.common.dto.stores.GetNewStoreRequest
+import com.streview.common.dto.stores.GetNewStoreResponse
+import com.streview.common.dto.stores.ReviewRes
+import com.streview.common.dto.stores.StoreRes
 import com.streview.domain.commons.UserID
 import com.streview.domain.relays.RelayRepository
 import com.streview.domain.reviews.ReviewRepository

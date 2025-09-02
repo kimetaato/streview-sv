@@ -1,13 +1,14 @@
 package com.streview.presentation.controller
 
 import com.streview.application.usecases.relays.MarkRelayStatusUseCase
-import com.streview.application.usecases.relays.dto.RelayStatusToggleRequest
 import com.streview.application.usecases.reviews.GetMyReviewUseCase
 import com.streview.application.usecases.reviews.GetReReviewsUseCase
 import com.streview.application.usecases.reviews.PostReviewUseCase
-import com.streview.application.usecases.reviews.dto.GetMyReviewsRequest
-import com.streview.application.usecases.reviews.dto.GetReReviewRequest
-import com.streview.application.usecases.reviews.dto.PostReviewRequest
+import com.streview.common.dto.reviews.GetMyReviewsRequest
+import com.streview.common.dto.reviews.GetReReviewRequest
+import com.streview.common.dto.reviews.PostReviewRequest
+import com.streview.common.dto.reviews.RelayStatusToggleJson
+import com.streview.common.dto.reviews.RelayStatusToggleRequest
 import com.streview.domain.commons.errors.ValidationError
 import com.streview.domain.exceptions.InvalidInputException
 import io.ktor.http.HttpStatusCode
@@ -26,7 +27,6 @@ import io.ktor.server.routing.put
 import io.ktor.server.routing.route
 import io.ktor.utils.io.readBuffer
 import kotlinx.io.Source
-import kotlinx.serialization.Serializable
 import org.koin.ktor.ext.inject
 import java.math.BigDecimal
 
@@ -105,12 +105,6 @@ fun Route.reviewController() {
         }
 
         patch("/{reviewUUID}") {
-            // JSONバインド用クラス
-            @Serializable
-            data class RelayStatusToggleJson(
-                val status: String,
-            )
-
             // userID取得
             val userID = call.principal<UserIdPrincipal>()!!.name
 

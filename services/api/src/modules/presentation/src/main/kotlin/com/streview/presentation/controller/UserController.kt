@@ -1,7 +1,7 @@
 package com.streview.presentation.controller
 
 import com.streview.application.usecases.users.RegisterUserUseCase
-import com.streview.application.usecases.users.dto.RegisterUserRequest
+import com.streview.common.dto.users.RegisterUserRequest
 import com.streview.domain.exceptions.InvalidInputException
 import io.ktor.http.*
 import io.ktor.http.content.*

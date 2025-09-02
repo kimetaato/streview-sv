@@ -2,8 +2,8 @@ package com.streview.application.usecases.relays
 
 import com.github.michaelbull.result.fold
 import com.streview.application.usecases.UseCase
-import com.streview.application.usecases.relays.dto.RelayStatusToggleRequest
-import com.streview.application.usecases.relays.dto.RelayStatusToggleResponse
+import com.streview.common.dto.reviews.RelayStatusToggleRequest
+import com.streview.common.dto.reviews.RelayStatusToggleResponse
 import com.streview.domain.exceptions.InvalidInputException
 import com.streview.domain.relays.RelayRepository
 import com.streview.service.relays.RelayDomainService

@@ -1,12 +1,14 @@
 package com.streview.presentation.controller
 
 import com.streview.application.usecases.stores.GetGeofenceUseCase
-import com.streview.application.usecases.stores.dto.GetGeofenceRequest
-import com.streview.application.usecases.stores.dto.Location
 import com.streview.application.usecases.visits.CheckInUseCase
 import com.streview.application.usecases.visits.VisitStatusUseCase
-import com.streview.application.usecases.visits.dto.CheckInRequest
-import com.streview.application.usecases.visits.dto.VisitStatusRequest
+import com.streview.common.dto.stores.CheckInRequest
+import com.streview.common.dto.stores.GetGeofenceRequest
+import com.streview.common.dto.stores.GetGeofenceRequestJson
+import com.streview.common.dto.stores.Location
+import com.streview.common.dto.stores.VisitStatusRequest
+import com.streview.common.dto.stores.VisitStatusRequestJson
 import io.ktor.http.HttpStatusCode
 import io.ktor.server.auth.UserIdPrincipal
 import io.ktor.server.auth.principal
@@ -26,13 +28,8 @@ fun Route.storeController() {
 
     route("/stores") {
         post("/geofence") {
-            @Serializable
-            data class RequestJson(
-                val location: Location,
-            )
-
             val userID = call.principal<UserIdPrincipal>()!!.name
-            val request = call.receive<RequestJson>()
+            val request = call.receive<GetGeofenceRequestJson>()
 
             val input = GetGeofenceRequest(
                 userId = userID,
@@ -71,13 +68,9 @@ fun Route.storeController() {
         }
 
         put("/{store_uuid}") {
-            @Serializable
-            data class RequestJson(
-                val status: String,
-            )
             val userID = call.principal<UserIdPrincipal>()!!.name
             val storeUUID = call.parameters["store_uuid"]!!
-            val request = call.receive<RequestJson>()
+            val request = call.receive<VisitStatusRequestJson>()
 
             val input = VisitStatusRequest(
                 userID = userID,

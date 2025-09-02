@@ -26,4 +26,5 @@ dependencies {
     // モジュールの関連付け
     implementation(project(":modules:application"))
     implementation(project(":modules:domain"))
+    implementation(project(":modules:common"))
 }

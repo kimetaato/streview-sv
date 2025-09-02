@@ -1,44 +1,22 @@
-# streview API テスト用リクエストファイル
-# IntelliJ IDEA HTTP Client で使用
-# 
-# 使用方法:
-# 1. アプリケーションを起動: docker exec streview_api bash -c "cd /app/src && ./gradlew run"
-# 2. Firebase認証トークンを取得（以下のFirebaseセクション参照）
-# 3. 各リクエストの左側の実行ボタン（▶️）をクリック
-
 @baseUrl = https://localhost/api
 @firebaseApiKey = AIzaSyCRf7mfe0KrSmdJu7FTCdLB_-qWT3wcbGg
-@email = test01@example.com
-@password = test01
+@email_1 = test01@example.com
+@password_1 = test01
+@email_2 = test02@example.com
+@password_2 = test02
 
 ###
 ### 📋 Firebase 認証手順（以下の順序で実行）
 ###
 
-###
-# ステップ1: 新規ユーザー登録（初回のみ）
-# 既にFirebaseアカウントがある場合はステップ2へ
-POST https://identitytoolkit.googleapis.com/v1/accounts:signUp?key={{firebaseApiKey}}
-Content-Type: application/json
-
-{
-  "email": "{{email}}",
-  "password": "{{password}}",
-  "returnSecureToken": true
-}
-
-> {%
-    client.global.set("firebaseToken", idToken);
-    client.global.set("refreshToken", refreshToken);
-%}
-###
-# ステップ2: サインイン（既存ユーザーまたは登録後）
+### サインイン
+#  @name sign-in
 POST https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key={{firebaseApiKey}}
 Content-Type: application/json
 
 {
-  "email": "{{email}}",
-  "password": "{{password}}",
+  "email": "{{email_2}}",
+  "password": "{{password_2}}",
   "returnSecureToken": true
 }
 
@@ -47,14 +25,6 @@ Content-Type: application/json
     client.global.set("refreshToken", response.body.refreshToken);
 %}
 
-###
-### 基本的なAPIテスト
-###
-
-###
-# 基本的な生存確認
-GET {{baseUrl}}/
-Content-Type: application/json
 
 ###
 ### 🔐 認証が必要なAPIテスト（Firebase認証完了後に実行）
@@ -86,6 +56,24 @@ Content-Type: image/jpeg
 ------WebKitFormBoundary7MA4YWxkTrZu0gW--
 
 ###
+# GeoFence一覧取得
+POST {{baseUrl}}/stores/geofence
+Authorization: Bearer {{firebaseToken}}
+Content-Type: application/json
+
+{
+  "location": {
+    "lat": 34.7018378,
+    "lng": 135.4966263
+  }
+}
+
+> {%
+    client.global.set("storeUUID", response.body.uuid)
+ %}
+
+
+###
 # レビュー投稿 (Firebase認証必要)
 # 事前に上記のFirebase認証を完了してください
 POST {{baseUrl}}/reviews/
@@ -111,22 +99,7 @@ Content-Type: image/png
 < ./test-files/dummy4.png
 ------WebKitFormBoundary7MA4YWxkTrZu0gW
 
-###
-# GeoFence一覧取得
-POST {{baseUrl}}/stores/geofence
-Authorization: Bearer {{firebaseToken}}
-Content-Type: application/json
 
-{
-  "location": {
-    "lat": 35.159,
-    "lng": 135.1
-  }
-}
-
-> {%
-    client.log(response)
- %}
 
 ###
 # Visitステータス変更

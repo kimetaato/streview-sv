@@ -5,13 +5,13 @@ sealed class DomainError() : Throwable() {
     override val cause: Throwable? = null
 }
 
-enum class InvalidFormatRules {
-    PATTERN_MISMATCH, // パターンに一致していない
-    NOT_NUMERIC, // 数値ではない
-    NOT_ALPHANUMERIC, // 英数字のみでない
-    INVALID_DATE_TIME, // 日付がおかしいよ
-    TOO_LONG, // 長すぎる
-    TOO_SHORT, // 短すぎる
+enum class InvalidFormatRules(val value: String) {
+    PATTERN_MISMATCH("pattern mismatch"), // パターンに一致していない
+    NOT_NUMERIC("not numeric"), // 数値ではない
+    NOT_ALPHANUMERIC("not alphanumeric"), // 英数字のみでない
+    INVALID_DATE_TIME("invalid date time"), // 日付がおかしいよ
+    TOO_LONG("too long"), // 長すぎる
+    TOO_SHORT("too short"), // 短すぎる
     // 必要に応じて他のルールを追加
 }
 

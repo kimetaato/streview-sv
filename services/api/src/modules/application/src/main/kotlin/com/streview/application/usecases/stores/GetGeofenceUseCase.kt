@@ -3,9 +3,10 @@ package com.streview.application.usecases.stores
 import com.github.michaelbull.result.andThen
 import com.github.michaelbull.result.fold
 import com.github.michaelbull.result.map
-import com.streview.application.usecases.stores.dto.GetGeofenceRequest
-import com.streview.application.usecases.stores.dto.GetGeofenceResponse
-import com.streview.application.usecases.stores.dto.StoreHeader
+import com.streview.common.dto.stores.GetGeofenceRequest
+import com.streview.common.dto.stores.GetGeofenceResponse
+import com.streview.common.dto.stores.Location
+import com.streview.common.dto.stores.StoreHeader
 import com.streview.domain.commons.GeoLocation
 import com.streview.domain.commons.UserID
 import com.streview.domain.stores.Store
@@ -48,10 +49,12 @@ class GetGeofenceUseCase(
                 GetGeofenceResponse(
                     stores = stores.map { store ->
                         StoreHeader(
-                            uuid = store.storeUUID.value,
-                            name = store.name.value,
-                            lat = store.geoLocation.latitude,
-                            lng = store.geoLocation.longitude
+                            storeUUID = store.storeUUID.value,
+                            storeName = store.name.value,
+                            location = Location(
+                                lat = store.geoLocation.latitude,
+                                lng = store.geoLocation.longitude
+                            ),
                         )
                     },
                     range = range

@@ -3,8 +3,8 @@ package com.streview.application.usecases.visits
 import com.github.michaelbull.result.andThen
 import com.github.michaelbull.result.fold
 import com.streview.application.usecases.UseCase
-import com.streview.application.usecases.visits.dto.CheckInRequest
-import com.streview.application.usecases.visits.dto.CheckInResponse
+import com.streview.common.dto.stores.CheckInRequest
+import com.streview.common.dto.stores.CheckInResponse
 import com.streview.domain.commons.UUID
 import com.streview.domain.commons.UserID
 import com.streview.domain.exceptions.InvalidInputException

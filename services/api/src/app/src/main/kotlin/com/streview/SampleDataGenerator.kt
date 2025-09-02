@@ -16,6 +16,7 @@ import com.streview.domain.stores.Store
 import com.streview.domain.stores.StoreRepository
 import com.streview.domain.visits.Visit
 import com.streview.domain.visits.VisitRepository
+import com.streview.domain.visits.vo.Status
 import kotlinx.coroutines.runBlocking
 import org.jetbrains.exposed.v1.r2dbc.transactions.suspendTransaction
 import org.koin.core.component.KoinComponent
@@ -53,11 +54,15 @@ class SampleDataGenerator : KoinComponent {
                 storeRepository.save(store).fold(
                     success = {
                         println("店舗「${store.name.value}」を保存しました")
+                        val visit = Visit.create(
+                            UserID("M82cS3jFyGdsmZUNhipbkNvDnL72"),
+                            store.storeUUID
+                        )
+                        visit.setStatus(
+                            Status.Wanted
+                        )
                         visitRepository.save(
-                            Visit.create(
-                                UserID("M82cS3jFyGdsmZUNhipbkNvDnL72"),
-                                store.storeUUID
-                            )
+                            visit
                         )
                         savedCount++
                     },

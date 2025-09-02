@@ -6,9 +6,9 @@ import com.github.michaelbull.result.map
 import com.streview.application.services.ImageStorageService
 import com.streview.application.services.ImageType
 import com.streview.application.usecases.UseCase
-import com.streview.application.usecases.reviews.dto.GetMyReviewsRequest
-import com.streview.application.usecases.reviews.dto.GetMyReviewsResponse
-import com.streview.application.usecases.reviews.dto.Review
+import com.streview.common.dto.reviews.GetMyReviewsRequest
+import com.streview.common.dto.reviews.GetMyReviewsResponse
+import com.streview.common.dto.reviews.Review
 import com.streview.domain.commons.UserID
 import com.streview.domain.reviews.ReviewRepository
 import com.streview.domain.stores.StoreRepository

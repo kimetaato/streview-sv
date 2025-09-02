@@ -1,8 +1,8 @@
 package com.streview.presentation.controller
 
 import com.streview.application.usecases.relays.MarkRelayStatusUseCase
-import com.streview.application.usecases.relays.dto.RelayStatusToggleRequest
-import com.streview.application.usecases.relays.dto.RelayStatusToggleResponse
+import com.streview.common.dto.reviews.RelayStatusToggleRequest
+import com.streview.common.dto.reviews.RelayStatusToggleResponse
 import com.streview.domain.exceptions.InvalidInputException
 import io.kotest.core.spec.style.FreeSpec
 import io.kotest.matchers.shouldBe
@@ -97,7 +97,7 @@ class RelayControllerTest : FreeSpec({
 
                     // 検証
                     response.status shouldBe HttpStatusCode.OK
-                    response.bodyAsText() shouldBe """{"reviewUUID":"$reviewUUID"}"""
+                    response.bodyAsText() shouldBe """{"review_uuid":"$reviewUUID"}"""
                     coVerify(exactly = 1) {
                         mockUseCase.execute(RelayStatusToggleRequest(userID, reviewUUID, true))
                     }
@@ -153,7 +153,7 @@ class RelayControllerTest : FreeSpec({
 
                     // 検証
                     response.status shouldBe HttpStatusCode.OK
-                    response.bodyAsText() shouldBe """{"reviewUUID":"$reviewUUID"}"""
+                    response.bodyAsText() shouldBe """{"review_uuid":"$reviewUUID"}"""
                     coVerify(exactly = 1) {
                         mockUseCase.execute(RelayStatusToggleRequest(userID, reviewUUID, false))
                     }
@@ -363,7 +363,7 @@ class RelayControllerTest : FreeSpec({
 
                     // JSONレスポンスの構造検証
                     val responseBody = response.bodyAsText()
-                    responseBody shouldBe """{"reviewUUID":"$reviewUUID"}"""
+                    responseBody shouldBe """{"review_uuid":"$reviewUUID"}"""
                 }
             }
         }

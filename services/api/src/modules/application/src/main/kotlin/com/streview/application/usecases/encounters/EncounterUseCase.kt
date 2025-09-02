@@ -3,8 +3,8 @@ package com.streview.application.usecases.encounters
 import com.github.michaelbull.result.fold
 import com.streview.application.services.EncounterDecryptionService
 import com.streview.application.usecases.UseCase
-import com.streview.application.usecases.encounters.dto.EncounterRequest
-import com.streview.application.usecases.encounters.dto.EncounterResponse
+import com.streview.common.dto.encounters.EncounterRequest
+import com.streview.common.dto.encounters.EncounterResponse
 import com.streview.domain.commons.UserID
 import com.streview.domain.commons.event.EventBus
 import com.streview.domain.encounters.Encounter

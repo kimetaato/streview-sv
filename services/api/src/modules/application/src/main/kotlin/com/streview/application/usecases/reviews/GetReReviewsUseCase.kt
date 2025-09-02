@@ -6,9 +6,9 @@ import com.github.michaelbull.result.fold
 import com.streview.application.services.ImageStorageService
 import com.streview.application.services.ImageType
 import com.streview.application.usecases.UseCase
-import com.streview.application.usecases.reviews.dto.GetReReviewRequest
-import com.streview.application.usecases.reviews.dto.GetReReviewResponse
-import com.streview.application.usecases.reviews.dto.Review
+import com.streview.common.dto.reviews.GetReReviewRequest
+import com.streview.common.dto.reviews.GetReReviewResponse
+import com.streview.common.dto.reviews.Review
 import com.streview.domain.commons.UserID
 import com.streview.domain.relays.RelayRepository
 import com.streview.domain.reviews.ReviewRepository

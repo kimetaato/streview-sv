@@ -1,5 +1,9 @@
 package com.streview.configure
 
+import com.streview.domain.commons.errors.DomainError
+import com.streview.domain.commons.errors.EntityError
+import com.streview.domain.commons.errors.TechnicalError
+import com.streview.domain.commons.errors.ValidationError
 import com.streview.domain.exceptions.ConflictException
 import com.streview.domain.exceptions.InvalidInputException
 import com.streview.domain.exceptions.NotFoundException
@@ -32,10 +36,24 @@ fun Application.configureStatusPage() {
 
         // 独自定義していない例外が発生した場合
         exception<Throwable> { call, cause ->
-            println(cause.message)
-            println(cause.toString())
-            println(cause.stackTraceToString())
-            return@exception call.response.status(HttpStatusCode.InternalServerError)
+            return@exception (cause as? DomainError)?.let { domainError ->
+                when (domainError) {
+                    EntityError.AlreadyExist -> call.respond(HttpStatusCode.Conflict)
+                    is EntityError.NotFound -> call.respond(HttpStatusCode.NotFound)
+                    is TechnicalError.DatabaseError -> call.respond(HttpStatusCode.InternalServerError)
+                    is TechnicalError.ExternalServiceError -> call.respond(HttpStatusCode.FailedDependency)
+                    is TechnicalError.NetworkError -> call.respond(HttpStatusCode.ServiceUnavailable)
+                    is ValidationError.InvalidFormat -> {
+                        call.respond(HttpStatusCode.BadRequest, domainError.fieldName to domainError.rule.value)
+                    }
+                    is ValidationError.Multiple -> {
+                        call.respond(HttpStatusCode.BadRequest, domainError.errors)
+                    }
+                    is ValidationError.Required -> {
+                        call.respond(HttpStatusCode.BadRequest, domainError.fieldName)
+                    }
+                }
+            } ?: call.response.status(HttpStatusCode.InternalServerError)
         }
     }
 }

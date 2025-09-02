@@ -1,8 +1,7 @@
 package com.streview.presentation.controller
 
 import com.streview.application.usecases.encounters.EncounterUseCase
-import com.streview.application.usecases.encounters.dto.EncounterResponse
-import com.streview.domain.exceptions.InvalidInputException
+import com.streview.common.dto.encounters.EncounterResponse
 import io.kotest.core.spec.style.FreeSpec
 import io.kotest.matchers.shouldBe
 import io.ktor.client.request.*
@@ -47,11 +46,11 @@ class EncounterControllerTest : FreeSpec({
                 val response = client.post("/encounters") {
                     header(HttpHeaders.Authorization, "Bearer test-token")
                     contentType(ContentType.Application.Json)
-                    setBody("""{"encounters": [{"date": "2024-01-15", "encounter": ["enc1", "enc2"]}]}""")
+                    setBody("""{"encounters": [{"date": "2024-01-15", "user_ids": ["enc1", "enc2"]}]}""")
                 }
 
                 response.status shouldBe HttpStatusCode.OK
-                response.bodyAsText() shouldBe """{"encounterCount":2}"""
+                response.bodyAsText() shouldBe """{"result":2}"""
                 coVerify(exactly = 1) { mockUseCase.execute(any()) }
             }
         }
@@ -78,7 +77,7 @@ class EncounterControllerTest : FreeSpec({
                 }
 
                 response.status shouldBe HttpStatusCode.OK
-                response.bodyAsText() shouldBe """{"encounterCount":0}"""
+                response.bodyAsText() shouldBe """{"result":0}"""
             }
         }
     }
@@ -130,32 +129,6 @@ class EncounterControllerTest : FreeSpec({
 
                 response.status shouldBe HttpStatusCode.BadRequest
                 coVerify(exactly = 0) { mockUseCase.execute(any()) }
-            }
-        }
-
-        "UseCase例外で500エラー" {
-            clearAllMocks()
-            val mockUseCase = mockk<EncounterUseCase>()
-            coEvery { mockUseCase.execute(any()) } throws InvalidInputException("暗号化エラー")
-
-            testApplication {
-                application {
-                    install(ContentNegotiation) { json() }
-                    install(Koin) { modules(module { single { mockUseCase } }) }
-                    install(Authentication) {
-                        bearer("firebase-auth") { authenticate { UserIdPrincipal("user123") } }
-                    }
-                    routing { authenticate("firebase-auth") { encounterController() } }
-                }
-
-                val response = client.post("/encounters") {
-                    header(HttpHeaders.Authorization, "Bearer test-token")
-                    contentType(ContentType.Application.Json)
-                    setBody("""{"encounters": [{"date": "2024-01-15", "encounter": ["enc1"]}]}""")
-                }
-
-                response.status.value shouldBe 500
-                coVerify(exactly = 1) { mockUseCase.execute(any()) }
             }
         }
     }

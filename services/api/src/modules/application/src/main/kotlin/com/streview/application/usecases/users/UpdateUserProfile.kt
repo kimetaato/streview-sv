@@ -2,8 +2,8 @@ package com.streview.application.usecases.users
 
 import com.streview.application.services.ImageStorageService
 import com.streview.application.usecases.UseCase
-import com.streview.application.usecases.users.dto.UpdateProfileRequest
-import com.streview.application.usecases.users.dto.UpdateProfileResponse
+import com.streview.common.dto.users.UpdateProfileRequest
+import com.streview.common.dto.users.UpdateProfileResponse
 import com.streview.domain.users.UserRepository
 
 class UpdateUserProfile(private val repository: UserRepository, private val imageStorageService: ImageStorageService) :

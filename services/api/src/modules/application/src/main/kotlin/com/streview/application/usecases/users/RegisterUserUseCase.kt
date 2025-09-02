@@ -7,8 +7,8 @@ import com.github.michaelbull.result.fold
 import com.streview.application.services.ImageStorageService
 import com.streview.application.services.ImageType
 import com.streview.application.usecases.UseCase
-import com.streview.application.usecases.users.dto.RegisterUserRequest
-import com.streview.application.usecases.users.dto.RegisterUserResponse
+import com.streview.common.dto.users.RegisterUserRequest
+import com.streview.common.dto.users.RegisterUserResponse
 import com.streview.domain.commons.UserID
 import com.streview.domain.commons.errors.EntityError
 import com.streview.domain.images.Image
